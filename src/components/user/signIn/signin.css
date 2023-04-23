@@ -1,20 +1,86 @@
-.login {
-    min-height: 100vh;
-  }
-  
-  .bg-image {
-    background-image: url('https://plus.unsplash.com/premium_photo-1661918313549-837c855575bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Ym9va3N0b3JlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60');
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .login-heading {
-    font-weight: 300;
-  }
-  
-  .btn-login {
-    font-size: 0.9rem;
-    letter-spacing: 0.05rem;
-    padding: 0.75rem 1rem;
-  }
-  
+ * {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .logimain {
+            height: 420px;
+            width: 440px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            margin: auto;
+            margin-top: 60px;
+        }
+
+        .loginform_div {
+            height: 400px;
+            width: 400px;
+            margin: auto;
+        }
+
+        .formHeading {
+            font-family: "Poppins", sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #3b4348;
+        }
+
+        .formHeading p {
+            padding-top: 20px;
+            color: #3b4348;
+        }
+
+        .peraLogin {
+            font-size: 14px;
+            font-weight: 400;
+            color: #3b4348;
+        }
+
+        .formInputdiv {
+            display: block;
+        }
+
+        .loginformlevel {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .loginformbtn {
+            display: block;
+            margin-top: 30px;
+        }
+
+        .loginformbtn button {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            background-color: #F07C29;
+            color: #fff;
+            border: 1px #F07C29 solid;
+            font-weight: 600;
+            line-height: 1.5;
+            padding: 16px, 16px;
+            height: 35px;
+            width: 60px;
+        }
+
+        .loginformbtn button:hover {
+            background-color: #252525;
+            color: #fff;
+            border: 1px solid #252525;
+        }
+
+        .loginforgotpassword {
+            color: #F07C29;
+            font-family: "Poppins", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .newUser {
+            color: #F07C29;
+            font-family: sans-serif;
+            font-size: 13px;
+            margin-top: 90px;
+        }
