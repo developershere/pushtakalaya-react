@@ -9,10 +9,21 @@ import Checkout from './components/user/checkout/checkout';
 import MyAccount from './components/user/myaccount/myaccount';
 import Donate from './components/DonateBooks/donatebooks';
 import DonateForm from './components/DonateBooks/donateform';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchCategory } from './router-config/categorySlice';
+import { fetchTopProduct } from './router-config/topProductSlice';
 
 function App() {
-  return <>
 
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(fetchCategory());
+    dispatch(fetchTopProduct())
+  },[])
+  return <>
+    
+   
   <Routes>
    <Route path='/' element={ <Home/>}/>
    <Route path='/signup' element={<SignUp/>}/>

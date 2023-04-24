@@ -54,7 +54,7 @@ return<>
     <div className='col-lg-5 offset-1 donate mb-5'>
         <div>
             <h3 className='text-center subheading '>Why to Donate</h3><hr/>
-            <b className='subheading mt-3'>"Knowledge increases by sharing,but not saving"</b>
+            <b className='subheading mt-3 text-center'>"Knowledge increases by sharing,but not saving"</b>
             <p className=' mt-4'>Books are uniquely portable magic that carries your attached feelings forward.</p>
             <p>Your books can help someone in the same way they did for you.</p>
             <p>We are committed to carrying your emotions with your books and making them grow older!</p>

@@ -1,6 +1,24 @@
+import { useDispatch, useSelector } from "react-redux";
+import Footer from "../footer/footer";
 import Header from "../header/header";
+import { useEffect } from "react";
+import { fetchState } from "../../router-config/stateSlice";
+import { fetchCity } from "../../router-config/citySlice";
 
 function DonateForm(){
+
+  const{categoryList,error,isLoading}=useSelector((state)=>state.category)
+  const{cityList}=useSelector((state)=>state.city)
+  console.log(cityList)
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+      dispatch(fetchState());
+      dispatch(fetchCity())
+  },[])
+
+  const{stateList }=useSelector((item)=>item.state);
+ 
     return<>
 
     <section>
@@ -10,10 +28,10 @@ function DonateForm(){
         <div className="col-lg-2 donateformimage">
             <img src="https://img.freepik.com/premium-vector/volunteer-group-donates-old-books-newspapers-poor-students_701961-1285.jpg?w=900" style={{height:'500px',width:'500px'}}/>
         </div>
-      <div className="col-lg-10 col-xl-6">
+      <div className="col-lg-10 col-xl-6" >
         <div className="card rounded-3">
           
-          <div className="card-body p-4 p-md-5">
+          <div className="card-body donateformcontain p-4 p-md-5">
             <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">
              Donate Form
             </h3>
@@ -43,11 +61,10 @@ function DonateForm(){
               </div>
               <div className="row form-group">
                    <div>
+                  
                     <select className="form-control">Category
-                         <option>Select Book Category</option>
-                        <option>Friction</option>
-                        <option>History</option>
-                        <option>Horror</option>
+                    <option>Select Book Category</option>
+                    {!error&&categoryList.map((category,index)=>  <option key={index}>{category.categoryName}</option>)} 
                     </select>
                     </div>
                 </div>
@@ -66,16 +83,20 @@ function DonateForm(){
                 <div className=" col-md-6">
                     <select className="form-control">State
                          <option>Select State</option>
-                        <option>Rajasthan</option>
-                        <option>Madhay Pradesh</option>
-                        <option>Horror</option>
+                         {stateList.map((state,index)=>
+                           <option>{state.stateName}</option>
+                         )}
+                       
+                      
                     </select>
                 </div>
                 <div className=" col-md-6">
                 <select className="form-control">City
                        <option>Select City</option>
-                        <option>indore</option>
-                        <option>ujjain</option>
+                       {cityList.map((city,index)=>
+                           <option>{city.name}</option>
+                         )}
+                       
                     
                     </select>
                 </div>
@@ -97,7 +118,7 @@ function DonateForm(){
 
               <div className="row form-group">
                 <div>
-                 <input  type="file"  placeholder="Images" className="form-control"/>
+                 <input  type="file" multiple  placeholder="Images" className="form-control"/>
                  </div>
               </div>
               <div className="row form-group">
@@ -112,6 +133,8 @@ function DonateForm(){
     </div>
   </div>   
   </section> 
+  <Footer/>
+  
     </>
 }
 
