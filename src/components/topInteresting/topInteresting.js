@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-
+import './top.css'
 function TopInteresting() {
   const { TopProductList } = useSelector((state) => state.topProduct);
   console.log(TopProductList)
@@ -21,7 +21,7 @@ function TopInteresting() {
             >
 
               <button
-                className=" nav-link active col-2" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab"  aria-controls="nav-all"  aria-selected="true"  >  All
+                className=" nav-link active col-2" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="true"  >  All
               </button>
               <button
                 className=" nav-link col-2"
@@ -88,376 +88,54 @@ function TopInteresting() {
             aria-labelledby="nav-all-tab"
             tabIndex={0}
           >
+            <div className="row">
 
-            <div className="row">
-              {TopProductList.map((item,index)=>
-                <div class=" col-md-3 p-2 " data-aos="fade-up" data-aos-duration="500">
-                <div class=" card pb-3">
-                    <div className="card-header text-center">{item.name}</div>
-                    <div class="card-img "><img
-                            src={item.photos
-                            } style={{height:"270px" ,width:"270px"}}/>
-                      </div>
-                    <div class="post-content container mt-2">
-                    <h6 className="text-center"> Price : {item.price}</h6>
-                    <h6 className=""> Author:  {item.author}</h6>
-                       
-                     
-                        <div class="post-logo d-flex align-items-center">
-                        <button className="  text-uppercase  btn btn-outline-dark" type="submit">Add To Cart</button>
-                      
+              {TopProductList.map((product, item) =>
+                <div className="col-md-3">
+                  <section className="mx-auto my-5" style={{ maxWidth: "23rem" }}>
+                    <div className="card">
+                      <div
+                        className="bg-image hover-overlay ripple"
+                        data-mdb-ripple-color="light"
+                      >
+                        <div className="img_conrtainer text-center align-center">
+                          <img src={product.photos} className="img-fluid text-center cardimg"/>
                         </div>
-                        <hr/>
-                        <a class="readmore" href=""><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                        <a href="#!">
+                          <div className="mask"  style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }} />
+                        </a>
+                      </div>
+                      <div className="card-body">
+                        <h5 className="card-title font-weight-bold">
+                          <a>{product.name}</a>
+                        </h5>
+                        <p className="mb-2">{product.author}</p>
+                        <p className="card-text">
+                          {product.description.substring(0, 30)}
+                        </p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                          <button class="cardbutton me-md-2" type="button">ADD TO CART</button>
+                          <button class="cardbutton " type="button">VIEW MORE</button>
+                        </div>
+                      </div>
                     </div>
-                </div>
-            </div>)}
-             
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/construction-1.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">construction 1</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/repairs-1.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">repairs-1</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/design-1.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">design-1</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/remodeling-2.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">remodeling-2</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/construction-2.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">construction-2</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/repairs-2.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">repairs-2</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/design-2.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">design-2</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/remodeling-3.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">remodeling-3</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/construction-3.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">construction-3</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/repairs-3.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">repairs-3</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/design-3.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">design-3</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
+                  </section>
+
+                </div>)}
             </div>
+
+
+
+
+
           </div>
-          <div
-            className="tab-pane fade container"
-            id="nav-Remodeling"
-            role="tabpanel"
-            aria-labelledby="nav-remodeling-tab"
-            tabIndex={0}
-          >
-            <div className="row">
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/remodeling-3.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">Remodeling 1</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/remodeling-2.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">Remodeling 1</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/remodeling-1.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">Remodeling 1</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="tab-pane fade conainer"
-            id="nav-Construction"
-            role="tabpanel"
-            aria-labelledby="nav-Construction-tab"
-            tabIndex={0}
-          >
-            <div className="row">
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/construction-1.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">construction-1</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/construction-2.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">construction </div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/construction-3.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">construction 3</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="tab-pane fade container"
-            id="nav-Repair"
-            role="tabpanel"
-            aria-labelledby="nav-Repair-tab"
-            tabIndex={0}
-          >
-            <div className="row">
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/repairs-1.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">repairs 1</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/repairs-2.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">repairs 2</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/repairs-3.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">repairs 3</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="tab-pane fade container"
-            id="nav-Design"
-            role="tabpanel"
-            aria-labelledby="nav-Design-tab"
-            tabIndex={0}
-          >
-            <div className="row">
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/design-1.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">design 1</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/design-2.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">design 2</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-              <div className="all-img col-md-4 p-3">
-                <div className="inner_box">
-                  <img src="	https://bootstrapmade.com/demo/templates/UpConstruction/assets/img/projects/design-3.jpg" />
-                </div>
-                <div className="inner_box1">
-                  <div className="bg-warning p-1">design 3 1</div>
-                  <div className="icon">
-                    <i className="bi bi-zoom-in" />
-                    <i className="bi bi-link-45deg" />
-                  </div>
-                  <h5>Lorem ipsum, dolor sit amet consectetur</h5>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
 
       </div>
     </section>
+
+
 
 
 

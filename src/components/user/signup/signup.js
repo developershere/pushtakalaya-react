@@ -21,6 +21,13 @@ function SignUp(){
                     <div className="col-lg-12 col-xl-11">
 
                         <div className="row justify-content-center">
+                        <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                                <img
+                                    src="https://storage.googleapis.com/prod-relayread-com/static/frontend/images/flow-resp.png"
+                                    className="img-fluid"
+                                    alt="Sample image"
+                                />
+                            </div>
                             <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                                 <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                                     Sign up
@@ -57,6 +64,14 @@ function SignUp(){
                                         </div>
                                     </div>
                                     
+                                    <div className="d-flex flex-row align-items-center mb-4">
+                                        <i className="fas fa-user fa-lg me-3 fa-fw" />
+                                        <div className="form-outline flex-fill mb-0">
+                                            <input  type="file"  className="form-control" placeholder="Enter Profile Image" />
+                                            
+                                        </div>
+                                    </div>
+                                    
                                     <div className="form-check d-flex justify-content-center mb-5">
                                         <input
                                             className="form-check-input me-2"
@@ -74,13 +89,7 @@ function SignUp(){
                                     </div>
                                 </form>
                             </div>
-                            <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                                <img
-                                    src="https://img.freepik.com/free-vector/sign-concept-illustration_114360-125.jpg?size=626&ext=jpg&ga=GA1.2.894235109.1681109678&semt=ais"
-                                    className="img-fluid"
-                                    alt="Sample image"
-                                />
-                            </div>
+                            
                         </div>
 
                     </div>
