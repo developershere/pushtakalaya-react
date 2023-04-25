@@ -37,7 +37,7 @@ function Header(){
                                            
                                         </div>
                                     </li>
-                                    <li><a href="product-details.html">Free Books</a> </li>
+                                    <li><Link to='/freebooks'>Free Books</Link> </li>
                                     <li><a href="#">MyAccount<i className="fa fa-angle-down"></i></a>
                                         <div className="sub-menu sub-menu-2">
                                             <ul>
@@ -51,7 +51,7 @@ function Header(){
                             </nav>
                         </div>
                         <div className="safe-area">
-                            <a href="product-details.html">sell Books</a>
+                        <Link to='/sellbooks'>Sell Books</Link>
                         </div>
                     </div>
                 </div>

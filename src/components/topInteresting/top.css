@@ -1,5 +1,5 @@
 .cardimg {
-    height: 150px !important;
+    height: 200px !important;
 }
 
 .img_conrtainer {
@@ -31,4 +31,77 @@
 .cardbutton:hover{
     background:#212529;
     color: white;
+}
+.buttonhover{
+    background-color: #212529;
+    color: white;
+}
+
+.buttonhover:hover{
+    background-color: #F07C29;
+     cursor: pointer;
+     color: white;
+     font-family: bold;
+  }
+
+  .card{
+    box-shadow: rgba(252, 200, 161, 0.8)0px 3px 6px,rgba(252, 200, 161, 0.8) 0px 3px 6px;
+  }
+
+  .cardtitle{
+    color: #222;
+    font-family: "Rufina", serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+  .cardprice{
+    color: #F07C29;
+    font-family: "Rufina", serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .card-action{
+       text-align: end;
+        float: right;
+        background: white;
+        border-radius: 50%;
+        bottom: 0;
+        color: #fff;
+        display: inline-block;
+        font-size: 18px;
+        height: 50px;
+        margin-left: 185px;
+        margin-bottom: 130px;
+        line-height: 30px;
+        position: absolute;
+        text-align: center;
+        width: 53px;
+        font-size: 15px;
+    box-shadow: 0 1px 2px #0003, 0 1px 2px #00000030;
+    
+}
+
+.carticon{
+    font-size: 20px;
+    color: #314e52;
+}
+
+.card-action:hover{
+    background-color: #F07C29;
+    color: white;
+}
+
+.cardimg{
+    height:'200px';
+    width:'250px';
+    border-radius: 5px;
+}
+
+.cardimg:hover{
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
 }
