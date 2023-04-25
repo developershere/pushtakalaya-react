@@ -1,0 +1,34 @@
+.cardimg {
+    height: 150px !important;
+}
+
+.img_conrtainer {
+    height: 250px;
+    padding-top: 50px;
+}
+
+.card :hover img,
+.card :hover .img_conrtainer {
+    padding-top: 0 !important;
+    height: 250px !important;
+    transition: 2s;
+}
+.cardbutton{
+    background: #F07C29 none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    height: 40px;
+    line-height: 50px;
+    padding: 0 10px;
+    text-transform: uppercase;
+    font-family: 'Rufina', serif;
+    font-weight: 400;
+    border: none;
+}
+
+.cardbutton:hover{
+    background:#212529;
+    color: white;
+}
