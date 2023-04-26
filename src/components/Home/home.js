@@ -6,7 +6,7 @@ import Footer from "../footer/footer";
 
 import Header from "../header/header";
 import MostProduct from "../mostProductArea/mostproduct";
-import Shop from "../shop/shop";
+
 import TopInteresting from "../topInteresting/topInteresting";
 
 function Home(){
@@ -16,9 +16,8 @@ function Home(){
     <Carousal />
     <TopInteresting/>
     <BestAuthor/>
-    <Shop/>
     <Banner/>
-    <MostProduct/>
+   
     <Footer/>
   
    </>

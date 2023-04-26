@@ -60,8 +60,9 @@
 
 .donate{
     height: auto;
-    border: 1px solid #212529 ;
+    box-shadow: 0px 2px 3px;
 }
+
 p{
     color: rgba(0,0,0,.6);
     font-family: Roboto;
