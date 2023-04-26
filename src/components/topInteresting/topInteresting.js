@@ -39,13 +39,13 @@ function TopInteresting() {
 
               <button className=" nav-link active col-2"  id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="true"  >  All</button>
               {!error&&categoryList.filter((category)=>category.categoryName=="Classics").map((category,index)=>
-              <button onClick={()=>loadProductByCategory(category._id)} className=" nav-link col-2" id="nav-Remodeling-tab" data-bs-toggle="tab" data-bs-target="#nav-Remodeling"type="button"role="tab"aria-controls="nav-Remodeling" aria-selected="false" >{category.categoryName}</button>)}
+              <button  key={index} onClick={()=>loadProductByCategory(category._id)} className=" nav-link col-2" id="nav-Remodeling-tab" data-bs-toggle="tab" data-bs-target="#nav-Remodeling"type="button"role="tab"aria-controls="nav-Remodeling" aria-selected="false" >{category.categoryName}</button>)}
               
               {!error&&categoryList.filter((category)=>category.categoryName=="Horror").map((category,index)=>
-                <button onClick={()=>loadProductByCategory(category._id)} className="nav-link col-2" id="nav-Construction-tab" data-bs-toggle="tab" data-bs-target="#nav-Construction" type="button"role="tab" aria-controls="nav-Construction"aria-selected="false" >{category.categoryName}</button>)}
+                <button key={index} onClick={()=>loadProductByCategory(category._id)} className="nav-link col-2" id="nav-Construction-tab" data-bs-toggle="tab" data-bs-target="#nav-Construction" type="button"role="tab" aria-controls="nav-Construction"aria-selected="false" >{category.categoryName}</button>)}
 
               {!error&&categoryList.filter((category)=>category.categoryName=="History").map((category,index)=> 
-              <button onClick={()=>loadProductByCategory(category._id)} className="nav-link col-2"  id="nav-Repair-tab" data-bs-toggle="tab" data-bs-target="#nav-Repair"  type="button"role="tab"aria-controls="nav-Repair"  aria-selected="false" >
+              <button  key={index} onClick={()=>loadProductByCategory(category._id)} className="nav-link col-2"  id="nav-Repair-tab" data-bs-toggle="tab" data-bs-target="#nav-Repair"  type="button"role="tab"aria-controls="nav-Repair"  aria-selected="false" >
                 {category.categoryName}
               </button>
               )}
@@ -68,37 +68,38 @@ function TopInteresting() {
           >
             <div className="row m-auto">
 
-              {TopProductList.map((product, item) =>
+              {TopProductList.map((product, index) =>
               
-               <div className="col-md-3 col-sm-6 mt-4 " data-aos="fade-up" data-aos-duration="500">
+               <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
                  <div className="card">
-                 <img src= {"https://drive.google.com/uc?export=view&id="+product.photos.substring(32,product.photos.lastIndexOf("/"))}  className="img-fluid text-center cardimg"/> 
+                 <img src= {"https://drive.google.com/uc?export=view&id="+product.photos.substring(32,product.photos.lastIndexOf("/"))}  className="img-fluid cardimg"/> 
                  <a className="card-action"><i className="fa fa-shopping-cart carticon mt-3"></i></a>
                    <div className="card-body">
                      <p className="card-text cardtitle">{product.name.substring(0,20)}</p>
                      <p className="cardprice"><span className="cardtitle">Author: </span>{product.author.substring(0,15)}</p>
                      <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{product.price}</b>
                      <br/>
-                     <button className="btn mt-2 w-100 buttonhover" style={{border: "1px solid #A86769"}}>View More</button>
+                     <button className="btn mt-2 w-100 buttonhover" >View More</button>
                    </div>
                  </div>
                </div>)}
             </div>
             </div>
             <div className="row m-auto">
-              {productByCategory.map((item,index)=>
-              <div key={index} className="col-md-3 col-sm-6 mt-4 " data-aos="fade-up" data-aos-duration="500">
-                 <div className="card">
-                 <img src= {"https://drive.google.com/uc?export=view&id="+item.photos.substring(32,item.photos.lastIndexOf("/"))} style={{height:'200px',width:'300px'}} className="img-fluid text-center cardimg"/> 
-                 
-                   <div className="card-body">
-                     <p className="card-text cardtitle">{item.name.substring(0,20)}</p>
-                     <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{item.price}</b>
-                     <br/>
-                     <button className="btn mt-2 w-100 buttonhover" style={{border: "1px solid #A86769"}}>Add To Cart</button>
-                   </div>
-                 </div>
-               </div>)}
+              {productByCategory.map((product,index)=>
+              <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
+              <div className="card">
+              <img src= {"https://drive.google.com/uc?export=view&id="+product.photos.substring(32,product.photos.lastIndexOf("/"))}  className="img-fluid cardimg"/> 
+              <a className="card-action"><i className="fa fa-shopping-cart carticon mt-3"></i></a>
+                <div className="card-body">
+                  <p className="card-text cardtitle">{product.name.substring(0,20)}</p>
+                  <p className="cardprice"><span className="cardtitle">Author: </span>{product.author.substring(0,15)}</p>
+                  <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{product.price}</b>
+                  <br/>
+                  <button className="btn mt-2 w-100 buttonhover" >View More</button>
+                </div>
+              </div>
+            </div>)}
             </div>
          
           

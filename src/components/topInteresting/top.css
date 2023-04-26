@@ -1,6 +1,4 @@
-.cardimg {
-    height: 200px !important;
-}
+
 
 .img_conrtainer {
     height: 250px;
@@ -95,13 +93,19 @@
 }
 
 .cardimg{
-    height:'200px';
+    height: 200px !important;
     width:'250px';
     border-radius: 5px;
 }
 
 .cardimg:hover{
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 240px;
+    padding-top: 30px;
+    padding:30px;
+   
+ 
     cursor: pointer;
 }
+
+
