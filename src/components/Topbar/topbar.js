@@ -1,19 +1,19 @@
 import './topbar.css'
+import {useNavigate} from "react-router-dom"
 function TopBar() {
-
-    function searchBooks(fn,delay){
-        let timeOutId;
-        return function(...args){
-            if(timeOutId)
-            {
-                clearTimeout(timeOutId);
-                window.alert("Mausam....");
-            }
-            timeOutId = setTimeout(()=>{
-                fn(...args);
-            },delay);
-        }
-    }
+    const navigate = useNavigate();
+    function debounce(func, timeout = 3000){
+        let timer;
+        return (...args) => {
+          clearTimeout(timer);
+          timer = setTimeout(() => { func.apply(this, args); }, timeout);
+        };
+      }
+      function saveInput(){
+        console.log("Searching Books...");
+        navigate("/signup");
+      }
+      const processChange = debounce(() => saveInput());
     return <>
         <div className="container-fluid topbarcontainr">
             <div className='row'>
@@ -24,7 +24,7 @@ function TopBar() {
                 <div className='col-md-4 topbardiv'>
                     <div className="header-search mt-5">
                         <form action="#">
-                            <input type="text" onKeyUp={()=>searchBooks(()=>{console.log("On Click...")},2000)} placeholder="Search top books here..." />
+                            <input type="text" onKeyUp={processChange} placeholder="Search top books here..." />
                             <a href="#"><i className="fa fa-search"></i></a>
                         </form>
                     </div>
