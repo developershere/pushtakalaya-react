@@ -13,6 +13,10 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchCategory } from './router-config/categorySlice';
 import { fetchTopProduct } from './router-config/topProductSlice';
+import Books  from './components/books/books';
+import BookList from './components/books/bookList';
+import ViewDescription from './components/viewDescription/viewDescription';
+import Footer from './components/footer/footer';
 
 function App() {
 
@@ -33,10 +37,11 @@ function App() {
    <Route path='/myaccount' element={<MyAccount/>}/>
    <Route path='/donate' element={<Donate/>}/>
    <Route path='/donateform' element={<DonateForm/>}/>
-
-
+    <Route path='/book'  element={<Books/>}/>
+     <Route path='/bookList' element={<BookList/>}/>
+      <Route path="/viewDescription" element={<ViewDescription/>}/>
   </Routes>
- 
+   
   </>
 }
 
