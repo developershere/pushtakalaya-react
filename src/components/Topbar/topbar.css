@@ -6,7 +6,7 @@
 .topbardiv{
    
     height: 130px;
-   
+    
     position: relative;
     
 }
@@ -37,7 +37,8 @@
 }
 
 .logosymbol{
-   font-size: 40px;
+   font-size: 30px;
+   color: black;
 }
 .count{
     background: #f07c29 none repeat scroll 0 0;

@@ -43,12 +43,12 @@ function BestAuthor() {
                 <ul>
                   <li>
                     <a href="# ">
-                      <i className="fa fa-facebook " />
+                    <i class="bi bi-facebook"></i>
                     </a>
                   </li>
                   <li>
                     <a href="# ">
-                      <i className="fa fa-twitter " />
+                    <i class="bi bi-twitter"></i>
                     </a>
                   </li>
                 </ul>

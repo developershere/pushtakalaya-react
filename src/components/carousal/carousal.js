@@ -26,11 +26,11 @@ function Carousal()
       <div className="carousel-item">
       <div className="single-slider slider-h1-2 pt-215 pb-100 bg-img  ban1" >
        
-        <div className="container ">
+        <div className="container mb-5">
                     <div className="slider-content slider-content-2 slider-animated-1 ">
                         <h1>We can help get your</h1>
                         <h2>Books in Order</h2>
-                        <a href="# ">Contact Us Today!</a>
+                      <a href="# " className="ml-5">Contact Us!</a>
                     </div>
                 </div>
                 </div>
@@ -38,8 +38,6 @@ function Carousal()
       </div>
       <div className="carousel-item">
         <img className="d-block w-100" style={{height:"400px"}} src="https://www.mypustak.com/_next/image?url=https%3A%2F%2Fd239pyg5al708u.cloudfront.net%2Fuploads%2Fhomebanner%2FHOME_1_2_79.webp&w=3840&q=75" alt="First slide"/>
-
-        {/* <img className="d-block w-100" style={{height:"400px"}} src="" alt="Third slide" /> */}
       </div>
     </div>
     <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
