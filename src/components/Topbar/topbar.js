@@ -1,5 +1,19 @@
 import './topbar.css'
 function TopBar() {
+
+    function searchBooks(fn,delay){
+        let timeOutId;
+        return function(...args){
+            if(timeOutId)
+            {
+                clearTimeout(timeOutId);
+                window.alert("Mausam....");
+            }
+            timeOutId = setTimeout(()=>{
+                fn(...args);
+            },delay);
+        }
+    }
     return <>
         <div className="container-fluid topbarcontainr">
             <div className='row'>
@@ -10,7 +24,7 @@ function TopBar() {
                 <div className='col-md-4 topbardiv'>
                     <div className="header-search mt-5">
                         <form action="#">
-                            <input type="text" placeholder="Search entire store here..." />
+                            <input type="text" onKeyUp={()=>searchBooks(()=>{console.log("On Click...")},2000)} placeholder="Search top books here..." />
                             <a href="#"><i className="fa fa-search"></i></a>
                         </form>
                     </div>
