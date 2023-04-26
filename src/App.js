@@ -15,6 +15,10 @@ import { fetchCategory } from './router-config/categorySlice';
 import { fetchTopProduct } from './router-config/topProductSlice';
 import Shop from './components/FreeBooks/freeBooks';
 import FreeBooks from './components/FreeBooks/freeBooks';
+import Update from './components/user/myaccount/update';
+import ProtectedRoute from './components/protectedRoute/protectedRoute';
+import ViewDescription from './components/viewDescription/viewDescription/viewDescription';
+import Books from './components/books/books/books';
 
 function App() {
 
@@ -30,14 +34,17 @@ function App() {
    <Route path='/' element={ <Home/>}/>
    <Route path='/signup' element={<SignUp/>}/>
    <Route path='/signin' element={<SignIn/>}/>
-   <Route path='/cart' element={<Cart/>}/>
+
+   <Route path='/cart' element={<ProtectedRoute><Cart/></ProtectedRoute>}/>
    <Route path='/freebooks' element={<FreeBooks/>}/>
    <Route path='/checkout' element={<Checkout/>}/>
-   <Route path='/myaccount' element={<MyAccount/>}/>
+   <Route path='/myaccount' element={<ProtectedRoute><MyAccount/></ProtectedRoute>}/>
    <Route path='/donate' element={<Donate/>}/>
    <Route path='/donateform' element={<DonateForm/>}/>
    <Route path='/sellbooks' element={<DonateForm/>}/>
-
+   <Route path='/update' element={<Update/>}/>
+   <Route path= "/viewDescription" element={<ViewDescription/>}/>
+    <Route path="/book" element={<Books/>}/>
 
   </Routes>
  

@@ -1,10 +1,19 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import TopBar from "../Topbar/topbar";
+import { signout } from "../../router-config/userSlice";
+import { toast } from "react-toastify";
 
 function Header(){
+    const dispatch = useDispatch();
     const{categoryList,error,isLoading} = useSelector((state)=>state.category)
-    console.log(categoryList)
+    const currentUser = useSelector((state)=>state.user.currentUser);
+  
+   const signOut=()=>{
+     dispatch(signout())
+     toast.info("Sign Out SuccesFully");
+   }
+
 
 
     return <>
@@ -24,7 +33,7 @@ function Header(){
                                     <li className="active"><Link to='/'>Home</Link>
                                        
                                     </li>
-                                    <li><a href="">Book</a></li>
+                                    <li><Link to='/book'>Book</Link></li>
                                     <li><a className="text-white">Categories<i className="fa fa-angle-down"></i></a>
                                    
                                         <div className="mega-menu">
@@ -37,22 +46,26 @@ function Header(){
                                            
                                         </div>
                                     </li>
+                                   
+                                    
+                                   
+                                    <li><Link to='/donate'>Donate Books</Link></li>
                                     <li><Link to='/freebooks'>Free Books</Link> </li>
-                                    <li><a href="#">MyAccount<i className="fa fa-angle-down"></i></a>
+                                    {currentUser?<li><Link onClick={signOut}>SignOut</Link></li>:<li><a href="#">MyAccount<i className="fa fa-angle-down"></i></a>
                                         <div className="sub-menu sub-menu-2">
                                             <ul>
-                                                <li><Link to='signup'>SignUp</Link></li>
-                                                <li><Link to='signin'>SignIn</Link></li>
+                                                <li><Link to='/signup'>SignUp</Link></li>
+                                                <li><Link to='/signin'>SignIn</Link></li>
                                             </ul>
                                         </div>
-                                    </li>
-                                    <li><Link to='/donate'>Donate Books</Link></li>
+                                    </li>}
                                 </ul>
                             </nav>
                         </div>
                         <div className="safe-area">
                         <Link to='/sellbooks'>Sell Books</Link>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -87,14 +100,14 @@ function Header(){
                                    </div>
                                </li>
                                   
-                                    <li><a href="#">MyAccount<i className="fa fa-angle-down"></i></a>
+                                     {currentUser?<li><Link onClick={signOut}>SignOut</Link></li>:<li><a href="#">MyAccount<i className="fa fa-angle-down"></i></a>
                                         <div className="sub-menu sub-menu-2">
                                             <ul>
                                                 <li><Link to='/signup'>SignUp</Link></li>
                                                 <li><Link to='/signin'>SignIn</Link></li>
                                             </ul>
                                         </div>
-                                    </li>
+                                    </li>}
                                     <li><Link to='/donate'>Donate Books<i className="fa fa-angle-down"></i></Link>
                                        
                                     </li>
