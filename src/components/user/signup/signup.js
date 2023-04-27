@@ -3,20 +3,22 @@ import { isVisible } from "@testing-library/user-event/dist/utils";
 import { useRef, useState } from 'react'
 import Header from "../../header/header";
 import axios from "axios";
+import {toast, ToastContainer} from "react-toastify"
 import { apiEndPoint } from "../../../webApi/webapi";
 import { useNavigate } from "react-router-dom";
+import {createAsyncThunk} from "@reduxjs/toolkit";
 function SignUp() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [contact, setContact] = useState("");
-    const [otp,setOtp] = useState("");
-    const [time,setTime] = useState("");
-    const navigate = useNavigate();
-
+    let [otp,setOtp] = useState("");
     
-
-
+    let mausam;
+    let expire = false;
+    let otpCheck = false;
+    let mtime;
+    const navigate = useNavigate();
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
@@ -32,15 +34,31 @@ function SignUp() {
         }
     }
     const verifyEmail = async ()=>{
-        let response = await axios.get(apiEndPoint.STATE_API);
-        
-
+        console.log("sfdfdg");
+        let response = await axios.post("/user/mausam",{name,email});
+        mausam = response.data.result.OTP;
+        mtime = response.data.result.currentTime;
+       console.log("OTP : "+mausam);
+       console.log("Time : "+mtime);        
     }
     const registration = async()=>{
-        window.alert(otp);
+        if(new Date().getMinutes()<=mtime+5){
+            expire = true;
+            if(mausam==otp)
+            {
+                otpCheck = true;
+                toast("Registration Success....")
+                console.log("Success....");
+            }
+            else
+                toast("Invalid OTP...");
+        }
+        else
+            toast("Ohho! OTP expires...");
     }
     return <>
         <Header />
+        <ToastContainer/>
         <div className="breadcrumbs-area ">
             <div className="container">
                 <div className="row">
@@ -55,7 +73,6 @@ function SignUp() {
                 </div>
             </div>
         </div>
-
         <section className="vh-100" style={{ backgroundColor: "#eee" }}>
             <div className="container h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
@@ -112,9 +129,6 @@ function SignUp() {
                                                         <h6>Please enter the one time password <br /> to verify your account</h6>
                                                         <div> <span>A code has been sent to</span> <small>Your Email Id</small> </div>
                                                         <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> 
-                                                        
-                                                        
-                                                        
                                                         <input onChange={(event) => setOtp(event.target.value)} class="m-2 text-center form-control rounded width:10" type="text" id="fourth" maxlength="4" />
                                                         </div>
                                                         <div class="mt-4">
@@ -123,19 +137,15 @@ function SignUp() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        
+                                        </div>    
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </section>
-
-
     </>
 }
 

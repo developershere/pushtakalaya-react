@@ -1,8 +1,21 @@
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import './topbar.css'
 import { useSelector } from 'react-redux';
 function TopBar() {
     const{currentUser}=useSelector((state)=>state.user);
+    const navigate = useNavigate();
+    function debounce(func, timeout = 3000){
+        let timer;
+        return (...args) => {
+          clearTimeout(timer);
+          timer = setTimeout(() => { func.apply(this, args); }, timeout);
+        };
+      }
+      function saveInput(){
+        console.log("Searching Books...");
+        navigate("/book");
+      }
+      const processChange = debounce(() => saveInput());
     return <>
         <div className="container-fluid topbarcontainr">
             <div className='row'>
@@ -13,7 +26,7 @@ function TopBar() {
                 <div className='col-md-4  col-lg-4 col-sm-4 col-xm -4 topbardiv'>
                 <div className="header-search mt-5">
                             <form action="#">
-                                <input type="text" placeholder="Search entire store here..." />
+                                <input type="text" onKeyUp={processChange} placeholder="Search entire store here..." />
                                 <a href="#"><i className="fa fa-search"></i></a>
                             </form>
                         </div>

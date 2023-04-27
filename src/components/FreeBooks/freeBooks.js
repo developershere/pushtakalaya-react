@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { apiEndPoint } from "../../webApi/webapi";
 import Header from "../header/header";
 import Footer from "../footer/footer";
+import { useNavigate } from "react-router";
 // import { useNavigate } from "react-router-dom";
 function FreeBooks() {
  
-
+ 
      const[freeProduct,SetFreeProduct] = useState([]);
      const[freeerror,setFreeError] = useState(null)
 
@@ -21,6 +22,12 @@ function FreeBooks() {
             setFreeError("oops Something Went Wrong");
         }
      }
+
+const navigate = useNavigate();
+     const viewDescription=(book)=>{
+      navigate("/viewDescription", { state: { bookDetails: book } })  
+     }
+
 
      useEffect(()=>{
         loadFreeProduct()
