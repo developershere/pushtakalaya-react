@@ -6,13 +6,13 @@ import { apiEndPoint } from "../webApi/webapi";
     let response = await axios.get(apiEndPoint.STATE_API);
     if(response.data.status){
         console.log(response.data);
-        return response.data.result;
+        return response.data.state
     }
 })
 
 
 const slice = createSlice({
-    name:'states',
+    name:'state',
     initialState:{
         stateList:[],
         isLoading:false,
