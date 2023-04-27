@@ -3,13 +3,17 @@ import categorySlice from "./categorySlice";
 import stateSlice from "./stateSlice";
 import topProductSlice from "./topProductSlice";
 import citySlice from "./citySlice";
+import userSlice from "./userSlice";
+
 
 const store = configureStore({
     reducer:{
         category:categorySlice,
         state:stateSlice,
         topProduct:topProductSlice,
-        city:citySlice
+        city:citySlice,
+        user:userSlice,
+       
         
     }
 })

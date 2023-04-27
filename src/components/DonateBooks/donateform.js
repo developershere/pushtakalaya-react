@@ -8,10 +8,8 @@ import { fetchCity } from "../../router-config/citySlice";
 function DonateForm(){
 
   const{categoryList,error,isLoading}=useSelector((state)=>state.category)
-  const { stateList } = useSelector((item) => item.state);
-  console.log(stateList)
   const{cityList}=useSelector((state)=>state.city)
-   
+  console.log(cityList)
   const dispatch = useDispatch()
 
   useEffect(()=>{
@@ -19,7 +17,7 @@ function DonateForm(){
       dispatch(fetchCity())
   },[])
 
- 
+  const{stateList }=useSelector((item)=>item.state);
  
     return<>
 
@@ -66,7 +64,7 @@ function DonateForm(){
                   
                     <select className="form-control">Category
                     <option>Select Book Category</option>
-                    {!error&&categoryList.map((category,index)=><option key={index}>{category.categoryName}</option>)} 
+                    {!error&&categoryList.map((category,index)=>  <option key={index}>{category.categoryName}</option>)} 
                     </select>
                     </div>
                 </div>
@@ -85,9 +83,9 @@ function DonateForm(){
                 <div className=" col-md-6">
                     <select className="form-control">State
                          <option>Select State</option>
-                               {stateList.map((state)=>
-                                 <option>{state.stateName}</option>)}
-                         
+                         {stateList.map((state,index)=>
+                           <option>{state.stateName}</option>
+                         )}
                        
                       
                     </select>
