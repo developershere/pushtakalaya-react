@@ -8,8 +8,10 @@ import { fetchCity } from "../../router-config/citySlice";
 function DonateForm(){
 
   const{categoryList,error,isLoading}=useSelector((state)=>state.category)
+  const { stateList } = useSelector((item) => item.state);
+  console.log(stateList)
   const{cityList}=useSelector((state)=>state.city)
-  console.log(cityList)
+   
   const dispatch = useDispatch()
 
   useEffect(()=>{
@@ -17,23 +19,23 @@ function DonateForm(){
       dispatch(fetchCity())
   },[])
 
-  const{stateList }=useSelector((item)=>item.state);
+ 
  
     return<>
 
     <section>
         <Header/>
-  <div className="container py-5 h-100 donateformContainer">
+  <div className="container-fluid py-5 h-100 donateformContainer">
     <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col-lg-2 donateformimage">
-            <img src="https://img.freepik.com/premium-vector/volunteer-group-donates-old-books-newspapers-poor-students_701961-1285.jpg?w=900" style={{height:'500px',width:'500px'}}/>
+            <img src="\img\donar\form.jpg" style={{height:'500px',width:'500px'}}/>
         </div>
       <div className="col-lg-10 col-xl-6" >
         <div className="card rounded-3">
           
           <div className="card-body donateformcontain p-4 p-md-5">
             <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">
-             Donate Form
+             Book Form
             </h3>
             <form className="px-md-2">
               <div className="row form-group"  >
@@ -64,7 +66,7 @@ function DonateForm(){
                   
                     <select className="form-control">Category
                     <option>Select Book Category</option>
-                    {!error&&categoryList.map((category,index)=>  <option key={index}>{category.categoryName}</option>)} 
+                    {!error&&categoryList.map((category,index)=><option key={index}>{category.categoryName}</option>)} 
                     </select>
                     </div>
                 </div>
@@ -83,9 +85,9 @@ function DonateForm(){
                 <div className=" col-md-6">
                     <select className="form-control">State
                          <option>Select State</option>
-                         {stateList.map((state,index)=>
-                           <option>{state.stateName}</option>
-                         )}
+                               {stateList.map((state)=>
+                                 <option>{state.stateName}</option>)}
+                         
                        
                       
                     </select>

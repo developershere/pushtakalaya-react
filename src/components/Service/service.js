@@ -10,7 +10,7 @@ function Service(){
                         </div>
                         <div className="banner-text">
                             <h4>Free shipping item</h4>
-                            <p>For all orders over ₹500</p>
+                            <p>For all orders over $500</p>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@ function Service(){
                         </div>
                         <div className="banner-text">
                             <h4>Cash on delivery</h4>
-                            <p>We are also provide COD facility</p>
+                            <p>Lorem ipsum dolor consecte</p>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@ function Service(){
                         </div>
                         <div className="banner-text">
                             <h4>Help & Support</h4>
-                            <p>Call us : +91 8989580060</p>
+                            <p>Call us : + 0123.4567.89</p>
                         </div>
                     </div>
                 </div>
