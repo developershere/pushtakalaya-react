@@ -1,6 +1,6 @@
 function Banner(){
     return<>
-     <div className="banner-static-area bg ptb-100 ">
+     <div className="banner-static-area bg ptb-100">
         <div className="container ">
             <div className="row ">
                 <div className="col-lg-6 col-md-6 col-12 ">

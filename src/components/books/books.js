@@ -58,9 +58,6 @@ function Books() {
         navigate("/bookList", { state: { dataList: list } });
     };
 
-
-
-
     useEffect(() => {
         featchAllBooks();
         viewBookByCategory();
@@ -80,7 +77,7 @@ function Books() {
 
                         <ul>
                             {!error && categoryList.map((category, index) =>
-                                <li onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
+                                <li   style={{cursor : "pointer"}} onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
                         </ul>
                     </div>
                     {/* drop down */}

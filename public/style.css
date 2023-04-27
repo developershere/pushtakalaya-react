@@ -257,7 +257,9 @@ body {
 }
 
 .mtb-95 {
-    margin: 95px 0;
+    margin-top: 50px;
+    margin-bottom: 90px;
+    /* margin: 50px 0; */
 }
 
 .mt-20 {
@@ -329,7 +331,7 @@ body {
 }
 
 .ptb-100 {
-    padding: 100px 0;
+    padding: 90px 0;
 }
 
 .pb-5 {
@@ -1243,7 +1245,7 @@ body {
     font-size: 70px;
     font-weight: 700;
     line-height: 1;
-    margin-bottom: 25px;
+    /* margin-bottom: 25px; */
     text-transform: capitalize;
     font-family: 'Rufina', serif;
     font-weight: 400;
@@ -1267,9 +1269,9 @@ body {
     display: inline-block;
     font-size: 24px;
     font-weight: 400;
-    line-height: 34px;
+    /* line-height: 34px; */
     margin-top: -2px;
-    padding: 8px 35px;
+    padding: 8px 30px;
     text-transform: none;
     font-family: 'Rufina', serif;
     font-weight: 400;
@@ -1285,13 +1287,15 @@ body {
 }
 
 .slider-content-2 h1 {
+    
     font-size: 40px;
     text-transform: none;
 }
 
 .slider-content-2 h2 {
     color: #fff;
-    font-size: 80px;
+    margin-left: 10px;
+    font-size: 45px;
     text-transform: none;
 }
 
