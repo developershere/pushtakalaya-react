@@ -1,3 +1,4 @@
+
 import "./signup.css"
 import { isVisible } from "@testing-library/user-event/dist/utils";
 import { useRef, useState } from 'react'
@@ -45,6 +46,8 @@ function SignUp() {
     const registration = async()=>{
         var time = new Date().getMinutes();
         console.log(time);
+        console.log(mtime);
+
         console.log(time<=mtime);
         if(!time<=mtime){
             expire = true;

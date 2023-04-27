@@ -12,4 +12,8 @@ export const apiEndPoint = {
     Search_By_Categoryname: "/book/searchByCategoryId",
     Search_by_Other: "/book/searchbyAuthor",
     All_Books:"/book/list",
+    RECENT_PRODUCT: '/product/recent-product',
+    PRODUCT_LIST: '/product/list',
+    FETCH_CART: '/cart/fetch-cart',
+    ADD_TO_CART: '/cart/add-to-cart'
 }
