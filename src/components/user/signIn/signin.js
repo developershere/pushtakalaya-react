@@ -29,7 +29,10 @@ function SignIn(){
   }catch(err){
     toast.error("Sign In Failed");
   }
+  }
 
+  const changeHome=()=>{
+    navigate("/")
   }
     return <>
       <ToastContainer/>
@@ -39,7 +42,7 @@ function SignIn(){
                 <div className="col-lg-12">
                     <div className="breadcrumbs-menu">
                         <ul>
-                            <li><a href="#">Home</a></li>
+                            <li><a onClick={changeHome}>Home</a></li>
                             <li><a href="#" className="active">SignIn</a></li>
                         </ul>
                     </div>

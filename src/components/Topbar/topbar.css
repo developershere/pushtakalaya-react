@@ -26,14 +26,10 @@
 .topbarlogoheading{
     color: #F07C29;
     font-family: "Roboto,HelveticaNeue,Arial,sans-serif";
-    font-size: 35px;
+    font-size: 20px;
     font-weight: bold;
-    margin: 40px ;
-    margin-left: 0px;
-    padding-bottom: 30px;
+   
     
-  
-   position: absolute;
 }
 
 .logosymbol{
