@@ -7,6 +7,7 @@ import {toast, ToastContainer} from "react-toastify"
 import { apiEndPoint } from "../../../webApi/webapi";
 import { useNavigate } from "react-router-dom";
 import {createAsyncThunk} from "@reduxjs/toolkit";
+import 'react-toastify/dist/ReactToastify.css'
 function SignUp() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -36,13 +37,16 @@ function SignUp() {
     const verifyEmail = async ()=>{
         console.log("sfdfdg");
         let response = await axios.post("/user/mausam",{name,email});
-        mausam = response.data.result.OTP;
+        mausam = response.data.result.OTP+5;
         mtime = response.data.result.currentTime;
        console.log("OTP : "+mausam);
        console.log("Time : "+mtime);        
     }
     const registration = async()=>{
-        if(new Date().getMinutes()<=mtime+5){
+        var time = new Date().getMinutes();
+        console.log(time);
+        console.log(time<=mtime);
+        if(!time<=mtime){
             expire = true;
             if(mausam==otp)
             {
@@ -51,10 +55,10 @@ function SignUp() {
                 console.log("Success....");
             }
             else
-                toast("Invalid OTP...");
+                toast.error("Invalid OTP...");
         }
         else
-            toast("Ohho! OTP expires...");
+            toast.error("Ohho! OTP expires...");
     }
     return <>
         <Header />

@@ -15,12 +15,12 @@ function Header(){
                     <div className="col-lg-12">
                         <div className="menu-area">
                             <nav>
-                                <ul>
-                                    <li className="active"><Link to='/myaccount'>Home</Link>
+                                <ul className="">
+                                    <li className="active"style={{textDecoration:"none"}}><Link to='/myaccount'>Home</Link>
                                        
                                     </li>
-                                        <li><Link to="/book">Book</Link></li>
-                                    <li><a className="text-white">Categories<i className="fa fa-angle-down" ></i></a>
+                                        <li><Link to="/book" style={{textDecoration:"none"}}>Book</Link></li>
+                                    <li><a className="text-white" style={{textDecoration:"none"}}>Categories<i className="fa fa-angle-down" ></i></a>
                                    
                                         <div className="mega-menu">
                                            {!error&&categoryList.map((category,index)=>
@@ -32,8 +32,8 @@ function Header(){
                                            
                                         </div>
                                     </li>
-                                    <li><Link to='/freebooks'>Free Books</Link> </li>
-                                    <li><a href="#">MyAccount<i className="fa fa-angle-down"></i></a>
+                                    <li><Link to='/freebooks' style={{textDecoration:"none"}}>Free Books</Link> </li>
+                                    <li><a href="#"style={{textDecoration:"none"}}>MyAccount<i className="fa fa-angle-down"></i></a>
                                         <div className="sub-menu sub-menu-2">
                                             <ul>
                                                 <li><Link to='signup'>SignUp</Link></li>
@@ -41,13 +41,12 @@ function Header(){
                                             </ul>
                                         </div>
                                     </li>
-                                    <li><Link to='/donate'>Donate Books</Link></li>
+                                    <li><Link to='/donate'style={{textDecoration:"none"}}>Donate Books</Link></li>
+                                    <li><Link to='/donate'style={{textDecoration:"none"}}>Sell Books</Link></li>
                                 </ul>
                             </nav>
                         </div>
-                        <div className="safe-area">
-                        <Link to='/sellbooks'>Sell Books</Link>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
