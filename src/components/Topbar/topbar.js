@@ -11,7 +11,7 @@ function TopBar() {
       }
       function saveInput(){
         console.log("Searching Books...");
-        navigate("/signup");
+        navigate("/book");
       }
       const processChange = debounce(() => saveInput());
     return <>

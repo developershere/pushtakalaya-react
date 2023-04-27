@@ -13,8 +13,7 @@ function SignUp() {
     const [password, setPassword] = useState("");
     const [contact, setContact] = useState("");
     let [otp,setOtp] = useState("");
-    let [confirmOtp,setConfirmOtp] = useState("");
-    let [time,setTime] = useState("");
+    
     let mausam;
     let expire = false;
     let otpCheck = false;
@@ -37,15 +36,13 @@ function SignUp() {
     const verifyEmail = async ()=>{
         console.log("sfdfdg");
         let response = await axios.post("/user/mausam",{name,email});
-         setConfirmOtp = await response.data.result.OTP;
-        setTime = await response.data.result.currentTime;
         mausam = response.data.result.OTP;
         mtime = response.data.result.currentTime;
        console.log("OTP : "+mausam);
        console.log("Time : "+mtime);        
     }
     const registration = async()=>{
-        if(new Date().getMinutes()<=mtime+1){
+        if(new Date().getMinutes()<=mtime+5){
             expire = true;
             if(mausam==otp)
             {
@@ -54,10 +51,10 @@ function SignUp() {
                 console.log("Success....");
             }
             else
-                toast.error("Invalid OTP...");
+                toast("Invalid OTP...");
         }
         else
-            toast.error("Ohho! OTP expires...");
+            toast("Ohho! OTP expires...");
     }
     return <>
         <Header />

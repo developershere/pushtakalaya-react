@@ -4,28 +4,23 @@ import TopBar from "../Topbar/topbar";
 
 function Header(){
     const{categoryList,error,isLoading} = useSelector((state)=>state.category)
-    console.log(categoryList)
-
 
     return <>
      <header>
     
     <TopBar/>
-
-
-       
-        <div className="main-menu-area d-md-none d-none d-lg-block sticky-header-1" id="header-sticky">
+    <div className="main-menu-area d-md-none d-none d-lg-block sticky-header-1" id="header-sticky">
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12">
                         <div className="menu-area">
                             <nav>
                                 <ul>
-                                    <li className="active"><Link to='/'>Home</Link>
+                                    <li className="active"><Link to='/myaccount'>Home</Link>
                                        
                                     </li>
-                                    <li><a href="">Book</a></li>
-                                    <li><a className="text-white">Categories<i className="fa fa-angle-down"></i></a>
+                                        <li><Link to="/book">Book</Link></li>
+                                    <li><a className="text-white">Categories<i className="fa fa-angle-down" ></i></a>
                                    
                                         <div className="mega-menu">
                                            {!error&&categoryList.map((category,index)=>
@@ -37,7 +32,7 @@ function Header(){
                                            
                                         </div>
                                     </li>
-                                    <li><a href="product-details.html">Free Books</a> </li>
+                                    <li><Link to='/freebooks'>Free Books</Link> </li>
                                     <li><a href="#">MyAccount<i className="fa fa-angle-down"></i></a>
                                         <div className="sub-menu sub-menu-2">
                                             <ul>
@@ -51,7 +46,7 @@ function Header(){
                             </nav>
                         </div>
                         <div className="safe-area">
-                            <a href="product-details.html">sell Books</a>
+                        <Link to='/sellbooks'>Sell Books</Link>
                         </div>
                     </div>
                 </div>
@@ -68,7 +63,7 @@ function Header(){
                                     <li><a href="index.html">Home</a>
                                        
                                     </li>
-                                    <li><a href="product-details.html">Book</a>
+                                    <li><Link href="product-details.html">Book</Link>
                                        
                                     </li>
                                     <li><a href="product-details.html">Free Books</a>
