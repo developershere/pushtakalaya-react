@@ -15,5 +15,6 @@ export const apiEndPoint = {
     RECENT_PRODUCT: '/product/recent-product',
     PRODUCT_LIST: '/product/list',
     FETCH_CART: '/cart/fetch-cart',
-    ADD_TO_CART: '/cart/add-to-cart'
+    ADD_TO_CART: '/cart/addToCart',
+
 }

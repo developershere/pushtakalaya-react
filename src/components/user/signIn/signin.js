@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../../router-config/userSlice';
 import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from 'react-router-dom';
+import TopBar from '../../Topbar/topbar';
+import Header from '../../header/header';
 function SignIn(){
 
   const[email,SetEmail]= useState(" ");
@@ -20,6 +22,7 @@ function SignIn(){
     event.preventDefault();
     let response = await axios.post(apiEndPoint.USER_SIGNIN,{email,password})
     if(response.data.status){
+      console.log(response.data.user.token);
       dispatch(setCurrentUser(response.data.user));
       toast.success("Sign in Success")
       navigate("/")
@@ -35,7 +38,9 @@ function SignIn(){
     navigate("/")
   }
     return <>
-      <ToastContainer/>
+    <ToastContainer/>
+    <Header/>
+    <div className='container-fluid'>
      <div className="breadcrumbs-area ">
         <div className="container">
             <div className="row">
@@ -92,8 +97,7 @@ function SignIn(){
     </div>
   </div>
 </div>
-
-    
+</div>
     </>
 }
 

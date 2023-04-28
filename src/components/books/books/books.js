@@ -4,13 +4,16 @@ import "./books.css"
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { apiEndPoint } from "../../../webApi/webapi";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
 
 
 function Books() {
+    const location = useLocation();
+    const keyword = location.state.search;
+    window.alert(keyword);
     const { categoryList, error, isLoading } = useSelector((state) => state.category)
     const [bookData, setData] = useState([]);
     const navigate = useNavigate()

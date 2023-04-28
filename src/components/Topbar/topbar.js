@@ -1,9 +1,12 @@
 import { Link,useNavigate } from 'react-router-dom';
 import './topbar.css'
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { getValue } from '@testing-library/user-event/dist/utils';
 function TopBar() {
     // const {recentProductList,error} = useSelector(state=>state.recentProduct);
     const{currentUser}=useSelector((state)=>state.user);
+    const [keyword,setKeyword] = useState("");
     const navigate = useNavigate();
     function debounce(func, timeout = 3000){
         let timer;
@@ -12,11 +15,14 @@ function TopBar() {
           timer = setTimeout(() => { func.apply(this, args); }, timeout);
         };
       }
-      function saveInput(){
+      function saveInput(event){
+        let data = keyword;
         console.log("Searching Books...");
-        navigate("/book");
+        
+        navigate("/book",{state :{search:data}});
       }
-      const processChange = debounce(() => saveInput());
+      const processChange = debounce((event) => saveInput(event));
+
     return <>
         <div className="container-fluid topbarcontainr">
             <div className='row'>
@@ -27,7 +33,7 @@ function TopBar() {
                 <div className='col-md-4  col-lg-4 col-sm-4 col-xm -4 topbardiv'>
                 <div className="header-search mt-5">
                             <form action="#">
-                                <input type="text" onKeyUp={processChange} placeholder="Search entire store here..." />
+                                <input type="text" id='search' onKeyUp={(event)=>processChange(setKeyword(event.target.value))} placeholder="Search You'r favorite books..." />
                                 <a href="#"><i className="fa fa-search"></i></a>
                             </form>
                     </div>
@@ -38,7 +44,7 @@ function TopBar() {
                         <div class="my-cart">
                             <ul>
                                 <li>
-                            <Link class="view-cart" to="/cart" ><i class="fa fa-shopping-cart"></i>My Cart</Link>
+                            <Link to='/cart' class="view-cart"><i class="fa fa-shopping-cart"></i>My Cart</Link>
                                     <span>2</span>
                                     <div class="mini-cart-sub">
                                         <div class="cart-product">
