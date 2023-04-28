@@ -4,17 +4,18 @@ import stateSlice from "./stateSlice";
 import topProductSlice from "./topProductSlice";
 import citySlice from "./citySlice";
 import userSlice from "./userSlice";
+import recentProductSlice from "./recentProductSlice";
 
 
 const store = configureStore({
-    reducer:{
-        category:categorySlice,
-        state:stateSlice,
-        topProduct:topProductSlice,
-        city:citySlice,
-        user:userSlice,
-       
-        
+    reducer: {
+        category: categorySlice,
+        state: stateSlice,
+        topProduct: topProductSlice,
+        city: citySlice,
+        user: userSlice,
+        recentProduct: recentProductSlice
+
     }
 })
 

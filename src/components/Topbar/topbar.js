@@ -1,18 +1,16 @@
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './topbar.css'
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
-import { getValue } from '@testing-library/user-event/dist/utils';
+import recentProduct from '../../router-config/recentProductSlice';
 function TopBar() {
-    // const {recentProductList,error} = useSelector(state=>state.recentProduct);
-    const{currentUser}=useSelector((state)=>state.user);
-    const [keyword,setKeyword] = useState("");
+    const { recentProductList, error } = useSelector(state => state.recentProduct);
+    const { currentUser } = useSelector((state) => state.user);
     const navigate = useNavigate();
-    function debounce(func, timeout = 3000){
+    function debounce(func, timeout = 3000) {
         let timer;
         return (...args) => {
-          clearTimeout(timer);
-          timer = setTimeout(() => { func.apply(this, args); }, timeout);
+            clearTimeout(timer);
+            timer = setTimeout(() => { func.apply(this, args); }, timeout);
         };
       }
       function saveInput(event){
@@ -27,62 +25,75 @@ function TopBar() {
         <div className="container-fluid topbarcontainr">
             <div className='row'>
                 <div className='col-md-4 col-lg-4 col-sm-4 col-xm -4 topbardiv'>
-                    <img src="img/logo/logo.png" alt="logo"  className='logoimg mb-3 pb-3 mt-1'  />
+                    <img src="img/logo/logo.png" alt="logo" className='logoimg mb-3 pb-3 mt-1' />
                     <span className='topbarlogoheading ' >Pustakalaya</span>
                 </div>
                 <div className='col-md-4  col-lg-4 col-sm-4 col-xm -4 topbardiv'>
-                <div className="header-search mt-5">
-                            <form action="#">
-                                <input type="text" id='search' onKeyUp={(event)=>processChange(setKeyword(event.target.value))} placeholder="Search You'r favorite books..." />
-                                <a href="#"><i className="fa fa-search"></i></a>
-                            </form>
+                    <div className="header-search mt-5">
+                        <form action="#">
+                            <input type="text" onKeyUp={processChange} placeholder="Search entire store here..." />
+                            <a href="#"><i className="fa fa-search"></i></a>
+                        </form>
                     </div>
                 </div>
-                <div className='col-md-4 col-lg-4 col-sm-4 col-xm -4 topbardiv'>
-                <div className='d-flex justify-content-end' >
-                <div class="col-lg-3 col-md-3 col-12 mt-4">
-                        <div class="my-cart">
-                            <ul>
-                                <li>
-                            <Link to='/cart' class="view-cart"><i class="fa fa-shopping-cart"></i>My Cart</Link>
-                                    <span>2</span>
-                                    <div class="mini-cart-sub">
-                                        <div class="cart-product">
-                                        {/* {!error && recentProductList.map((product,index)=>  */}
 
-                                            <div class="single-cart" >
-                                                <div class="cart-img">
-                                                {/* <img src= {"https://drive.google.com/uc?export=view&id="+product.photos.substring(32,product.photos.lastIndexOf("/"))}  className="img-fluid cardimg"/>  */}
-                                                </div>
-                                                <div class="cart-info">
-                                                    <h5><a href="#"></a></h5>
-                                                    <p></p>
-                                                </div>
-                                                <div class="cart-icon">
-                                                    <a href="#"><i class="fa fa-remove"></i></a>
-                                                </div>
+                {/* ------------------------------------------- */}
+                        <div className="col-lg-3 col-md-3 col-12 ">
+                    <div class="header-mid-area ptb-40">
+                     <div class="container">
+               
+                            <div className="my-cart">
+                                <ul>
+                                    <li>
+                                        <Link className="view-cart" to="/cart" ><i className="fa fa-shopping-cart"></i>My Cart</Link>
+                                        <span>2</span>
+                                        <div className="mini-cart-sub">
+                                            <div className="cart-product">
+                                                {!error && recentProductList.map((product, index) =>
+
+                                                    <div className="single-cart" key={index}>
+                                                        <div className="cart-img">
+                                                            <img src={"https://drive.google.com/uc?export=view&id=" + product.photos.substring(32, product.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
+                                                        </div>
+                                                        <div className="cart-info">
+                                                            <h5><a href="#">{product.name}</a></h5>
+                                                            <p>{product.price}</p>
+                                                        </div>
+                                                        <div className="cart-icon">
+                                                            <a href="#"><i className="fa fa-remove"></i></a>
+                                                        </div>
+                                                    </div>)}
+                                            </div>
+                                            <div className="cart-totals">
+                                                <h5>Total <span>£12.00</span></h5>
+                                            </div>
+                                            <div className="cart-bottom">
+                                                <Link className="view-cart" to="/cart" >view cart</Link>
+                                                <a href="checkout.html">Check out</a>
                                             </div>
                                         </div>
-                                        <div class="cart-totals">
-                                            <h5>Total <span>£12.00</span></h5>
-                                        </div>
-                                        <div class="cart-bottom">
-                                            <Link class="view-cart" to="/cart" >view cart</Link>
-                                            <a href="checkout.html">Check out</a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                   <div className='mt-5 ml-4 me-3'  >
-                   <Link to='/myaccount'><i className="fa fa-user logosymbol"></i></Link>
-                   </div>
-                   
-                   </div>
-                   
                 </div>
-                
+
+                <div className='col-md-1 col-lg-1 col-sm-1 col-xm-1 '>
+                    <div className='d-flex justify-content-end' >
+                        <div className='mt-5 ml-4 me-3'  >
+                            <Link to='/myaccount'><i className="fa fa-user logosymbol"></i></Link>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                {/* -------------------------------- */}
+
+
             </div>
 
         </div>

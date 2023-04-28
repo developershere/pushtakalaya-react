@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { fetchState } from "../../router-config/stateSlice";
 import { fetchCity } from "../../router-config/citySlice";
 
-function DonateForm(){
+function SellboooksForm(){
 
   const{categoryList,error,isLoading}=useSelector((state)=>state.category)
   const{cityList}=useSelector((state)=>state.city)
@@ -33,7 +33,7 @@ function DonateForm(){
           
           <div className="card-body donateformcontain p-4 p-md-5">
             <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2 sty">
-             Book Donation Form
+             Book Detail's
             </h3>
             <form className="px-md-2">
               <div className="row form-group"  >
@@ -46,17 +46,13 @@ function DonateForm(){
                     <input placeholder="Enter Edition" type="text" className="form-control"/>
                 </div>
               </div>
-              <div className="row form-group"  >
-                <div className="">
-                    <input placeholder="Enter Publication Date" type="date" className="form-control"/>
-                </div>
-              </div>
+         
               <div className="row form-group"  >
                 <div className=" col-md-6">
                     <input placeholder="Enter Author Name" type="text" className="form-control"/>
                 </div>
                 <div className=" col-md-6">
-                    <input placeholder="Free" type="text"  value='Free' className="form-control" disabled/>
+                    <input placeholder="Enter Price" type="number"  className="form-control"/>
                 </div>
               </div>
               <div className="row form-group">
@@ -106,10 +102,19 @@ function DonateForm(){
                 <div className=" col-md-6">
                    <input type="number" placeholder=" Enter Pincode" className="form-control"/>
                 </div>
+
                 <div className="col-md-6">
-                 <input  type="file"   placeholder="Images" className="form-control"/>
+                    <input placeholder="Enter Publication Date" type="month" className="form-control"/>
+                </div>
+               
+              </div>
+
+              <div className="row form-group"  >
+                <div className="col-md-12">
+                 <input  type="file" placeholder="Images" className="form-control"/>
                  </div>
               </div>
+
 
    
               <div className="row form-group">
@@ -119,7 +124,7 @@ function DonateForm(){
               </div>
               <div className="row form-group">
                 <div>
-                        <button className="btn w-100 text-center submitbtn" style={{outline:"none"}} type="button">SUBMIT</button>
+                        <button className="btn w-100 text-center submitbtn"  type="button">SUBMIT</button>
                  </div>
               </div>
             </form>
@@ -134,4 +139,4 @@ function DonateForm(){
     </>
 }
 
-export default DonateForm;
+export default SellboooksForm;

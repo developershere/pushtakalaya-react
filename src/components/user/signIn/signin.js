@@ -11,10 +11,10 @@ import TopBar from '../../Topbar/topbar';
 import Header from '../../header/header';
 function SignIn(){
 
-  const[email,SetEmail]= useState(" ");
-  const[password,setPassword]= useState(" ");
+  const [email, SetEmail] = useState(" ");
+  const [password, setPassword] = useState(" ");
   const dispatch = useDispatch();
-  const navigate= useNavigate();
+  const navigate = useNavigate();
 
 
   const handleSubmit=async(event)=>{
@@ -27,14 +27,14 @@ function SignIn(){
       toast.success("Sign in Success")
       navigate("/")
 
-      return response.data.user;
+        return response.data.user;
+      }
+    } catch (err) {
+      toast.error("Sign In Failed");
     }
-  }catch(err){
-    toast.error("Sign In Failed");
-  }
   }
 
-  const changeHome=()=>{
+  const changeHome = () => {
     navigate("/")
   }
     return <>
@@ -55,7 +55,7 @@ function SignIn(){
             </div>
         </div>
     </div>
-  
+
     <div className="container-fluid ps-md-0">
      
   <div className="row g-0">
@@ -67,7 +67,7 @@ function SignIn(){
         <div className="container">
           <div className="row">
             <div className="col-md-9 col-lg-8 mx-auto">
-              <h3 className="login-heading mb-4">Welcome back!</h3>
+              <h3 className="login-heading mb-4 welcome">Welcome Back!</h3>
 
              
               <form onSubmit={handleSubmit}>
@@ -80,7 +80,7 @@ function SignIn(){
                   <label for="floatingPassword">Password</label>
                 </div>
 
-                
+
 
                 <div className="d-grid">
                   <button className="btn btn-lg  btn-login text-uppercase fw-bold mb-2  btn btn-dark" type="submit">Sign in</button>
