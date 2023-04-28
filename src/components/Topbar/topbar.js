@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import './topbar.css'
+import { useSelector } from 'react-redux';
 function TopBar() {
+    const{currentUser}=useSelector((state)=>state.user);
     return <>
         <div className="container-fluid topbarcontainr">
             <div className='row'>
