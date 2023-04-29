@@ -20,17 +20,15 @@ import ProtectedRoute from './components/protectedRoute/protectedRoute';
 import ViewDescription from './components/viewDescription/viewDescription/viewDescription';
 import Books from './components/books/books/books';
 import SellboooksForm from './components/sellbooks/sellbook';
-
+import { fetchState } from './router-config/stateSlice';
 function App() {
-
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(fetchCategory());
-    dispatch(fetchTopProduct())
+    dispatch(fetchTopProduct());
+    dispatch(fetchState());
   },[])
-  return <>
-    
-   
+  return <> 
   <Routes>
    <Route path='/' element={ <Home/>}/>
    <Route path='/signup' element={<SignUp/>}/>

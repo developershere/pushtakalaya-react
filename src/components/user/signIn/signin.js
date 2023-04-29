@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from 'react-router-dom';
 import TopBar from '../../Topbar/topbar';
 import Header from '../../header/header';
+import { setCartItems } from '../../../router-config/CartSlice';
 function SignIn(){
 
   const [email, SetEmail] = useState(" ");
@@ -22,9 +23,10 @@ function SignIn(){
     event.preventDefault();
     let response = await axios.post(apiEndPoint.USER_SIGNIN,{email,password})
     if(response.data.status){
-      console.log(response.data.user.token);
+      let carts = await axios.post(apiEndPoint.FETCH_CART,{userId:response.data.user._id})
       dispatch(setCurrentUser(response.data.user));
-      toast.success("Sign in Success")
+      dispatch(setCartItems(carts.data.cartz));
+      toast.success("Welcome To Pustakalaya")
       navigate("/")
 
         return response.data.user;
@@ -59,7 +61,7 @@ function SignIn(){
     <div className="container-fluid ps-md-0">
      
   <div className="row g-0">
-    <div className="d-none d-md-flex col-md-4 col-lg-6 sign-image">
+    <div className="d-none d-md-flex col-md-4 col-lg-5 sign-image">
       
     </div>
     <div className="col-md-8 col-lg-6">

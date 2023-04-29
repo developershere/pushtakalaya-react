@@ -11,9 +11,9 @@ import Footer from "../../footer/footer";
 
 
 function Books() {
-    const location = useLocation();
-    const keyword = location.state.search;
-    window.alert(keyword);
+    // const location = useLocation();
+    // const keyword = location.state.search;
+    // window.alert(keyword);
     const { categoryList, error, isLoading } = useSelector((state) => state.category)
     const [bookData, setData] = useState([]);
     const navigate = useNavigate()
@@ -89,11 +89,11 @@ function Books() {
                         </ul>
                     </div>
                     {/* drop down */}
-                    <div class="btn-group dropdownbtn">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div className="btn-group dropdownbtn">
+                        <button className="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             AUTHOR
                         </button>
-                        <ul class="dropdown-menu dropdownofOther" >
+                        <ul className="dropdown-menu dropdownofOther" >
                             {bookData.map((book, index) =>
                                 <li onClick={() => { searchByAuther(book.author) }}>{book.author}</li>)}
                         </ul>
@@ -112,12 +112,12 @@ function Books() {
                     </div>
                     <div className="gridAndList">
                         <div className="grid d-flex">
-                            <i class="fa fa-th-large" aria-hidden="true"></i>
+                            <i className="fa fa-th-large" aria-hidden="true"></i>
                             <div className="mb-5">
                                 <spna className="gridName">Gride</spna>
                             </div>
                             <div className="listicon">
-                                <i onClick={() => viewListInbooks(bookData)} class="fa fa-list" aria-hidden="true"></i>
+                                <i onClick={() => viewListInbooks(bookData)} className="fa fa-list" aria-hidden="true"></i>
                             </div>
                             <div className="listName">
                                 List

@@ -129,16 +129,16 @@ function SignUp() {
                                             </button>
                                         </div>
                                         <div className="modal-body">
-                                            <div class="container height-100 d-flex justify-content-center align-items-center">
-                                                <div class="position-relative">
-                                                    <div class="card p-2 text-center">
+                                            <div className="container height-100 d-flex justify-content-center align-items-center">
+                                                <div className="position-relative">
+                                                    <div className="card p-2 text-center">
                                                         <h6>Please enter the one time password <br /> to verify your account</h6>
                                                         <div> <span>A code has been sent to</span> <small>Your Email Id</small> </div>
-                                                        <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> 
-                                                        <input onChange={(event) => setOtp(event.target.value)} class="m-2 text-center form-control rounded width:10" type="text" id="fourth" maxlength="4" />
+                                                        <div id="otp" className="inputs d-flex flex-row justify-content-center mt-2"> 
+                                                        <input onChange={(event) => setOtp(event.target.value)} className="m-2 text-center form-control rounded width:10" type="text" id="fourth" maxlength="4" />
                                                         </div>
-                                                        <div class="mt-4">
-                                                         <button onClick={()=>registration(otp)} class="btn btn-warning px-4 validate">Validate</button> 
+                                                        <div className="mt-4">
+                                                         <button onClick={()=>registration(otp)} className="btn btn-warning px-4 validate">Validate</button> 
                                                         </div>
                                                     </div>
                                                 </div>

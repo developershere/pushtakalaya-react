@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { apiEndPoint } from "../../webApi/webapi";
+import {toast ,ToastContainer} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 function TopInteresting() {
   const {currentUser} = useSelector((state)=>state.user);
   const navigate = useNavigate();
@@ -28,10 +30,20 @@ function TopInteresting() {
 
   }
   const addToCart = async (id)=>{
-    window.alert(currentUser._id);
-    let response = await axios.post(apiEndPoint.ADD_TO_CART,{_id:id,userId : currentUser._id});
+    try{
+    let response = await axios.post(apiEndPoint.ADD_TO_CART,{bookId:id,userId : currentUser._id});
+    toast.success("Book is added to you'r cart");
+  }
+    catch(err)
+    {
+    if(err.response.status==400)
+        toast.warning("Book is already exists in cart");
+    if(err.response.status==500)
+      toast.error("Oops Something went wrong");
+    }
   }
   return <>
+  <ToastContainer/>
     <section className="our-project" id="projectid">
       <div className="container heading-design">
         <div data-aos="fade-up" data-aos-duration="400">

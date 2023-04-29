@@ -14,10 +14,9 @@ function TopBar() {
         };
       }
       function saveInput(event){
-        let data = keyword;
         console.log("Searching Books...");
         
-        navigate("/book",{state :{search:data}});
+        navigate("/book");
       }
       const processChange = debounce((event) => saveInput(event));
 
@@ -39,8 +38,8 @@ function TopBar() {
 
                 {/* ------------------------------------------- */}
                         <div className="col-lg-3 col-md-3 col-12 ">
-                    <div class="header-mid-area ptb-40">
-                     <div class="container">
+                    <div className="header-mid-area ptb-40">
+                     <div className="container">
                
                             <div className="my-cart">
                                 <ul>

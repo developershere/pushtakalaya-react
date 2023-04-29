@@ -14,7 +14,9 @@ export const apiEndPoint = {
     All_Books: "/book/list",
     RECENT_PRODUCT: '/product/recent-product',
     PRODUCT_LIST: '/product/list',
-    FETCH_CART: '/cart/fetch-cart',
+    FETCH_CART: '/cart/fetchCart',
     ADD_TO_CART: '/cart/addToCart',
+    USER_CART : "/cart/userCart",
+    UPLOAD_BOOK : "/book/add"
 
 }

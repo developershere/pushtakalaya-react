@@ -3,12 +3,13 @@ import axios from "axios";
 import { apiEndPoint } from "../webApi/webapi";
 export const fetchCart = createAsyncThunk("cart/fetchCart", async(userId) => {
     let response = await axios.post(apiEndPoint.FETCH_CART, { userId });
-    return response.data[0].cartItems;
+    return response.data.cart;
 });
 
 export const addItemInToCart = createAsyncThunk("cart/addItemInToCart", async(obj) => {
-    let response = await axios.post(apiEndPoint.ADD_TO_CART, { userId: obj.userId, productId: obj.productId });
-    return response.data;
+    let response = await axios.post(apiEndPoint.USER_CART, { userId: obj.userId});
+    console.log(response.data.result);
+    return response.data.result;
 });
 const slice = createSlice({
     name: 'cart',
@@ -17,19 +18,14 @@ const slice = createSlice({
         cartError: null,
         flag: false
     },
-    extraReducers: (builder) => {
-        builder.addCase(fetchCart.fulfilled, (state, action) => {
+    reducers:{
+        setCartItems : (state,action)=>{
             state.cartItems = action.payload;
-        }).addCase(fetchCart.rejected, (state) => {
-            state.cartError = "Oops! somehting went wrong..";
-        }).addCase(addItemInToCart.pending, (state) => {
-            state.flag = false;
-        }).addCase(addItemInToCart.fulfilled, (state, action) => {
+        },
+        setflag : (state,action)=>{
             state.flag = true;
-        }).addCase(addItemInToCart.rejected, (state) => {
-            state.cartError = 'Oops! something went wrong';
-        });
+        }
     }
 });
-
+export const {setCartItems,flag} = slice.actions;
 export default slice.reducer;
