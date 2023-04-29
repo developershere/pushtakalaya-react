@@ -6,6 +6,7 @@ import { fetchState } from "../../router-config/stateSlice";
 import axios from "axios";
 import { apiEndPoint } from "../../webApi/webapi";
 import userSlice from "../../router-config/userSlice";
+import { toast, ToastContainer } from "react-toastify";
 
 function DonateForm() {
   const [citys, setCitys] = useState([]);
@@ -19,7 +20,7 @@ function DonateForm() {
   const [language, setLanguage] = useState("");
   const [edition, setEdition] = useState(" ");
   const [publicationDate, setPublicationDate] = useState(" ");
-  const [pinCode, setPinCode] = useState(" ");
+  const [pincode, setPinCode] = useState(" ");
   const [cityId, setCity] = useState(" ");
   const [categoryId, setCategory] = useState(" ");
   const [photos, setImage] = useState("");
@@ -31,8 +32,7 @@ function DonateForm() {
     try {
       event.preventDefault();
        const stateId = stateObject.current.value;
-      console.log(name, description, price, pinCode, cityId, categoryId, publicationDate, language, author, edition, stateId);
-      let response = await axios.post(apiEndPoint.Add_Book, { name, description, author, language, edition, publicationDate, pinCode, cityId, categoryId, photos, price, userId ,stateId });
+      let response = await axios.post(apiEndPoint.ADD_BOOK, { name, description, author, language, edition, publicationDate, pincode, cityId, categoryId, photos, price, userId ,stateId });
       console.log(response.data);
     }
     catch (err) {
@@ -42,20 +42,21 @@ function DonateForm() {
  
    const featchCityById = async (stateId) => {
     try {
-      let response = await axios.post(apiEndPoint.Featch_City_by_State, { stateId: stateId });
+      let response = await axios.post(apiEndPoint.FEATCH_CITY_BY_STATE, { stateId: stateId });
       setCitys(response.data.result);
     }
     catch (err) {
-      console.log(err);
+      toast.error("Something went wrong");
     }
   }
   useEffect(() => {
     dispatch(fetchState());
      }, [])
   return <>
-
+  
     <section>
-      <Header />
+      <Header /> 
+      <ToastContainer/>
       <div className="container-fluid py-5 h-100 donateformContainer">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-2 donateformimage">
@@ -65,8 +66,8 @@ function DonateForm() {
             <div className="card rounded-3">
 
               <div className="card-body donateformcontain p-4 p-md-5">
-                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">
-                  Book Form
+                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2 sty">
+                  Book Donation Form
                 </h3>
                 <form onSubmit={handleSubmit} className="px-md-2">
                   <div className="row form-group"  >
@@ -86,7 +87,7 @@ function DonateForm() {
                   </div>
                   <div className="row form-group">
                     <div className=" col-md-12">
-                      <input onChange={(event) => setAuthorName(event.target.value)} placeholder="Enter Author Name" type="text" className="form-control" />
+                      <input onChange={(event) => setAuthorName(event.target.value)} placeholder="Enter Author Name" type="text" className="form-control"/>
                     </div>
 
                   </div>
@@ -107,8 +108,7 @@ function DonateForm() {
                         <option>English</option>
 
                       </select></div>
-
-                  </div>
+                 </div>
                   <div className="row form-group mt-2"  >
                     <div className=" col-md-6">
                       <select  ref={stateObject}   className="form-control" onChange={(event) => featchCityById(event.target.value)}>State
@@ -130,7 +130,7 @@ function DonateForm() {
                   </div>
                   <div className="row form-group"  >
                    <div className=" col-md-6">
-                      <input onChange={(event) => setPinCode(event.target.value)} type="number" placeholder=" Enter Pincode" className="form-control" />
+                      <input onChange={(event) =>setPinCode(event.target.value)} type="number" placeholder=" Enter Pincode" className="form-control" />
                     </div>
                   </div>
 
@@ -144,8 +144,8 @@ function DonateForm() {
                       <textarea onChange={(event) => setDescription(event.target.value)} cols='53' rows='4' placeholder="Enter Description" />
                     </div>
                   </div>
-                  <div className="donetFormbtn">
-                    <button type="submit" className="donatebtn">Submit</button>
+                  <div>
+                    <button className="btn w-100 text-center submitbtn" style={{ outline: "none" }} type="button">SUBMIT</button>
                   </div>
                 </form>
               </div>
@@ -156,7 +156,11 @@ function DonateForm() {
     </section>
     <Footer />
 
-  </>
+</>
 }
 
 export default DonateForm;
+
+
+  
+    

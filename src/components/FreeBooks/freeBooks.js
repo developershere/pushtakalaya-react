@@ -3,14 +3,11 @@ import { useEffect, useState } from "react";
 import { apiEndPoint } from "../../webApi/webapi";
 import Header from "../header/header";
 import Footer from "../footer/footer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router-dom";
 function FreeBooks() {
-  const navigate = useNavigate();
-  const viewDescription = (book) => {
-    window.alert(book);
-    navigate("/viewDescription", { state: { bookDetails: book } })
-}
-
+ 
+ 
      const[freeProduct,SetFreeProduct] = useState([]);
      const[freeerror,setFreeError] = useState(null)
 
@@ -18,13 +15,19 @@ function FreeBooks() {
         try{
         let response =await axios.get(apiEndPoint.FREE_BOOK_API);
         if(response.data.status){
-           
+           console.log(response.data)
           SetFreeProduct(response.data.bookList)
         }
         }catch(err){
             setFreeError("oops Something Went Wrong");
         }
      }
+
+const navigate = useNavigate();
+     const viewDescription=(book)=>{
+      navigate("/viewDescription", { state: { bookDetails: book } })  
+     }
+
 
      useEffect(()=>{
         loadFreeProduct()

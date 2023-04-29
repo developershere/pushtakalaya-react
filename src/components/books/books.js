@@ -15,7 +15,7 @@ function Books() {
 
     const featchAllBooks = async () => {
         try {
-            let response = await axios.get(apiEndPoint.All_Books);
+            let response = await axios.get(apiEndPoint.ALL_BOOKS);
             console.log(response);
             if (response.data.status) {
                 setData(response.data.bookList);
@@ -32,7 +32,7 @@ function Books() {
 
     const viewBookByCategory = async (id) => {
         try {
-            let response = await axios.post(apiEndPoint.Search_By_Categoryname, { id: id });
+            let response = await axios.post(apiEndPoint.SEARCH_BY_CATEGORYNAME, { id: id });
             if (response.data.status) {
                 setData(response.data.result);
             }
@@ -42,9 +42,9 @@ function Books() {
         }
     }
 
-    const searchByAuther = async (author) => {
+    const searchByAuthor = async (author) => {
         try {
-            let response = await axios.post(apiEndPoint.Search_by_Other, { author: author });
+            let response = await axios.post(apiEndPoint.SEARCH_BY_AUTHOR, { author: author });
             console.log(response.data);
             setData(response.data.result)
         }
@@ -52,8 +52,7 @@ function Books() {
             console.log(err);
         }
     }
-
-    const viewListInbooks = (data) => {
+   const viewListInbooks = (data) => {
         const list = data
         navigate("/bookList", { state: { dataList: list } });
     };
@@ -61,7 +60,7 @@ function Books() {
     useEffect(() => {
         featchAllBooks();
         viewBookByCategory();
-        searchByAuther();
+        searchByAuthor();
     }, []);
 
     return <>
@@ -87,7 +86,7 @@ function Books() {
                         </button>
                         <ul class="dropdown-menu dropdownofOther" >
                             {bookData.map((book, index) =>
-                                <li onClick={() => { searchByAuther(book.author) }}>{book.author}</li>)}
+                                <li onClick={() => {searchByAuthor(book.author) }}>{book.author}</li>)}
                         </ul>
                     </div>
                     {/* drop down */}

@@ -18,13 +18,12 @@ import FreeBooks from './components/FreeBooks/freeBooks';
 import ProtectedRoute from './components/protectedRoute/protectedRoute';
 import Update from './components/user/myaccount/myaccount/update';
 import MyAccount from './components/user/myaccount/myaccount/myaccount';
-
+import SellboooksForm from './components/sellbooks/sellBooks';
 
 
 
 function App() {
-
-  const dispatch = useDispatch();
+ const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCategory());
     dispatch(fetchTopProduct())
@@ -40,14 +39,14 @@ function App() {
       <Route path='/donate' element={<Donate />} />
       <Route path='/donateform' element={<DonateForm />} />
       <Route path="viewDescription" element={<ViewDescription />} />
-      <Route path="/book" element={<Book />} />
-      <Route path='/donateform' element={<DonateForm />} />
-      <Route path='/sellbooks' element={<DonateForm />} />
+       <Route path='/donateform' element={<DonateForm />} />
       <Route path='/update' element={<Update />} />
-       
+       <Route path='/book' element={<Book/>}/>
+      <Route path='/sellbooks' element= {<SellboooksForm/>}></Route>
       </Routes>
 
   </>
+  // "completed"
 }
 
 export default App;
