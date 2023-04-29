@@ -12,12 +12,14 @@ function TopBar() {
             clearTimeout(timer);
             timer = setTimeout(() => { func.apply(this, args); }, timeout);
         };
-    }
-    function saveInput() {
+      }
+      function saveInput(event){
         console.log("Searching Books...");
+        
         navigate("/book");
-    }
-    const processChange = debounce(() => saveInput());
+      }
+      const processChange = debounce((event) => saveInput(event));
+
     return <>
         <div className="container-fluid topbarcontainr">
             <div className='row'>
@@ -36,8 +38,8 @@ function TopBar() {
 
                 {/* ------------------------------------------- */}
                         <div className="col-lg-3 col-md-3 col-12 ">
-                    <div class="header-mid-area ptb-40">
-                     <div class="container">
+                    <div className="header-mid-area ptb-40">
+                     <div className="container">
                
                             <div className="my-cart">
                                 <ul>

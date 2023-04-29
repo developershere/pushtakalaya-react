@@ -46,9 +46,6 @@ function Header() {
 
                                             </div>
                                         </li>
-
-
-
                                         <li><Link to='/donate'>Donate Books</Link></li>
                                         <li><Link to='/freebooks'>Free Books</Link> </li>
                                         {currentUser ? <li><Link onClick={signOut}>SignOut</Link></li> : <li><a href="#">MyAccount<i className="fa fa-angle-down"></i></a>

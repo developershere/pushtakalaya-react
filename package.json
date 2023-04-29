@@ -1,6 +1,6 @@
 {
     "name": "pushtakalaya",
-    "proxy": "http://localhost:3005",
+    "proxy": "http://localhost:3006",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
