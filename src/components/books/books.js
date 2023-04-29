@@ -11,13 +11,15 @@ import { useNavigate } from "react-router-dom";
 function Books() {
     const { categoryList, error, isLoading } = useSelector((state) => state.category)
     const [bookData, setData] = useState([]);
+    const [authorData, setAuthorData] = useState([]);
     const navigate = useNavigate()
 
     const featchAllBooks = async () => {
         try {
             let response = await axios.get(apiEndPoint.All_Books);
-            console.log(response);
+            // console.log(response.data.bookList.data);
             if (response.data.status) {
+                window.alert("Authors called")
                 setData(response.data.bookList);
             }
         }
@@ -44,9 +46,9 @@ function Books() {
 
     const searchByAuther = async (author) => {
         try {
-            let response = await axios.post(apiEndPoint.Search_by_Other, { author: author });
-            console.log(response.data);
-            setData(response.data.result)
+            window.alert("fgfdgh");
+            setAuthorData(bookData);
+            console.log(bookData.author)
         }
         catch (err) {
             console.log(err);
@@ -77,25 +79,39 @@ function Books() {
 
                         <ul>
                             {!error && categoryList.map((category, index) =>
-                                <li   style={{cursor : "pointer"}} onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
+                                <li style={{ cursor: "pointer" }} onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
                         </ul>
                     </div>
                     {/* drop down */}
-                    <div class="btn-group dropdownbtn">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            AUTHOR
+                    // <div class="btn-group dropdownbtn">
+                    //     <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    //         AUTHOR
+                    //     </button>
+                    //     <ul class="dropdown-menu dropdownofOther" >
+                    //         <li>dfhdshf</li>
+                    //         <li>dfhdshf</li>
+                    //         <li>dfhdshf</li>
+                    //         <li>dfhdshf</li>
+                    //     </ul>
+                    // </div>
+
+                    {/* -------------------------------------- */}
+                    <div class="dropdown dropdown-toggle "  data-bs-toggle="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            Dropdown button
                         </button>
-                        <ul class="dropdown-menu dropdownofOther" >
-                            {bookData.map((book, index) =>
-                                <li onClick={() => { searchByAuther(book.author) }}>{book.author}</li>)}
-                        </ul>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Link 1</a>
+                            <a class="dropdown-item" href="#">Link 2</a>
+                            <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
                     </div>
                     {/* drop down */}
                 </div>
                 <div className="LeftPart">
                     <div className="mainImage">
                         <img
-                            src="http://localhost:3000/img/banner/9.jpg"
+                            src="../../img/banner/9.jpg"
                             alt=""
                         />
                     </div>
