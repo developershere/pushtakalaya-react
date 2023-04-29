@@ -81,10 +81,10 @@ function Footer(){
                             </div>
                             <div className="footer-contact ">
                                 <p className="adress ">
-                                    <span>My Company</span> InfoBeans Foundation
+                                    <span>Our Company</span> InfoBeans Foundation
                                 </p>
-                                <p><span>Call us now:</span> 0123456789</p>
-                                <p><span>Email:</span>TechDevelopers.com</p>
+                                <p><span>Call us now:</span> 8989580060</p>
+                                <p><span>Email:</span>techdevelopers2308@gmail.com</p>
                             </div>
                         </div>
                     </div>
@@ -97,14 +97,10 @@ function Footer(){
                 <div className="row bt-2 ">
                     <div className="col-lg-6 col-md-6 col-12 ">
                         <div className="copy-right-area ">
-                            <p>&copy; 2022 <strong> TechDevelopers </strong> Mede with ❤️ by <a href="https://hasthemes.com/ " target="_blank "><strong>Tech Developers</strong></a></p>
+                            <p>&copy; 2022 <strong> TechDevelopers </strong> Mede with ❤️ by <a href="/" target="_blank "><strong>Tech Developers</strong></a></p>
                         </div>
                     </div>
-                    <div className="col-lg-6 col-md-6 col-12 ">
-                        <div className="payment-img text-end ">
-                            <a href="# "><img src="img/1.png " alt="payment " /></a>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

@@ -4,31 +4,46 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { apiEndPoint } from "../../webApi/webapi";
+import {toast ,ToastContainer} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 function TopInteresting() {
-
+  const {currentUser} = useSelector((state)=>state.user);
   const navigate = useNavigate();
   const viewDescription = (book) => {
     window.alert(book);
     navigate("/viewDescription", { state: { bookDetails: book } })
-}
-
-  const[productByCategory,SetProductByCategory]=useState([]);
-  const [isError,SetisError]=useState(null);
-  const { TopProductList } = useSelector((state) => state.topProduct);
-  const{categoryList,error,isLoading} = useSelector((state)=>state.category)
-  const loadProductByCategory=async(categoryId)=>{
-     try{
-          let response = await axios.post(apiEndPoint.BOOK_BY_CATEGORY,{categoryId});
-          if(response.data.status){
-            SetProductByCategory(response.data.result);
-          }
-     }catch(err){
-        SetisError("oops Something Went Wrong")
-     }
-
   }
 
+  const [productByCategory, SetProductByCategory] = useState([]);
+  const [isError, SetisError] = useState(null);
+  const { TopProductList } = useSelector((state) => state.topProduct);
+  const { categoryList, error, isLoading } = useSelector((state) => state.category)
+  const loadProductByCategory = async (categoryId) => {
+    try {
+      let response = await axios.post(apiEndPoint.BOOK_BY_CATEGORY, { categoryId });
+      if (response.data.status) {
+        SetProductByCategory(response.data.result);
+      }
+    } catch (err) {
+      SetisError("oops Something Went Wrong")
+    }
+
+  }
+  const addToCart = async (id)=>{
+    try{
+    let response = await axios.post(apiEndPoint.ADD_TO_CART,{bookId:id,userId : currentUser._id});
+    toast.success("Book is added to you'r cart");
+  }
+    catch(err)
+    {
+    if(err.response.status==400)
+        toast.warning("Book is already exists in cart");
+    if(err.response.status==500)
+      toast.error("Oops Something went wrong");
+    }
+  }
   return <>
+  <ToastContainer/>
     <section className="our-project" id="projectid">
       <div className="container heading-design">
         <div data-aos="fade-up" data-aos-duration="400">
@@ -44,19 +59,19 @@ function TopInteresting() {
               role="tablist"
             >
 
-              <button className=" nav-link active col-2"  id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="true"  >  All</button>
-              {!error&&categoryList.filter((category)=>category.categoryName=="Classics").map((category,index)=>
-              <button  key={index} onClick={()=>loadProductByCategory(category._id)} className=" nav-link col-2" id="nav-Remodeling-tab" data-bs-toggle="tab" data-bs-target="#nav-Remodeling"type="button"role="tab"aria-controls="nav-Remodeling" aria-selected="false" >{category.categoryName}</button>)}
-              
-              {!error&&categoryList.filter((category)=>category.categoryName=="Horror").map((category,index)=>
-                <button key={index} onClick={()=>loadProductByCategory(category._id)} className="nav-link col-2" id="nav-Construction-tab" data-bs-toggle="tab" data-bs-target="#nav-Construction" type="button"role="tab" aria-controls="nav-Construction"aria-selected="false" >{category.categoryName}</button>)}
+              <button className=" nav-link active col-2" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="true"  >  All</button>
+              {!error && categoryList.filter((category) => category.categoryName == "Classics").map((category, index) =>
+                <button key={index} onClick={() => loadProductByCategory(category._id)} className=" nav-link col-2" id="nav-Remodeling-tab" data-bs-toggle="tab" data-bs-target="#nav-Remodeling" type="button" role="tab" aria-controls="nav-Remodeling" aria-selected="false" >{category.categoryName}</button>)}
 
-              {!error&&categoryList.filter((category)=>category.categoryName=="History").map((category,index)=> 
-              <button  key={index} onClick={()=>loadProductByCategory(category._id)} className="nav-link col-2"  id="nav-Repair-tab" data-bs-toggle="tab" data-bs-target="#nav-Repair"  type="button"role="tab"aria-controls="nav-Repair"  aria-selected="false" >
-                {category.categoryName}
-              </button>
+              {!error && categoryList.filter((category) => category.categoryName == "Horror").map((category, index) =>
+                <button key={index} onClick={() => loadProductByCategory(category._id)} className="nav-link col-2" id="nav-Construction-tab" data-bs-toggle="tab" data-bs-target="#nav-Construction" type="button" role="tab" aria-controls="nav-Construction" aria-selected="false" >{category.categoryName}</button>)}
+
+              {!error && categoryList.filter((category) => category.categoryName == "History").map((category, index) =>
+                <button key={index} onClick={() => loadProductByCategory(category._id)} className="nav-link col-2" id="nav-Repair-tab" data-bs-toggle="tab" data-bs-target="#nav-Repair" type="button" role="tab" aria-controls="nav-Repair" aria-selected="false" >
+                  {category.categoryName}
+                </button>
               )}
-             
+
             </div>
           </nav>
         </div>
@@ -76,40 +91,40 @@ function TopInteresting() {
             <div className="row m-auto">
 
               {TopProductList.map((book, index) =>
-              
-               <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
-                 <div className="card">
-                 <img src= {"https://drive.google.com/uc?export=view&id="+book.photos.substring(32,book.photos.lastIndexOf("/"))}  className="img-fluid cardimg"/> 
-                 <a className="cardcircle"><i className="fa fa-shopping-cart carticon mt-3"></i></a>
-                   <div className="card-body">
-                     <p className="card-text cardtitle">{book.name.substring(0,20)}</p>
-                     <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0,15)}</p>
-                     <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price==0?"Free":book.price}</b>
-                     <br/>
-                     <button className="btn mt-2 w-100 buttonhover"  onClick={() => viewDescription(book)} >View More</button>
-                   </div>
-                 </div>
-               </div>)}
+
+                <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
+                  <div className="card">
+                    <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
+                    <a className="cardcircle"><i className="fa fa-shopping-cart carticon mt-3" onClick={()=>addToCart(book._id)}></i></a>
+                    <div className="card-body">
+                      <p className="card-text cardtitle">{book.name.substring(0, 20)}</p>
+                      <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 15)}</p>
+                      <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price == 0 ? "Free" : book.price}</b>
+                      <br />
+                      <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)} >View More</button>
+                    </div>
+                  </div>
+                </div>)}
             </div>
-            </div>
-            <div className="row m-auto">
-              {productByCategory.map((book,index)=>
+          </div>
+          <div className="row m-auto">
+            {productByCategory.map((book, index) =>
               <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
-              <div className="card">
-              <img src= {"https://drive.google.com/uc?export=view&id="+book.photos.substring(32,book.photos.lastIndexOf("/"))}  className="img-fluid cardimg"/> 
-              <a className="cardcircle"><i className="fa fa-shopping-cart carticon mt-3"></i></a>
-                <div className="card-body">
-                  <p className="card-text cardtitle">{book.name.substring(0,20)}</p>
-                  <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0,15)}</p>
-                  <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price}</b>
-                  <br/>
-                  <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)} >View More</button>
+                <div className="card">
+                  <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
+                  <a className="cardcircle"><i className="fa fa-shopping-cart carticon mt-3"></i></a>
+                  <div className="card-body">
+                    <p className="card-text cardtitle">{book.name.substring(0, 20)}</p>
+                    <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 15)}</p>
+                    <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price}</b>
+                    <br />
+                    <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)} >View More</button>
+                  </div>
                 </div>
-              </div>
-            </div>)}
-        </div>
-         
-          
+              </div>)}
+          </div>
+
+
         </div>
       </div>
     </section>

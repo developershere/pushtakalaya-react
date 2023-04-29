@@ -5,7 +5,7 @@ import topProductSlice from "./topProductSlice";
 import citySlice from "./citySlice";
 import userSlice from "./userSlice";
 import recentProductSlice from "./recentProductSlice";
-
+import userCart from "./CartSlice";
 
 const store = configureStore({
     reducer: {
@@ -14,8 +14,8 @@ const store = configureStore({
         topProduct: topProductSlice,
         city: citySlice,
         user: userSlice,
-        recentProduct: recentProductSlice
-
+        recentProduct: recentProductSlice,
+        cart: userCart,
     }
 })
 
