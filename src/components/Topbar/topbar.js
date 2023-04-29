@@ -20,8 +20,9 @@ function TopBar() {
         <div className="container-fluid topbarcontainr">
             <div className='row'>
                 <div className='col-md-4 col-lg-4 col-sm-4 col-xm -4 topbardiv'>
-                    <img src="img/logo/logo.png" alt="logo"  className='logoimg mb-3 pb-3 mt-1'  />
-                    <span className='topbarlogoheading ' >Pustakalaya</span>
+                <Link to='/'>    <img src="img/logo/logo.png" alt="logo" style={{cursor:"pointer"}}  className='logoimg mb-3 pb-3 mt-1'  />
+                    <span className='topbarlogoheading ' style={{cursor:"pointer"}} >Pustakalaya</span>
+                    </Link>
                 </div>
                 <div className='col-md-4  col-lg-4 col-sm-4 col-xm -4 topbardiv'>
                 <div className="header-search mt-5">

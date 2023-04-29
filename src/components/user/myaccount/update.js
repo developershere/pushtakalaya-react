@@ -23,6 +23,7 @@ function Update() {
         event.preventDefault();
         try {
             let response = await axios.post(apiEndPoint.USER_UPDATEPROFILE, {_id:currentUser._id, name, email, contact, photo })
+            console.log(response.data);
             dispatch(setUpdateProfile(response.data.updatedUser))
             toast.success("Profile Updated Succesfully");
             
@@ -72,16 +73,16 @@ function Update() {
                                                     <form onSubmit={updateProfile}>
                                                         <div className="col-lg-10 m-auto mt-2">
                                                             <div className="row form-group">
-                                                                <input onChange={(event) => SetName(event.target.value)} placeholder="Change Your Name" className="form-control" />
+                                                                <input onChange={(event) => SetName(event.target.value)} placeholder={currentUser.name} className="form-control" />
                                                             </div>
                                                             <div className="row form-group">
-                                                                <input onChange={(event) => SetEmail(event.target.value)} placeholder="Change Your Email" className="form-control" />
+                                                                <input onChange={(event) => SetEmail(event.target.value)} placeholder={currentUser.email} className="form-control" />
                                                             </div>
                                                             <div className="row form-group">
-                                                                <input onChange={(event) => SetContact(event.target.value)} placeholder="Change Your Contact" className="form-control" />
+                                                                <input onChange={(event) => SetContact(event.target.value)} placeholder={currentUser.contact} className="form-control" />
                                                             </div>
                                                             <div className="row form-group">
-                                                                <input onChange={(event) => SetPhoto(event.target.value)} type="file"  placeholder="Change Your profile Image" className="form-control" />
+                                                                <input onChange={(event) => SetPhoto(event.target.value)} type="file"  placeholder={currentUser.photos} className="form-control" />
                                                             </div>
                                                             
                                                             <div className="row form-group">

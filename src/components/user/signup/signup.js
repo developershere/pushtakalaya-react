@@ -91,7 +91,7 @@ function SignUp() {
                                     Sign up
                                 </p>
                                 <form onSubmit={handleSubmit}>
-                                    <i className="fas fa-user fa-lg me-3 fa-fw" />
+                                    {/* <i className="fas fa-user fa-lg me-3 fa-fw" /> */}
                                     <div className="form-group">
 
                                         <input onChange={(event) => setName(event.target.value)} type="text" placeholder="Enter name" className="form-control" />

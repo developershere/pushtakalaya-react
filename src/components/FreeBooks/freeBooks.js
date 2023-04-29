@@ -39,8 +39,9 @@ const navigate = useNavigate();
         <div className="container heading-design">
             <div className=" row">
 
-                {!freeerror&&freeProduct.map((book,index)=> 
+                {!freeerror&&freeProduct.filter((book)=>book.permission&&book.status==true).map((book,index)=> 
                 <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
+                  {console.log(book)}
               <div className="card">
               <img src= {"https://drive.google.com/uc?export=view&id="+book.photos.substring(32,book.photos.lastIndexOf("/"))}  className="img-fluid cardimg"/> 
               <a className="cardcircle"><i className="fa fa-shopping-cart carticon mt-3"></i></a>

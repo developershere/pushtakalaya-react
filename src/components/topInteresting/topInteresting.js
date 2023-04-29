@@ -8,18 +8,20 @@ function TopInteresting() {
 
   const navigate = useNavigate();
   const viewDescription = (book) => {
-    window.alert(book);
+   
     navigate("/viewDescription", { state: { bookDetails: book } })
 }
 
   const[productByCategory,SetProductByCategory]=useState([]);
   const [isError,SetisError]=useState(null);
   const { TopProductList } = useSelector((state) => state.topProduct);
+
   const{categoryList,error,isLoading} = useSelector((state)=>state.category)
   const loadProductByCategory=async(categoryId)=>{
      try{
           let response = await axios.post(apiEndPoint.BOOK_BY_CATEGORY,{categoryId});
           if(response.data.status){
+            console.log(response.data);
             SetProductByCategory(response.data.result);
           }
      }catch(err){
@@ -75,7 +77,7 @@ function TopInteresting() {
           >
             <div className="row m-auto">
 
-              {TopProductList.map((book, index) =>
+              {TopProductList.filter((book)=>book.permission&&book.status==true).map((book,index) =>
               
                <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
                  <div className="card">
@@ -92,8 +94,9 @@ function TopInteresting() {
                </div>)}
             </div>
             </div>
+            
             <div className="row m-auto">
-              {productByCategory.map((book,index)=>
+              {productByCategory.filter((book)=>book.permission&&book.status==true).map((book,index)=>
               <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
               <div className="card">
               <img src= {"https://drive.google.com/uc?export=view&id="+book.photos.substring(32,book.photos.lastIndexOf("/"))}  className="img-fluid cardimg"/> 

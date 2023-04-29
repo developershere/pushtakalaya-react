@@ -74,9 +74,6 @@ function SignIn(){
                   <input  onChange={(event)=>setPassword(event.target.value)}type="password" className="form-control" id="floatingPassword" placeholder="Password"/>
                   <label for="floatingPassword">Password</label>
                 </div>
-
-                
-
                 <div className="d-grid">
                   <button className="btn btn-lg  btn-login text-uppercase fw-bold mb-2  btn btn-dark" type="submit">Sign in</button>
                   <div className="text-center">
