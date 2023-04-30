@@ -10,7 +10,7 @@ function TopInteresting() {
   const {currentUser} = useSelector((state)=>state.user);
   const navigate = useNavigate();
   const viewDescription = (book) => {
-    window.alert(book);
+   
     navigate("/viewDescription", { state: { bookDetails: book } })
   }
 

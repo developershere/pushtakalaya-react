@@ -3,17 +3,17 @@ import { isVisible } from "@testing-library/user-event/dist/utils";
 import { useRef, useState } from 'react'
 import Header from "../../header/header";
 import axios from "axios";
-import {toast, ToastContainer} from "react-toastify"
+import { toast, ToastContainer } from "react-toastify"
 import { apiEndPoint } from "../../../webApi/webapi";
 import { useNavigate } from "react-router-dom";
-import {createAsyncThunk} from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import 'react-toastify/dist/ReactToastify.css'
 function SignUp() {
     let name = useRef("");
     let email = useRef("");
     let password = useRef("");
     let contact = useRef("");
-    let otp = useRef("");    
+    let otp = useRef("");
     let mausam;
     let expire = false;
     let otpCheck = false;
@@ -30,24 +30,23 @@ function SignUp() {
             }
         }
         catch (err) {
-            if(err.response.status==400)
+            if (err.response.status == 400)
                 toast.warning("Ohh!! something went wrong");
         }
     }
-    const verifyEmail = async ()=>{
+    const verifyEmail = async () => {
         console.log("sfdfdg");
-        let response = await axios.post("/user/mausam",{name,email});
+        let response = await axios.post("/user/mausam", { name, email });
         mausam = response.data.result.OTP;
         mtime = response.data.result.currentTime;
-       console.log("OTP : "+mausam);
-       console.log("Time : "+mtime);        
+        console.log("OTP : " + mausam);
+        console.log("Time : " + mtime);
     }
-    const registration = async(event)=>{
+    const registration = async (event) => {
         console.log(new Date().getMinutes());
-        if(new Date().getMinutes()<=mtime){
+        if (new Date().getMinutes() <= mtime) {
             expire = true;
-            if(mausam==otp.current.value)
-            {
+            if (mausam == otp.current.value) {
                 otpCheck = true;
                 toast("Registration Success....")
                 console.log("Success....");
@@ -60,7 +59,7 @@ function SignUp() {
     }
     return <>
         <Header />
-        <ToastContainer/>
+        <ToastContainer />
         <div className="breadcrumbs-area ">
             <div className="container">
                 <div className="row">
@@ -89,7 +88,7 @@ function SignUp() {
                                 />
                             </div>
                             <div className="col-md-10 col-lg-6 col-xl-5 order-1 order-lg-2">
-                                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" style={{color:"#f07c29", textShadow:"2px 2px 2px gray"}}>
+                                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" style={{ color: "#f07c29", textShadow: "2px 2px 2px gray" }}>
                                     Sign up
                                 </p>
                                 <form onSubmit={handleSubmit}>
@@ -107,7 +106,7 @@ function SignUp() {
                                         <input ref={contact} type="text" placeholder="Enter contact number" className="form-control" />
                                     </div>
                                     <div className="form-group text-center">
-                                        <button onClick={(()=>verifyEmail(email,name))} type="submit" className="btn submitbtn w-100" data-toggle="modal" data-target="#exampleModalCenter" >
+                                        <button onClick={(() => verifyEmail(email, name))} type="submit" className="btn submitbtn w-100" data-toggle="modal" data-target="#exampleModalCenter" >
                                             Sign Up
                                         </button>
                                     </div>
@@ -118,7 +117,7 @@ function SignUp() {
                                 <div className="modal-dialog modal-dialog-centered" role="document">
                                     <div className="modal-content">
                                         <div className="modal-header">
-                                        Registration Page
+                                            Registration Page
                                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -129,16 +128,16 @@ function SignUp() {
                                                     <div className="card p-2 text-center">
                                                         <h6>Please enter the one time password <br /> to verify your account</h6>
                                                         <div> <span>A code has been sent to</span> <small>Your Email Id</small> </div>
-                                                        <div id="otp" className="inputs d-flex flex-row justify-content-center mt-2"> 
-                                                        <input ref={otp} className="m-2 text-center form-control rounded width:10" type="text" id="fourth" maxlength="4" />
+                                                        <div id="otp" className="inputs d-flex flex-row justify-content-center mt-2">
+                                                            <input ref={otp} className="m-2 text-center form-control rounded width:10" type="text" id="fourth" maxlength="4" />
                                                         </div>
                                                         <div className="mt-4">
-                                                         <button onClick={()=>registration(mtime,mausam)} className="btn btn-warning px-4 validate">Validate</button> 
+                                                            <button onClick={() => registration(mtime, mausam)} className="btn btn-warning px-4 validate">Validate</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>    
+                                        </div>
                                     </div>
                                 </div>
                             </div>

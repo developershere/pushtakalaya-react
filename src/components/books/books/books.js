@@ -38,13 +38,12 @@ function Books() {
         }
     }
     const viewDescription = (book) => {
-        window.alert(book);
         navigate("/viewDescription", { state: { bookDetails: book } })
     }
 
-    const viewBookByCategory = async (id) => {
+    const viewBookByCategory = async (categoryId) => {
         try {
-            let response = await axios.post(apiEndPoint.Search_By_Categoryname, { id: id });
+            let response = await axios.post(apiEndPoint.BOOK_BY_CATEGORY, {categoryId});
             if (response.data.status) {
                 setData(response.data.result);
             }
@@ -56,7 +55,7 @@ function Books() {
 
     const searchByAuther = async (author) => {
         try {
-            let response = await axios.post(apiEndPoint.Search_by_Other, { author: author });
+            let response = await axios.post(apiEndPoint.SEARCH_BY_AUTHER,{ author: author });
             console.log(response.data);
             setData(response.data.result)
         }
@@ -70,9 +69,6 @@ function Books() {
         navigate("/bookList", { state: { dataList: list } });
     };
 
-
-
-
     useEffect(() => {
         featchAllBooks();
         viewBookByCategory();
@@ -80,7 +76,7 @@ function Books() {
     }, []);
 
     return <>
-        <Header />
+        <Header/>
         <div className="container-fluid">
             <div className="FilterMainDiv">
                 <div className="RightPart">
@@ -92,7 +88,7 @@ function Books() {
 
                         <ul>
                             {!error && categoryList.map((category, index) =>
-                                <li onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
+                                <li  style={{cursor : "pointer"}} onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
                         </ul>
                     </div>
                     {/* drop down */}
@@ -110,7 +106,7 @@ function Books() {
                 <div className="LeftPart">
                     <div className="mainImage">
                         <img
-                            src="http://localhost:3001/img/banner/9.jpg"
+                            src="../../img/banner/9.jpg"
                             alt=""
                         />
                     </div>
@@ -137,13 +133,13 @@ function Books() {
                     </div>
                     {/* cart */}
                     <div className="row m-auto">
-                        {bookData.map((book, index) =>
+                        {bookData.filter((book)=>book.permission&&book.status==true).map((book, index) =>
                             <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
                                 <div className="card">
                                     <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
                                     <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3"></i></a>
                                     <div className="card-body">
-                                        <p className="card-text cardtitle">{book.name.substring(0, 20)}</p>
+                                        <p className="card-text cardtitle">{book.name.substring(0,15)}</p>
                                         <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 10)}</p>
                                         <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price}</b>
                                         <br />
@@ -161,7 +157,6 @@ function Books() {
             </div>
 
         </div>
-
 
     </>
 
