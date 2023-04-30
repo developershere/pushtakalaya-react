@@ -4,8 +4,8 @@ import { apiEndPoint } from "../webApi/webapi";
 
 export const fetchCategory = createAsyncThunk('fetchCategory',async ()=>{
   let response = await axios.get(apiEndPoint.CATEGORY_API);
+  console.log(response.data.category);
   if(response.data.status){
-   
   return response.data.category
   }
 })

@@ -11,19 +11,26 @@ import Footer from "../../footer/footer";
 
 
 function Books() {
-    // const location = useLocation();
-    // const keyword = location.state.search;
-    // window.alert(keyword);
+    const location = useLocation();
+    const keyword = location.state?.books;
+    const flag = location.state?.status;
     const { categoryList, error, isLoading } = useSelector((state) => state.category)
     const [bookData, setData] = useState([]);
     const navigate = useNavigate()
-
+    if (flag)
+    {
+        setData(keyword);
+        console.log(bookData);
+    }
     const featchAllBooks = async () => {
         try {
-            let response = await axios.get(apiEndPoint.All_Books);
-            console.log(response);
-            if (response.data.status) {
-                setData(response.data.bookList);
+            if (!flag) {
+                let response = await axios.get(apiEndPoint.All_Books);
+                console.log(response);
+                if (response.data.status) {
+                    console.log(response.data.bookList);
+                    setData(response.data.bookList);
+                }
             }
         }
         catch (err) {
@@ -154,7 +161,7 @@ function Books() {
             </div>
 
         </div>
-     
+
 
     </>
 

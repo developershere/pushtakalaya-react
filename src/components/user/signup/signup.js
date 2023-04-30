@@ -1,4 +1,3 @@
-
 import "./signup.css"
 import { isVisible } from "@testing-library/user-event/dist/utils";
 import { useRef, useState } from 'react'
@@ -11,48 +10,44 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import 'react-toastify/dist/ReactToastify.css'
 import Footer from "../../footer/footer";
 function SignUp() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [contact, setContact] = useState("");
-    let [otp,setOtp] = useState("");
-    
+    let name = useRef("");
+    let email = useRef("");
+    let password = useRef("");
+    let contact = useRef("");
+    let otp = useRef("");    
     let mausam;
     let expire = false;
     let otpCheck = false;
-    let mtime;
+    var mtime;
     const navigate = useNavigate();
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
             let response = await axios.post(apiEndPoint.USER_SIGNUP, { name, email, password, contact });
-            window.alert(response)
+            window.alert(response.status);
             if (!response.data.status) {
 
                 navigate("/signin");
             }
         }
         catch (err) {
-
+            if(err.response.status==400)
+                toast.warning("Ohh!! something went wrong");
         }
     }
     const verifyEmail = async ()=>{
         console.log("sfdfdg");
         let response = await axios.post("/user/mausam",{name,email});
-        mausam = response.data.result.OTP+5;
+        mausam = response.data.result.OTP;
         mtime = response.data.result.currentTime;
        console.log("OTP : "+mausam);
        console.log("Time : "+mtime);        
     }
-    const registration = async()=>{
-        var time = new Date().getMinutes();
-        console.log(time);
-        console.log(mtime);
-
-        console.log(time<=mtime);
-        if(!time<=mtime){
+    const registration = async(event)=>{
+        console.log(new Date().getMinutes());
+        if(new Date().getMinutes()<=mtime){
             expire = true;
-            if(mausam==otp)
+            if(mausam==otp.current.value)
             {
                 otpCheck = true;
                 toast("Registration Success....")
@@ -101,16 +96,16 @@ function SignUp() {
                                 <form onSubmit={handleSubmit}>
                                     <div className="form-group">
 
-                                        <input onChange={(event) => setName(event.target.value)} type="text" placeholder="Enter name" className="form-control" />
+                                        <input ref={name} type="text" placeholder="Enter name" className="form-control" />
                                     </div>
                                     <div className="form-group">
-                                        <input onChange={(event) => setEmail(event.target.value)} type="email" placeholder="Enter email" className="form-control" />
+                                        <input ref={email} type="email" placeholder="Enter email" className="form-control" />
                                     </div>
                                     <div className="form-group">
-                                        <input onChange={(event) => setPassword(event.target.value)} type="password" placeholder="Enter password" className="form-control" />
+                                        <input ref={password} type="password" placeholder="Enter password" className="form-control" />
                                     </div>
                                     <div className="form-group">
-                                        <input onChange={(event) => setContact(event.target.value)} type="text" placeholder="Enter contact number" className="form-control" />
+                                        <input ref={contact} type="text" placeholder="Enter contact number" className="form-control" />
                                     </div>
                                        {/* <div className="form-group">
                                         
@@ -145,7 +140,7 @@ function SignUp() {
                                                         <input onChange={(event) => setOtp(event.target.value)} className="m-2 text-center form-control rounded width:10" type="text" id="fourth" maxlength="4"/>
                                                         </div>
                                                         <div className="mt-4">
-                                                         <button onClick={()=>registration(otp)} className="btn btn-warning px-4 validate">Validate</button> 
+                                                         <button onClick={()=>registration(mtime,mausam)} className="btn btn-warning px-4 validate">Validate</button> 
                                                         </div>
                                                     </div>
                                                 </div>
