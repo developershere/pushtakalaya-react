@@ -29,7 +29,7 @@ function Account() {
 
                         </div>
                         <div className="single-input-item">
-                            <i class="fa fa-phone " aria-hidden="true" />
+                            <i className="fa fa-phone " aria-hidden="true" />
                             <label for="text" className="required ml-3">contact <span className="ml-2 heading"> {currentUser && currentUser.contact}</span>  </label>
 
                         </div>

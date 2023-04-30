@@ -188,7 +188,7 @@ body {
     padding-right: 15px;
 }
 
-.topinteresting{
+.topinteresting {
     padding-left: 90px;
 }
 
@@ -1179,6 +1179,8 @@ body {
     right: 0;
     top: 0;
     transition: all 300ms ease-in 0s;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
 }
 
 .banner-shadow-hover:hover::before {
@@ -1287,7 +1289,6 @@ body {
 }
 
 .slider-content-2 h1 {
-    
     font-size: 40px;
     text-transform: none;
 }
@@ -7744,26 +7745,56 @@ p.lost-password a:hover {
     width: 100%;
     height: 400px;
 }
-.ban1{
+
+.ban1 {
     background-image: url(./img/slider/2.jpg);
     width: 100%;
     height: 400px;
 }
 
+
 /* ----------------------------------- */
 
-.slid{
-    background-image: url(./img/slider/1.jpg) !important; 
+.slid {
+    background-image: url(./img/slider/1.jpg) !important;
     background-size: contain;
     width: 100%;
     height: 100%;
 }
 
-.btn1{
-    background-color:#fd7e14;
+.btn1 {
+    background-color: #fd7e14;
 }
-.btn1:hover{
-   
-    background-color: #333 ;
-    color:white;
+
+.btn1:hover {
+    background-color: #333;
+    color: white;
+}
+
+Link {
+    text-decoration: none !important;
+}
+
+.sty {
+    color: #f07c29;
+    text-align: center;
+    font-size: 42px;
+    text-shadow: 2px 2px 2px gray;
+}
+
+.submitbtn {
+    background-color: #f07c29;
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.submitbtn:hover {
+    outline: none;
+    background-color: #212529;
+    color: #f07c29;
+}
+
+.submitbtn:active {
+    outline: none !important;
 }

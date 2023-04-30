@@ -5,8 +5,7 @@ import { apiEndPoint } from "../webApi/webapi";
  export const fetchState=createAsyncThunk('fetchState',async()=>{
     let response = await axios.get(apiEndPoint.STATE_API);
     if(response.data.status){
-        console.log(response.data);
-        return response.data.state
+        return response.data.stateList
     }
 })
 

@@ -9,7 +9,14 @@ export const apiEndPoint = {
     USER_SIGNIN:"/user/signIn",
     USER_SIGNUP:"/user/signup",
     USER_UPDATEPROFILE:"/user/updateProfile",
+    Search_By_Categoryname: "/book/searchByCategoryId",
     SEARCH_BY_AUTHER: "/book/searchbyAuthor",
     ALL_BOOKS:"/book/list",
-    TOTAL_BOOKS:"/book/totalbook"
+    TOTAL_BOOKS:"/book/totalbook",
+    RECENT_PRODUCT: '/product/recent-product',
+    PRODUCT_LIST: '/product/list',
+    FETCH_CART: '/cart/fetchCart',
+    ADD_TO_CART: '/cart/addToCart',
+    USER_CART : "/cart/userCart",
+    UPLOAD_BOOK : "/book/add"
 }

@@ -19,20 +19,21 @@ import Update from './components/user/myaccount/update';
 import ProtectedRoute from './components/protectedRoute/protectedRoute';
 import ViewDescription from './components/viewDescription/viewDescription/viewDescription';
 import Books from './components/books/books/books';
-
+import SellboooksForm from './components/sellbooks/sellbook';
+import { fetchState } from './router-config/stateSlice';
 function App() {
-
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(fetchCategory());
-    dispatch(fetchTopProduct())
+    dispatch(fetchTopProduct());
+    dispatch(fetchState());
   },[])
-  return <>
-    
-   
+  return <> 
   <Routes>
    <Route path='/' element={ <Home/>}/>
+   
    <Route path='/signup' element={<SignUp/>}/>
+   
    <Route path='/signin' element={<SignIn/>}/>
 
    <Route path='/cart' element={<ProtectedRoute><Cart/></ProtectedRoute>}/>
@@ -41,7 +42,7 @@ function App() {
    <Route path='/myaccount' element={<ProtectedRoute><MyAccount/></ProtectedRoute>}/>
    <Route path='/donate' element={<Donate/>}/>
    <Route path='/donateform' element={<DonateForm/>}/>
-   <Route path='/sellbooks' element={<DonateForm/>}/>
+   <Route path='/sellbooks' element={<SellboooksForm/>}/>
    <Route path='/update' element={<Update/>}/>
    <Route path= "/viewDescription" element={<ViewDescription/>}/>
     <Route path="/book" element={<Books/>}/>
@@ -49,7 +50,7 @@ function App() {
   </Routes>
  
   </>
-  // "completed"
+  // " Admin completed"
 }
 
 export default App;

@@ -7,12 +7,16 @@ import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../../router-config/userSlice';
 import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from 'react-router-dom';
+import TopBar from '../../Topbar/topbar';
+import Header from '../../header/header';
+import { setCartItems } from '../../../router-config/CartSlice';
+import Footer from '../../footer/footer';
 function SignIn(){
 
-  const[email,SetEmail]= useState(" ");
-  const[password,setPassword]= useState(" ");
+  const [email, SetEmail] = useState(" ");
+  const [password, setPassword] = useState(" ");
   const dispatch = useDispatch();
-  const navigate= useNavigate();
+  const navigate = useNavigate();
 
 
   const handleSubmit=async(event)=>{
@@ -20,22 +24,26 @@ function SignIn(){
     event.preventDefault();
     let response = await axios.post(apiEndPoint.USER_SIGNIN,{email,password})
     if(response.data.status){
+      let carts = await axios.post(apiEndPoint.FETCH_CART,{userId:response.data.user._id})
       dispatch(setCurrentUser(response.data.user));
-      toast.success("Sign in Success")
+      dispatch(setCartItems(carts.data.cartz));
+      toast.success("Welcome To Pustakalaya")
       navigate("/")
 
-      return response.data.user;
+        return response.data.user;
+      }
+    } catch (err) {
+      toast.error("Sign In Failed");
     }
-  }catch(err){
-    toast.error("Sign In Failed");
-  }
   }
 
-  const changeHome=()=>{
+  const changeHome = () => {
     navigate("/")
   }
     return <>
-      <ToastContainer/>
+    <ToastContainer/>
+    <Header/>
+    <div className='container-fluid'>
      <div className="breadcrumbs-area ">
         <div className="container">
             <div className="row">
@@ -50,11 +58,11 @@ function SignIn(){
             </div>
         </div>
     </div>
-  
+
     <div className="container-fluid ps-md-0">
      
   <div className="row g-0">
-    <div className="d-none d-md-flex col-md-4 col-lg-6 sign-image">
+    <div className="d-none d-md-flex col-md-4 col-lg-5 ms-5 sign-image">
       
     </div>
     <div className="col-md-8 col-lg-6">
@@ -62,7 +70,7 @@ function SignIn(){
         <div className="container">
           <div className="row">
             <div className="col-md-9 col-lg-8 mx-auto">
-              <h3 className="login-heading mb-4">Welcome back!</h3>
+              <h3 className="login-heading mb-4 welcome">Welcome Back!</h3>
 
              
               <form onSubmit={handleSubmit}>
@@ -89,8 +97,8 @@ function SignIn(){
     </div>
   </div>
 </div>
-
-    
+</div>
+<Footer/>
     </>
 }
 
