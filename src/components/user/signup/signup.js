@@ -8,6 +8,7 @@ import { apiEndPoint } from "../../../webApi/webapi";
 import { useNavigate } from "react-router-dom";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import 'react-toastify/dist/ReactToastify.css'
+import Footer from "../../footer/footer";
 function SignUp() {
     let name = useRef("");
     let email = useRef("");
@@ -82,8 +83,8 @@ function SignUp() {
                         <div className="row justify-content-center">
                             <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-2 order-lg-1" >
                                 <img
-                                    src=""
-                                    className="img-fluid" style={{ borderRadius: "0px 10% 0% 10%", boxShadow: "0px 0px 15px gray" }}
+                                    src="https://images.unsplash.com/photo-1591951425328-48c1fe7179cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fGJvb2tzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60"
+                                    className="img-fluid" style={{ borderRadius: "0px 10% 0% 10%", boxShadow: "0px 0px 15px gray", height:"500px", width:" 90%", backgroundSize:"contain" }}
                                     alt="Sample image"
                                 />
                             </div>
@@ -105,6 +106,12 @@ function SignUp() {
                                     <div className="form-group">
                                         <input ref={contact} type="text" placeholder="Enter contact number" className="form-control" />
                                     </div>
+                                       {/* <div className="form-group">
+                                        
+                                        <input type="radio" name="gender"  className="form-control" /> Male 
+                                        <input type="radio" name="gender"  className="form-control" /> Female
+                                        <input type="radio" name="gender"  className="form-control" /> Other 
+                                    </div> */}
                                     <div className="form-group text-center">
                                         <button onClick={(() => verifyEmail(email, name))} type="submit" className="btn submitbtn w-100" data-toggle="modal" data-target="#exampleModalCenter" >
                                             Sign Up
@@ -128,8 +135,8 @@ function SignUp() {
                                                     <div className="card p-2 text-center">
                                                         <h6>Please enter the one time password <br /> to verify your account</h6>
                                                         <div> <span>A code has been sent to</span> <small>Your Email Id</small> </div>
-                                                        <div id="otp" className="inputs d-flex flex-row justify-content-center mt-2">
-                                                            <input ref={otp} className="m-2 text-center form-control rounded width:10" type="text" id="fourth" maxlength="4" />
+                                                        <div id="otp" className="inputs d-flex flex-row justify-content-center mt-2"> 
+                                                        <input onChange={(event) => setOtp(event.target.value)} className="m-2 text-center form-control rounded width:10" type="text" id="fourth" maxlength="4"/>
                                                         </div>
                                                         <div className="mt-4">
                                                             <button onClick={() => registration(mtime, mausam)} className="btn btn-warning px-4 validate">Validate</button>
@@ -146,6 +153,7 @@ function SignUp() {
                 </div>
             </div>
         </section>
+        <Footer/>
     </>
 }
 

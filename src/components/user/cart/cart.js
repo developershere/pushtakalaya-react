@@ -1,5 +1,6 @@
 import Footer from "../../footer/footer";
 import Header from "../../header/header";
+import "./cart.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,7 +53,7 @@ function Cart(){
             <div className="row">
                 <div className="col-lg-12">
                     <div className="entry-header-title">
-                        <h2>Cart</h2>
+                        <h2 className="sty text-left"> Cart</h2>
                     </div>
                 </div>
             </div>
@@ -68,18 +69,18 @@ function Cart(){
                             <table>
                                 <thead>
                                     <tr>
-                                        <th className="product-thumbnail">Image</th>
-                                        <th className="product-name">Product</th>
-                                        <th className="product-price">Price</th>
-                                        <th className="product-quantity">Quantity</th>
-                                        <th className="product-subtotal">Total</th>
-                                        <th className="product-remove">Remove</th>
+                                        <th className="th product-thumbnail">Image</th>
+                                        <th className="th product-name">Product</th>
+                                        <th className="th product-price">Price</th>
+                                        <th className="th product-quantity">Quantity</th>
+                                        <th className="th product-subtotal">Total</th>
+                                        <th className="th product-remove">Remove</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 {!flag && cartItems.map((product,index)=> <tr>
                                         <td className="product-thumbnail" key={index} >
-                                            <a href="#"> <img src= {"https://drive.google.com/uc?export=view&id="+product.bookId.photos.substring(32,product.bookId.photos.lastIndexOf("/"))}  className="img-fluid cardimg"/> </a>
+                                            <a href="#"> <img src= {"https://drive.google.com/uc?export=view&id="+product.bookId.photos.substring(32,product.photos.lastIndexOf("/"))}  className="img-fluid cardimg img1"/> </a>
                                         </td>
                                         <td className="product-name"><a href="#">{product.bookId.name}</a></td>
                                         <td className="product-price"><span className="amount">{product.bookId.price}</span></td>
@@ -95,6 +96,10 @@ function Cart(){
             </div>
         </div>
     </div>
+
+
+
+
     <Footer/>
     </>
 }

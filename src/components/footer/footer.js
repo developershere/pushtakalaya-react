@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer(){
    return<>
     <footer>
@@ -9,7 +11,7 @@ function Footer(){
                         <div className="footer-top-menu bb-2 ">
                             <nav>
                                 <ul>
-                                    <li><a href="# ">home</a></li>
+                                    <li><Link to='/home'>HOME</Link></li>
                                     <li><a href="# ">Enable Cookies</a></li>
                                     <li><a href="# ">Privacy and Cookie Policy</a></li>
                                     <li><a href="# ">contact us</a></li>
@@ -50,9 +52,9 @@ function Footer(){
                                     <div className="footer-mid-menu ">
                                         <ul>
                                             <li><a href="contact.html ">Contact us</a></li>
-                                            <li><a href="# ">Sitemap</a></li>
+                                            <li><Link to="signin"> Login</Link></li>
                                             <li><a href="# ">Stores</a></li>
-                                            <li><a href="register.html ">My account </a></li>
+                                           <li> <Link to="myaccount">My Account</Link></li>
                                         </ul>
                                     </div>
                                 </div>
