@@ -2,7 +2,7 @@ export const apiEndPoint = {
     CATEGORY_API: "/category/list",
     STATE_API: "/state/findState",
     TOP_PRODUCT_API: "/book/topBooks",
-    CITY_API: "/city/findCity",
+    CITY_API: "/city/cityByState",
     VERIFY_API: "/user/verifyEmail",
     FREE_BOOK_API: "/book/freebooklist",
     BOOK_BY_CATEGORY: "/book/searchByCategoryId",
@@ -17,6 +17,6 @@ export const apiEndPoint = {
     FETCH_CART: '/cart/fetchCart',
     ADD_TO_CART: '/cart/addToCart',
     USER_CART : "/cart/userCart",
-    UPLOAD_BOOK : "/book/add"
-
+    ADD_BOOK : "/book/add",
+    SEARCH_BOOKS : "/book/searchByKeyword"
 }
