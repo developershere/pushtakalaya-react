@@ -11,13 +11,15 @@ import { useNavigate } from "react-router-dom";
 function Books() {
     const { categoryList, error, isLoading } = useSelector((state) => state.category)
     const [bookData, setData] = useState([]);
+    const [authorData, setAuthorData] = useState([]);
     const navigate = useNavigate()
 
     const featchAllBooks = async () => {
         try {
             let response = await axios.get(apiEndPoint.All_Books);
-            console.log(response);
+            // console.log(response.data.bookList.data);
             if (response.data.status) {
+                window.alert("Authors called")
                 setData(response.data.bookList);
             }
         }
@@ -44,9 +46,9 @@ function Books() {
 
     const searchByAuther = async (author) => {
         try {
-            let response = await axios.post(apiEndPoint.Search_by_Other, { author: author });
-            console.log(response.data);
-            setData(response.data.result)
+            window.alert("fgfdgh");
+            setAuthorData(bookData);
+            console.log(bookData.author)
         }
         catch (err) {
             console.log(err);
@@ -77,7 +79,7 @@ function Books() {
 
                         <ul>
                             {!error && categoryList.map((category, index) =>
-                                <li   style={{cursor : "pointer"}} onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
+                                <li style={{ cursor: "pointer" }} onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
                         </ul>
                     </div>
                     {/* drop down */}
@@ -95,7 +97,7 @@ function Books() {
                 <div className="LeftPart">
                     <div className="mainImage">
                         <img
-                            src="http://localhost:3000/img/banner/9.jpg"
+                            src="../../img/banner/9.jpg"
                             alt=""
                         />
                     </div>

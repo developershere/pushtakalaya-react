@@ -110,7 +110,7 @@ function Books() {
                 <div className="LeftPart">
                     <div className="mainImage">
                         <img
-                            src="http://localhost:3001/img/banner/9.jpg"
+                            src="../../img/banner/9.jpg"
                             alt=""
                         />
                     </div>

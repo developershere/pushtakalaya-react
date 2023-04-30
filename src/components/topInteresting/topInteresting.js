@@ -64,7 +64,7 @@ function TopInteresting() {
               role="tablist"
             >
 
-              <button className=" nav-link active col-2" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="true"  >  All</button>
+              <button  className=" nav-link active col-2" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="true"  >  All</button>
               {!error && categoryList.filter((category) => category.categoryName == "Classics").map((category, index) =>
                 <button key={index} onClick={() => loadProductByCategory(category._id)} className=" nav-link col-2" id="nav-Remodeling-tab" data-bs-toggle="tab" data-bs-target="#nav-Remodeling" type="button" role="tab" aria-controls="nav-Remodeling" aria-selected="false" >{category.categoryName}</button>)}
 
