@@ -10,7 +10,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 function DonateForm() {
   const [citys, setCitys] = useState([]);
-  const { categoryList, error, isLoading } = useSelector((state) => state.category)
+  const { categoryList, error, } = useSelector((state) => state.category)
   const { currentUser } = useSelector((state) => state.user);
   const { stateList } = useSelector((item) => item.state);
   const dispatch = useDispatch()
@@ -23,17 +23,38 @@ function DonateForm() {
   const [pincode, setPinCode] = useState(" ");
   const [cityId, setCity] = useState(" ");
   const [categoryId, setCategory] = useState(" ");
-  const [photos, setImage] = useState("");
   const stateObject = useRef("");
-  const price = 0;
-  const userId = currentUser._id;
- 
-  const handleSubmit = async (event) => {
+
+  let photos = [];
+
+  const onFileChange = event => {
+    photos = (event.target.files[0]);
+    console.log(photos);
+  }
+
+   const handleSubmit = async (event) => {
     try {
+       window.alert("sdg");
       event.preventDefault();
-       const stateId = stateObject.current.value;
-      let response = await axios.post(apiEndPoint.ADD_BOOK, { name, description, author, language, edition, publicationDate, pincode, cityId, categoryId, photos, price, userId ,stateId });
-      console.log(response.data);
+      const stateId = stateObject.current.value;
+      const userId = currentUser._id;
+      const price = 0;
+       let formData = new FormData();
+      formData.append("photos", photos);      
+      console.log(formData);
+      formData.set("name", name);
+      formData.set("description", description);
+      formData.set("author", author);
+      formData.set("language", language);
+      formData.set("edition", edition);
+      formData.set("publicationDate", publicationDate);
+      formData.set("pincode", pincode);
+      formData.set("cityId", cityId);
+      formData.set("categoryId", categoryId);
+      formData.set("userId", userId);
+      formData.set("price", price);
+      let response = await axios.post(apiEndPoint.ADD_BOOK, formData);
+      console.log(response);
     }
     catch (err) {
       console.log(err);
@@ -43,7 +64,12 @@ function DonateForm() {
    const featchCityById = async (stateId) => {
     try {
       let response = await axios.post(apiEndPoint.FEATCH_CITY_BY_STATE, { stateId: stateId });
-      setCitys(response.data.result);
+       if(response.data.status){
+         toast.success("Book added Successfully");
+         setCitys(response.data.result);
+
+       }
+     
     }
     catch (err) {
       toast.error("Something went wrong");
@@ -136,16 +162,16 @@ function DonateForm() {
 
                   <div className="row form-group">
                     <div>
-                      <input onChange={(event) => setImage(event.target.value)} type="file" multiple placeholder="Images" className="form-control" />
+                      <input onChange={onFileChange} type="file" multiple placeholder="Images" className="form-control" />
                     </div>
                   </div>
                   <div className="row form-group">
                     <div>
-                      <textarea onChange={(event) => setDescription(event.target.value)} cols='53' rows='4' placeholder="Enter Description" />
+                      <textarea onChange={(event) => setDescription(event.target.value)} cols='64' rows='4' placeholder="Enter Description" />
                     </div>
                   </div>
                   <div>
-                    <button className="btn w-100 text-center submitbtn" style={{ outline: "none" }} type="button">SUBMIT</button>
+                    <button className="btn w-100 text-center submitbtn" style={{ outline: "none" }} type="submit">SUBMIT</button>
                   </div>
                 </form>
               </div>

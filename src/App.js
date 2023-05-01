@@ -19,11 +19,13 @@ import ProtectedRoute from './components/protectedRoute/protectedRoute';
 import Update from './components/user/myaccount/myaccount/update';
 import MyAccount from './components/user/myaccount/myaccount/myaccount';
 import SellboooksForm from './components/sellbooks/sellBooks';
+import UserBooks from './components/user/myaccount/myaccount/userBook';
+import UpdateBooks from './components/updateBook/updateBooks';
 
 
 
 function App() {
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCategory());
     dispatch(fetchTopProduct())
@@ -33,20 +35,22 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path='/signup' element={<SignUp />} />
       <Route path='/signin' element={<SignIn />} />
-       <Route path='/freebooks' element={<FreeBooks />} />
+      <Route path='/freebooks' element={<FreeBooks />} />
       <Route path='/checkout' element={<Checkout />} />
       <Route path='/myaccount' element={<ProtectedRoute><MyAccount /></ProtectedRoute>} />
       <Route path='/donate' element={<Donate />} />
       <Route path='/donateform' element={<DonateForm />} />
       <Route path="viewDescription" element={<ViewDescription />} />
-       <Route path='/donateform' element={<DonateForm />} />
+      <Route path='/donateform' element={<DonateForm />} />
       <Route path='/update' element={<Update />} />
-       <Route path='/book' element={<Book/>}/>
-      <Route path='/sellbooks' element= {<SellboooksForm/>}></Route>
-      </Routes>
+      <Route path='/book' element={<Book />} />
+      <Route path='/sellbooks' element={<SellboooksForm />} />
+      <Route path='/userBook' element={<UserBooks/>}/>
+      <Route path='/updateBooks' element={<UpdateBooks/>}/>
+    </Routes>
 
   </>
-  // "completed"
+  
 }
 
 export default App;

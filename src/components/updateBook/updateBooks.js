@@ -1,70 +1,63 @@
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../footer/footer";
 import Header from "../header/header";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchState } from "../../router-config/stateSlice";
-import axios from "axios";
 import { apiEndPoint } from "../../webApi/webapi";
-import userSlice from "../../router-config/userSlice";
-import { toast,ToastContainer } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+ import axios from "axios";
+import { useLocation } from "react-router-dom";
 
-function SellboooksForm() {
-    const { currentUser } = useSelector((state) => state.user);
-    const [citys, setCitys] = useState([]);
+function UpdateBooks() {
+    const [citys , setCitys] = useState([]);
+    const { categoryList, error, isLoading } = useSelector((state) => state.category)
+    const dispatch = useDispatch();
+    const location = useLocation();
+    // const book = location.state.books;
     const [name, setBookName] = useState(" ");
     const [description, setDescription] = useState(" ");
     const [author, setAuthorName] = useState(" ");
     const [language, setLanguage] = useState("");
     const [edition, setEdition] = useState(" ");
-    const [publicationDate, setPublicationDate] = useState(" ");
+    const [publicationDate, setPublicationData] = useState(" ");
     const [pincode, setPinCode] = useState(" ");
     const [categoryId, setCategory] = useState(" ");
-    const  [photos, setImage] = useState("");
     const [price, setPrice] = useState("");
     const [cityId, setCity] = useState(" ");
-    const stateObject = useRef(" ");
-    const userId = currentUser;
-     const navigate = useNavigate();
-    console.log(userId);
-     const { categoryList, error} = useSelector((state) => state.category)
-    const dispatch = useDispatch()
-    
-    const handleSubmit = async (event) => {
-        try {
-            const formData = new FormData();
-            photos = formData.append("book",photos,photos.name);
-            console.log(photos);
-            event.preventDefault();
-            const stateId = stateObject.current.value;
-            const userId = currentUser._id;
-            let response = await axios.post(apiEndPoint.ADD_BOOK, { name, description, author, language, edition, publicationDate, pincode, cityId, categoryId, photos, price, userId, stateId });
-            console.log(response.data);
+
+    const updateBook = async ()=>{
+        try{
+         let response = await axios.post(apiEndPoint.UPDATE_BOOK , {});
+          console.log(response);
         }
-        catch (err) {
-            toast.error("Something went wrong");
+        catch(err){
+            console.log(err);
         }
     }
-       const featchCityById = async (stateId) => {
+
+  useEffect(() => {
+      dispatch(fetchState());
+        
+    }, [])
+
+    const featchCityById = async (stateId) => {
         try {
             let response = await axios.post(apiEndPoint.FEATCH_CITY_BY_STATE, { stateId: stateId });
-            setCitys(response.data.result);
+             console.log(response.data);
+             setCitys(response.data.result);
         }
         catch (err) {
             console.log(err);
         }
     }
-    useEffect(() => {
-        dispatch(fetchState());
-    }, [])
+
+     
 
     const { stateList } = useSelector((item) => item.state);
 
     return <>
-      <section>
-         
+
+        <section>
             <Header />
-            <ToastContainer/>
             <div className="container-fluid py-5 h-100 donateformContainer">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-2 donateformimage">
@@ -77,31 +70,32 @@ function SellboooksForm() {
                                 <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2 sty">
                                     Book Detail's
                                 </h3>
-                                <form onSubmit={handleSubmit}  className="px-md-2">
+                                <form  onSubmit={updateBook}  className="px-md-2">
                                     <div className="row form-group"  >
                                         <div className="">
-                                            <input onChange={(event) => setBookName(event.target.value)} placeholder="Enter Book Name" type="text" className="form-control" />
+                                            <input onChange={(event) => setBookName(event.target.value)}  placeholder="Enter Book Name" type="text" className="form-control" />
                                         </div>
                                     </div>
                                     <div className="row form-group"  >
                                         <div className="">
-                                            <input onChange={(event) => setEdition(event.target.value)} placeholder="Enter Edition" type="text" className="form-control" />
+                                            <input onChange={(event) => setEdition(event.target.value)}   placeholder="Enter Edition" type="text" className="form-control" />
                                         </div>
                                     </div>
 
                                     <div className="row form-group"  >
                                         <div className=" col-md-6">
-                                            <input onChange={(event) => setAuthorName(event.target.value)} placeholder="Enter Author Name" type="text" className="form-control" />
+                                            <input onChange={(event) => setAuthorName(event.target.value)}   placeholder="Enter Author Name" type="text" className="form-control" />
                                         </div>
                                         <div className=" col-md-6">
-                                            <input onChange={(event) => setPrice(event.target.value)} placeholder="Enter Price" type="number" className="form-control" />
+                                            <input onChange={(event) => setPrice(event.target.value)}    placeholder="Enter Price" type="number" className="form-control" />
                                         </div>
                                     </div>
                                     <div className="row form-group">
                                         <div>
-                                            <select onChange={(event) => setCategory(event.target.value)} className="form-control">Category
+
+                                            <select onChange={(event) => setCategory(event.target.value)}       className="form-control">Category
                                                 <option>Select Book Category</option>
-                                                {!error && categoryList.map((category, index) => <option   value={category._id}   key={index}>{category.categoryName}</option>)}
+                                                {!error && categoryList.map((category, index) => <option value={category._id}  key={index}>{category.categoryName}</option>)}
                                             </select>
                                         </div>
                                     </div>
@@ -118,10 +112,10 @@ function SellboooksForm() {
                                     </div>
                                     <div className="row form-group mt-2"  >
                                         <div className=" col-md-6">
-                                            <select ref={stateObject} onChange={(event) => featchCityById(event.target.value)} className="form-control">State
-                                                <option >Select State</option>
+                                            <select   onChange={(event) => featchCityById(event.target.value)} className="form-control">State
+                                                <option>Select State</option>
                                                 {stateList.map((state, index) =>
-                                                    <option value={state._id}>{state.stateName}</option>
+                                                    <option  value={state._id} >{state.stateName}</option>
                                                 )}
 
 
@@ -129,39 +123,39 @@ function SellboooksForm() {
                                         </div>
                                         <div className=" col-md-6">
                                             <select onChange={(event) => setCity(event.target.value)} className="form-control">City
-                                               <option>Select City</option>
-                                                {citys.map((city,index)=>
-                                                 <option  value={city._id} key={index}>{city.name}</option>
-                                                )}
-                                                  </select>
+                                                <option>Select City</option>
+                                                    {citys.map((city,index)=>
+                                                        <option  value={city._id}>{city.name}</option>)}
+                                           </select>
                                         </div>
                                     </div>
                                     <div className="row form-group"  >
 
                                         <div className=" col-md-6">
-                                            <input onChange={(event) => setPinCode(event.target.value)} type="number" placeholder=" Enter Pincode" className="form-control" />
+                                            <input onChange={(event) => setPinCode(event.target.value)}   type="number" placeholder=" Enter Pincode" className="form-control" />
                                         </div>
 
                                         <div className="col-md-6">
-                                            <input onChange={(event) => setPublicationDate(event.target.value)} placeholder="Enter Publication Date" type="text" className="form-control" />
+                                            <input onChange={(event) => setPublicationData(event.target.value)}    placeholder="Enter Publication Date" type="text" className="form-control" />
                                         </div>
-                                          
-                                       </div>
+
+                                    </div>
 
                                     <div className="row form-group"  >
                                         <div className="col-md-12">
-                                            <input onChange={(event) => setImage(event.target.value)}  type="file" placeholder="Images" className="form-control" />
+                                            <input type="file" placeholder="Images" className="form-control" />
+                                        </div>
+                                    </div>
+
+                                      <div className="row form-group">
+                                        <div>
+                                            <textarea onChange={(event) => setDescription(event.target.value)}   cols='73' rows='4' placeholder="Enter Book's Description..." />
                                         </div>
                                     </div>
                                     <div className="row form-group">
                                         <div>
-                                            <textarea onChange={(event) => setDescription(event.target.value)} cols='65' rows='4' placeholder="Enter Book's Description..." />
+                                            <button className="btn w-100 text-center submitbtn" type="Submit">SUBMIT</button>
                                         </div>
-                                    </div>
-                                    <div className="row form-group">
-                                        <div>
-                                            <button className="btn w-100 text-center submitbtn" type="submit">SUBMIT</button>
-                                    </div>
                                     </div>
                                 </form>
                             </div>
@@ -175,4 +169,4 @@ function SellboooksForm() {
     </>
 }
 
-export default SellboooksForm;
+export default UpdateBooks;

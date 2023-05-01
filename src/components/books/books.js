@@ -42,11 +42,11 @@ function Books() {
         }
     }
 
-    const searchByAuthor = async (author) => {
+    const searchByAuthor = async (author) =>{
         try {
             let response = await axios.post(apiEndPoint.SEARCH_BY_AUTHOR, { author: author });
             console.log(response.data);
-            setData(response.data.result)
+            setData(response.data.result);
         }
         catch (err) {
             console.log(err);
@@ -55,6 +55,7 @@ function Books() {
    const viewListInbooks = (data) => {
         const list = data
         navigate("/bookList", { state: { dataList: list } });
+    
     };
 
     useEffect(() => {
