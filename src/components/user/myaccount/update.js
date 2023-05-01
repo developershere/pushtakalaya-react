@@ -73,16 +73,16 @@ function Update() {
                                                     <form onSubmit={updateProfile}>
                                                         <div className="col-lg-10 m-auto mt-2">
                                                             <div className="row form-group">
-                                                                <input onChange={(event) => SetName(event.target.value)} placeholder={currentUser.name} className="form-control" />
+                                                                <input onChange={(event) => SetName(event.target.value)}  defaultValue={currentUser.name} className="form-control" />
                                                             </div>
                                                             <div className="row form-group">
-                                                                <input onChange={(event) => SetEmail(event.target.value)} placeholder={currentUser.email} className="form-control" />
+                                                                <input onChange={(event) => SetEmail(event.target.value)} defaultValue={currentUser.email} className="form-control" />
                                                             </div>
                                                             <div className="row form-group">
-                                                                <input onChange={(event) => SetContact(event.target.value)} placeholder={currentUser.contact} className="form-control" />
+                                                                <input onChange={(event) => SetContact(event.target.value)} defaultValue={currentUser.contact} className="form-control" />
                                                             </div>
                                                             <div className="row form-group">
-                                                                <input onChange={(event) => SetPhoto(event.target.value)} type="file"  placeholder={currentUser.photos} className="form-control" />
+                                                                <input onChange={(event) => SetPhoto(event.target.value)} type="file"  defaultValue={currentUser.photos} className="form-control" />
                                                             </div>
                                                             
                                                             <div className="row form-group">

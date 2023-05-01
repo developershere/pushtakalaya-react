@@ -83,7 +83,7 @@ function DonateForm() {
       <div className="container-fluid py-5 h-100 donateformContainer">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-2 donateformimage">
-            <img src="\img\donar\form.jpg" style={{ height: '500px', width: '500px' }} />
+          <img src="\img\donates\donateimg.jpg" style={{ height: '500px', width: '500px' }} />
           </div>
           <div className="col-lg-10 col-xl-6" >
             <div className="card rounded-3">

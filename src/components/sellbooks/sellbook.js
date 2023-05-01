@@ -38,13 +38,15 @@ function SellboooksForm() {
     
     const handleSubmit = async (event) => {
         try {
-             
-            event.preventDefault();
-            const userId = currentUser._id;
-            let formData = new FormData();
+          event.preventDefault();
+          window.alert("bfvfb")
+          window.alert(currentUser._id);
+          
+          const userId = currentUser._id;
+          let formData = new FormData();
             formData.append("photos", photos);      
-            console.log(formData);
             formData.set("name", name);
+            console.log(formData);
             formData.set("description", description);
             formData.set("author", author);
             formData.set("language", language);
@@ -67,7 +69,7 @@ function SellboooksForm() {
        const featchCityById = async (stateId) => {
         try {
             let response = await axios.post(apiEndPoint.FEATCH_CITY_BY_STATE, { stateId: stateId });
-            setCitys(response.data.result);
+            setCitys(response.data.city);
         }
        catch (err) {
             console.log(err);

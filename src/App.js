@@ -42,7 +42,7 @@ function App() {
    <Route path='/myaccount' element={<ProtectedRoute><MyAccount/></ProtectedRoute>}/>
    <Route path='/donate' element={<Donate/>}/>
    <Route path='/donateform' element={<ProtectedRoute><DonateForm/></ProtectedRoute>}/>
-   <Route path='/sellbooks' element={<SellboooksForm/>}/>
+   <Route path='/sellbooks' element={<ProtectedRoute><SellboooksForm/></ProtectedRoute>}/>
    <Route path='/update' element={<Update/>}/>
    <Route path= "/viewDescription" element={<ViewDescription/>}/>
     <Route path="/book" element={<Books/>}/>
