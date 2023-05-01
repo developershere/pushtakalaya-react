@@ -2,9 +2,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import './topbar.css'
 import { useSelector } from 'react-redux';
 import recentProduct from '../../router-config/recentProductSlice';
+import axios from 'axios';
+import { apiEndPoint } from '../../webApi/webapi';
+import { useRef } from 'react';
 function TopBar() {
     const { recentProductList, error } = useSelector(state => state.recentProduct);
     const { currentUser } = useSelector((state) => state.user);
+    const keyword = useRef("");
     const navigate = useNavigate();
     function debounce(func, timeout = 3000) {
         let timer;
@@ -13,10 +17,10 @@ function TopBar() {
             timer = setTimeout(() => { func.apply(this, args); }, timeout);
         };
       }
-      function saveInput(event){
+      const saveInput = async(event)=>{
         console.log("Searching Books...");
-        
-        navigate("/book");
+        const response = await axios.post(apiEndPoint.SEARCH_BOOKS,{keyword : keyword.current.value});
+        navigate("/book",{state:{books:response.data.Product,status:true}});
       }
       const processChange = debounce((event) => saveInput(event));
 
@@ -31,7 +35,7 @@ function TopBar() {
                 <div className='col-md-4  col-lg-4 col-sm-4 col-xm -4 topbardiv'>
                     <div className="header-search mt-5">
                         <form action="#">
-                            <input type="text" onKeyUp={processChange} placeholder="Search entire store here..." />
+                            <input type="text"ref={keyword} onKeyUp={processChange} placeholder="Search entire store here..." />
                             <a href="#"><i className="fa fa-search"></i></a>
                         </form>
                     </div>

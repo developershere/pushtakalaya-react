@@ -41,7 +41,7 @@ function App() {
    <Route path='/checkout' element={<Checkout/>}/>
    <Route path='/myaccount' element={<ProtectedRoute><MyAccount/></ProtectedRoute>}/>
    <Route path='/donate' element={<Donate/>}/>
-   <Route path='/donateform' element={<DonateForm/>}/>
+   <Route path='/donateform' element={<ProtectedRoute><DonateForm/></ProtectedRoute>}/>
    <Route path='/sellbooks' element={<SellboooksForm/>}/>
    <Route path='/update' element={<Update/>}/>
    <Route path= "/viewDescription" element={<ViewDescription/>}/>

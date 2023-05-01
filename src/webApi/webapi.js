@@ -18,5 +18,8 @@ export const apiEndPoint = {
     FETCH_CART: '/cart/fetchCart',
     ADD_TO_CART: '/cart/addToCart',
     USER_CART : "/cart/userCart",
-    UPLOAD_BOOK : "/book/add"
+    UPLOAD_BOOK : "/book/add",
+    ADD_BOOK : "/book/add",
+    SEARCH_BOOKS : "/book/searchByKeyword",
+    FEATCH_CITY_BY_STATE:"/city/findCityByState"
 }
