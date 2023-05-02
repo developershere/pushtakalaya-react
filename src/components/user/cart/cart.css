@@ -2,24 +2,29 @@
     color: #f07c29 !important;
     font-style: bold;
     font-size: 18px;
+    font-weight: 900;
 }
 
 table {
     box-shadow: 3px 3px 5px gray;
-    border-style: double;
+    border-color: #f07c29;
 }
 
 .img1 {
     box-shadow: 0px 0px 5px #f07c29;
-    height: 130px !important;
-    width: 130px !important;
+    height: 100px !important;
+    width: 100px !important;
     border-radius: 10px;
 }
 
 .img1:hover {
     box-shadow: 0px 0px 5px gray;
     transform: scale(1.02);
-    height: 130px !important;
-    width: 130px !important;
+    height: 100px !important;
+    width: 80px !important;
     transition: 0.3s;
+}
+
+.q-input {
+    width: 50px !important;
 }

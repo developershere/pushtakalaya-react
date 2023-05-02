@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./books.css"
 
 import { useEffect, useState } from "react";
@@ -7,18 +7,23 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { apiEndPoint } from "../../../webApi/webapi";
 import Header from "../../header/header";
+
 import Footer from "../../footer/footer";
+import { toast } from "react-toastify";
+import { addItemInToCart, setCartItems } from "../../../router-config/CartSlice";
 
 
 function Books() {
     const location = useLocation();
     const keyword = location.state?.books;
+    const { currentUser } = useSelector(state => state.user);
     const flag = location.state?.status;
+    const dispatch = useDispatch();
+    const { cartItems, cartError } = useSelector(state => state.cart);
     const { categoryList, error, isLoading } = useSelector((state) => state.category)
     const [bookData, setData] = useState([]);
     const navigate = useNavigate()
-    if (flag)
-    {
+    if (flag) {
         setData(keyword);
         console.log(bookData);
     }
@@ -69,6 +74,27 @@ function Books() {
         const list = data
         navigate("/bookList", { state: { dataList: list } });
     };
+
+    const addToCart = (book) => {
+        window.alert("Add to Cart Called..");
+        if (!currentUser){
+            // window.alert("Add to Cart Called.. if");
+            toast.warning("please login to perform this action");}
+        else {
+            window.alert("Add to Cart Called.. else");
+            let status = cartItems.some((item) => item.bookId._id == book._id);
+            if (status){
+                toast.info("Item is already added in cart");
+                window.alert("Add to Cart Called.. Added if");}
+            else {
+                dispatch(addItemInToCart({ userId: currentUser._id, bookId: book._id }));
+                if (error)
+                    toast.error(error);
+                else if (flag)
+                    toast.success("Item successfully added in cart");
+            }
+        }
+    }
 
 
 
@@ -130,7 +156,7 @@ function Books() {
                                 List
                             </div>
                             <div className="bookpara">
-                                <p>There Are  Products.</p>
+                                <p>There Are  books.</p>
                             </div>
                         </div>
 
@@ -141,7 +167,7 @@ function Books() {
                             <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
                                 <div className="card">
                                     <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
-                                    <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3"></i></a>
+                                    <a  className="card-action"><i onClick={() => addToCart(book)} className="fa fa-shopping-cart carticon mt-3"></i></a>
                                     <div className="card-body">
                                         <p className="card-text cardtitle">{book.name.substring(0, 20)}</p>
                                         <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 10)}</p>

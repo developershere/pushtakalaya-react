@@ -72,7 +72,7 @@ function TopBar() {
                                             </div>
                                             <div className="cart-bottom">
                                                 <Link className="view-cart" to="/cart" >view cart</Link>
-                                                <a href="checkout.html">Check out</a>
+                                                <Link  to="/checkout">Check Out </Link>
                                             </div>
                                         </div>
                                     </li>

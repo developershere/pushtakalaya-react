@@ -137,7 +137,8 @@ function SignUp() {
                                                         <h6>Please enter the one time password <br /> to verify your account</h6>
                                                         <div> <span>A code has been sent to</span> <small>Your Email Id</small> </div>
                                                         <div id="otp" className="inputs d-flex flex-row justify-content-center mt-2"> 
-                                                        <input onChange={(event) => setOtp(event.target.value)} className="m-2 text-center form-control rounded width:10" type="text" id="fourth" maxlength="4"/>
+                                                       
+                                                        {/* <input onChange={(event) => setOtp(event.target.value)} className="m-2 text-center form-control rounded width:10" type="text" id="fourth" maxlength="4"/> */}
                                                         </div>
                                                         <div className="mt-4">
                                                          <button onClick={()=>registration(mtime,mausam)} className="btn btn-warning px-4 validate">Validate</button> 
