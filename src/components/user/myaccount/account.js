@@ -14,7 +14,7 @@ function Account() {
                 <div className="account-details-form ">
                     <form action="#">
                         <div className="single-input-item row">
-                            <img src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png' style={{ height: '150px', width: '150px', borderRadius: "50%" }} type="image/png"
+                            <img src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png' style={{ height: '150px', width: '180px', borderRadius: "50%" }} type="image/png"
                                   label="Upload Profile Picture" alt='Profile Image' />
                         </div>
 

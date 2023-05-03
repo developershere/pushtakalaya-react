@@ -78,9 +78,9 @@ function Cart(){
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {!flag && cartItems.map((product,index)=> <tr>
+                                {!flag && cartItems?.map((product,index)=> <tr>
                                         <td className="product-thumbnail" key={index} >
-                                            <a href="#"> <img src= {"https://drive.google.com/uc?export=view&id="+product.bookId.photos.substring(32,product.photos.lastIndexOf("/"))}  className="img-fluid cardimg img1"/> </a>
+                                            <a href="#"> <img src= {"https://drive.google.com/uc?export=view&id="+product.bookId.photos.substring(32,product.bookId.photos.lastIndexOf("/"))}  className="img-fluid cardimg img1"/> </a>
                                         </td>
                                         <td className="product-name"><a href="#">{product.bookId.name}</a></td>
                                         <td className="product-price"><span className="amount">{product.bookId.price}</span></td>
