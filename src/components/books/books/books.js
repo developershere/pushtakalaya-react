@@ -17,11 +17,6 @@ function Books() {
     const { categoryList, error, isLoading } = useSelector((state) => state.category)
     const [bookData, setData] = useState([]);
     const navigate = useNavigate()
-    if (flag)
-    {
-        setData(keyword);
-        console.log(bookData);
-    }
     const featchAllBooks = async () => {
         try {
             if (!flag) {
@@ -32,6 +27,10 @@ function Books() {
                     setData(response.data.bookList);
                 }
             }
+            else
+                {
+                    setData(location.state.books);
+                }
         }
         catch (err) {
             console.log(err);
@@ -133,7 +132,21 @@ function Books() {
                     </div>
                     {/* cart */}
                     <div className="row m-auto">
-                        {bookData.filter((book)=>book.permission&&book.status==true).map((book, index) =>
+                        {keyword?.filter((book)=>book.permission&&book.status==true)?.map((book, index) =>
+                            <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
+                                <div className="card">
+                                    <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
+                                    <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3"></i></a>
+                                    <div className="card-body">
+                                        <p className="card-text cardtitle">{book.name.substring(0,15)}</p>
+                                        <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 10)}</p>
+                                        <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price}</b>
+                                        <br />
+                                        <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)}>View More</button>
+                                    </div>
+                                </div>
+                            </div>)}
+                            {bookData.filter((book)=>book.permission&&book.status==true)?.map((book, index) =>
                             <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
                                 <div className="card">
                                     <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
@@ -157,10 +170,8 @@ function Books() {
             </div>
 
         </div>
-
+    
     </>
-
-
 }
 
 export default Books;

@@ -36,7 +36,7 @@ function Footer(){
                                     </div>
                                     <div className="footer-mid-menu ">
                                         <ul>
-                                            <li><a href="about.html ">About us</a></li>
+                                            <li><Link to="/aboutUs">About us</Link></li>
                                             <li><a href="# ">Prices drop </a></li>
                                             <li><a href="# ">New products</a></li>
                                             <li><a href="# ">Best sales</a></li>
@@ -107,80 +107,7 @@ function Footer(){
             </div>
         </div>
       
-    </footer>
-    
-    <div className="modal fade " id="productModal " tabindex="-1 " role="dialog ">
-        <div className="modal-dialog " role="document ">
-            <div className="modal-content ">
-                <div className="modal-header ">
-                    <button type="button " className="close " data-dismiss="modal " aria-label="Close "><span aria-hidden="true ">x</span></button>
-                </div>
-                <div className="modal-body ">
-                    <div className="row ">
-                        <div className="col-md-5 col-sm-5 col-xs-12 ">
-                            <div className="modal-tab ">
-                                <div className="product-details-large tab-content ">
-                                    <div className="tab-pane active " id="image-1 ">
-                                        <img src="img/product/quickview-l4.jpg " alt=" " />
-                                    </div>
-                                    <div className="tab-pane " id="image-2 ">
-                                        <img src="img/product/quickview-l2.jpg " alt=" " />
-                                    </div>
-                                    <div className="tab-pane " id="image-3 ">
-                                        <img src="img/product/quickview-l3.jpg " alt=" " />
-                                    </div>
-                                    <div className="tab-pane " id="image-4 ">
-                                        <img src="img/product/quickview-l5.jpg " alt=" " />
-                                    </div>
-                                </div>
-                                <div className="product-details-small quickview-active owl-carousel ">
-                                    <a className="active " href="#image-1 "><img src="img/product/quickview-s4.jpg " alt=" " /></a>
-                                    <a href="#image-2 "><img src="img/product/quickview-s2.jpg " alt=" " /></a>
-                                    <a href="#image-3 "><img src="img/product/quickview-s3.jpg " alt=" " /></a>
-                                    <a href="#image-4 "><img src="img/product/quickview-s5.jpg " alt=" " /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-7 col-sm-7 col-xs-12 ">
-                            <div className="modal-pro-content ">
-                                <h3>Chaz Kangeroo Hoodie3</h3>
-                                <div className="price ">
-                                    <span>$70.00</span>
-                                </div>
-                                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet.</p>
-                                <div className="quick-view-select ">
-                                    <div className="select-option-part ">
-                                        <label>Size*</label>
-                                        <select className="select ">
-                                            <option value=" ">S</option>
-                                            <option value=" ">M</option>
-                                            <option value=" ">L</option>
-                                        </select>
-                                    </div>
-                                    <div className="quickview-color-wrap ">
-                                        <label>Color*</label>
-                                        <div className="quickview-color ">
-                                            <ul>
-                                                <li className="blue ">b</li>
-                                                <li className="red ">r</li>
-                                                <li className="pink ">p</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <form action="# ">
-                                    <input type="number " value="1 " />
-                                    <button>Add to cart</button>
-                                </form>
-                                <span><i className="fa fa-check "></i> In stock</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-   
+    </footer>  
    
    </>
 

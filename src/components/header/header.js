@@ -3,26 +3,17 @@ import { Link } from "react-router-dom";
 import TopBar from "../Topbar/topbar";
 import { signout } from "../../router-config/userSlice";
 import { toast } from "react-toastify";
-
 function Header() {
     const dispatch = useDispatch();
     const { categoryList, error, isLoading } = useSelector((state) => state.category)
     const currentUser = useSelector((state) => state.user.currentUser);
-
     const signOut = () => {
         dispatch(signout())
         toast.info("Sign Out SuccesFully");
     }
-
-
-
     return <>
         <header>
-
             <TopBar />
-
-
-
             <div className="main-menu-area d-md-none d-none d-lg-block sticky-header-1" id="header-sticky">
                 <div className="container">
                     <div className="row">
@@ -39,7 +30,7 @@ function Header() {
                                             <div className="mega-menu">
                                                 {!error && categoryList.map((category, index) =>
                                                     <span key={index}>
-                                                        <a>{category.categoryName}</a>
+                                                        <a style={{cursor:"pointer"}}>{category.categoryName}</a>
                                                     </span>
                                                 )}
 
@@ -62,7 +53,9 @@ function Header() {
                             <div className="safe-area">
                                 <Link to='/sellbooks'>Sell Books</Link>
                             </div>
-
+                            <div className="safe-area">
+                                <Link to='/aboutUs'>About Us</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
