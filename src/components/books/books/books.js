@@ -43,9 +43,7 @@ function Books() {
     }
 
     const viewBookByCategory = async (categoryId) => {
-    const viewBookByCategory = async (categoryId) => {
         try {
-            let response = await axios.post(apiEndPoint.BOOK_BY_CATEGORY, {categoryId});
             let response = await axios.post(apiEndPoint.BOOK_BY_CATEGORY, {categoryId});
             if (response.data.status) {
                 setData(response.data.result);
@@ -58,7 +56,6 @@ function Books() {
 
     const searchByAuther = async (author) => {
         try {
-            let response = await axios.post(apiEndPoint.SEARCH_BY_AUTHER,{ author: author });
             let response = await axios.post(apiEndPoint.SEARCH_BY_AUTHER,{ author: author });
             console.log(response.data);
             setData(response.data.result)
