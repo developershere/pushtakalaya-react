@@ -8,9 +8,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { apiEndPoint } from "../../../webApi/webapi";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
+import { toast } from "react-toastify";
 
 
 function Books() {
+    const {currentUser} = useSelector((state)=>state.user);
     const location = useLocation();
     const keyword = location.state?.books;
     const flag = location.state?.status;
@@ -20,7 +22,7 @@ function Books() {
     const featchAllBooks = async () => {
         try {
             if (!flag) {
-                let response = await axios.get(apiEndPoint.All_Books);
+                let response = await axios.get(apiEndPoint.TOTAL_BOOKS);
                 console.log(response);
                 if (response.data.status) {
                     console.log(response.data.bookList);
@@ -41,7 +43,9 @@ function Books() {
     }
 
     const viewBookByCategory = async (categoryId) => {
+    const viewBookByCategory = async (categoryId) => {
         try {
+            let response = await axios.post(apiEndPoint.BOOK_BY_CATEGORY, {categoryId});
             let response = await axios.post(apiEndPoint.BOOK_BY_CATEGORY, {categoryId});
             if (response.data.status) {
                 setData(response.data.result);
@@ -55,6 +59,7 @@ function Books() {
     const searchByAuther = async (author) => {
         try {
             let response = await axios.post(apiEndPoint.SEARCH_BY_AUTHER,{ author: author });
+            let response = await axios.post(apiEndPoint.SEARCH_BY_AUTHER,{ author: author });
             console.log(response.data);
             setData(response.data.result)
         }
@@ -67,6 +72,26 @@ function Books() {
         const list = data
         navigate("/bookList", { state: { dataList: list } });
     };
+
+
+    const addToCart = async (id)=>{
+        try{
+          if(currentUser)
+          {
+            let response = await axios.post(apiEndPoint.ADD_TO_CART,{bookId:id,userId : currentUser._id});
+            toast.success("Book is added to you'r cart");
+          }
+          else
+            toast.warning("You have to Login first");
+      }
+        catch(err)
+        {
+        if(err.response.status==400)
+            toast.warning("Book is already exists in cart");
+        if(err.response.status==500)
+          toast.error("Oops Something went wrong");
+        }
+      }
 
     useEffect(() => {
         featchAllBooks();
@@ -136,7 +161,7 @@ function Books() {
                             <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
                                 <div className="card">
                                     <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
-                                    <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3"></i></a>
+                                    <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3"  style={{cursor:"pointer"}} onClick={()=>addToCart(book._id)}></i></a>
                                     <div className="card-body">
                                         <p className="card-text cardtitle">{book.name.substring(0,15)}</p>
                                         <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 10)}</p>
@@ -170,7 +195,8 @@ function Books() {
             </div>
 
         </div>
-    
+      
+
     </>
 }
 

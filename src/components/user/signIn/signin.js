@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import TopBar from '../../Topbar/topbar';
 import Header from '../../header/header';
 import { setCartItems } from '../../../router-config/CartSlice';
+import Footer from '../../footer/footer';
 function SignIn(){
 
   const [email, SetEmail] = useState(" ");
@@ -61,7 +62,7 @@ function SignIn(){
     <div className="container-fluid ps-md-0">
      
   <div className="row g-0">
-    <div className="d-none d-md-flex col-md-4 col-lg-5 sign-image">
+    <div className="d-none d-md-flex col-md-4 col-lg-5 ms-5 sign-image">
       
     </div>
     <div className="col-md-8 col-lg-6">
@@ -97,6 +98,7 @@ function SignIn(){
   </div>
 </div>
 </div>
+<Footer/>
     </>
 }
 
