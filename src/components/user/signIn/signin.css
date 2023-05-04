@@ -5,7 +5,7 @@
 .sign-image {
     background-image: url('./login.jpg');
     background-size: cover;
-    border-radius: 0px 15% 0% 15%;
+    border-radius: 5px 18% 5% 19%;
     box-shadow: 0px 0px 15px gray;
     height: 65vh;
     margin: 30px

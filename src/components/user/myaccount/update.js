@@ -11,7 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Footer from "../../footer/footer";
 import Header from "../../header/header";
 function Update() {
-    const {currentUser}= useSelector((state)=>state.user)
+    const { currentUser } = useSelector((state) => state.user)
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const [name, SetName] = useState("");
@@ -26,15 +26,15 @@ function Update() {
             console.log(response.data);
             dispatch(setUpdateProfile(response.data.updatedUser))
             toast.success("Profile Updated Succesfully");
-            
-             
+
+
         } catch (err) {
-             toast.error("Something Went Wrong");
+            toast.error("Something Went Wrong");
         }
     }
 
     return <>
-    <Header/>
+        <Header />
         <div className="breadcrumbs-area mb-70">
             <div className="container">
                 <div className="row">
@@ -51,7 +51,7 @@ function Update() {
         </div>
 
         <div className="my-account-wrapper mb-70">
-            <ToastContainer/>
+            <ToastContainer />
             <div className="container">
                 <div className="section-bg-color">
                     <div className="row">
@@ -84,7 +84,7 @@ function Update() {
                                                             <div className="row form-group">
                                                                 <input onChange={(event) => SetPhoto(event.target.value)} type="file"  defaultValue={currentUser.photos} className="form-control" />
                                                             </div>
-                                                            
+
                                                             <div className="row form-group">
                                                                 <button className="editbutton " type="submit"><i className="fa fa-edit"></i>
                                                                     update</button>
@@ -105,7 +105,7 @@ function Update() {
                 </div>
             </div>
         </div>
-<Footer/>
+        <Footer />
     </>
 }
 
