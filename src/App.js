@@ -31,7 +31,9 @@ function App() {
   return <> 
   <Routes>
    <Route path='/' element={ <Home/>}/>
+   
    <Route path='/signup' element={<SignUp/>}/>
+   
    <Route path='/signin' element={<SignIn/>}/>
 
    <Route path='/cart' element={<ProtectedRoute><Cart/></ProtectedRoute>}/>
@@ -39,8 +41,8 @@ function App() {
    <Route path='/checkout' element={<Checkout/>}/>
    <Route path='/myaccount' element={<ProtectedRoute><MyAccount/></ProtectedRoute>}/>
    <Route path='/donate' element={<Donate/>}/>
-   <Route path='/donateform' element={<DonateForm/>}/>
-   <Route path='/sellbooks' element={<SellboooksForm/>}/>
+   <Route path='/donateform' element={<ProtectedRoute><DonateForm/></ProtectedRoute>}/>
+   <Route path='/sellbooks' element={<ProtectedRoute><SellboooksForm/></ProtectedRoute>}/>
    <Route path='/update' element={<Update/>}/>
    <Route path= "/viewDescription" element={<ViewDescription/>}/>
     <Route path="/book" element={<Books/>}/>
@@ -48,7 +50,7 @@ function App() {
   </Routes>
  
   </>
-  // "completed"
+  // " Admin completed"
 }
 
 export default App;

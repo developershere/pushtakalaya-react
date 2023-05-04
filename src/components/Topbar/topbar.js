@@ -25,16 +25,19 @@ function TopBar() {
     const processChange = debounce((event) => saveInput(event));
 
     return <>
-     
-        <div className="header-mid-area pt-40">
-            <div className="container">
-                <div className="row">
-
-                    <div className="col-lg-4 col-md-4 col-12  " style={{marginTop:"-30px"}}>
-                        <div className="logo-area text-left   logo-xs-mrg ">
-                            <img src="img/logo/logo.png" alt="logo" className=' logoimg mb-3 pb-3 ' />
-                            <span className='topbarlogoheading ' >Pustakalaya</span>
-                        </div>
+        <div className="container-fluid topbarcontainr">
+            <div className='row'>
+                <div className='col-md-4 col-lg-4 col-sm-4 col-xm -4 topbardiv'>
+                <Link to='/'>    <img src="img/logo/logo.png" alt="logo" style={{cursor:"pointer"}}  className='logoimg mb-3 pb-3 mt-1'  />
+                    <span className='topbarlogoheading ' style={{cursor:"pointer"}} >Pustakalaya</span>
+                    </Link>
+                </div>
+                <div className='col-md-4  col-lg-4 col-sm-4 col-xm -4 topbardiv'>
+                    <div className="header-search mt-5">
+                        <form action="#">
+                            <input type="text"ref={keyword} onKeyUp={processChange} placeholder="Search entire store here..." />
+                            <a href="#"><i className="fa fa-search"></i></a>
+                        </form>
                     </div>
                     <div className="col-lg-4 col-md-4 col-12 " >
                         <div className="header-search ms-3 mb-3 ">
