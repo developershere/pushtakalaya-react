@@ -122,12 +122,7 @@ function SignUp() {
                                     <div className="form-group">
                                         <input ref={contact} type="text" placeholder="Enter contact number" className="form-control" />
                                     </div>
-                                    {/* <div className="form-group">
-                                        
-                                        <input type="radio" name="gender"  className="form-control" /> Male 
-                                        <input type="radio" name="gender"  className="form-control" /> Female
-                                        <input type="radio" name="gender"  className="form-control" /> Other 
-                                    </div> */}
+                                    
                                     <div className="form-group text-center">
                                             {modal ?
                                                 <button onClick={(() => verifyEmail(email, name))} type="submit" className="btn submitbtn w-100" data-toggle="modal" data-target="#exampleModalCenter" >

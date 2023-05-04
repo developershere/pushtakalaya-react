@@ -154,7 +154,7 @@ function Books() {
 
                         <div className="row">
                             {keyword?.filter((book) => book.permission && book.status == true)?.map((book, index) =>
-                                <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
+                                <div key={index} className="col-md-5 col-xl-3 col-lg-5 col-sm-3 mt-5" data-aos="fade-up" data-aos-duration="500">
                                     <div className="card">
                                         <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
                                         <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3" style={{ cursor: "pointer" }} onClick={() => addToCart(book._id)}></i></a>
