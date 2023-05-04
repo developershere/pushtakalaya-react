@@ -4,7 +4,7 @@ import "./cart.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addItemInToCart, setCartItems } from "../../../router-config/CartSlice";
 import { apiEndPoint } from "../../../webApi/webapi";
 import { toast, ToastContainer } from "react-toastify";
@@ -15,6 +15,8 @@ function Cart(){
     const {currentUser} = useSelector(state=>state.user);
     const {cartItems,flag} = useSelector(state=>state.cart);
     const dispatch = useDispatch();
+    var amount=0;
+    const navigate =useNavigate();
     console.log("Mausam : "+cartItems);
     const loadProducts = async()=>{
        try{
@@ -31,15 +33,19 @@ function Cart(){
     useEffect(()=>{
       loadProducts();
     },[]);
+
+    const changeHome = () => {
+        navigate("/")
+      }
     return<>
     <Header/>
-   <div className="breadcrumbs-area mb-70">
+   <div className="breadcrumbs-area ">
         <div className="container">
             <div className="row">
                 <div className="col-lg-12">
                     <div className="breadcrumbs-menu">
                         <ul>
-                            <li><a href="#">Home</a></li>
+                            <li><a onClick={changeHome}>Home</a></li>
                             <li><a href="#" className="active">cart</a></li>
                         </ul>
                     </div>
@@ -48,54 +54,51 @@ function Cart(){
         </div>
     </div>
     
-    <div className="entry-header-area">
-        <div className="container">
-            <div className="row">
-                <div className="col-lg-12">
-                    <div className="entry-header-title">
-                        <h2 className="sty text-left"> Cart</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+   
   
-    <div className="cart-main-area mb-70">
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-lg-12">
-                    <form action="#">
-                        <div className="table-content table-responsive mb-15 border-1">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th className="th product-thumbnail">Image</th>
-                                        <th className="th product-name">Product</th>
-                                        <th className="th product-price">Price</th>
-                                        <th className="th product-quantity">Quantity</th>
-                                        <th className="th product-subtotal">Total</th>
-                                        <th className="th product-remove">Remove</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {!flag && cartItems?.map((product,index)=> <tr>
-                                        <td className="product-thumbnail" key={index} >
-                                            <a href="#"> <img src= {"https://drive.google.com/uc?export=view&id="+product.bookId.photos.substring(32,product.bookId.photos.lastIndexOf("/"))}  className="img-fluid cardimg img1"/> </a>
-                                        </td>
-                                        <td className="product-name"><a href="#">{product.bookId.name}</a></td>
-                                        <td className="product-price"><span className="amount">{product.bookId.price}</span></td>
-                                        <th className="product-quantity"><input type="text" /></th>
-                                        <td className="product-subtotal">{product.bookId.price*1}</td>
-                                        <td className="product-remove"><a href="#"><i className="fa fa-times"></i></a></td>
-                                    </tr>)}
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="container-fluid addtocartcontainer mb-70">
+       
+       <div class=" row">
+           <div class="  ml-4 mt-5 col-sm-8 col-md-8 col-xm-8 ">
+               <div class=" headingcart row col-md-12 mt-2">
+                   <h5 class=" cartmainheading">My Cart()</h5>
+               </div>
+             
+              
+               {!flag && cartItems?.map((product,index)=>
+               <div class="addtocartdiv row mt-3">
+                   <div class="col-md-2 col-sm-4 ">
+                       <img  src= {"https://drive.google.com/uc?export=view&id="+product.bookId.photos.substring(32,product.bookId.photos.lastIndexOf("/"))}  class="imgcart mt-2 img img-fluid img-responsive img-thumbnail" alt=""/>
+                   </div>
+                   <div class="col-md-7 mt-2 ">
+                       <h6 class="mt-2 cartscontainheading">{product.bookId.name}</h6>
+                       <h6 class="contentcart"><span class="carttitle">Author : </span>{product.bookId.author}</h6>
+                       <h6 class="contentcart"><span class="carttitle">Price : </span>{product.bookId.price} Rs</h6>
+                       <h6 class="carttitle">Shipping & Handling charges   ₹30</h6>
+                   </div>
+                  
+                   <div class="col-md-3 text-center">
+                       <button class="cartbutton">Remove</button>
+                   </div>
+
+               </div>)}
+             
+
+           </div>
+
+           <div class="col-md-3 col-xm-3 col-sm-3  addtocartdivafter ml-5 mt-5 ">
+              <div class="cartscontainheading  mt-5">
+              {!flag && cartItems?.map((product,index)=> {amount= amount+product.bookId.price*1})}
+               <h6>Pay Only for Shipping  <span class="ml-1"> :₹{!flag&&cartItems?.length*20} ({!flag&&cartItems?.length} Books)</span></h6>
+                <h6>Bill Amount<span class="ml-5 pl-3"> :  ₹ {amount}</span></h6>
+               <h6>Total Amount<span class="ml-5 pl-3">: ₹ {amount+(!flag&&cartItems?.length*20)}</span></h6>
+              </div>
+            <button class="btn-block cartcheckoutbutton mt-5">Procced To checkout</button>
+           </div>
+       </div>
+   </div>
+   
 
 
 

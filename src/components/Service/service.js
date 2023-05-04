@@ -9,8 +9,8 @@ function Service(){
                             <a href="#"><img src="img/banner/1.png" alt="banner" /></a>
                         </div>
                         <div className="banner-text">
-                            <h4>Free shipping item</h4>
-                            <p>For all orders over $500</p>
+                            <h4>5-10% OFF shipping item</h4>
+                            <p>For all orders over ₹500</p>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@ function Service(){
                         </div>
                         <div className="banner-text">
                             <h4>Cash on delivery</h4>
-                            <p>Lorem ipsum dolor consecte</p>
+                            <p>We also provide COD(Cash On delivery)</p>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@ function Service(){
                         </div>
                         <div className="banner-text">
                             <h4>Help & Support</h4>
-                            <p>Call us : + 0123.4567.89</p>
+                            <p>Call us : +91 8989580060</p>
                         </div>
                     </div>
                 </div>

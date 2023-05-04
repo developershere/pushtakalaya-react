@@ -16,7 +16,6 @@ function SignUp() {
     let contact = useRef("");
     let otp = useRef("");
     let mausam;
-    let expire = false;
     let otpCheck = false;
     var mtime;
     const [modal,setModal] = useState(false);
@@ -28,8 +27,8 @@ function SignUp() {
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
+            window.alert("fdd");
             let response = await axios.post(apiEndPoint.USER_SIGNUP, { name, email, password, contact });
-            window.alert(response.status);
             if (!response.data.status) {
 
                 navigate("/signin");
@@ -62,7 +61,6 @@ function SignUp() {
     const registration = async (event) => {
         console.log(new Date().getMinutes());
         if (new Date().getMinutes() <= mtime) {
-            expire = true;
             if (mausam == otp.current.value) {
                 otpCheck = true;
                 let response = axios.post("/user/signup",{name,email,password,contact});
