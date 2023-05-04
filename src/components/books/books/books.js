@@ -182,7 +182,6 @@ function Books() {
                                     </div>
                                 </div>)}
                         </div>
-
                         {/* cart */}
                     </div>
                 </div>

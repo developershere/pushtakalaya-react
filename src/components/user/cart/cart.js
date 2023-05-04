@@ -8,103 +8,199 @@ import { Link, useNavigate } from "react-router-dom";
 import { addItemInToCart, setCartItems } from "../../../router-config/CartSlice";
 import { apiEndPoint } from "../../../webApi/webapi";
 import { toast, ToastContainer } from "react-toastify";
-function Cart(){
-    const [productList,setProductList] = useState([]);
-    const [error, setError] = useState("");
-    const [isLoading,setIsLoading]= useState(true);
-    const {currentUser} = useSelector(state=>state.user);
-    const {cartItems,flag} = useSelector(state=>state.cart);
-    const dispatch = useDispatch();
-    var amount=0;
-    const navigate =useNavigate();
-    console.log("Mausam : "+cartItems);
-    const loadProducts = async()=>{
-       try{
-        window.alert("dghfggsg")
-        let response = await axios.post(apiEndPoint.FETCH_CART,{userId:currentUser._id});
-        console.log(response.data);  
-        dispatch(setCartItems(response.data.cart));
-       }
-      catch(err){
-         setError("Oops! something went wrong..");
-      }
+function Cart() {
+  var amount = 0;
+  var amount1 = 0;
+  const [productList, setProductList] = useState([]);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const { currentUser } = useSelector(state => state.user);
+  const { cartItems, flag } = useSelector(state => state.cart);
+  const dispatch = useDispatch();
+  var amount = 0;
+  const navigate = useNavigate();
+  console.log("Mausam : " + cartItems);
+  const loadProducts = async () => {
+    try {
+      window.alert("dghfggsg")
+      let response = await axios.post(apiEndPoint.FETCH_CART, { userId: currentUser._id });
+      console.log(response.data);
+      dispatch(setCartItems(response.data.cart));
     }
-    
-    useEffect(()=>{
-      loadProducts();
-    },[]);
+    catch (err) {
+      setError("Oops! something went wrong..");
+    }
+  }
 
-    const changeHome = () => {
-        navigate("/")
-      }
-    return<>
-    <Header/>
-   <div className="breadcrumbs-area ">
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  const changeHome = () => {
+    navigate("/")
+  }
+  return <>
+    <Header />
+    <div className="breadcrumbs-area mb-25">
+      <div className="breadcrumbs-area ">
         <div className="container">
-            <div className="row">
-                <div className="col-lg-12">
-                    <div className="breadcrumbs-menu">
-                        <ul>
-                            <li><a onClick={changeHome}>Home</a></li>
-                            <li><a href="#" className="active">cart</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-
-   
-  
-    <div class="container-fluid addtocartcontainer mb-70">
-       
-       <div class=" row">
-           <div class="  ml-4 mt-5 col-sm-8 col-md-8 col-xm-8 ">
-               <div class=" headingcart row col-md-12 mt-2">
-                   <h5 class=" cartmainheading">My Cart()</h5>
-               </div>
-             
-              
-               {!flag && cartItems?.map((product,index)=>
-               <div class="addtocartdiv row mt-3">
-                   <div class="col-md-2 col-sm-4 ">
-                       <img  src= {"https://drive.google.com/uc?export=view&id="+product.bookId.photos.substring(32,product.bookId.photos.lastIndexOf("/"))}  class="imgcart mt-2 img img-fluid img-responsive img-thumbnail" alt=""/>
-                   </div>
-                   <div class="col-md-7 mt-2 ">
-                       <h6 class="mt-2 cartscontainheading">{product.bookId.name}</h6>
-                       <h6 class="contentcart"><span class="carttitle">Author : </span>{product.bookId.author}</h6>
-                       <h6 class="contentcart"><span class="carttitle">Price : </span>{product.bookId.price} Rs</h6>
-                       <h6 class="carttitle">Shipping & Handling charges   ₹30</h6>
-                   </div>
-                  
-                   <div class="col-md-3 text-center">
-                       <button class="cartbutton">Remove</button>
-                   </div>
-
-               </div>)}
-             
-
-           </div>
-
-           <div class="col-md-3 col-xm-3 col-sm-3  addtocartdivafter ml-5 mt-5 ">
-              <div class="cartscontainheading  mt-5">
-              {!flag && cartItems?.map((product,index)=> {amount= amount+product.bookId.price*1})}
-               <h6>Pay Only for Shipping  <span class="ml-1"> :₹{!flag&&cartItems?.length*20} ({!flag&&cartItems?.length} Books)</span></h6>
-                <h6>Bill Amount<span class="ml-5 pl-3"> :  ₹ {amount}</span></h6>
-               <h6>Total Amount<span class="ml-5 pl-3">: ₹ {amount+(!flag&&cartItems?.length*20)}</span></h6>
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="breadcrumbs-menu">
+                <ul>
+                  <li><a onClick={changeHome}>Home</a></li>
+                  <li><a href="#" className="active">cart</a></li>
+                </ul>
               </div>
-            <button class="btn-block cartcheckoutbutton mt-5">Procced To checkout</button>
-           </div>
-       </div>
-   </div>
-   
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="cart-main-area mb-70">
+        <div className="container-fluid ms-5">
+          <div className="row">
+            <div className="col-lg-6 col-sm-6">
+              <form action="#">
+                <div className="table-content table-responsive mb-15">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th className="th ">Image</th>
+                        <th className="th ">Product</th>
+                        <th className="th ">Price</th>
+                        <th className="th ">Quantity</th>
+                        <th className="th ">Total</th>
+                        <th className="th ">Remove</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {!flag && cartItems?.map((product, index) => <tr>
+                        <td className="p-2 product-thumbnail" key={index} >
+                          <a href="#"> <img src={"https://drive.google.com/uc?export=view&id=" + product.bookId.photos.substring(32, product.bookId.photos.lastIndexOf("/"))} className="img-fluid img1" /> </a>
+                        </td>
+                        <td className="p-0 product-name"><a href="#">{product.bookId.name}</a></td>
+                        <td className="p-0 product-price"><span className="amount">{product.bookId.price}</span></td>
+                        <th className="p-0 product-quantity"><input type="number" value={1} className="q-input" /></th>
+                        <td className="p-0 product-subtotal">{product.bookId.price * 1 + 20}</td>
+                        <td className="p-0 product-remove"><a href="#"><i className="fa fa-times"></i></a></td>
+                      </tr>)}
+                    </tbody>
+                  </table>
+                </div>
+              </form>
+            </div>
+            <div className="col-lg-5 col-md-12 col-12">
+              <div className="your-order">
+                <h3>Your order</h3>
+                <div className="your-order-table table-responsive">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th className="product-name">Product</th>
+                        <th className="product-total">Total</th>
+                      </tr>
+                    </thead>
 
+                    <tfoot>
+                      <tr className="cart-subtotal">
+                        <th>Cart Subtotal</th>
+                        <td>
+                          {!flag && cartItems?.map((product, index) => { amount1 = amount1 + product.bookId.price * 1 })}
+                          <span className="amount">{amount1}</span>
 
+                        </td>
+                      </tr>
+                      <tr className="shipping">
+                        <th>Shipping</th>
+                        <td>
+                          <ul>
+                            <li>
+                              <input type="radio" />
+                              <label>
+                                Flat Rate:{" "}
+                                <span className="amount">£7.00</span>
+                              </label>
+                            </li>
+                            <li>
+                              <input type="radio" />
+                              <label>Free Shipping:</label>
+                            </li>
+                            <li />
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr className="order-total">
+                        <th>Order Total</th>
+                        <td>
+                          <strong>
+                            {!flag && cartItems?.map((product, index) => { amount = amount + product.bookId.price * 1 + 20 })}
+                            <span className="amount">
+                              {amount}
+                            </span>
 
-
-    <Footer/>
+                          </strong>
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+                <div className="payment-method">
+                  <div className="payment-accordion">
+                    <div className="collapses-group">
+                      <div
+                        className="panel-group"
+                        id="accordion"
+                        role="tablist"
+                        aria-multiselectable="true"
+                      >
+                        <div className="panel panel-default">
+                          <div
+                            className="panel-heading"
+                            role="tab"
+                            id="headingOne"
+                          >
+                            <h4 className="panel-title">
+                              <a
+                                data-bs-toggle="collapse"
+                                data-bs-parent="#accordion"
+                                href="#collapseOne"
+                                aria-expanded="true"
+                                aria-controls="collapseOne"
+                              >
+                                Direct Bank Transfer
+                              </a>
+                            </h4>
+                          </div>
+                          <div
+                            id="collapseOne"
+                            className="panel-collapse collapse in"
+                            role="tabpanel"
+                            aria-labelledby="headingOne"
+                          >
+                            <div className="panel-body">
+                              <p>
+                                Make your payment directly into our bank
+                                account. Please use your Order ID as the
+                                payment reference. Your order won't be shipped
+                                until the funds have cleared in our account.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="order-button-payment">
+                    <input type="submit" defaultValue="Place order" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+      </div>
     </>
 }
-
 export default Cart;

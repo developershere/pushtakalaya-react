@@ -28,3 +28,9 @@ form .input-field {
     background-color: #212529;
     color: #f07c29;
 }
+
+.submitbtn:focus {
+    outline: none;
+    background-color: #212529;
+    color: #f07c29;
+}

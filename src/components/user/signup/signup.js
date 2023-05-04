@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify"
 import { apiEndPoint } from "../../../webApi/webapi";
 import { useNavigate } from "react-router-dom";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import 'react-toastify/dist/ReactToastify.css'
 import Footer from "../../footer/footer";
 import GoogleLogin from "../GoogleLogin";
@@ -117,9 +118,11 @@ function SignUp() {
                                         <input ref={email} type="email" placeholder="Enter email" className="form-control" />
                                     </div>
                                     <div className="form-group">
+                                 
                                         <input ref={password} type="password" placeholder="Enter password" className="form-control" />
                                     </div>
                                     <div className="form-group">
+                                   
                                         <input ref={contact} type="text" placeholder="Enter contact number" className="form-control" />
                                     </div>
                                     
