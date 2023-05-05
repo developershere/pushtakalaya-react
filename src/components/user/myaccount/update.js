@@ -22,6 +22,7 @@ function Update() {
     const updateProfile = async (event) => {
         event.preventDefault();
         try {
+            console.log(name,email,contact,photo);
             let response = await axios.post(apiEndPoint.USER_UPDATEPROFILE, {_id:currentUser._id, name, email, contact, photo })
             console.log(response.data);
             dispatch(setUpdateProfile(response.data.updatedUser))

@@ -6,6 +6,14 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async(userId) => {
     return response.data.cart;
 });
 
+export const removeFromCart = createAsyncThunk("cart/remove", async({userId,_id}) => {
+let response = await axios.post(apiEndPoint.REMOVE_CART, {userId, _id });
+   console.log(response.data);
+   if(response.data.status)
+    return response.data.cart.cartItems;
+});
+
+
 export const addItemInToCart = createAsyncThunk("cart/addItemInToCart", async(obj) => {
     let response = await axios.post(apiEndPoint.USER_CART, { userId: obj.userId});
     console.log(response.data.result);
@@ -25,7 +33,13 @@ const slice = createSlice({
         setflag : (state,action)=>{
             state.flag = true;
         }
+    },
+    extraReducers:(builder)=>{
+        builder.addCase(removeFromCart.fulfilled,(state,action)=>{
+            console.log(action)
+            state.cartItems = action.payload;
+        })
     }
 });
-export const {setCartItems,flag} = slice.actions;
+export const {setCartItems,setRemoveUpdate,flag} = slice.actions;
 export default slice.reducer;
