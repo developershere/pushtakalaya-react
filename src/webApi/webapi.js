@@ -23,5 +23,8 @@ export const apiEndPoint = {
     SEARCH_BOOKS : "/book/searchByKeyword",
     FEATCH_CITY_BY_STATE:"/city/findCityByState",
     REMOVE_CART:"/cart/remove",
-    ORDER_SAVE:"/order/saveorder"
+    ORDER_SAVE:"/order/saveorder",
+    UPDATE_BOOK:"/book/update-book",
+    SEARCH_CITY_BY_ID: "/city/byId",
+    SEARCH_BOOK_BY_USERID: "/book/serachByuserId"
 }

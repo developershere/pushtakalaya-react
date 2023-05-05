@@ -12,8 +12,8 @@ function SideBar() {
     <ToastContainer/>
         <div className="col-lg-3 col-md-4">
             <div className="myaccount-tab-menu nav" role="tablist">
-                <a href="#dashboad" className="active" data-bs-toggle="tab"><i className="fa fa-dashboard"></i>
-                    Dashboard</a>
+                <a href="#userBooks" className="active" data-bs-toggle="tab"><i className="fa fa-dashboard"></i>
+                    Your Books</a>
                 <a href="#orders" data-bs-toggle="tab"><i className="fa fa-cart-arrow-down"></i>
                     Orders</a>
 

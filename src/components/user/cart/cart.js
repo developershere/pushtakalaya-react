@@ -55,9 +55,11 @@ function Cart() {
 
 
   const removeCart = async (id) => {
+   
     try {
-      window.alert(id)
+      if(window.confirm("Do You Want To Remove")){
       dispatch(removeFromCart({userId:currentUser._id,_id:id}));
+      }
     } catch (err) {
       toast.error("Something Went Wrong");
     }
@@ -88,20 +90,21 @@ function Cart() {
     </div>
 
 
-    <div class="modal fade" id="checkoutModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+    <div className="modal fade" id="checkoutModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  style={{border:"2px solid black"
+}}>
+      <div className="modal-dialog" role="document">
         <form onSubmit={loadOrder}>
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <div className="modal-content">
+            <div className="modal-header ">
+              <h5 className="modal-title orderSummary " id="exampleModalLabel">Shipping Address</h5>
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              <div>
-                <div className="form-group">
-                  <input type="text" placeholder="Enter Contact Person Name" onChange={(event) => setContactPerson(event.target.value)} className="form-control" />
+            <div className="modal-body p-0">
+              <div className="innermodel mt-2">
+                <div className="form-group ">
+                  <input type="text" placeholder="Enter Contact Person Name" onChange={(event) => setContactPerson(event.target.value)} className="form-control "/>
                 </div>
                 <div className="form-group">
                   <input type="text" placeholder="Enter Contact Number" onChange={(event) => setContactNumber(event.target.value)} className="form-control" />
@@ -109,39 +112,39 @@ function Cart() {
                 <div className="form-group">
                   <textarea type='text' cols='64' rows='4' placeholder="Enter Delievery Address" onChange={(event) => setDeliveryAddress(event.target.value)} className="form-control" />
                 </div>
-              </div>
+                </div>
             </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Order</button>
+            <div className="modal-footer ">
+              <button type="submit" className="btn-block cartcheckoutbutton ">Placed Order</button>
             </div>
           </div>
         </form>
       </div>
     </div>
-    {console.log(cartItems.length)}
-    {!cartItems?.length==0?<div class="container-fluid addtocartcontainer mb-70">
+   
+    {!cartItems?.length==0?<div className="container-fluid addtocartcontainer mb-70">
 
-      <div class=" row">
-        <div class="  ml-4 mt-5 col-sm-8 col-md-8 col-xm-8 ">
-          <div class=" headingcart row col-md-12 mt-2">
-            <h5 class=" cartmainheading">My Cart()</h5>
+      <div className=" row">
+        <div className="  ml-4 mt-5 col-sm-8 col-md-8 col-xm-8 ">
+          <div className=" headingcart row col-md-12 mt-2">
+            <h5 className=" cartmainheading">My Cart()</h5>
           </div>
 
 
           {!flag && cartItems?.map((product, index) =>
-            <div class="addtocartdiv row mt-3 ">
-              <div class="col-md-2 col-sm-4 ">
-                <img src={"https://drive.google.com/uc?export=view&id=" + product.bookId.photos?.substring(32, product.bookId.photos.lastIndexOf("/"))} class="imgcart mt-2 img img-fluid img-responsive img-thumbnail" alt="" />
+            <div className="addtocartdiv row mt-3 ">
+              <div className="col-md-2 col-sm-4 ">
+                <img src={"https://drive.google.com/uc?export=view&id=" + product.bookId.photos?.substring(32, product.bookId.photos.lastIndexOf("/"))} className="imgcart mt-2 img img-fluid img-responsive img-thumbnail" alt="" />
               </div>
-              <div class="col-md-7 mt-2 ">
-                <h6 class="mt-2 cartscontainheading">{product.bookId.name}</h6>
-                <h6 class="contentcart"><span class="carttitle">Author : </span>{product.bookId.author}</h6>
-                <h6 class="contentcart"><span class="carttitle">Price : </span>{product.bookId.price} Rs</h6>
-                <h6 class="carttitle">Shipping & Handling charges   ₹30</h6>
+              <div className="col-md-7 mt-2 ">
+                <h6 className="mt-2 cartscontainheading">{product.bookId.name}</h6>
+                <h6 className="contentcart"><span className="carttitle">Author : </span>{product.bookId.author}</h6>
+                <h6 className="contentcart"><span className="carttitle">Price : </span>{product.bookId.price} Rs</h6>
+                <h6 className="carttitle">Shipping & Handling charges   ₹30</h6>
               </div>
 
-              <div class="col-md-3 text-center">
-                <button class="cartbutton" onClick={() => { removeCart(product._id) }}>Remove</button>
+              <div className="col-md-3 text-center">
+                <button className="cartbutton" onClick={() => { removeCart(product._id) }}>Remove</button>
               </div>
 
             </div>)}
@@ -149,20 +152,20 @@ function Cart() {
 
         </div>
 
-        <div class="col-md-3 col-xm-3 col-sm-3  addtocartdivafter ml-5 mt-5 ">
+        <div className="col-md-3 col-xm-3 col-sm-3  addtocartdivafter ml-5 mt-5 ">
           <div className="mt-2 orderSummary">
             Order Summary
           </div><hr />
-          <div class="cartscontainheading  mt-4">
+          <div className="cartscontainheading  mt-4">
             {!flag && cartItems?.map((product, index) => { amount = amount + product.bookId.price * 1 })}
-            <h6 className="contentcart">Pay Only for Shipping  <span class="ml-1"> :₹{!flag && cartItems?.length * 20} ({!flag && cartItems?.length} Books)</span></h6>
-            <h6 className="contentcart">Bill Amount<span class="ml-5 pl-3"> :  ₹ {amount}</span></h6>
-            <h6 className="contentcart">Total Amount<span class="ml-5 pl-3">: ₹ {total = amount + (!flag && cartItems?.length * 20)}</span></h6><hr />
+            <h6 className="contentcart">Pay Only for Shipping  <span className="ml-1"> :₹{!flag && cartItems?.length * 20} ({!flag && cartItems?.length} Books)</span></h6>
+            <h6 className="contentcart">Bill Amount<span className="ml-5 pl-3"> :  ₹ {amount}</span></h6>
+            <h6 className="contentcart">Total Amount<span className="ml-5 pl-3">: ₹ {total = amount + (!flag && cartItems?.length * 20)}</span></h6><hr />
             <div onChange={(event) => setPaymentMode(event.target.value)}>
-              <input type="radio" value='cash on' name='payment' /><span className="contentcart">Cash On Delievery</span><br />
-              <input type="radio" value='online' name='payment' /><span className="carttitle">online Payment</span></div>
+              <input type="radio" value='cash on' name='payment' /><span className="contentcart" style={{cursor:"pointer"}}>Cash On Delievery</span><br />
+              <input type="radio" value='online' name='payment' /><span className="contentcart"  style={{cursor:"pointer"}}>Online Payment</span></div>
           </div>
-          <a class="btn-block cartcheckoutbutton text-center mt-3 " data-toggle="modal" data-target="#checkoutModel">Procced To checkout</a>
+          <a className="btn-block cartcheckoutbutton text-center mt-3 " data-toggle="modal" data-target="#checkoutModel">Procced To checkout</a>
         </div>
       </div>
     </div>:<EmptyCart/>} 

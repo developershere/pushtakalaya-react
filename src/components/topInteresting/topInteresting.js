@@ -36,8 +36,10 @@ function TopInteresting() {
         let response = await axios.post(apiEndPoint.ADD_TO_CART,{bookId:id,userId : currentUser._id});
         toast.success("Book is added to you'r cart");
       }
-      else
+      else{
         toast.warning("You have to Login first");
+        navigate("/signin")
+      }
   }
     catch(err)
     {

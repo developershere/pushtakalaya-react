@@ -88,10 +88,13 @@ text-transform: uppercase;
 font-family: 'Rufina', serif;
 font-weight: 400;
 border: none;
+letter-spacing: 0.3;
 
 }
 .cartcheckoutbutton:hover{
 background-color: #212529;
+color: white;
+cursor: pointer;
 }
 .cartbutton:hover{
 background-color: #F07c29;
@@ -99,16 +102,16 @@ background-color: #F07c29;
 
 .orderSummary{
 font-family: 'Rufina', serif;
-font-weight: 400;
+font-weight:bold;
 color: #F07c29;
 font-size: 20px;
+
 }
 
 .emptycartcontainer{
    height: 450px;
    width: 100%;
-  
-   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 .mycart{
   
@@ -129,4 +132,16 @@ font-size: 20px;
     height: 150px;
     width: 500px;
    
+}
+
+.modal-dialog{
+    width: 35%;
+}
+.modal-dialog{
+    border-radius: 10px;
+    border: 1px solid black;
+} 
+.innermodel{
+    width: 400px;
+   margin: auto;
 }
