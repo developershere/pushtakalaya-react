@@ -22,5 +22,7 @@ export const apiEndPoint = {
     ADD_BOOK : "/book/add",
     SEARCH_BOOKS : "/book/searchByKeyword",
     FEATCH_CITY_BY_STATE:"/city/findCityByState",
-    DISK_STORAGE : "F:/Project/Beckend/public/images/"
+    DISK_STORAGE : "F:/Project/Beckend/public/images/",
+    REMOVE_CART:"/cart/remove",
+    ORDER_SAVE:"/order/saveorder"
 }

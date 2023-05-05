@@ -5,8 +5,7 @@ import { useLocation } from "react-router-dom";
 function ViewDescription() {
 
     const location = useLocation();
-    const book = location.state.bookDetails;
-
+    const book = location?.state?.bookDetails;
     return <>
         {/* Hello world */}
         <Header />
