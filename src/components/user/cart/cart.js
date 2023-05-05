@@ -5,9 +5,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { addItemInToCart, setCartItems } from "../../../router-config/CartSlice";
+import { addItemInToCart, removeFromCart, setCartItems, setRemoveUpdate } from "../../../router-config/CartSlice";
 import { apiEndPoint } from "../../../webApi/webapi";
 import { toast, ToastContainer } from "react-toastify";
+import EmptyCart from "./emptycart";
 function Cart() {
   var amount = 0;
   var amount1 = 0;
@@ -16,6 +17,21 @@ function Cart() {
   const [isLoading, setIsLoading] = useState(true);
   const { currentUser } = useSelector(state => state.user);
   const { cartItems, flag } = useSelector(state => state.cart);
+  const [paymentMode, setPaymentMode] = useState([]);
+  const [contactPerson, setContactPerson] = useState(" ");
+  const [contactNumber, setContactNumber] = useState(" ");
+  const [delieveryAddress, setDeliveryAddress] = useState(" ");
+
+
+  const dispatch = useDispatch();
+  var amount = 0;
+  var total = 0
+  const navigate = useNavigate();
+
+  const loadProducts = async () => {
+    try {
+
+      let response = await axios.post(apiEndPoint.FETCH_CART, { userId: currentUser._id });
   const dispatch = useDispatch();
   var amount = 0;
   const navigate = useNavigate();
@@ -32,6 +48,31 @@ function Cart() {
     }
   }
 
+  const loadOrder = async (event) => {
+    try {
+      event.preventDefault();
+     
+      window.alert(cartItems[0]._id);
+      window.alert(cartItems[0].bookId);
+      let response =await axios.post(apiEndPoint.ORDER_SAVE,{userId:currentUser._id,billamount:total,contactPerson,contactNumber,delieveryAddress,paymentMode,sellerId:currentUser._id,cartId:cartItems[0]._id,orderItem:cartItems[0].bookId})
+      console.log(response.data);
+
+
+    } catch (err) {
+      console.log("Oops Something Went Wrong");
+    }
+  }
+
+
+  const removeCart = async (id) => {
+    try {
+      window.alert(id)
+      dispatch(removeFromCart({userId:currentUser._id,_id:id}));
+    } catch (err) {
+      toast.error("Something Went Wrong");
+    }
+  }
+
   useEffect(() => {
     loadProducts();
   }, []);
@@ -41,21 +82,8 @@ function Cart() {
   }
   return <>
     <Header />
-    <div className="breadcrumbs-area mb-25">
-      <div className="breadcrumbs-area ">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="breadcrumbs-menu">
-                <ul>
-                  <li><a onClick={changeHome}>Home</a></li>
-                  <li><a href="#" className="active">cart</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    
+  </>
       <div className="cart-main-area mb-70">
         <div className="container-fluid ms-5">
           <div className="row">

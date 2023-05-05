@@ -21,5 +21,7 @@ export const apiEndPoint = {
     UPLOAD_BOOK : "/book/add",
     ADD_BOOK : "/book/add",
     SEARCH_BOOKS : "/book/searchByKeyword",
-    FEATCH_CITY_BY_STATE:"/city/findCityByState"
+    FEATCH_CITY_BY_STATE:"/city/findCityByState",
+    REMOVE_CART:"/cart/remove",
+    ORDER_SAVE:"/order/saveorder"
 }
