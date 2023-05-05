@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import"./myaccount.css"
 import{Link, useNavigate} from "react-router-dom"
+import DashBoard from "./dashboard";
 import Order from "./order";
 import Payment from "./payment";
 import BillingAdress from "./billing";
@@ -9,7 +10,6 @@ import SideBar from "./sidebar";
 import TopBar from "../../Topbar/topbar";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
-import UserBooks from "./userBook";
 function MyAccount(){
 
     return<>
@@ -55,7 +55,7 @@ function MyAccount(){
                                 <div className="col-lg-9 col-md-8">
                                     <div className="tab-content" id="myaccountContent">
                                        
-                                        <UserBooks/>
+                                        <DashBoard/>
                                         <Order/>
                                          <Payment/>
                                        <BillingAdress/>

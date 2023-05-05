@@ -9,6 +9,7 @@ import { addItemInToCart, removeFromCart, setCartItems, setRemoveUpdate } from "
 import { apiEndPoint } from "../../../webApi/webapi";
 import { toast, ToastContainer } from "react-toastify";
 import EmptyCart from "./emptycart";
+import Payment from "../../ExtraServices/razorpay";
 
 function Cart() {
   const [productList, setProductList] = useState([]);
@@ -86,8 +87,6 @@ function Cart() {
         </div>
       </div>
     </div>
-
-
     <div class="modal fade" id="checkoutModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <form onSubmit={loadOrder}>
@@ -159,14 +158,15 @@ function Cart() {
             <h6 className="contentcart">Bill Amount<span class="ml-5 pl-3"> :  ₹ {amount}</span></h6>
             <h6 className="contentcart">Total Amount<span class="ml-5 pl-3">: ₹ {total = amount + (!flag && cartItems?.length * 20)}</span></h6><hr />
             <div onChange={(event) => setPaymentMode(event.target.value)}>
-              <input type="radio" value='cash on' name='payment' /><span className="contentcart">Cash On Delievery</span><br />
-              <input type="radio" value='online' name='payment' /><span className="carttitle">online Payment</span></div>
+              <input type="radio" value='cash on' name='payment'id="cod" /><span className="contentcart">Cash On Delievery</span><br />
+              <input type="radio" value='online' name='payment' id="online" /><span className="carttitle">online Payment</span></div>
           </div>
           <a class="btn-block cartcheckoutbutton text-center mt-3 " data-toggle="modal" data-target="#checkoutModel">Procced To checkout</a>
         </div>
       </div>
     </div>:<EmptyCart/>} 
     <Footer />
+    <Payment/>
   </>
 }
 
