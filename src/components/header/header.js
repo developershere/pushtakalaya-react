@@ -48,6 +48,7 @@ function Header() {
                                         </li>
                                         <li><Link to='/donate'>Donate Books</Link></li>
                                         <li><Link to='/freebooks'>Free Books</Link> </li>
+                                        <li> <Link to='/sellbooks'>Sell Books</Link></li>
                                         {currentUser ? <li><Link onClick={signOut}>SignOut</Link></li> : <li><a href="#">MyAccount<i className="fa fa-angle-down"></i></a>
                                             <div className="sub-menu sub-menu-2">
                                                 <ul>
@@ -57,7 +58,7 @@ function Header() {
                                                 </ul>
                                             </div>
                                         </li>}
-                                        <li> <Link to='/sellbooks'>Sell Books</Link></li>
+                                       
                                     </ul>
                                 </nav>
                             </div>
@@ -66,7 +67,6 @@ function Header() {
                     </div>
                 </div>
             </div>
-
 
 
         <div className="mobile-menu-area d-lg-none d-block fix">
@@ -84,13 +84,11 @@ function Header() {
                                     </li>
                                     <li><a href="product-details.html">Categories</a>
                                         <ul>
-                                                
                                             {!error && categoryList.map((category, index) =>
                                                     <li key={index}>
                                                         <a>{category.categoryName}</a>
                                                     </li>
                                                 )}
-                                            
                                         </ul>
                                     </li>
                                     <li><Link to="/donate"> 

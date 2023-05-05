@@ -1402,4 +1402,13 @@
     .signupimg {
         visibility: hidden;
     }
+    .remove {
+        display: none;
+    }
+    .shift {
+        margin-left: 0px;
+    }
+    .shift1 {
+        margin-left: 50px;
+    }
 }

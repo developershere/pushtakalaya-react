@@ -270,3 +270,15 @@
     font-family: 'Rufina', serif;
     font-size: 15px;
 }
+
+.catrgoryul {
+    width: 80%;
+    height: 338px;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.catrgoryul li:hover {
+    color: #F07C29 !important;
+}

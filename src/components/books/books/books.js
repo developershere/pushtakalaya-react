@@ -110,15 +110,15 @@ function Books() {
         <div className="container-fluid">
             <div className="FilterMainDiv">
                 <div className="RightPart">
-                    <button className="SeacrchButton">Search</button>
+                    {/* <button className="SeacrchButton">Search</button> */}
                     <div className="rightpartHeading">
                         <p className="Heading">Categories</p>
                     </div>
                     <div className="CategoryList">
 
-                        <ul>
+                        <ul  className="catrgoryul">
                             {!error && categoryList.map((category, index) =>
-                                <li onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
+                                <li onClick={() => viewBookByCategory(category._id)} style={{cursor:"pointer" }} >{category.categoryName} </li>)}
                         </ul>
                     </div>
                     {/* drop down */}

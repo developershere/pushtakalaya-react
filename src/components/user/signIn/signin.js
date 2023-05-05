@@ -44,9 +44,7 @@ function SignIn(){
     if(email.length && pass.length>=8 ){
        document.getElementById('submitbtn').removeAttribute('disabled');
     }
-    else{
-      document.getElementById('submitbtn').setAttribute('disabled');
-    }
+
 }
 
 
