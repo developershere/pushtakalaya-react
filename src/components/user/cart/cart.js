@@ -9,8 +9,9 @@ import { addItemInToCart, removeFromCart, setCartItems, setRemoveUpdate } from "
 import { apiEndPoint } from "../../../webApi/webapi";
 import { toast, ToastContainer } from "react-toastify";
 import EmptyCart from "./emptycart";
-
 function Cart() {
+  var amount = 0;
+  var amount1 = 0;
   const [productList, setProductList] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -31,6 +32,15 @@ function Cart() {
     try {
 
       let response = await axios.post(apiEndPoint.FETCH_CART, { userId: currentUser._id });
+  const dispatch = useDispatch();
+  var amount = 0;
+  const navigate = useNavigate();
+  console.log("Mausam : " + cartItems);
+  const loadProducts = async () => {
+    try {
+      window.alert("dghfggsg")
+      let response = await axios.post(apiEndPoint.FETCH_CART, { userId: currentUser._id });
+      console.log(response.data);
       dispatch(setCartItems(response.data.cart));
     }
     catch (err) {
@@ -72,109 +82,153 @@ function Cart() {
   }
   return <>
     <Header />
-    <div className="breadcrumbs-area ">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="breadcrumbs-menu">
-              <ul>
-                <li><a onClick={changeHome}>Home</a></li>
-                <li><a href="#" className="active">cart</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="modal fade" id="checkoutModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <form onSubmit={loadOrder}>
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div>
-                <div className="form-group">
-                  <input type="text" placeholder="Enter Contact Person Name" onChange={(event) => setContactPerson(event.target.value)} className="form-control" />
-                </div>
-                <div className="form-group">
-                  <input type="text" placeholder="Enter Contact Number" onChange={(event) => setContactNumber(event.target.value)} className="form-control" />
-                </div>
-                <div className="form-group">
-                  <textarea type='text' cols='64' rows='4' placeholder="Enter Delievery Address" onChange={(event) => setDeliveryAddress(event.target.value)} className="form-control" />
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">Order</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    {console.log(cartItems.length)}
-    {!cartItems?.length==0?<div class="container-fluid addtocartcontainer mb-70">
-
-      <div class=" row">
-        <div class="  ml-4 mt-5 col-sm-8 col-md-8 col-xm-8 ">
-          <div class=" headingcart row col-md-12 mt-2">
-            <h5 class=" cartmainheading">My Cart()</h5>
-          </div>
-
-
-          {!flag && cartItems?.map((product, index) =>
-            <div class="addtocartdiv row mt-3 ">
-              <div class="col-md-2 col-sm-4 ">
-                <img src={"https://drive.google.com/uc?export=view&id=" + product.bookId.photos?.substring(32, product.bookId.photos.lastIndexOf("/"))} class="imgcart mt-2 img img-fluid img-responsive img-thumbnail" alt="" />
-              </div>
-              <div class="col-md-7 mt-2 ">
-                <h6 class="mt-2 cartscontainheading">{product.bookId.name}</h6>
-                <h6 class="contentcart"><span class="carttitle">Author : </span>{product.bookId.author}</h6>
-                <h6 class="contentcart"><span class="carttitle">Price : </span>{product.bookId.price} Rs</h6>
-                <h6 class="carttitle">Shipping & Handling charges   ₹30</h6>
-              </div>
-
-              <div class="col-md-3 text-center">
-                <button class="cartbutton" onClick={() => { removeCart(product._id) }}>Remove</button>
-              </div>
-
-            </div>)}
-
-
-        </div>
-
-        <div class="col-md-3 col-xm-3 col-sm-3  addtocartdivafter ml-5 mt-5 ">
-          <div className="mt-2 orderSummary">
-            Order Summary
-          </div><hr />
-          <div class="cartscontainheading  mt-4">
-            {!flag && cartItems?.map((product, index) => { amount = amount + product.bookId.price * 1 })}
-            <h6 className="contentcart">Pay Only for Shipping  <span class="ml-1"> :₹{!flag && cartItems?.length * 20} ({!flag && cartItems?.length} Books)</span></h6>
-            <h6 className="contentcart">Bill Amount<span class="ml-5 pl-3"> :  ₹ {amount}</span></h6>
-            <h6 className="contentcart">Total Amount<span class="ml-5 pl-3">: ₹ {total = amount + (!flag && cartItems?.length * 20)}</span></h6><hr />
-            <div onChange={(event) => setPaymentMode(event.target.value)}>
-              <input type="radio" value='cash on' name='payment' /><span className="contentcart">Cash On Delievery</span><br />
-              <input type="radio" value='online' name='payment' /><span className="carttitle">online Payment</span></div>
-          </div>
-          <a class="btn-block cartcheckoutbutton text-center mt-3 " data-toggle="modal" data-target="#checkoutModel">Procced To checkout</a>
-        </div>
-      </div>
-    </div>:<EmptyCart/>} 
-
-   
-
-
-
-
-
-    <Footer />
+    
   </>
-}
+      <div className="cart-main-area mb-70">
+        <div className="container-fluid ms-5">
+          <div className="row">
+            <div className="col-lg-6 col-sm-6">
+              <form action="#">
+                <div className="table-content table-responsive mb-15">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th className="th ">Image</th>
+                        <th className="th ">Product</th>
+                        <th className="th ">Price</th>
+                        <th className="th ">Quantity</th>
+                        <th className="th ">Total</th>
+                        <th className="th ">Remove</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {!flag && cartItems?.map((product, index) => <tr>
+                        <td className="p-2 product-thumbnail" key={index} >
+                          <a href="#"> <img src={"https://drive.google.com/uc?export=view&id=" + product.bookId.photos.substring(32, product.bookId.photos.lastIndexOf("/"))} className="img-fluid img1" /> </a>
+                        </td>
+                        <td className="p-0 product-name"><a href="#">{product.bookId.name}</a></td>
+                        <td className="p-0 product-price"><span className="amount">{product.bookId.price}</span></td>
+                        <th className="p-0 product-quantity"><input type="number" value={1} className="q-input" /></th>
+                        <td className="p-0 product-subtotal">{product.bookId.price * 1 + 20}</td>
+                        <td className="p-0 product-remove"><a href="#"><i className="fa fa-times"></i></a></td>
+                      </tr>)}
+                    </tbody>
+                  </table>
+                </div>
+              </form>
+            </div>
+            <div className="col-lg-5 col-md-12 col-12">
+              <div className="your-order">
+                <h3>Your order</h3>
+                <div className="your-order-table table-responsive">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th className="product-name">Product</th>
+                        <th className="product-total">Total</th>
+                      </tr>
+                    </thead>
 
+                    <tfoot>
+                      <tr className="cart-subtotal">
+                        <th>Cart Subtotal</th>
+                        <td>
+                          {!flag && cartItems?.map((product, index) => { amount1 = amount1 + product.bookId.price * 1 })}
+                          <span className="amount">{amount1}</span>
+
+                        </td>
+                      </tr>
+                      <tr className="shipping">
+                        <th>Shipping</th>
+                        <td>
+                          <ul>
+                            <li>
+                              <input type="radio" />
+                              <label>
+                                Flat Rate:{" "}
+                                <span className="amount">£7.00</span>
+                              </label>
+                            </li>
+                            <li>
+                              <input type="radio" />
+                              <label>Free Shipping:</label>
+                            </li>
+                            <li />
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr className="order-total">
+                        <th>Order Total</th>
+                        <td>
+                          <strong>
+                            {!flag && cartItems?.map((product, index) => { amount = amount + product.bookId.price * 1 + 20 })}
+                            <span className="amount">
+                              {amount}
+                            </span>
+
+                          </strong>
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+                <div className="payment-method">
+                  <div className="payment-accordion">
+                    <div className="collapses-group">
+                      <div
+                        className="panel-group"
+                        id="accordion"
+                        role="tablist"
+                        aria-multiselectable="true"
+                      >
+                        <div className="panel panel-default">
+                          <div
+                            className="panel-heading"
+                            role="tab"
+                            id="headingOne"
+                          >
+                            <h4 className="panel-title">
+                              <a
+                                data-bs-toggle="collapse"
+                                data-bs-parent="#accordion"
+                                href="#collapseOne"
+                                aria-expanded="true"
+                                aria-controls="collapseOne"
+                              >
+                                Direct Bank Transfer
+                              </a>
+                            </h4>
+                          </div>
+                          <div
+                            id="collapseOne"
+                            className="panel-collapse collapse in"
+                            role="tabpanel"
+                            aria-labelledby="headingOne"
+                          >
+                            <div className="panel-body">
+                              <p>
+                                Make your payment directly into our bank
+                                account. Please use your Order ID as the
+                                payment reference. Your order won't be shipped
+                                until the funds have cleared in our account.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="order-button-payment">
+                    <input type="submit" defaultValue="Place order" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+      </div>
+    </>
+}
 export default Cart;

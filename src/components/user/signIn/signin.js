@@ -37,6 +37,16 @@ function SignIn(){
       toast.error("Sign In Failed");
     }
   }
+ function sub () {
+  window.alert("sdafds");
+    var email = document.getElementById('floatingInput').value;
+    var pass = document.getElementById('floatingPassword').value;
+
+    if(email.length && pass.length ){
+      window.alert("if called..");
+       document.getElementById('submitbtn').removeAttribute('disabled');
+    }
+}
 
   const changeHome = () => {
     navigate("/")
@@ -80,13 +90,16 @@ function SignIn(){
                   <label for="floatingInput">Email address</label>
                 </div>
                 <div className="form-floating mb-3">
-                  <input  onChange={(event)=>setPassword(event.target.value)}type="password" className="form-control" id="floatingPassword" placeholder="Password"/>
+                  <input  onChange={(event)=>setPassword(event.target.value)}type="password" className="form-control" onBlur={sub} id="floatingPassword" placeholder="Password"/>
                   <label for="floatingPassword">Password</label>
                 </div>
                 <div className="d-grid">
-                  <button className="btn btn-lg  btn-login text-uppercase fw-bold mb-2  btn btn-dark" type="submit">Sign in</button>
+                  <button id='submitbtn' disabled className="btn btn-lg btn-login text-uppercase fw-bold mb-2  btn btn-dark" type="submit">Sign in</button>
                   <div className="text-center">
                     <a className="small" href="#">Forgot password?</a>
+                  </div>
+                  <div className="text-center">
+                    <a className="" href="#">I Don't Have an Account</a>
                   </div>
                 </div>
 
