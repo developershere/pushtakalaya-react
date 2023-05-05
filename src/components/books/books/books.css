@@ -1,8 +1,11 @@
 .FilterMainDiv {
     /* border: 2px solid  black; */
-    height: 1700px;
     width: 100%;
+    height: 100vh;
     display: flex;
+    overflow-y:scroll;
+    scrollbar-width: 0px;
+    
 }
 
 .RightPart {

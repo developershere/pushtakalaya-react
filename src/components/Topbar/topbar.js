@@ -17,12 +17,12 @@ function TopBar() {
             timer = setTimeout(() => { func.apply(this, args); }, timeout);
         };
     }
-    const saveInput = async (event) => {
+    const getSearch = async (event) => {
         console.log("Searching Books...");
         const response = await axios.post(apiEndPoint.SEARCH_BOOKS, { keyword: keyword.current.value });
         navigate("/book", { state: { books: response.data.Product, status: true } });
     }
-    const processChange = debounce((event) => saveInput(event));
+    const processChange = debounce((event) => getSearch(event));
 
     return <>
      

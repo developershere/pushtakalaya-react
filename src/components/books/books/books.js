@@ -156,7 +156,7 @@ function Books() {
                             {keyword?.filter((book) => book.permission && book.status == true)?.map((book, index) =>
                                 <div key={index} className="col-md-5 col-xl-3 col-lg-5 col-sm-3 mt-5" data-aos="fade-up" data-aos-duration="500">
                                     <div className="card">
-                                        <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
+                                    {book.photos.split("@")[1] ? <img src={apiEndPoint.DISK_STORAGE+ book.photos.split("@")[1]+".png"} className="img-fluid cardimg" /> : <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />}
                                         <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3" style={{ cursor: "pointer" }} onClick={() => addToCart(book._id)}></i></a>
                                         <div className="card-body">
                                             <p className="card-text cardtitle">{book.name.substring(0, 15)}</p>
@@ -170,7 +170,9 @@ function Books() {
                             {bookData.filter((book) => book.permission && book.status == true)?.map((book, index) =>
                                 <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
                                     <div className="card">
-                                        {book.photos.split("@")[1] ? <img src={book.photos.split("@")[1]} className="img-fluid cardimg" /> : <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />}
+                                    {console.log(apiEndPoint.DISK_STORAGE+ book.photos.split("@")[1]+".png")}
+
+                                        {book.photos.split("@")[1] ? <img src={"http://localhost:3006/"+apiEndPoint.DISK_STORAGE+ book.photos.split("@")[1]} className="img-fluid cardimg" /> : <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />}
                                         <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3"></i></a>
                                         <div className="card-body">
                                             <p className="card-text cardtitle">{book.name.substring(0, 15)}</p>
@@ -181,16 +183,16 @@ function Books() {
                                         </div>
                                     </div>
                                 </div>)}
+                                <div>
+                                    <img src="file:///F:/Project/Beckend/public/images/0276b80c395e24c092cb85bb5876ec72.png"/>
+                                </div>
                         </div>
                         {/* cart */}
                     </div>
                 </div>
             </div>
         </div>
-        <div>
-            <Footer />
-
-        </div>
+        <Footer/>
     </>
 }
 
