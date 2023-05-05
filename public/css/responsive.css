@@ -1399,4 +1399,7 @@
     .modal-pro-content h3 {
         font-size: 24px;
     }
+    .signupimg {
+        visibility: hidden;
+    }
 }
