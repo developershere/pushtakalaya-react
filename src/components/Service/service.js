@@ -9,7 +9,7 @@ function Service(){
                             <a href="#"><img src="img/banner/1.png" alt="banner" /></a>
                         </div>
                         <div className="banner-text">
-                            <h4>Free shipping item</h4>
+                            <h4>5-10% OFF shipping item</h4>
                             <p>For all orders over ₹500</p>
                         </div>
                     </div>
@@ -32,7 +32,7 @@ function Service(){
                         </div>
                         <div className="banner-text">
                             <h4>Cash on delivery</h4>
-                            <p>We are also provide COD facility</p>
+                            <p>We also provide COD(Cash On delivery)</p>
                         </div>
                     </div>
                 </div>

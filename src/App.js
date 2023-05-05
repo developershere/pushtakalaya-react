@@ -13,31 +13,46 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchCategory } from './router-config/categorySlice';
 import { fetchTopProduct } from './router-config/topProductSlice';
-
+import Shop from './components/FreeBooks/freeBooks';
+import FreeBooks from './components/FreeBooks/freeBooks';
+import Update from './components/user/myaccount/update';
+import ProtectedRoute from './components/protectedRoute/protectedRoute';
+import ViewDescription from './components/viewDescription/viewDescription/viewDescription';
+import Books from './components/books/books/books';
+import SellboooksForm from './components/sellbooks/sellbook';
+import { fetchState } from './router-config/stateSlice';
+import About from './components/About/about';
 function App() {
-
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(fetchCategory());
-    dispatch(fetchTopProduct())
+    dispatch(fetchTopProduct());
+    dispatch(fetchState());
   },[])
-  return <>
-    
-   
+  return <> 
   <Routes>
    <Route path='/' element={ <Home/>}/>
+   
    <Route path='/signup' element={<SignUp/>}/>
+   
    <Route path='/signin' element={<SignIn/>}/>
-   <Route path='/cart' element={<Cart/>}/>
+   <Route path='/aboutUs' element={<About/>}/>
+   <Route path='/cart' element={<ProtectedRoute><Cart/></ProtectedRoute>}/>
+   <Route path='/freebooks' element={<FreeBooks/>}/>
    <Route path='/checkout' element={<Checkout/>}/>
-   <Route path='/myaccount' element={<MyAccount/>}/>
+   <Route path='/myaccount' element={<ProtectedRoute><MyAccount/></ProtectedRoute>}/>
    <Route path='/donate' element={<Donate/>}/>
-   <Route path='/donateform' element={<DonateForm/>}/>
-
+   <Route path='/donateform' element={<ProtectedRoute><DonateForm/></ProtectedRoute>}/>
+   <Route path='/sellbooks' element={<ProtectedRoute><SellboooksForm/></ProtectedRoute>}/>
+   <Route path='/update' element={<Update/>}/>
+   <Route path= "/viewDescription" element={<ViewDescription/>}/>
+    <Route path="/book" element={<Books/>}/>
+   
 
   </Routes>
  
   </>
+  // " Admin completed"
 }
 
 export default App;
