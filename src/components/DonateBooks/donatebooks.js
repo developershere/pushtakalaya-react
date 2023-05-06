@@ -17,12 +17,12 @@ return<>
        <Link to='/donateform'> <button className='donatebutton '>Donate Books</button></Link>
      </div>
  </div>
- <div className='row'>
+ <div className='row rem'>
     <div className='donateimg col-md-8 text-center m-auto'>
         <img src='\img\donar\donar1.jpg' alt='donate image'/>
     </div>
  </div>
- <div className='row'>
+ <div className='row rem'>
     <div className='howdonate col-12'>
     <h3 className='text-center subheading mt-1 text-white'>How Does Donation Help</h3>
     </div>

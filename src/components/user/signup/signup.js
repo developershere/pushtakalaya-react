@@ -1,5 +1,4 @@
 import "./signup.css"
-import { isVisible } from "@testing-library/user-event/dist/utils";
 import { useRef, useState } from 'react'
 import Header from "../../header/header";
 import axios from "axios";
@@ -9,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import 'react-toastify/dist/ReactToastify.css'
 import Footer from "../../footer/footer";
-
+import GoogleLogin from "../GoogleLogin";
 function SignUp() {
     const [Otp, setOtp] = useState("");
     let name = useRef("");
@@ -18,9 +17,9 @@ function SignUp() {
     let contact = useRef("");
     let otp = useRef("");
     let mausam;
-    let expire = false;
     let otpCheck = false;
     var mtime;
+    const [modal,setModal] = useState(false);
     const navigate = useNavigate();
 
     const changeHome = () => {
@@ -29,8 +28,8 @@ function SignUp() {
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
+            window.alert("fdd");
             let response = await axios.post(apiEndPoint.USER_SIGNUP, { name, email, password, contact });
-            window.alert(response.status);
             if (!response.data.status) {
 
                 navigate("/signin");
@@ -43,19 +42,30 @@ function SignUp() {
     }
 
     const verifyEmail = async () => {
-        console.log("sfdfdg");
-        let response = await axios.post("/user/mausam", { name, email });
-        mausam = response.data.result.OTP;
-        mtime = response.data.result.currentTime;
-        console.log("OTP : " + mausam);
-        console.log("Time : " + mtime);
+        try {
+            console.log("sfdfdg");
+            let response = await axios.post("/user/thakur", { name: name.current.value, email: email.current.value });
+            mausam = response.data.result.OTP;
+            setModal(response.data.status);
+            window.alert("fgdg"+modal);
+            mtime = response.data.result.currentTime;
+            console.log("OTP : " + mausam);
+            console.log("Time : " + mtime);
+        }
+        catch (err) {
+            setModal(false);
+            if (err.response.status == 400)
+                toast.warning("User is Already Exist's");
+            else
+                toast.danger("Ohhoo Something went wrong");
+        }
     }
     const registration = async (event) => {
         console.log(new Date().getMinutes());
         if (new Date().getMinutes() <= mtime) {
-            expire = true;
             if (mausam == otp.current.value) {
                 otpCheck = true;
+                let response = axios.post("/user/signup",{name,email,password,contact});
                 toast("Registration Success....")
                 console.log("Success....");
             }
@@ -141,6 +151,7 @@ function SignUp() {
                                         <button onClick={(() => verifyEmail(email, name))} id="signupsubmibtn" type="submit" className="btn submitbtn1 w-100" data-toggle="modal" data-target="#exampleModalCenter" disabled >
                                             Sign Up
                                         </button>
+                                            
                                     </div>
 
                                     <div className="text-center">
@@ -149,7 +160,7 @@ function SignUp() {
 
                                 </form>
                             </div>
-                            <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div className="modal-dialog modal-dialog-centered" role="document">
                                     <div className="modal-content">
                                         <div className="modal-header">
@@ -158,14 +169,14 @@ function SignUp() {
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div className="modal-body">
+                                            <div className="modal-body">
                                             <div className="container height-100 d-flex justify-content-center align-items-center">
                                                 <div className="position-relative">
                                                     <div className="card p-2 text-center">
                                                         <h6>Please enter the one time password <br /> to verify your account</h6>
                                                         <div> <span>A code has been sent to</span> <small>Your Email Id</small> </div>
                                                         <div id="otp" className="inputs d-flex flex-row justify-content-center mt-2">
-                                                            <input onChange={(event) => setOtp(event.target.value)} className="m-2 text-center form-control rounded width:10" type="text" id="fourth" maxlength="4" />
+                                                            <input ref={otp} className="m-2 text-center form-control rounded width:10" type="text" id="fourth" maxlength="4" />
                                                         </div>
                                                         <div className="mt-4">
                                                             <button onClick={() => registration(mtime, mausam)} className="btn btn-warning px-4 validate">Validate</button>
@@ -185,5 +196,4 @@ function SignUp() {
         <Footer />
     </>
 }
-
 export default SignUp;

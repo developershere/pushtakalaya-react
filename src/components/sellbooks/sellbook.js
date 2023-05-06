@@ -25,7 +25,7 @@ function SellboooksForm() {
     const [cityId, setCity] = useState(" ");
     const stateObject = useRef(" ");
     const userId = currentUser;
-    let  photos = [];
+    let  photos = {};
  
     const { categoryList, error} = useSelector((state) => state.category)
     const dispatch = useDispatch();
@@ -68,6 +68,7 @@ function SellboooksForm() {
     }
        const featchCityById = async (stateId) => {
         try {
+            window.alert("Fetch called...");
             let response = await axios.post(apiEndPoint.FEATCH_CITY_BY_STATE, { stateId: stateId });
             setCitys(response.data.city);
         }

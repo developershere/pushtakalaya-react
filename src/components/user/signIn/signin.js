@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { Link, useNavigate } from 'react-router-dom';
 import TopBar from '../../Topbar/topbar';
 import Header from '../../header/header';
-import { setCartItems } from '../../../router-config/CartSlice';
+import { fetchCart} from '../../../router-config/CartSlice';
 import Footer from '../../footer/footer';
 
 function SignIn(){
@@ -27,13 +27,14 @@ function SignIn(){
     if(response.data.status){
       let carts = await axios.post(apiEndPoint.FETCH_CART,{userId:response.data.user._id})
       dispatch(setCurrentUser(response.data.user));
-      dispatch(setCartItems(carts.data.cartz));
+      dispatch(fetchCart(response.data.user._id));
       toast.success("Welcome To Pustakalaya")
       navigate("/")
 
         return response.data.user;
       }
     } catch (err) {
+      console.log(err)
       toast.error("Sign In Failed");
     }
   }

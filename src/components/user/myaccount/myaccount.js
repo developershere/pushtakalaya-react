@@ -1,22 +1,26 @@
 import { useSelector } from "react-redux";
 import"./myaccount.css"
-import{useNavigate} from "react-router-dom"
+import{Link, useNavigate} from "react-router-dom"
 import DashBoard from "./dashboard";
 import Order from "./order";
 import Payment from "./payment";
 import BillingAdress from "./billing";
 import Account from "./account";
 import SideBar from "./sidebar";
+import TopBar from "../../Topbar/topbar";
+import Header from "../../header/header";
+import Footer from "../../footer/footer";
 function MyAccount(){
 
     return<>
+    <Header/>
      <div className="breadcrumbs-area mb-70">
         <div className="container">
             <div className="row">
                 <div className="col-lg-12">
                     <div className="breadcrumbs-menu">
                         <ul>
-                            <li><a href="#">Home</a></li>
+                            <li><Link to="/">Home</Link></li>
                             <li><a href="#" className="active">my-account</a></li>
                         </ul>
                     </div>
@@ -67,7 +71,7 @@ function MyAccount(){
             </div>
         </div>
     </div>
-    
+    <Footer/>
     </>
 }
 

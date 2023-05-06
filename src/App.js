@@ -21,6 +21,7 @@ import ViewDescription from './components/viewDescription/viewDescription/viewDe
 import Books from './components/books/books/books';
 import SellboooksForm from './components/sellbooks/sellbook';
 import { fetchState } from './router-config/stateSlice';
+import About from './components/About/about';
 function App() {
   const dispatch = useDispatch();
   useEffect(()=>{
@@ -35,7 +36,7 @@ function App() {
    <Route path='/signup' element={<SignUp/>}/>
    
    <Route path='/signin' element={<SignIn/>}/>
-
+   <Route path='/aboutUs' element={<About/>}/>
    <Route path='/cart' element={<ProtectedRoute><Cart/></ProtectedRoute>}/>
    <Route path='/freebooks' element={<FreeBooks/>}/>
    <Route path='/checkout' element={<Checkout/>}/>
@@ -46,6 +47,7 @@ function App() {
    <Route path='/update' element={<Update/>}/>
    <Route path= "/viewDescription" element={<ViewDescription/>}/>
     <Route path="/book" element={<Books/>}/>
+   
 
   </Routes>
  
