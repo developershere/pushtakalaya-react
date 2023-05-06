@@ -23,14 +23,13 @@ form .input-field {
     display: none;
 }
 
-.submitbtn:hover {
-    outline: none;
-    background-color: #212529;
-    color: #f07c29;
+.submitbtn1 {
+    background-color: #f07c29 !important;
+    color: white !important;
 }
 
-.submitbtn:focus {
+.submitbtn1:hover {
     outline: none;
-    background-color: #212529;
-    color: #f07c29;
+    background-color: #212529 !important;
+    color: #f07c29 !important;
 }

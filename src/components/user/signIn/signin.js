@@ -6,11 +6,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../../router-config/userSlice';
 import 'react-toastify/dist/ReactToastify.css'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import TopBar from '../../Topbar/topbar';
 import Header from '../../header/header';
 import { fetchCart} from '../../../router-config/CartSlice';
 import Footer from '../../footer/footer';
+
 function SignIn(){
 
   const [email, SetEmail] = useState(" ");
@@ -54,10 +55,14 @@ function SignIn(){
     var email = document.getElementById('floatingInput').value;
     var pass = document.getElementById('floatingPassword').value;
 
-    if(email.length && pass.length ){
+
+    if(email.length && pass.length>=8 ){
+
        document.getElementById('submitbtn').removeAttribute('disabled');
     }
+
 }
+
 
   const changeHome = () => {
     navigate("/")
@@ -84,7 +89,7 @@ function SignIn(){
     <div className="container-fluid ps-md-0">
      
   <div className="row g-0">
-    <div className="d-none d-md-flex col-md-4 col-lg-5 ms-5 sign-image">
+    <div className="d-none d-md-flex col-md-4 col-lg-5 ms-5 sign-image signupimg">
       
     </div>
     <div className="col-md-8 col-lg-6">
@@ -95,13 +100,14 @@ function SignIn(){
               <h3 className="login-heading mb-4 welcome">Welcome Back!</h3>
 
              
-              <form onSubmit={handleSubmit}>
+              <form id='SigninForm' onSubmit={handleSubmit}>
                 <div className="form-floating mb-3">
-                  <input onChange={(event)=>SetEmail(event.target.value)} type="email" className="form-control" id="floatingInput" placeholder="name@example.com"/>
+                  <input  onChange={(event)=>SetEmail(event.target.value)} type="email" className="form-control" id="floatingInput" placeholder="name@example.com" required/>
                   <label for="floatingInput">Email address</label>
+                  
                 </div>
                 <div className="form-floating mb-3">
-                  <input  onChange={(event)=>setPassword(event.target.value)}type="password" className="form-control" onBlur={sub} id="floatingPassword" placeholder="Password"/>
+                  <input  onChange={(event)=>setPassword(event.target.value)}type="password" className="form-control" onKeyUp={sub} id="floatingPassword" placeholder="Password" required/>
                   <label for="floatingPassword">Password</label>
                 </div>
                 <div className="d-grid">
@@ -110,7 +116,7 @@ function SignIn(){
                     <a className="small" href="#">Forgot password?</a>
                   </div>
                   <div className="text-center">
-                    <a className="" href="#">I Don't Have an Account</a>
+                   <Link to='/signup'>I Don't Have an Account</Link>
                   </div>
                 </div>
 

@@ -27,7 +27,7 @@ function Books() {
     const featchAllBooks = async () => {
         try {
             if (!flag) {
-                let response = await axios.get(apiEndPoint.TOTAL_BOOKS);
+                let response = await axios.get(apiEndPoint.All_Books);
                 console.log(response);
                 if (response.data.status) {
                     console.log(response.data.bookList);
@@ -44,10 +44,11 @@ function Books() {
         }
     }
     const viewDescription = (book) => {
+        window.alert(book);
         navigate("/viewDescription", { state: { bookDetails: book } })
     }
 
-    const viewBookByCategory = async (categoryId) => {
+    const viewBookByCategory = async (id) => {
         try {
             let response = await axios.post(apiEndPoint.BOOK_BY_CATEGORY, { categoryId });
             if (response.data.status) {
@@ -104,9 +105,75 @@ function Books() {
         <div className="container-fluid">
             <div className="FilterMainDiv">
                 <div className="RightPart">
-                    <button className="SeacrchButton">Search</button>
+
+                    {/* <button className="SeacrchButton">Search</button> */}
                     <div className="rightpartHeading">
                         <p className="Heading">Categories</p>
+                    </div>
+                    <div className="CategoryList">
+
+                        <ul  className="catrgoryul">
+                            {!error && categoryList.map((category, index) =>
+                                <li onClick={() => viewBookByCategory(category._id)} style={{cursor:"pointer" }} >{category.categoryName} </li>)}
+                        </ul>
+                    </div>
+                    {/* drop down */}
+                    <div className="btn-group dropdownbtn">
+                        <button className="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            AUTHOR
+                        </button>
+                        <ul className="dropdown-menu dropdownofOther" >
+                            {bookData.map((book, index) =>
+                                <li onClick={() => { searchByAuther(book.author) }}>{book.author}</li>)}
+                        </ul>
+                    </div>
+                    {/* drop down */}
+                </div>
+                <div className="LeftPart">
+                    <div className="mainImage">
+                        <img
+                            src="../../img/banner/9.jpg"
+                            alt=""
+                        />
+                    </div>
+                    <div className="headingbook">
+                        <p className="heading">BOOK</p>
+                    </div>
+                    <div className="gridAndList">
+                        <div className="grid d-flex">
+                            <i className="fa fa-th-large" aria-hidden="true"></i>
+                            <div className="mb-5">
+                                <spna className="gridName">Gride</spna>
+                            </div>
+                            <div className="listicon">
+                                <i onClick={() => viewListInbooks(bookData)} className="fa fa-list" aria-hidden="true"></i>
+                            </div>
+                            <div className="listName">
+                                List
+                            </div>
+                            <div className="bookpara">
+                                <p>There Are  books.</p>
+                            </div>
+                        </div>
+                        <div className="CategoryList">
+
+                            <ul>
+                                {!error && categoryList.map((category, index) =>
+                                    <li style={{ cursor: "pointer" }} onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
+                            </ul>
+                        </div>
+                        {/* drop down */}
+                        <div className="btn-group dropdownbtn">
+                            <button className="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                AUTHOR
+                            </button>
+                            <ul className="dropdown-menu dropdownofOther" >
+                                {bookData.map((book, index) =>
+                                    <li onClick={() => { searchByAuther(book.author) }}>{book.author}</li>)}
+                            </ul>
+                        </div>
+                        {/* drop down */}
+
                     </div>
                     <div className="CategoryList"><ul>
                             {!error && categoryList.map((category, index) =>
