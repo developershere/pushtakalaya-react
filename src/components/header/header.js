@@ -11,6 +11,10 @@ function Header() {
         dispatch(signout())
         toast.info("Sign Out SuccesFully");
     }
+    function searchCategory(){
+        window.alert(" Called....");
+        window.alert(category);
+    }
     return <>
         <header>
             <TopBar />
@@ -78,8 +82,8 @@ function Header() {
                                         <ul>
                                                 
                                             {!error && categoryList.map((category, index) =>
-                                                    <li key={index}>
-                                                        <a>{category.categoryName}</a>
+                                                    <li key={index} >
+                                                        <span>{category.categoryName} onClick={searchCategory}</span>
                                                     </li>
                                                 )}
                                             

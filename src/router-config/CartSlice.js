@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { apiEndPoint } from "../webApi/webapi";
+import { toast } from "react-toastify";
 export const fetchCart = createAsyncThunk("cart/fetchCart", async(userId) => {
     let response = await axios.post(apiEndPoint.FETCH_CART, { userId });
     return response.data.cart;
@@ -9,8 +10,10 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async(userId) => {
 export const removeFromCart = createAsyncThunk("cart/remove", async({userId,_id}) => {
 let response = await axios.post(apiEndPoint.REMOVE_CART, {userId, _id });
    console.log(response.data);
-   if(response.data.status)
+   if(response.data.status){
+    toast.success("Book is Remove from the Cart");
     return response.data.cart.cartItems;
+   }
 });
 
 

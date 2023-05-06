@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { apiEndPoint } from "../../webApi/webapi";
-import {toast ,ToastContainer} from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css'
+import {toast,ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 function TopInteresting() {
   const {currentUser} = useSelector((state)=>state.user);
   const navigate = useNavigate();
@@ -36,8 +36,9 @@ function TopInteresting() {
         let response = await axios.post(apiEndPoint.ADD_TO_CART,{bookId:id,userId : currentUser._id});
         toast.success("Book is added to you'r cart");
       }
-      else
+      else{
         toast.warning("You have to Login first");
+      }
   }
     catch(err)
     {
