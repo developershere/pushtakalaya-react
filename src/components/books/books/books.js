@@ -18,7 +18,12 @@ function Books() {
     const flag = location.state?.status;
     const { categoryList, error, isLoading } = useSelector((state) => state.category)
     const [bookData, setData] = useState([]);
+    const[authors,SetAuthors]=useState([]);
     const navigate = useNavigate()
+    if (flag) {
+        // setData(keyword);
+        console.log(bookData);
+    }
     const featchAllBooks = async () => {
         try {
             if (!flag) {
@@ -27,6 +32,7 @@ function Books() {
                 if (response.data.status) {
                     console.log(response.data.bookList);
                     setData(response.data.bookList);
+                    SetAuthors(response.data.bookList)
                 }
             }
             else {
@@ -99,6 +105,7 @@ function Books() {
         <div className="container-fluid">
             <div className="FilterMainDiv">
                 <div className="RightPart">
+
                     {/* <button className="SeacrchButton">Search</button> */}
                     <div className="rightpartHeading">
                         <p className="Heading">Categories</p>
@@ -166,22 +173,69 @@ function Books() {
                             </ul>
                         </div>
                         {/* drop down */}
+
                     </div>
-                    <div className="LeftPart">
-                        <div className="mainImage">
-                            <img
-                                src="../../img/banner/9.jpg"
-                                alt=""
-                            />
+                    <div className="CategoryList"><ul>
+                            {!error && categoryList.map((category, index) =>
+                                <li style={{ cursor: "pointer" }} onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
+                        </ul>
+                    </div>
+                   
+                    <div class="dropdown dropdownbtn">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           Author
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton dropdownofOther">
+                            {console.log(authors)}
+                        {authors.map((book, index) =>
+                            <a class="dropdown-item " onClick={() => { searchByAuther(book.author) }}>{book.author}</a>
+                        )}
                         </div>
-                        <div className="headingbook">
-                            <p className="heading">BOOK</p>
+                    </div>
+                   
+                </div>
+                <div className="LeftPart">
+                    <div className="mainImage">
+                        <img
+                            src="../../img/banner/9.jpg"
+                            alt=""
+                        />
+                    </div>
+                    <div className="headingbook">
+                        <p className="heading">BOOK</p>
+                    </div>
+                    <div className="gridAndList">
+                        <div className="grid d-flex">
+                            <i className="fa fa-th-large" aria-hidden="true"></i>
+                            <div className="mb-5">
+                                <spna className="gridName">Gride</spna>
+                            </div>
+                            <div className="listicon">
+                                <i onClick={() => viewListInbooks(bookData)} className="fa fa-list" aria-hidden="true"></i>
+                            </div>
+                            <div className="listName">
+                                List
+                            </div>
+                            <div className="bookpara">
+                                <p>There Are  Products.</p>
+                            </div>
                         </div>
-                        <div className="gridAndList">
-                            <div className="grid d-flex">
-                                <i className="fa fa-th-large" aria-hidden="true"></i>
-                                <div className="mb-5">
-                                    <spna className="gridName">Gride</spna>
+                        
+                    </div>
+                    {/* cart */}
+                    <div className="row m-auto">
+                        {bookData.filter((book) => book.permission && book.status == true).map((book, index) =>
+                            <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
+                                <div className="card">
+                                    <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
+                                    <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3" style={{ cursor: "pointer" }} onClick={() => addToCart(book._id)}></i></a>
+                                    <div className="card-body">
+                                        <p className="card-text cardtitle">{book.name.substring(0, 15)}</p>
+                                        <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 10)}</p>
+                                        <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price}</b>
+                                        <br />
+                                        <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)}>View More</button>
+                                    </div>
                                 </div>
                                 <div className="listicon">
                                     <i onClick={() => viewListInbooks(bookData)} className="fa fa-list" aria-hidden="true"></i>
@@ -193,7 +247,7 @@ function Books() {
                                     <p>There Are  Products.</p>
                                 </div>
                             </div>
-
+                            )}
                         </div>
                         {/* cart */}
 
@@ -201,7 +255,7 @@ function Books() {
                             {keyword?.filter((book) => book.permission && book.status == true)?.map((book, index) =>
                                 <div key={index} className="col-md-5 col-xl-3 col-lg-5 col-sm-3 mt-5" data-aos="fade-up" data-aos-duration="500">
                                     <div className="card">
-                                    {book.photos.split("@")[1] ? <img src={apiEndPoint.DISK_STORAGE+ book.photos.split("@")[1]+".png"} className="img-fluid cardimg" /> : <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />}
+                                    {book.photos.split("@")[1] ? <img src={apiEndPoint.DISK_STORAGE+ book.photos.split("@")[1]} className="img-fluid cardimg" /> : <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />}
                                         <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3" style={{ cursor: "pointer" }} onClick={() => addToCart(book._id)}></i></a>
                                         <div className="card-body">
                                             <p className="card-text cardtitle">{book.name.substring(0, 15)}</p>
@@ -215,9 +269,9 @@ function Books() {
                             {bookData.filter((book) => book.permission && book.status == true)?.map((book, index) =>
                                 <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
                                     <div className="card">
-                                    {console.log(apiEndPoint.DISK_STORAGE+ book.photos.split("@")[1]+".png")}
+                                    {console.log("http://localhost:3006/images/"+book.photos.split("@")[1])}
 
-                                        {book.photos.split("@")[1] ? <img src={"http://localhost:3006/"+apiEndPoint.DISK_STORAGE+ book.photos.split("@")[1]} className="img-fluid cardimg" /> : <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />}
+                                        {book.photos.split("@")[1] ? <img src={"http://localhost:3006/images/"+ book.photos.split("@")[1]} className="img-fluid cardimg" /> : <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />}
                                         <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3"></i></a>
                                         <div className="card-body">
                                             <p className="card-text cardtitle">{book.name.substring(0, 15)}</p>
@@ -228,16 +282,11 @@ function Books() {
                                         </div>
                                     </div>
                                 </div>)}
-                                <div>
-                                    <img src="file:///F:/Project/Beckend/public/images/0276b80c395e24c092cb85bb5876ec72.png"/>
-                                </div>
                         </div>
                         {/* cart */}
                     </div>
                 </div>
             </div>
-        </div>
-        <Footer/>
     </>
 }
 

@@ -29,6 +29,7 @@ function SignUp() {
         try {
             event.preventDefault();
             window.alert("fdd");
+
             let response = await axios.post(apiEndPoint.USER_SIGNUP, { name, email, password, contact });
             if (!response.data.status) {
 
@@ -43,6 +44,7 @@ function SignUp() {
 
     const verifyEmail = async () => {
         try {
+
             console.log("sfdfdg");
             let response = await axios.post("/user/thakur", { name: name.current.value, email: email.current.value });
             mausam = response.data.result.OTP;
@@ -51,6 +53,7 @@ function SignUp() {
             mtime = response.data.result.currentTime;
             console.log("OTP : " + mausam);
             console.log("Time : " + mtime);
+            
         }
         catch (err) {
             setModal(false);
@@ -60,12 +63,17 @@ function SignUp() {
                 toast.danger("Ohhoo Something went wrong");
         }
     }
+
+    const verifyEmail = async () => {
+        
+    }
     const registration = async (event) => {
         console.log(new Date().getMinutes());
         if (new Date().getMinutes() <= mtime) {
             if (mausam == otp.current.value) {
                 otpCheck = true;
-                let response = axios.post("/user/signup",{name,email,password,contact});
+                const response = await axios.post(apiEndPoint.USER_SIGNUP,{name,email,password,contact})
+                window.alert(response.data);
                 toast("Registration Success....")
                 console.log("Success....");
             }

@@ -22,6 +22,8 @@ import Books from './components/books/books/books';
 import SellboooksForm from './components/sellbooks/sellbook';
 import { fetchState } from './router-config/stateSlice';
 import About from './components/About/about';
+import UserBooks from './components/user/myaccount/userbook';
+import UpdateBooks from './components/user/myaccount/updateBook';
 function App() {
   const dispatch = useDispatch();
   useEffect(()=>{
@@ -46,7 +48,9 @@ function App() {
    <Route path='/sellbooks' element={<ProtectedRoute><SellboooksForm/></ProtectedRoute>}/>
    <Route path='/update' element={<Update/>}/>
    <Route path= "/viewDescription" element={<ViewDescription/>}/>
-    <Route path="/book" element={<Books/>}/>
+   <Route path="/book" element={<Books/>}/>
+   <Route path='/userBook' element={<UserBooks/>} />
+      <Route path='/updateBooks' element={<UpdateBooks/>}/>
    
 
   </Routes>
