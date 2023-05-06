@@ -19,6 +19,19 @@ function SignIn(){
   const navigate = useNavigate();
 
 
+  const throttleFunction = (func,delayTime)=>{
+    let prev=0;
+    return (...args)=>{
+      let time = new Date().getTime();
+      if(time-prev>delayTime)
+      {
+        prev = time;
+        window.alert("Throttling is enabled");
+        return func(...args);
+      }
+    }
+  }
+
   const handleSubmit=async(event)=>{
     try{
     event.preventDefault();
@@ -38,12 +51,10 @@ function SignIn(){
     }
   }
  function sub () {
-  window.alert("sdafds");
     var email = document.getElementById('floatingInput').value;
     var pass = document.getElementById('floatingPassword').value;
 
     if(email.length && pass.length ){
-      window.alert("if called..");
        document.getElementById('submitbtn').removeAttribute('disabled');
     }
 }
