@@ -1,15 +1,15 @@
 import { useSelector } from "react-redux";
 import"./myaccount.css"
-import{useNavigate} from "react-router-dom"
+import{Link, useNavigate} from "react-router-dom"
 
-import Order from "./order";
 import Payment from "./payment";
 import BillingAdress from "./billing";
 import Account from "./account";
 import SideBar from "./sidebar";
 import UserBooks from "./userbook";
+import Order from "./order/order";
 function MyAccount(){
-
+  
     return<>
      <div className="breadcrumbs-area mb-70">
         <div className="container">
@@ -17,7 +17,7 @@ function MyAccount(){
                 <div className="col-lg-12">
                     <div className="breadcrumbs-menu">
                         <ul>
-                            <li><a href="#">Home</a></li>
+                            <li><Link to='/'>Home</Link></li>
                             <li><a href="#" className="active">my-account</a></li>
                         </ul>
                     </div>
@@ -53,7 +53,7 @@ function MyAccount(){
                                     <div className="tab-content" id="myaccountContent">
                                        
                                         <UserBooks/>
-                                        <Order/>
+                                         <Order/>
                                          <Payment/>
                                        <BillingAdress/>
                                        <Account/>   

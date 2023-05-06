@@ -6,7 +6,7 @@ import Footer from "../footer/footer";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-// import { useNavigate } from "react-router-dom";
+
 function FreeBooks() {
 
   const {currentUser} = useSelector((state)=>state.user);

@@ -5,7 +5,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { addItemInToCart, removeFromCart, setCartItems, setRemoveUpdate } from "../../../router-config/CartSlice";
+import { addItemInToCart, removeFromCart, setCartItems} from "../../../router-config/CartSlice";
 import { apiEndPoint } from "../../../webApi/webapi";
 import { toast, ToastContainer } from "react-toastify";
 import EmptyCart from "./emptycart";
@@ -41,10 +41,12 @@ function Cart() {
   const loadOrder = async (event) => {
     try {
       event.preventDefault();
-     
+       const date = new Date().toString().substring(4,15).replaceAll(' ','-')
+       
+
       window.alert(cartItems[0]._id);
       window.alert(cartItems[0].bookId);
-      let response =await axios.post(apiEndPoint.ORDER_SAVE,{userId:currentUser._id,billamount:total,contactPerson,contactNumber,delieveryAddress,paymentMode,sellerId:currentUser._id,cartId:cartItems[0]._id,orderItem:cartItems[0].bookId})
+      let response =await axios.post(apiEndPoint.ORDER_SAVE,{userId:currentUser._id,billamount:total,contactPerson,contactNumber,delieveryAddress,paymentMode,sellerId:currentUser._id,cartId:cartItems[0]._id,orderItem:cartItems[0].bookId,date})
       console.log(response.data);
 
 
@@ -69,9 +71,7 @@ function Cart() {
     loadProducts();
   }, []);
 
-  const changeHome = () => {
-    navigate("/")
-  }
+ 
   return <>
     <Header />
     <div className="breadcrumbs-area ">
@@ -80,7 +80,7 @@ function Cart() {
           <div className="col-lg-12">
             <div className="breadcrumbs-menu">
               <ul>
-                <li><a onClick={changeHome}>Home</a></li>
+              <li><Link to='/'>Home</Link></li>
                 <li><a href="#" className="active">cart</a></li>
               </ul>
             </div>

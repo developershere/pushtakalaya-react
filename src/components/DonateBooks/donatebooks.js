@@ -42,7 +42,7 @@ return<>
     <div className='col-lg-3 col-md-3 col-sm-3 col-xm-3'>
     <img src='img\donar\globe-book.jpg' />
    
-   <h6 className='howsubHeading mt-2 '>Your old books will get a new life to give life.</h6>
+   <h6 className='howsubHeading mt-2 '>Reusing books helps in reducing carbon footprints.</h6>
 
     </div>
     <div className='col-lg-3 col-md-3 col-sm-3 col-xm-3 mt-2'>

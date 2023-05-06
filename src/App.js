@@ -23,6 +23,7 @@ import SellboooksForm from './components/sellbooks/sellbook';
 import { fetchState } from './router-config/stateSlice';
 import UserBooks from './components/user/myaccount/userbook';
 import UpdateBooks from './components/user/myaccount/updateBook';
+import OrderDetails from './components/user/myaccount/order/orderDetails';
 function App() {
   const dispatch = useDispatch();
   useEffect(()=>{
@@ -49,13 +50,13 @@ function App() {
    <Route path= "/viewDescription" element={<ViewDescription/>}/>
    <Route path="/book" element={<Books/>}/>
    <Route path='/userBook' element={<UserBooks/>} />
-      <Route path='/updateBooks' element={<UpdateBooks/>}/>
+  <Route path='/updateBooks' element={<UpdateBooks/>}/>
+  <Route path='/orderDetails' element={<OrderDetails/>}/>
    
 
   </Routes>
  
   </>
-  // " Admin completed"
 }
 
 export default App;
