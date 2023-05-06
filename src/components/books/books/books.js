@@ -143,17 +143,7 @@ function Books() {
                             <div className="mb-5">
                                 <spna className="gridName">Gride</spna>
                             </div>
-                            <div className="listicon">
-                                <i onClick={() => viewListInbooks(bookData)} className="fa fa-list" aria-hidden="true"></i>
-                            </div>
-                            <div className="listName">
-                                List
-                            </div>
-                            <div className="bookpara">
-                                <p>There Are  Products.</p>
-                            </div>
-                        </div>
-                        
+                            </div>                       
                     </div>
                     {/* cart */}
                     <div className="row m-auto">
@@ -170,15 +160,7 @@ function Books() {
                                         <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)}>View More</button>
                                     </div>
                                 </div>
-                                <div className="listicon">
-                                    <i onClick={() => viewListInbooks(bookData)} className="fa fa-list" aria-hidden="true"></i>
-                                </div>
-                                <div className="listName">
-                                    List
-                                </div>
-                                <div className="bookpara">
-                                    <p>There Are  Products.</p>
-                                </div>
+                               
                             </div>
                             )}
                         </div>

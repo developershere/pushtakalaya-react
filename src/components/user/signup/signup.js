@@ -30,7 +30,8 @@ function SignUp() {
             event.preventDefault();
             window.alert("fdd");
             console.log("sfdfdg");
-            let response = await axios.post("/user/thakur", { name: name.current.value, email: email.current.value });
+            let response = await axios.post(apiEndPoint.USER_VERIFY, { name: name.current.value, email: email.current.value });
+            console.log(response.data);
             mausam = response.data.result.OTP;
             setModal(response.data.status);
             window.alert("fgdg"+modal);
@@ -56,7 +57,7 @@ function SignUp() {
         if (new Date().getMinutes() <= mtime) {
             if (mausam == otp.current.value) {
                 otpCheck = true;
-                const response = await axios.post(apiEndPoint.USER_SIGNUP,{name,email,password,contact})
+                const response = await axios.post(apiEndPoint.USER_SIGNUP,{name:name.current.value,email:email.current.value,password:password.current.value,contact:contact.current.value})
                 window.alert(response.data);
                 toast("Registration Success....")
                 console.log("Success....");
