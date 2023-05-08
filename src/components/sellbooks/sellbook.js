@@ -111,7 +111,7 @@ function SellboooksForm() {
                                     </div>
 
                                     <div className="row form-group"  >
-                                        <div className=" col-md-6">
+                                        <div className=" col-md-6 mb-3">
                                             <input onChange={(event) => setAuthorName(event.target.value)} placeholder="Enter Author Name" type="text" className="form-control" />
                                         </div>
                                         <div className=" col-md-6">
@@ -138,7 +138,7 @@ function SellboooksForm() {
 
                                     </div>
                                     <div className="row form-group mt-2"  >
-                                        <div className=" col-md-6">
+                                        <div className=" col-md-6 mb-3">
                                             <select ref={stateObject} onChange={(event) => featchCityById(event.target.value)} className="form-control">State
                                                 <option >Select State</option>
                                                 {stateList.map((state, index) =>
@@ -159,7 +159,7 @@ function SellboooksForm() {
                                     </div>
                                     <div className="row form-group"  >
 
-                                        <div className=" col-md-6">
+                                        <div className=" col-md-6 mb-3">
                                             <input onChange={(event) => setPinCode(event.target.value)} type="number" placeholder=" Enter Pincode" className="form-control" />
                                         </div>
 
@@ -176,7 +176,7 @@ function SellboooksForm() {
                                     </div>
                                     <div className="row form-group">
                                         <div>
-                                            <textarea onChange={(event) => setDescription(event.target.value)} cols='65' rows='4' placeholder="Enter Book's Description..." />
+                                            <textarea onChange={(event) => setDescription(event.target.value)} cols='60' rows='4' placeholder="Enter Book's Description..." />
                                         </div>
                                     </div>
                                     <div className="row form-group">
