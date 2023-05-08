@@ -18,20 +18,25 @@ function Update() {
     const [email, SetEmail] = useState("");
     const [contact, SetContact] = useState("");
     const [photo, SetPhoto] = useState(" ");
-
     const updateProfile = async (event) => {
         event.preventDefault();
         try {
-            console.log(name,email,contact,photo);
-            let response = await axios.post(apiEndPoint.USER_UPDATEPROFILE, {_id:currentUser._id, name, email, contact, photo })
-            console.log(response.data);
+            const formData = new FormData();
+            formData.append("profile",photo);
+            formData.set("name",name);
+            formData.set("email",email);
+            formData.set("contact",contact);
+            formData.set("_id",currentUser?._id);
+            let response = await axios.post(apiEndPoint.USER_UPDATEPROFILE,formData);
             dispatch(setUpdateProfile(response.data.updatedUser))
             toast.success("Profile Updated Succesfully");
-
-
         } catch (err) {
             toast.error("Something Went Wrong");
         }
+    }
+
+    const getImage = (event)=>{
+        SetPhoto(event.target.files[0]);
     }
 
     return <>
@@ -74,18 +79,17 @@ function Update() {
                                                     <form onSubmit={updateProfile}>
                                                         <div className="col-lg-10 m-auto mt-2">
                                                             <div className="row form-group">
-                                                                <input onChange={(event) => SetName(event.target.value)}  defaultValue={currentUser.name} className="form-control" />
+                                                                <input onChange={(event) => SetName(event.target.value)}  defaultValue={currentUser?.name} className="form-control" />
                                                             </div>
                                                             <div className="row form-group">
-                                                                <input onChange={(event) => SetEmail(event.target.value)} defaultValue={currentUser.email} className="form-control" />
+                                                                <input onChange={(event) => SetEmail(event.target.value)} defaultValue={currentUser?.email} className="form-control" />
                                                             </div>
                                                             <div className="row form-group">
-                                                                <input onChange={(event) => SetContact(event.target.value)} defaultValue={currentUser.contact} className="form-control" />
+                                                                <input onChange={(event) => SetContact(event.target.value)} defaultValue={currentUser?.contact} className="form-control" />
                                                             </div>
                                                             <div className="row form-group">
-                                                                <input onChange={(event) => SetPhoto(event.target.value)} type="file"  defaultValue={currentUser.photos} className="form-control" />
+                                                                <input onChange={getImage} type="file"  defaultValue={currentUser?.photos} className="form-control" />
                                                             </div>
-
                                                             <div className="row form-group">
                                                                 <button className="editbutton " type="submit"><i className="fa fa-edit"></i>
                                                                     update</button>
@@ -93,14 +97,11 @@ function Update() {
                                                         </div>
                                                     </form>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

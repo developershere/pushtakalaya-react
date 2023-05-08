@@ -8,6 +8,7 @@ import { useRef } from 'react';
 function TopBar() {
     const { recentProductList, error } = useSelector(state => state.recentProduct);
     const { currentUser } = useSelector((state) => state.user);
+    const {cartItems} = useSelector((state)=>state.cart);
     const keyword = useRef("");
     const navigate = useNavigate();
     function debounce(func, timeout = 3000) {

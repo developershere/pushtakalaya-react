@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './signin.css'
 import axios from 'axios';
 import { apiEndPoint } from '../../../webApi/webapi';
-import { ToastContainer, toast } from 'react-toastify';
+import {toast,ToastContainer} from "react-toastify";
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../../router-config/userSlice';
 import 'react-toastify/dist/ReactToastify.css'
@@ -11,6 +11,7 @@ import TopBar from '../../Topbar/topbar';
 import Header from '../../header/header';
 import { fetchCart} from '../../../router-config/CartSlice';
 import Footer from '../../footer/footer';
+import GoogleLogin from '../../ExtraServices/GoogleLogin';
 
 function SignIn(){
 
@@ -21,10 +22,12 @@ function SignIn(){
 
 
   const throttleFunction = (func,delayTime)=>{
+    window.alert("First");
     let prev=0;
     return (...args)=>{
+      window.alert("Second");
       let time = new Date().getTime();
-      if(time-prev>delayTime)
+      if(time-prev>3000)
       {
         prev = time;
         window.alert("Throttling is enabled");
@@ -41,7 +44,7 @@ function SignIn(){
       let carts = await axios.post(apiEndPoint.FETCH_CART,{userId:response.data.user._id})
       dispatch(setCurrentUser(response.data.user));
       dispatch(fetchCart(response.data.user._id));
-      toast.success("Welcome To Pustakalaya")
+      toast.success("Welcome To Pustakalaya");
       navigate("/")
 
         return response.data.user;
@@ -112,6 +115,7 @@ function SignIn(){
                 </div>
                 <div className="d-grid">
                   <button id='submitbtn' disabled className="btn btn-lg btn-login text-uppercase fw-bold mb-2  btn btn-dark" type="submit">Sign in</button>
+                  <GoogleLogin/>
                   <div className="text-center">
                     <a className="small" href="#">Forgot password?</a>
                   </div>
@@ -119,7 +123,6 @@ function SignIn(){
                    <Link to='/signup'>I Don't Have an Account</Link>
                   </div>
                 </div>
-
               </form>
             </div>
           </div>

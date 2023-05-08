@@ -50,7 +50,7 @@ function Books() {
 
     const viewBookByCategory = async (id) => {
         try {
-            let response = await axios.post(apiEndPoint.BOOK_BY_CATEGORY, { categoryId });
+            let response = await axios.post(apiEndPoint.BOOK_BY_CATEGORY, { id });
             if (response.data.status) {
                 setData(response.data.result);
             }

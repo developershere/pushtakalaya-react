@@ -13,7 +13,6 @@ function Header() {
     }
     function searchCategory(){
         window.alert(" Called....");
-        window.alert(category);
     }
     return <>
         <header>
@@ -34,7 +33,7 @@ function Header() {
                                             <div className="mega-menu">
                                                 {!error && categoryList.map((category, index) =>
                                                     <span key={index}>
-                                                        <a style={{cursor:"pointer"}}>{category.categoryName}</a>
+                                                        <a style={{cursor:"pointer"}} onClick={searchCategory}>{category.categoryName}</a>
                                                     </span>
                                                 )}
 
@@ -55,9 +54,6 @@ function Header() {
                                         </li>}
                                     </ul>
                                 </nav>
-                            </div>
-                            <div className="safe-area">
-                                <Link to='/sellbooks'>Sell Books</Link>
                             </div>
                         </div>
                     </div>
@@ -82,7 +78,7 @@ function Header() {
                                         <ul>
                                             {!error && categoryList.map((category, index) =>
                                                     <li key={index} >
-                                                        <span>{category.categoryName} onClick={searchCategory}</span>
+                                                        <span onClick={searchCategory} >{category.categoryName} </span>
                                                     </li>
                                                 )}
                                         </ul>

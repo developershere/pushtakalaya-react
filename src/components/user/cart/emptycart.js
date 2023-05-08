@@ -3,7 +3,7 @@ import "./cart.css";
 function EmptyCart(){
     const navigate = useNavigate();
     const changeHome = () => {
-        navigate("/")
+        navigate("/book")
       }
     return<>
     

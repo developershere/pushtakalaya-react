@@ -17,7 +17,7 @@ function Cart() {
   const [isLoading, setIsLoading] = useState(true);
   const { currentUser } = useSelector(state => state.user);
   const { cartItems, flag } = useSelector(state => state.cart);
-  const [paymentMode, setPaymentMode] = useState([]);
+  const [paymentMode, setPaymentMode] = useState(false);
   const [contactPerson, setContactPerson] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [delieveryAddress, setDeliveryAddress] = useState("");
@@ -26,8 +26,8 @@ function Cart() {
   const dispatch = useDispatch();
   var amount = 0;
   var total = 0;
-  var status;
-  cartItems.map((carts,index)=>{
+  var status = false;
+  cartItems?.map((carts,index)=>{
     total+= carts.bookId.price * 1;
   })
   const navigate = useNavigate();
@@ -42,20 +42,16 @@ function Cart() {
     }
   }
 
+  const checkPaymentMode = ()=>{
+    if(paymentMode)
+      status = true;
+    else
+      status = false;
+  }
   const loadOrder = async (event) => {
     try {
       event.preventDefault();
-      
-        if(paymentMode=="Online")
-        {
-          status = true;
-          window.alert("Please pay First");
-        }
-        else if(paymentMode=="COD")
-        {
-          window.alert("COD called...");
-          status = false;
-        }
+        
       // let response =await axios.post(apiEndPoint.ORDER_SAVE,{userId:currentUser._id,billamount:total,contactPerson,contactNumber,delieveryAddress,paymentMode,sellerId:currentUser._id,cartId:cartItems[0]._id,orderItem:cartItems[0].bookId})
 
 
@@ -101,8 +97,7 @@ function Cart() {
     </div>
 
 
-    <div className="modal fade" id="checkoutModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  style={{border:"2px solid black"
-}}>
+    <div className="modal fade" id="checkoutModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  style={{border:"2px solid black"}}>
       <div className="modal-dialog" role="document">
         <form onSubmit={loadOrder}>
           <div className="modal-content">
@@ -124,9 +119,10 @@ function Cart() {
                   <textarea type='text' cols='64' rows='4' placeholder="Enter Delievery Address" onChange={(event) => setDeliveryAddress(event.target.value)} className="form-control" />
                 </div>
                 </div>
-                {status ?<></>
+                {console.log("Payment : "+status)}
+                {status? <span>ggdghdf</span>
                  : <Payment
-                money = {total}/>
+                    money = {total}/>
               }
             </div>
             <div className="modal-footer ">
@@ -177,10 +173,10 @@ function Cart() {
             <h6 className="contentcart">Bill Amount<span className="ml-5 pl-3"> :  ₹ {amount}</span></h6>
             <h6 className="contentcart">Total Amount<span className="ml-5 pl-3">: ₹ {total = amount + (!flag && cartItems?.length * 20)}</span></h6><hr />
             <div onChange={(event) => setPaymentMode(event.target.value)}>
-              <input type="radio" value='COD' name='payment' /><span className="contentcart" onClick={loadOrder} style={{cursor:"pointer"}}>  Cash On Delievery</span><br />
-              <input type="radio" value='Online' name='payment' /><span className="contentcart"  style={{cursor:"pointer"}}> Online Payment</span></div>
+              <input type="radio" value={false} name='payment' /><span className="contentcart" style={{cursor:"pointer"}}>  Cash On Delievery</span><br />
+              <input type="radio" value={true} name='payment' /><span className="contentcart"  style={{cursor:"pointer"}}> Online Payment</span></div>
           </div>
-          <a className="btn-block cartcheckoutbutton text-center mt-3 " data-toggle="modal" data-target="#checkoutModel">Procced To checkout</a>
+          <a className="btn-block cartcheckoutbutton text-center mt-3 " onClick={checkPaymentMode} data-toggle="modal" data-target="#checkoutModel">Procced To checkout</a>
         </div>
       </div>
     </div>:<EmptyCart/>} 
