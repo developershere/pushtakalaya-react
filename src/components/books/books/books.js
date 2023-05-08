@@ -18,25 +18,19 @@ function Books() {
     const flag = location.state?.status;
     const { categoryList, error, isLoading } = useSelector((state) => state.category)
     const [bookData, setData] = useState([]);
-    const[authors,setAuthors]=useState([]);
+    const[authors,SetAuthors]=useState([]);
     const navigate = useNavigate()
-    if (flag) {
-        console.log(bookData);
-    }
-    console.log(authors);
+    
     const featchAllBooks = async () => {
         try {
             if (!flag) {
                 let response = await axios.get(apiEndPoint.TOTAL_BOOKS);
                 console.log(response);
                 if (response.data.status) {
-                    console.log(response.data);
+                    console.log(response.data.bookList);
                     setData(response.data.bookList);
-                    setAuthors(response.data.bookList);
+                    SetAuthors(response.data.bookList)
                 }
-            }
-            else {
-                setData(location.state.books);
             }
         }
         catch (err) {
@@ -47,6 +41,17 @@ function Books() {
         navigate("/viewDescription", { state: { bookDetails: book } })
     }
 
+    const handlePriceSelect =  async (price) => {
+        const maxPrice = price.split("-")[0];
+        const minPrice = price.split("-")[1];
+        try {
+      let response = await axios.post(apiEndPoint.PRICE, { minPrice: minPrice, maxPrice: maxPrice });
+            setData(response.data.result);
+            console.log(response.data);
+        }
+        catch (err) {
+            console.log(err);
+}}
     const viewBookByCategory = async (categoryId) => {
         try {
             let response = await axios.post(apiEndPoint.BOOK_BY_CATEGORY, { categoryId });
@@ -76,25 +81,22 @@ function Books() {
     };
 
 
-    const addToCart = async (id)=>{
-        try{
-          if(currentUser)
-          {
-            let response = await axios.post(apiEndPoint.ADD_TO_CART,{bookId:id,userId : currentUser._id});
-            toast.success("Book is added to you'r cart");
-          }
-          else{
-            toast.warning("You have to Login first");
-          }
-      }
-        catch(err)
-        {
-        if(err.response.status==400)
-            toast.warning("Book is already exists in cart");
-        if(err.response.status==500)
-          toast.error("Oops Something went wrong");
+    const addToCart = async (id) => {
+        try {
+            if (currentUser) {
+                let response = await axios.post(apiEndPoint.ADD_TO_CART, { bookId: id, userId: currentUser._id });
+                toast.success("Book is added to you'r cart");
+            }
+            else
+                toast.warning("You have to Login first");
         }
-      }
+        catch (err) {
+            if (err.response.status == 400)
+                toast.warning("Book is already exists in cart");
+            if (err.response.status == 500)
+                toast.error("Oops Something went wrong");
+        }
+    }
 
     useEffect(() => {
         featchAllBooks();
@@ -102,21 +104,37 @@ function Books() {
         searchByAuther();
     }, []);
 
-    
     return <>
         <Header />
         <div className="container-fluid">
             <div className="FilterMainDiv">
-                <div className="RightPart">
-                   
+                <div className="RightPart" >
+                    <button className="SeacrchButton">Search</button>
                     <div className="rightpartHeading">
                         <p className="Heading">Categories</p>
                     </div>
                     <div className="CategoryList"><ul>
+                            <li className="listhover" onClick={featchAllBooks}>All</li>
                             {!error && categoryList.map((category, index) =>
-                                <li style={{ cursor: "pointer" }} onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
+                                <li className="listhover"  onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
                         </ul>
                     </div>
+                    <div style={{display : "block"}}>
+                    <button className="priceButton">Price Range</button>
+                   </div>
+                    
+                        <div className="priceRange">
+                        <ul  className=" ml-4">
+                            <li  className="listhover" onClick={() => handlePriceSelect("1-100")}>Under 100</li>
+                            <li  className="listhover" onClick={() => handlePriceSelect("100-200")}>100 - 200</li>
+                            <li  className="listhover" onClick={() => handlePriceSelect("200-400")}>200 - 400</li>
+                            <li  className="listhover" onClick={() => handlePriceSelect("400-600")}>400 - 600</li>
+                            <li  className="listhover" onClick={() => handlePriceSelect("600-800")}>60o - 800</li>
+                            <li  className="listhover" onClick={() => handlePriceSelect("800-1000")}>800 - 1000</li>
+                            <li  className="listhover" onClick={() => handlePriceSelect("1000-2000")}>Over 2000</li>
+                         </ul> 
+                         </div>
+
                    
                     <div class="dropdown dropdownbtn">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -125,7 +143,7 @@ function Books() {
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton dropdownofOther">
                             {console.log(authors)}
                         {authors.map((book, index) =>
-                            <a class="dropdown-item " style={{cursor:"pointer"}} onClick={() => { searchByAuther(book.author) }}>{book.author}</a>
+                            <a class="dropdown-item " onClick={() => { searchByAuther(book.author) }}>{book.author}</a>
                         )}
                         </div>
                     </div>
@@ -157,7 +175,7 @@ function Books() {
                                 <p>There Are  Products.</p>
                             </div>
                         </div>
-                        
+
                     </div>
                     {/* cart */}
                     <div className="row m-auto">
@@ -173,48 +191,42 @@ function Books() {
                                         <br />
                                         <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)}>View More</button>
                                     </div>
-                                </div>                               
-                            </div>
-                            )}
-                        </div>
-                        {/* cart */}
-
-                        <div className="row">
-                            {keyword?.filter((book) => book.permission && book.status == true)?.map((book, index) =>
-                                <div key={index} className="col-md-5 col-xl-3 col-lg-5 col-sm-3 mt-5" data-aos="fade-up" data-aos-duration="500">
-                                    <div className="card">
-                                    {book.photos.split("@")[1] ? <img src={apiEndPoint.DISK_STORAGE+ book.photos.split("@")[1]} className="img-fluid cardimg" /> : <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />}
-                                        <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3" style={{ cursor: "pointer" }} onClick={() => addToCart(book._id)}></i></a>
-                                        <div className="card-body">
-                                            <p className="card-text cardtitle">{book.name.substring(0, 15)}</p>
-                                            <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 10)}</p>
-                                            <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price}</b>
-                                            <br />
-                                            <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)}>View More</button>
-                                        </div>
-                                    </div>
-                                </div>)}
-                            {bookData.filter((book) => book.permission && book.status == true)?.map((book, index) =>
-                                <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
-                                    <div className="card">
-
-                                    {book.photos.split("@")[1] ? <img src={apiEndPoint.DISK_STORAGE+ book.photos.split("@")[1]} className="img-fluid cardimg" /> : <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />}
-                                        <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3" onClick={() => addToCart(book._id)}></i></a>
-                                        <div className="card-body">
-                                            <p className="card-text cardtitle">{book.name.substring(0, 15)}</p>
-                                            <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 10)}</p>
-                                            <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price}</b>
-                                            <br />
-                                            <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)}>View More</button>
-                                        </div>
-                                    </div>
-                                </div>)}
-                        </div>
-                        {/* cart */}
+                                </div>
+                            </div>)}
                     </div>
+
+                    {/* cart */}
+                    {/* cart */}
+                    <div className="row m-auto">
+                        {keyword?.filter((book) => book.permission && book.status == true).map((book, index) =>
+                            <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
+                                <div className="card">
+                                    <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
+                                    <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3" style={{ cursor: "pointer" }} onClick={() => addToCart(book._id)}></i></a>
+                                    <div className="card-body">
+                                        <p className="card-text cardtitle">{book.name.substring(0, 15)}</p>
+                                        <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 10)}</p>
+                                        <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price}</b>
+                                        <br />
+                                        <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)}>View More</button>
+                                    </div>
+                                </div>
+                            </div>)}
+                    </div>
+
+                    {/* cart */}
+                </div>
+                <div>
+
                 </div>
             </div>
+
+        </div>
+
+
     </>
+
+
 }
 
 export default Books;

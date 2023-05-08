@@ -17,7 +17,7 @@ function Cart() {
   const [isLoading, setIsLoading] = useState(true);
   const { currentUser } = useSelector(state => state.user);
   const { cartItems, flag } = useSelector(state => state.cart);
-  const [paymentMode, setPaymentMode] = useState([]);
+  const [paymentMode, setPaymentMode] = useState(false);
   const [contactPerson, setContactPerson] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [delieveryAddress, setDeliveryAddress] = useState("");
@@ -27,8 +27,8 @@ function Cart() {
   var amount = 0;
   var total = 0;
   var status = false;
-  cartItems.map((carts, index) => {
-    total += carts.bookId.price * 1;
+  cartItems?.map((carts,index)=>{
+    total+= carts.bookId.price * 1;
   })
   const navigate = useNavigate();
   const loadProducts = async () => {
@@ -42,6 +42,12 @@ function Cart() {
     }
   }
 
+  const checkPaymentMode = ()=>{
+    if(paymentMode)
+      status = true;
+    else
+      status = false;
+  }
   const loadOrder = async (event) => {
     try {
       window.alert(paymentMode);
@@ -126,10 +132,11 @@ function Cart() {
                 <div className="form-group">
                   <textarea type='text' cols='64' rows='4' placeholder="Enter Delievery Address" onChange={(event) => setDeliveryAddress(event.target.value)} className="form-control" />
                 </div>
-              </div>
-              {status ? <></>
-                : <Payment
-                  money={total} />
+                </div>
+                {console.log("Payment : "+status)}
+                {status? <span>ggdghdf</span>
+                 : <Payment
+                    money = {total}/>
               }
             </div>
             <div className="modal-footer ">
@@ -180,10 +187,10 @@ function Cart() {
             <h6 className="contentcart">Bill Amount<span className="ml-5 pl-3"> :  ₹ {amount}</span></h6>
             <h6 className="contentcart">Total Amount<span className="ml-5 pl-3">: ₹ {total = amount + (!flag && cartItems?.length * 20)}</span></h6><hr />
             <div onChange={(event) => setPaymentMode(event.target.value)}>
-              <input type="radio" value='COD' name='payment' /><span className="contentcart" onClick={loadOrder} style={{ cursor: "pointer" }}>  Cash On Delievery</span><br />
-              <input type="radio" value='Online' name='payment' /><span className="contentcart" onClick={loadOrder} style={{ cursor: "pointer" }}> Online Payment</span></div>
+              <input type="radio" value={false} name='payment' /><span className="contentcart" style={{cursor:"pointer"}}>  Cash On Delievery</span><br />
+              <input type="radio" value={true} name='payment' /><span className="contentcart"  style={{cursor:"pointer"}}> Online Payment</span></div>
           </div>
-          <a className="btn-block cartcheckoutbutton text-center mt-3 " data-toggle="modal" data-target="#checkoutModel">Procced To checkout</a>
+          <a className="btn-block cartcheckoutbutton text-center mt-3 " onClick={checkPaymentMode} data-toggle="modal" data-target="#checkoutModel">Procced To checkout</a>
         </div>
       </div>
     </div> : <EmptyCart />}

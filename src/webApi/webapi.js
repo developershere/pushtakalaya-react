@@ -8,6 +8,7 @@ export const apiEndPoint = {
     BOOK_BY_CATEGORY :"/book/searchByCategoryId",
     USER_SIGNIN:"/user/signIn",
     USER_SIGNUP:"/user/signup",
+    USER_VERIFY : "/user/verifyEmail",
     USER_UPDATEPROFILE:"/user/updateProfile",
     Search_By_Categoryname: "/book/searchByCategoryId",
     SEARCH_BY_AUTHER: "/book/searchbyAuthor",
@@ -29,5 +30,7 @@ export const apiEndPoint = {
     SEARCH_CITY_BY_ID: "/city/byId",
     SEARCH_BOOK_BY_USERID: "/book/serachByuserId",
     FETCH_ORDER:"/order/vieworderByuserId",
-    FETCH_ORDER_BY_ORDERID:"/order/vieworderByorderId"
+    FETCH_ORDER_BY_ORDERID:"/order/vieworderByorderId",
+    PRICE: "/book/price"
+
 }

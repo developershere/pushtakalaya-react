@@ -1,3 +1,5 @@
+
+
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import "./viewDescription.css"
@@ -5,14 +7,15 @@ import { useLocation } from "react-router-dom";
 function ViewDescription() {
 
     const location = useLocation();
-    const book = location?.state?.bookDetails;
+    const book = location.state.bookDetails;
+    console.log(book)
+
     return <>
-        {/* Hello world */}
-        <Header />
+      
+        <Header/>
         <div className="mt-5" id="layoutSidenav">
             <div id="layoutSidenav_nav">
-                {/* side nav  */}
-                {/* side nav end  */}
+              
             </div>
             <div id="layoutSidenav_content">
                 <main>
@@ -35,18 +38,20 @@ function ViewDescription() {
                                         <div>
                                             <p className="dectitel">{book.name}</p>
 
-                                            <p className="desprice">&#8377; {book.price}</p>
+                                            <p className="desprice">&#8377; {book.price==0?"Free": book.price}</p>
                                             <span className="decauther">By:  <span className="authername"> {book.author} </span>  (Author)  </span>
                                             <p className="bookdescription">{book.description.substring(0, 120)}</p>
+                                            <p className="decauther">publication Date : <span className="bookdescription ml-2">{book.publicationDate}</span></p>
+                                            <p className="decauther"> Edition :<span className="bookdescription ml-3"> {book.edition}</span></p>
+                                            
+                                            
                                         </div>
 
                                         <div className="discriptionbuttons">
                                             <a>
-                                                <button className="discriptionbtn">Add to cart</button>
+                                                <button className="discriptionbtn2">Add to cart</button>
                                             </a>
-                                            <a href>
-                                                <button className="discriptionbtn2 ml-3">add to wishlist</button>
-                                            </a>
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +63,7 @@ function ViewDescription() {
                 {/* footer end */}
             </div>
         </div>
-        {/* <Footer/> */}
+        <Footer/>
 
     </>
 

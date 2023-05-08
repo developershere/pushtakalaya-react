@@ -4,35 +4,40 @@ import Header from "../../header/header";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify"
 import { apiEndPoint } from "../../../webApi/webapi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import 'react-toastify/dist/ReactToastify.css'
 import Footer from "../../footer/footer";
 import GoogleLogin from "../GoogleLogin";
 function SignUp() {
-    const[Otp,setOtp]=useState("");
+    const [Otp, setOtp] = useState("");
     let name = useRef("");
     let email = useRef("");
     let password = useRef("");
     let contact = useRef("");
     let otp = useRef("");
     let mausam;
-    let otpCheck = false;
+    var gender = "Male";
+    var profileImage=[];
     var mtime;
+    var modalDismiss;
     const [modal,setModal] = useState(false);
     const navigate = useNavigate();
 
     const changeHome = () => {
         navigate("/")
-      }
+    }
+    const profileUpload = (event)=>{
+         profileImage = event.target.files[0];
+    }
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
             window.alert("fdd");
             console.log("sfdfdg");
-            let response = await axios.post("/user/thakur", { name: name.current.value, email: email.current.value });
+            let response = await axios.post(apiEndPoint.USER_VERIFY, { name: name.current.value, email: email.current.value });
             mausam = response.data.result.OTP;
-            setModal(response.data.status);
+            // setModal(response.data.status);
             window.alert("fgdg"+modal);
             mtime = response.data.result.currentTime;
             console.log("OTP : " + mausam);
@@ -48,16 +53,22 @@ function SignUp() {
         }
     }
 
-    const verifyEmail = async () => {
-        
-    }
     const registration = async (event) => {
         console.log(new Date().getMinutes());
+        console.log("Mtime : "+mtime);
+        console.log(profileImage);
+        const formData = new FormData();
+        formData.append("profile",profileImage);
+        formData.set("name",name.current.value);
+        formData.set("email",email.current.value);
+        formData.set("contact",contact.current.value);
+        formData.set("password",password.current.value);
+        formData.set("password",gender);
+        modalDismiss = false;
         if (new Date().getMinutes() <= mtime) {
             if (mausam == otp.current.value) {
-                otpCheck = true;
-                const response = await axios.post(apiEndPoint.USER_SIGNUP,{name,email,password,contact})
-                window.alert(response.data);
+                const response = await axios.post(apiEndPoint.USER_SIGNUP,formData)
+                modalDismiss = true;
                 toast("Registration Success....")
                 console.log("Success....");
             }
@@ -66,6 +77,19 @@ function SignUp() {
         }
         else
             toast.error("Ohho! OTP expires...");
+    }
+
+    const signupSubmitBtn = async () => {
+        var name = await document.getElementById('name').value;
+        var email = await document.getElementById('email').value;
+        var password = await document.getElementById('password').value;
+        var contact = await document.getElementById('contact').value;
+        if (email.length && password.length >= 8 && name.length && contact.length == 10) {
+            document.getElementById('signupsubmibtn').removeAttribute('disabled');
+        }
+        else {
+            document.getElementById('signupsubmibtn').setAttribute('disabled');
+        }
     }
     return <>
         <Header />
@@ -76,7 +100,7 @@ function SignUp() {
                     <div className="col-lg-12">
                         <div className="breadcrumbs-menu">
                             <ul>
-                            <li><a onClick={changeHome}>Home</a></li>
+                                <li><a onClick={changeHome}>Home</a></li>
                                 <li><a href="#" className="active">SignUp</a></li>
                             </ul>
                         </div>
@@ -90,10 +114,10 @@ function SignUp() {
                     <div className="col-lg-12 col-xl-11">
 
                         <div className="row justify-content-center">
-                            <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-2 order-lg-1 mb-3" >
+                            <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-2 order-lg-1 mb-3 signupimg" >
                                 <img
                                     src="https://images.unsplash.com/photo-1591951425328-48c1fe7179cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fGJvb2tzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60"
-                                    className="img-fluid" style={{ borderRadius: "0px 10% 0% 10%", boxShadow: "0px 0px 15px gray", height: "500px", width: " 90%", backgroundSize: "contain" }}
+                                    className="img-fluid img responsive" style={{ borderRadius: "0px 10% 0% 10%", boxShadow: "0px 0px 15px gray", height: "500px", width: " 90%", backgroundSize: "contain" }}
                                     alt="Sample image"
                                 />
                             </div>
@@ -101,32 +125,43 @@ function SignUp() {
                                 <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" style={{ color: "#f07c29", textShadow: "2px 2px 2px gray" }}>
                                     Sign up
                                 </p>
-                                <form onSubmit={handleSubmit}>
-                                    {/* <i className="fas fa-user fa-lg me-3 fa-fw" /> */}
+                                <form onSubmit={handleSubmit} id='registrationForm'>
                                     <div className="form-group">
 
-                                        <input ref={name} type="text" placeholder="Enter name" className="form-control" />
+                                        <input ref={name} type="text" onBlur={signupSubmitBtn} placeholder="Enter name" className="form-control" id="name" name="name" required />
                                     </div>
                                     <div className="form-group">
-                                        <input ref={email} type="email" placeholder="Enter email" className="form-control" />
+                                        <input ref={email} type="email" onBlur={signupSubmitBtn} placeholder="Enter email" className="form-control" id="email" name="email" required />
                                     </div>
                                     <div className="form-group">
-                                 
-                                        <input ref={password} type="password" placeholder="Enter password" className="form-control" />
+
+                                        <input ref={password} type="password" onBlur={signupSubmitBtn} placeholder="Enter password" className="form-control" id="password" name="password" required />
                                     </div>
                                     <div className="form-group">
-                                   
-                                        <input ref={contact} type="text" placeholder="Enter contact number" className="form-control" />
+                                        <input ref={contact} type="text" onBlur={signupSubmitBtn} placeholder="Enter contact number" id="contact" className="form-control" required />
                                     </div>
-                                    
+                                    <div>
+                                        <i className="fa fa-mars-stroke me-3" style={{ fontSize: "18px" }}></i>
+                                        <input className="" type="radio" value="MALE" name="gender" defaultChecked /> Male
+                                        <input className="mb-4 ms-4" type="radio" value="FEMALE" name="gender" /> Female
+                                        <input className="mb-4 ms-4" type="radio" value="OTHER" name="gender" /> Other
+                                    </div>
+                                    <div>
+                                        <i className="fa fa-user me-3"></i>
+                                        <input onChange={profileUpload} className="mb-4" type="file" accept="image" required />
+                                    </div>
                                     <div className="form-group text-center">
                                             {modal ?
-                                                <button onClick={(() => verifyEmail(email, name))} type="submit" className="btn submitbtn w-100" data-toggle="modal" data-target="#exampleModalCenter" >
+                                                <button type="submit" className="btn submitbtn w-100">
                                             Sign Up
-                                        </button> : <button onClick={(() => verifyEmail(email, name))} type="submit" className="btn submitbtn w-100">
+                                        </button> : <button type="submit" className="btn submitbtn w-100" data-toggle="modal" data-target="#exampleModalCenter">
                                             Sign Up
                                         </button>
                                             }
+                                    </div>
+
+                                    <div className="text-center">
+                                        <Link to='/signin'>I Already Have an Account</Link>
                                     </div>
 
                                 </form>
@@ -134,7 +169,7 @@ function SignUp() {
                                 <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div className="modal-dialog modal-dialog-centered" role="document">
                                     <div className="modal-content">
-                                        <div className="modal-header">
+                                        <div className="modal-header" id="modal">
                                             Registration Page
                                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -150,7 +185,7 @@ function SignUp() {
                                                             <input ref={otp} className="m-2 text-center form-control rounded width:10" type="text" id="fourth" maxlength="4" />
                                                         </div>
                                                         <div className="mt-4">
-                                                            <button onClick={() => registration(mtime, mausam)} className="btn btn-warning px-4 validate">Validate</button>
+                                                            {modal ? <button onClick={() => registration(mtime, mausam)} className="btn btn-warning px-4 validate" id="verify" data-dismiss="modal">Validate</button> :  <button onClick={() => registration(mtime, mausam)} className="btn btn-warning px-4 validate" id="verify">Validate</button>}
                                                         </div>
                                                     </div>
                                                 </div>

@@ -27,8 +27,8 @@ return<>
     <h3 className='text-center subheading mt-1 text-white'>How Does Donation Help</h3>
     </div>
  </div>
- <div className='row border rem' >
-    <div className='col-lg-3 col-md-3 col-sm-3 col-xm-3 mt-3 ' >
+ <div className='row border remove' >
+    <div className='col-lg-3 col-md-3 col-sm-3 col-xm-3 mt-3' >
     <img src='\img\donar\donar2.jpg' />
    
         <h6 className='howsubHeading mt-3'>Develop a culture of reading and sharing</h6>
@@ -51,8 +51,9 @@ return<>
    <h6 className='howsubHeading mt-4 '>Be the cause of literacy & make the difference the world needs.</h6>
     </div>
  </div>
-  <div className='row '>
-    <div className='col-lg-5 col-md-5 col-sm-10 col-xm-10 ms-5 donate mb-5 me-5'>
+  <div className='row mt-5 p-5'>
+    <div className="col-lg-1"></div>
+    <div className='col-lg-5  donate mb-5 me-5 shift'>
         <div>
             <h3 className='text-center subheading '>Why to Donate</h3><hr/>
             <b className='subheading mt-3 text-center'>"Knowledge increases by sharing,but not saving"</b>
