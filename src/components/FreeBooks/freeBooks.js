@@ -64,7 +64,7 @@ function FreeBooks() {
         {!freeerror&&freeProduct.filter((book)=>book.permission&&book.status==true).map((book,index)=> 
             <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
               <div className="card">
-                <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
+              {book.photos.split("@")[1] ? <img src={apiEndPoint.DISK_STORAGE+ book.photos.split("@")[1]} className="img-fluid cardimg" /> : <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />}
                 <a className="cardcircle"><i className="fa fa-shopping-cart carticon mt-3" style={{cursor:"pointer"}} onClick={()=>addToCart(book._id)}></i></a>
                 <div className="card-body">
                   <p className="card-text cardtitle">{book.name.substring(0, 20)}</p>

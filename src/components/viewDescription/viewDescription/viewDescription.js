@@ -2,11 +2,11 @@
 import Footer from "../../footer/footer";
 import Header from "../../header/header";
 import "./viewDescription.css"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 function ViewDescription() {
-
+    const navigate = useNavigate()
     const location = useLocation();
-    const book = location.state.bookDetails;
+    const book = location?.state?.bookDetails;
     console.log(book)
 
     return <>
@@ -21,11 +21,11 @@ function ViewDescription() {
                     <div className="container-fluid px-4">
                         <div className="container-fluid" id="main_wrapper">
                             <div className="container" id="container_wrapper">
-                                <div className="mid_wrapper">
+                                {book ? <div className="mid_wrapper">
                                     <div id="div1">
                                         <div id="main_image" className="image">
                                             <img
-                                                src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))}
+                                                src={"https://drive.google.com/uc?export=view&id=" + book?.photos.substring(32, book?.photos.lastIndexOf("/"))}
                                                 alt=""
                                                 id="mainImage"
                                             />
@@ -35,13 +35,13 @@ function ViewDescription() {
                                     </div>
                                     <div id="div2">
                                         <div>
-                                            <p className="dectitel">{book.name}</p>
+                                            <p className="dectitel">{book?.name}</p>
 
-                                            <p className="desprice">&#8377; {book.price==0?"Free": book.price}</p>
-                                            <span className="decauther">By:  <span className="authername"> {book.author} </span>  (Author)  </span>
-                                            <p className="bookdescription">{book.description.substring(0, 120)}</p>
-                                            <p className="decauther">publication Date : <span className="bookdescription ml-2">{book.publicationDate}</span></p>
-                                            <p className="decauther"> Edition :<span className="bookdescription ml-3"> {book.edition}</span></p>
+                                            <p className="desprice">&#8377; {book?.price==0?"Free": book?.price}</p>
+                                            <span className="decauther">By:  <span className="authername"> {book?.author} </span>  (Author)  </span>
+                                            <p className="bookdescription">{book?.description?.substring(0, 120)}</p>
+                                            <p className="decauther">publication Date : <span className="bookdescription ml-2">{book?.publicationDate}</span></p>
+                                            <p className="decauther"> Edition :<span className="bookdescription ml-3"> {book?.edition}</span></p>
                                             
                                             
                                         </div>
@@ -50,12 +50,10 @@ function ViewDescription() {
                                             <a>
                                                 <button className="discriptionbtn">Add to cart</button>
                                             </a>
-                                            <a href>
-                                                <button className="discriptionbtn2 ml-3">add to wishlist</button>
-                                            </a>
+                                            
                                         </div>
                                     </div>
-                                </div>
+                                </div>:navigate("/")}
                             </div>
                         </div>
                     </div>

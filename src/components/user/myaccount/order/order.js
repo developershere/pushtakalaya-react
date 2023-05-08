@@ -48,7 +48,7 @@ function Order() {
                 <td>
                   {index + 1}
                 </td>
-                <td className="text-danger" onClick={() => changeOrderDetails(order)}>
+                <td className="text-primary" onClick={() => changeOrderDetails(order)}>
                   {order._id}
                 </td>
                 <td>

@@ -8,16 +8,19 @@ import Account from "./account";
 import SideBar from "./sidebar";
 import UserBooks from "./userbook";
 import Order from "./order/order";
+import Header from "../../header/header";
+import Footer from "../../footer/footer";
 function MyAccount(){
   
     return<>
+    <Header/>
      <div className="breadcrumbs-area mb-70">
         <div className="container">
             <div className="row">
                 <div className="col-lg-12">
                     <div className="breadcrumbs-menu">
                         <ul>
-                            <li><Link to='/'>Home</Link></li>
+                            <li><Link to="/">Home</Link></li>
                             <li><a href="#" className="active">my-account</a></li>
                         </ul>
                     </div>
@@ -68,7 +71,7 @@ function MyAccount(){
             </div>
         </div>
     </div>
-    
+    <Footer/>
     </>
 }
 

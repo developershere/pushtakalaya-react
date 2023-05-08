@@ -19,6 +19,19 @@ function SignIn(){
   const navigate = useNavigate();
 
 
+  const throttleFunction = (func,delayTime)=>{
+    let prev=0;
+    return (...args)=>{
+      let time = new Date().getTime();
+      if(time-prev>delayTime)
+      {
+        prev = time;
+        window.alert("Throttling is enabled");
+        return func(...args);
+      }
+    }
+  }
+
   const handleSubmit=async(event)=>{
     try{
     event.preventDefault();
@@ -27,7 +40,7 @@ function SignIn(){
       let carts = await axios.post(apiEndPoint.FETCH_CART,{userId:response.data.user._id})
       dispatch(setCurrentUser(response.data.user));
       dispatch(fetchCart(response.data.user._id));
-      toast.success("Welcome To Pustakalaya")
+      toast.success("Welcome to Pustakalaya");
       navigate("/")
 
         return response.data.user;
@@ -37,6 +50,14 @@ function SignIn(){
       toast.error("Sign In Failed");
     }
   }
+ function sub () {
+    var email = document.getElementById('floatingInput').value;
+    var pass = document.getElementById('floatingPassword').value;
+
+    if(email.length && pass.length ){
+       document.getElementById('submitbtn').removeAttribute('disabled');
+    }
+}
 
   const changeHome = () => {
     navigate("/")
@@ -80,13 +101,16 @@ function SignIn(){
                   <label for="floatingInput">Email address</label>
                 </div>
                 <div className="form-floating mb-3">
-                  <input  onChange={(event)=>setPassword(event.target.value)}type="password" className="form-control" id="floatingPassword" placeholder="Password"/>
+                  <input  onChange={(event)=>setPassword(event.target.value)}type="password" className="form-control" onBlur={sub} id="floatingPassword" placeholder="Password"/>
                   <label for="floatingPassword">Password</label>
                 </div>
                 <div className="d-grid">
-                  <button className="btn btn-lg  btn-login text-uppercase fw-bold mb-2  btn btn-dark" type="submit">Sign in</button>
+                  <button id='submitbtn' disabled className="btn btn-lg btn-login text-uppercase fw-bold mb-2  btn btn-dark" type="submit">Sign in</button>
                   <div className="text-center">
                     <a className="small" href="#">Forgot password?</a>
+                  </div>
+                  <div className="text-center">
+                    <a className="" href="#">I Don't Have an Account</a>
                   </div>
                 </div>
 

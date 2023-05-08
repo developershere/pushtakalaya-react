@@ -7,8 +7,7 @@ function BookList() {
     const books = location.state.dataList;
     window.alert(books);
     return <>
-        Hello world
-         {books.map((book)=>
+       {books.map((book)=>
         <div className="mainDivofList">
             <div className="listRigthPart">
                 <div className="ListBookImage">
@@ -32,8 +31,7 @@ function BookList() {
                     </div>
                     <div className="booklistDes">
                         <p>
-                            Faded short sleeves t-shirt with high neckline. Soft and stretchy
-                            material for a comfortable fit. Accessorize
+                            
                         </p>
                     </div>
                 </div>
