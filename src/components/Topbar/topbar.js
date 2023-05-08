@@ -11,7 +11,7 @@ function TopBar() {
     const {cartItems} = useSelector((state)=>state.cart);
     const keyword = useRef("");
     const navigate = useNavigate();
-    function debounce(func, timeout = 3000) {
+    function debounce(func, timeout = 1000) {
         let timer;
         return (...args) => {
             clearTimeout(timer);
@@ -50,7 +50,7 @@ function TopBar() {
                         <div className="my-cart">
                             <ul>
                                 <li> <Link className="view-cart" to="/cart" ><i className="fa fa-shopping-cart"></i>My Cart</Link>
-                                    <span>2</span >
+                                    {currentUser?.status?<span>{cartItems?.length}</span > : <span>0</span >}
                                     <div className="mini-cart-sub">
                                         <div className="cart-product">
                                         {!error && recentProductList.map((product, index)=>
