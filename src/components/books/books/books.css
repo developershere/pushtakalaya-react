@@ -9,8 +9,9 @@
 }
 
 .RightPart {
-    height: 400px;
+    height: auto;
     width: 25%;
+
     /* border: 2px solid green; */
 }
 
@@ -142,13 +143,14 @@
 .buttonhover {
     background-color: #212529;
     color: white;
+    font-family: bold;
 }
 
 .buttonhover:hover {
     background-color: #F07C29;
     cursor: pointer;
     color: white;
-    font-family: bold;
+   
 }
 
 .card {
@@ -309,6 +311,34 @@
   background-color: white;
  
  }
+
+ .priceButton{
+    margin-left:50px;
+    background-color: #f07c29;
+   color: white;
+   font-weight: 600;
+   font-family: 'Rufina',serif ;
+   border: none;
+   margin-top: 10px;
+  }
+
+  .priceRange{
+     margin-top: 20px;
+  }
+  .priceRange li{
+    margin: 8px;
+    font-size: 15px;
+    font-weight: 10px;
+    cursor: pointer;
+    margin-left:20px;
+  }
+  .listhover{
+    cursor: pointer;
+  }
+  .listhover:hover{
+    color: #f07c29 !important;
+    background-color: #f5f3f3 !important;
+  }
 
  
 

@@ -11,7 +11,7 @@ function Payment(props) {
       var options = {
         key: 'rzp_test_yl7fWesMTh5Yh5',
         key_secret: 'OrL99XehMMTf1sTBboTkdlMu',
-        amount: amount*1,
+        amount: amount*10,
         currency: 'INR',
         name: 'PUSTAKALAYA',
         description: 'Thanks for choosing Pustkalaya',
@@ -38,7 +38,7 @@ function Payment(props) {
       <br />
       <input type='text' onChange={(e) => setamount(e.target.value)} placeholder='enter amount' value={props.money} />
       <br /><br />
-      <button onClick={handleSubmit}>Submit</button>
+      <button className='btn-dark mb-2' onClick={handleSubmit}>Submit</button>
     </div>
   );
 }

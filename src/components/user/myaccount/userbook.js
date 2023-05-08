@@ -42,12 +42,12 @@ function UserBooks() {
                 <h5>Books</h5>
 
                 <div className="myaccount-table table-responsive text-center col-lg-12">
-                    <table className="table table-bordered table-responsive">
+                <table className="table align-middle mb-0 bg-white">
                         <thead className="thead-light">
                             <tr>
                                 <th className="pt-2 pb-2">Image</th>
                                 <th className="pt-2 pb-2">Name</th>
-                                <th className="pt-2 pb-2">Description</th>
+                                <th className="pt-2 pb-2">Author</th>
                                 <th className="pt-2 pb-2">Price</th>
                                 <th className="pt-2 pb-2">Action</th>
                             </tr>
@@ -55,7 +55,7 @@ function UserBooks() {
                         <tbody>
                             {booklist.filter((book)=> book.price > 0).map((book, index) =>
                                 <tr>
-                                    {book.photos.split("@")[1] ? <td className=" p-3"><img src={apiEndPoint.DISK_STORAGE+book.photos.split("@")[1]} height='100px' width='90px'></img></td>:<td className=" p-3"><img src={book.photos} height='100px' width='90px'></img></td>}
+                                    {book.photos.split("@")[1] ? <td className=" p-3"><img src={apiEndPoint.DISK_STORAGE+book.photos.split("@")[1]} height='60px' width='60px'></img></td>:<td className=" p-3"><img src={book.photos} height='60px' width='60px'></img></td>}
                                     <td className=" p-3">{book.name}</td>
                                     <td className=" p-3">{book.author.substring(0,30)}</td>
                                     <td className=" p-3">{book.price}</td>

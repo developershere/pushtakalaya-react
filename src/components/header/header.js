@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TopBar from "../Topbar/topbar";
 import { signout } from "../../router-config/userSlice";
 import { toast } from "react-toastify";
 function Header() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { categoryList, error, isLoading } = useSelector((state) => state.category)
     const currentUser = useSelector((state) => state.user.currentUser);
     const signOut = () => {
@@ -12,7 +13,7 @@ function Header() {
         toast.info("Sign Out SuccesFully");
     }
     function searchCategory(){
-        window.alert(" Called....");
+        navigate("/book")
     }
     return <>
         <header>

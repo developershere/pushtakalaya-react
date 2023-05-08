@@ -11,7 +11,7 @@ function TopBar() {
     const {cartItems} = useSelector((state)=>state.cart);
     const keyword = useRef("");
     const navigate = useNavigate();
-    function debounce(func, timeout = 3000) {
+    function debounce(func, timeout = 1000) {
         let timer;
         return (...args) => {
             clearTimeout(timer);
@@ -19,8 +19,6 @@ function TopBar() {
         };
     }
     const getSearch = async (event) => {
-        window.alert("Search called...")
-        console.log("Searching Books...");
         const response = await axios.post(apiEndPoint.SEARCH_BOOKS, { keyword: keyword.current.value });
         navigate("/book", { state: { books: response.data.Product, status: true } });
     }
@@ -50,7 +48,7 @@ function TopBar() {
                         <div className="my-cart">
                             <ul>
                                 <li> <Link className="view-cart" to="/cart" ><i className="fa fa-shopping-cart"></i>My Cart</Link>
-                                    <span>2</span >
+                                    
                                     <div className="mini-cart-sub">
                                         <div className="cart-product">
                                         {!error && recentProductList.map((product, index)=>
@@ -59,8 +57,8 @@ function TopBar() {
                                                     <a href="#"><img src="img/product/3.jpg" alt="book" /></a>
                                                 </div>
                                                 <div className="cart-info">
-                                                    <h5><a href="#">Chaz Kangeroo Hoodie</a></h5>
-                                                    <p>1 x £52.00</p>
+                                                    <h5><a href="#">Your cart books</a></h5>
+                                                    <p>1 x ₹52.00</p>
                                                 </div>
                                                 <div className="cart-icon">
                                                     <a href="#"><i className="fa fa-remove"></i></a>
@@ -68,7 +66,7 @@ function TopBar() {
                                             </div>)}
                                         </div>
                                         <div className="cart-totals">
-                                            <h5>Total <span>£12.00</span></h5>
+                                            <h5>Total <span> ₹12.00</span></h5>
                                         </div>
                                         <div className="cart-bottom">
                                         <Link className="view-cart" to="/cart" >view cart</Link>

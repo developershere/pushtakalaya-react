@@ -28,5 +28,9 @@ export const apiEndPoint = {
     ORDER_SAVE:"/order/saveorder",
     UPDATE_BOOK:"/book/update-book",
     SEARCH_CITY_BY_ID: "/city/byId",
-    SEARCH_BOOK_BY_USERID: "/book/serachByuserId"
+    SEARCH_BOOK_BY_USERID: "/book/serachByuserId",
+    FETCH_ORDER:"/order/vieworderByuserId",
+    FETCH_ORDER_BY_ORDERID:"/order/vieworderByorderId",
+    PRICE: "/book/price"
+
 }
