@@ -1,9 +1,7 @@
 import { useSelector } from "react-redux";
 import "./books.css"
-
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 import { useLocation, useNavigate } from "react-router-dom";
 import { apiEndPoint } from "../../../webApi/webapi";
 import Header from "../../header/header";
@@ -42,7 +40,7 @@ function Books() {
         navigate("/viewDescription", { state: { bookDetails: book } })
     }
 
-    const viewBookByCategory = async (id) => {
+    const viewBookByCategory = async (categoryId) => {
         try {
             let response = await axios.post(apiEndPoint.BOOK_BY_CATEGORY, { categoryId });
             if (response.data.status) {
@@ -148,57 +146,11 @@ function Books() {
                                 <p>There Are  books.</p>
                             </div>
                         </div>
-                        <div className="CategoryList">
-
-                            <ul>
-                                {!error && categoryList.map((category, index) =>
-                                    <li style={{ cursor: "pointer" }} onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
-                            </ul>
-                        </div>
-                        {/* drop down */}
-                        <div className="btn-group dropdownbtn">
-                            <button className="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                AUTHOR
-                            </button>
-                            <ul className="dropdown-menu dropdownofOther" >
-                                {bookData.map((book, index) =>
-                                    <li onClick={() => { searchByAuther(book.author) }}>{book.author}</li>)}
-                            </ul>
-                        </div>
-                        {/* drop down */}
                     </div>
-                    <div className="LeftPart">
-                        <div className="mainImage">
-                            <img
-                                src="../../img/banner/9.jpg"
-                                alt=""
-                            />
-                        </div>
-                        <div className="headingbook">
-                            <p className="heading">BOOK</p>
-                        </div>
-                        <div className="gridAndList">
-                            <div className="grid d-flex">
-                                <i className="fa fa-th-large" aria-hidden="true"></i>
-                                <div className="mb-5">
-                                    <spna className="gridName">Gride</spna>
-                                </div>
-                                <div className="listicon">
-                                    <i onClick={() => viewListInbooks(bookData)} className="fa fa-list" aria-hidden="true"></i>
-                                </div>
-                                <div className="listName">
-                                    List
-                                </div>
-                                <div className="bookpara">
-                                    <p>There Are  Products.</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        {/* cart */}
+                    
 
                         <div className="row">
-                            {keyword?.filter((book) => book.permission && book.status == true)?.map((book, index) =>
+                            {/* {keyword?.filter((book) => book.permission && book.status == true)?.map((book, index) =>
                                 <div key={index} className="col-md-5 col-xl-3 col-lg-5 col-sm-3 mt-5" data-aos="fade-up" data-aos-duration="500">
                                     <div className="card">
                                     {book.photos.split("@")[1] ? <img src={apiEndPoint.DISK_STORAGE+ book.photos.split("@")[1]+".png"} className="img-fluid cardimg" /> : <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />}
@@ -211,14 +163,14 @@ function Books() {
                                             <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)}>View More</button>
                                         </div>
                                     </div>
-                                </div>)}
+                                </div>)} */}
                             {bookData.filter((book) => book.permission && book.status == true)?.map((book, index) =>
                                 <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
                                     <div className="card">
                                     {console.log(apiEndPoint.DISK_STORAGE+ book.photos.split("@")[1]+".png")}
 
                                         {book.photos.split("@")[1] ? <img src={"http://localhost:3006/"+apiEndPoint.DISK_STORAGE+ book.photos.split("@")[1]} className="img-fluid cardimg" /> : <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />}
-                                        <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3"></i></a>
+                                        <a className="card-action"><i className="fa fa-shopping-cart carticon mt-3"></i></a>
                                         <div className="card-body">
                                             <p className="card-text cardtitle">{book.name.substring(0, 15)}</p>
                                             <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 10)}</p>
@@ -228,16 +180,14 @@ function Books() {
                                         </div>
                                     </div>
                                 </div>)}
-                                <div>
-                                    <img src="file:///F:/Project/Beckend/public/images/0276b80c395e24c092cb85bb5876ec72.png"/>
-                                </div>
+                             
                         </div>
                         {/* cart */}
                     </div>
                 </div>
             </div>
-        </div>
-        <Footer/>
+        
+        {/* <Footer/> */}
     </>
 }
 

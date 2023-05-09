@@ -52,9 +52,7 @@ function Header() {
                                     </ul>
                                 </nav>
                             </div>
-                            <div className="safe-area">
-                                <Link to='/sellbooks'>Sell Books</Link>
-                            </div>
+                         
                         </div>
                     </div>
                 </div>
