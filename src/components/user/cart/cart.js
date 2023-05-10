@@ -45,10 +45,8 @@ function Cart() {
     try {
       window.alert(paymentMode);
       event.preventDefault();
-      const date = new Date().toString().substring(4, 15).replaceAll(' ', '-')
-      // window.alert(cartItems[0]._id);
-      // window.alert(cartItems[0].bookId);
-      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, sellerId: currentUser._id, cartId: cartItems[0]._id, orderItem: cartItems[0].bookId, date })
+      const date = new Date().toString().substring(4, 15).replaceAll(' ', '-');
+      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, sellerId: currentUser._id, cartId: cartItems[0]._id, orderItem: cartItems[0].bookId, date:date })
       console.log(response.data);
 
       if (paymentMode) {
@@ -63,6 +61,7 @@ function Cart() {
 
 
     } catch (err) {
+      console.log(err);
       console.log("Oops Something Went Wrong");
     }
   }
@@ -141,7 +140,7 @@ function Cart() {
     {!cartItems?.length == 0 ? <div className="container-fluid addtocartcontainer mb-70">
 
       <div className=" row">
-        <div className="  ml-4 mt-5 col-sm-8 col-md-8 col-xm-8 ">
+        <div className="  ml-4 mt-5 col-sm-8 col-md-8 col-xm-8 ps-2 ">
           <div className=" headingcart row col-md-12 mt-2">
             <h5 className="cartscontainheading text-white mt-1">My Cart({cartItems?.length + "Books"})</h5>
           </div>
