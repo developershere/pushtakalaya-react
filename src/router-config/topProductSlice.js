@@ -4,7 +4,6 @@ import { apiEndPoint } from "../webApi/webapi";
 
 export const fetchTopProduct = createAsyncThunk('fetchTopProduct',async()=>{
     let response =await axios.get(apiEndPoint.TOP_PRODUCT_API);
-    console.log(response.data.topbookList)
     if(response.data.status){
     return response.data.topbookList
     }

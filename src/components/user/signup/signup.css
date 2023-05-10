@@ -22,7 +22,14 @@ form .input-field {
 .input-field input::-webkit-outer-spin-button {
     display: none;
 }
-
+#modal{
+    color: #f07c29;
+}
+#verify{
+    background-color: #f07c29 !important;
+    color: white !important;
+    font-weight: 600;
+}
 .submitbtn1 {
     background-color: #f07c29 !important;
     color: white !important;

@@ -8,6 +8,7 @@ export const apiEndPoint = {
     BOOK_BY_CATEGORY :"/book/searchByCategoryId",
     USER_SIGNIN:"/user/signIn",
     USER_SIGNUP:"/user/signup",
+    USER_VERIFY : "/user/verifyEmail",
     USER_UPDATEPROFILE:"/user/updateProfile",
     Search_By_Categoryname: "/book/searchByCategoryId",
     SEARCH_BY_AUTHER: "/book/searchbyAuthor",
@@ -22,7 +23,14 @@ export const apiEndPoint = {
     ADD_BOOK : "/book/add",
     SEARCH_BOOKS : "/book/searchByKeyword",
     FEATCH_CITY_BY_STATE:"/city/findCityByState",
-    DISK_STORAGE : "F:/Project/Beckend/public/images/",
+    DISK_STORAGE : "http://localhost:3006/images/",
     REMOVE_CART:"/cart/remove",
-    ORDER_SAVE:"/order/saveorder"
+    ORDER_SAVE:"/order/saveorder",
+    UPDATE_BOOK:"/book/update-book",
+    SEARCH_CITY_BY_ID: "/city/byId",
+    SEARCH_BOOK_BY_USERID: "/book/serachByuserId",
+    FETCH_ORDER:"/order/vieworderByuserId",
+    FETCH_ORDER_BY_ORDERID:"/order/vieworderByorderId",
+    PRICE: "/book/price"
+
 }

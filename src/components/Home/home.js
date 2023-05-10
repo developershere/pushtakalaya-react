@@ -5,7 +5,7 @@ import Carousal from "../carousal/carousal";
 import Footer from "../footer/footer";
 
 import Header from "../header/header";
-import MostProduct from "../mostProductArea/mostproduct";
+
 
 import TopInteresting from "../topInteresting/topInteresting";
 

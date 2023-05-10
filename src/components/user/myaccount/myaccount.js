@@ -1,35 +1,21 @@
 import { useSelector } from "react-redux";
 import"./myaccount.css"
 import{Link, useNavigate} from "react-router-dom"
-import DashBoard from "./dashboard";
-import Order from "./order";
+
 import Payment from "./payment";
 import BillingAdress from "./billing";
 import Account from "./account";
 import SideBar from "./sidebar";
-import TopBar from "../../Topbar/topbar";
+import UserBooks from "./userbook";
+import Order from "./order/order";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
 function MyAccount(){
-
+  
     return<>
     <Header/>
-     <div className="breadcrumbs-area mb-70">
-        <div className="container">
-            <div className="row">
-                <div className="col-lg-12">
-                    <div className="breadcrumbs-menu">
-                        <ul>
-                            <li><Link to="/">Home</Link></li>
-                            <li><a href="#" className="active">my-account</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div className="entry-header-area">
+    
+    <div className="entry-header-area mt-3">
         <div className="container">
             <div className="row">
                 <div className="col-lg-12">
@@ -41,7 +27,7 @@ function MyAccount(){
         </div>
     </div>
   
-    <div className="my-account-wrapper mb-70">
+    <div className="my-account-wrapper ">
         <div className="container">
             <div className="section-bg-color">
                 <div className="row">
@@ -52,11 +38,11 @@ function MyAccount(){
                             <div className="row">
                                <SideBar/>
                               
-                                <div className="col-lg-9 col-md-8">
+                                <div className="col-lg-9 col-md-8 mb-4" style={{marginTop:'-70px'}}>
                                     <div className="tab-content" id="myaccountContent">
                                        
-                                        <DashBoard/>
-                                        <Order/>
+                                        <UserBooks/>
+                                         <Order/>
                                          <Payment/>
                                        <BillingAdress/>
                                        <Account/>   

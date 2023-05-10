@@ -17,40 +17,32 @@ function SignUp() {
     let contact = useRef("");
     let otp = useRef("");
     let mausam;
-    let otpCheck = false;
+    var gender = "Male";
+    var profileImage=[];
     var mtime;
+    var modalDismiss;
     const [modal,setModal] = useState(false);
     const navigate = useNavigate();
 
     const changeHome = () => {
         navigate("/")
     }
+    const profileUpload = (event)=>{
+         profileImage = event.target.files[0];
+    }
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
             window.alert("fdd");
-            let response = await axios.post(apiEndPoint.USER_SIGNUP, { name, email, password, contact });
-            if (!response.data.status) {
-
-                navigate("/signin");
-            }
-        }
-        catch (err) {
-            if (err.response.status == 400)
-                toast.warning("Ohh!! something went wrong");
-        }
-    }
-
-    const verifyEmail = async () => {
-        try {
             console.log("sfdfdg");
-            let response = await axios.post("/user/thakur", { name: name.current.value, email: email.current.value });
+            let response = await axios.post(apiEndPoint.USER_VERIFY, { name: name.current.value, email: email.current.value });
             mausam = response.data.result.OTP;
-            setModal(response.data.status);
+            // setModal(response.data.status);
             window.alert("fgdg"+modal);
             mtime = response.data.result.currentTime;
             console.log("OTP : " + mausam);
             console.log("Time : " + mtime);
+            
         }
         catch (err) {
             setModal(false);
@@ -60,12 +52,23 @@ function SignUp() {
                 toast.danger("Ohhoo Something went wrong");
         }
     }
+
     const registration = async (event) => {
         console.log(new Date().getMinutes());
+        console.log("Mtime : "+mtime);
+        console.log(profileImage);
+        const formData = new FormData();
+        formData.append("profile",profileImage);
+        formData.set("name",name.current.value);
+        formData.set("email",email.current.value);
+        formData.set("contact",contact.current.value);
+        formData.set("password",password.current.value);
+        formData.set("password",gender);
+        modalDismiss = false;
         if (new Date().getMinutes() <= mtime) {
             if (mausam == otp.current.value) {
-                otpCheck = true;
-                let response = axios.post("/user/signup",{name,email,password,contact});
+                const response = await axios.post(apiEndPoint.USER_SIGNUP,formData)
+                modalDismiss = true;
                 toast("Registration Success....")
                 console.log("Success....");
             }
@@ -146,13 +149,16 @@ function SignUp() {
                                     </div>
                                     <div>
                                         <i className="fa fa-user me-3"></i>
-                                        <input className="mb-4" type="file" accept="image" required />
+                                        <input onChange={profileUpload} className="mb-4" type="file" accept="image" required />
                                     </div>
                                     <div className="form-group text-center">
-                                        <button onClick={(() => verifyEmail(email, name))} id="signupsubmibtn" type="submit" className="btn submitbtn1 w-100" data-toggle="modal" data-target="#exampleModalCenter" disabled >
+                                            {modal ?
+                                                <button type="submit" className="btn submitbtn w-100">
+                                            Sign Up
+                                        </button> : <button type="submit" className="btn submitbtn w-100" data-toggle="modal" data-target="#exampleModalCenter">
                                             Sign Up
                                         </button>
-                                            
+                                            }
                                     </div>
 
                                     <div className="text-center">
@@ -164,7 +170,7 @@ function SignUp() {
                                 <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div className="modal-dialog modal-dialog-centered" role="document">
                                     <div className="modal-content">
-                                        <div className="modal-header">
+                                        <div className="modal-header" id="modal">
                                             Registration Page
                                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -180,7 +186,7 @@ function SignUp() {
                                                             <input ref={otp} className="m-2 text-center form-control rounded width:10" type="text" id="fourth" maxlength="4" />
                                                         </div>
                                                         <div className="mt-4">
-                                                            <button onClick={() => registration(mtime, mausam)} className="btn btn-warning px-4 validate">Validate</button>
+                                                            {modal ? <button onClick={() => registration(mtime, mausam)} className="btn btn-warning px-4 validate" id="verify" data-dismiss="modal">Validate</button> :  <button onClick={() => registration(mtime, mausam)} className="btn btn-warning px-4 validate" id="verify">Validate</button>}
                                                         </div>
                                                     </div>
                                                 </div>
