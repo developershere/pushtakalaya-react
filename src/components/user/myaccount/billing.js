@@ -1,20 +1,33 @@
 import { useSelector } from "react-redux";
+import { apiEndPoint } from "../../../webApi/webapi";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function BillingAdress() {
-    const { currentUser, isError } = useSelector((state) => state.user);
-   
+    const { currentUser } = useSelector((state) => state.user)
+    const [orderList, SetOrderList] = useState([]);
+
+    const featchOrderByUserId = async () => {
+        let response = await axios.post(apiEndPoint.FETCH_ORDER, { userId: currentUser._id });
+        console.log(response);
+        SetOrderList(response.data.orderlist);
+    }
+    console.log(orderList[orderList.length - 1]?.delieveryAddress)
+
+    useEffect(() => {
+        featchOrderByUserId();
+    }, []);
+
     return <>
         <div className="tab-pane fade" id="address-edit" role="tabpanel">
             <div className="myaccount-content">
                 <h5>Billing Address</h5>
                 <address>
                     <p><strong>{currentUser && currentUser.name}</strong></p>
-                    <p>1355 Market St, Suite 900 <br />
-                        San Francisco, CA 94103</p>
-                    <p>Mobile: {currentUser.contact}</p>
+                    <p>{orderList[orderList.length - 1]?.delieveryAddress}</p>
+                    <p>Mobile: {currentUser?.contact}</p>
                 </address>
-                <a href="#" className="btn btn-sqr"><i className="fa fa-edit"></i>
-                    Edit Address</a>
+
             </div>
         </div>
 

@@ -11,12 +11,12 @@ function Payment(props) {
       var options = {
         key: 'rzp_test_yl7fWesMTh5Yh5',
         key_secret: 'OrL99XehMMTf1sTBboTkdlMu',
-        amount: amount*1,
+        amount: amount*100*1,
         currency: 'INR',
         name: 'PUSTAKALAYA',
         description: 'Thanks for choosing Pustkalaya',
         handler: function (response) {
-          window.alert(response.razorpay_payment_id);
+          window.alert("Payment Success Id : "+response.razorpay_payment_id);
         },
         prefill: {
           name: 'Mausam lodhi',
@@ -36,9 +36,9 @@ function Payment(props) {
   return (
     <div className="App">
       <br />
-      <input type='text' onChange={(e) => setamount(e.target.value)} placeholder='enter amount' value={props.money} />
+      <input type='text' onChange={(e) => setamount(e.target.value)} placeholder='enter amount' value={props.money*1} />
       <br /><br />
-      <button onClick={handleSubmit}>Submit</button>
+      <button className='btn-dark mb-2 razorpaybutton' onClick={handleSubmit}>Submit</button>
     </div>
   );
 }

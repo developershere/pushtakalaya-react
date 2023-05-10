@@ -44,7 +44,7 @@ function SignIn(){
       let carts = await axios.post(apiEndPoint.FETCH_CART,{userId:response.data.user._id})
       dispatch(setCurrentUser(response.data.user));
       dispatch(fetchCart(response.data.user._id));
-      toast.success("Welcome To Pustakalaya");
+      toast.success("Welcome to Pustakalaya");
       navigate("/")
 
         return response.data.user;

@@ -7,8 +7,10 @@ import axios from "axios";
 import { apiEndPoint } from "../../webApi/webapi";
 import userSlice from "../../router-config/userSlice";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function DonateForm() {
+  const navigate=useNavigate();
   const [citys, setCitys] = useState([]);
   const { categoryList, error, } = useSelector((state) => state.category)
   const { currentUser } = useSelector((state) => state.user);
@@ -34,7 +36,6 @@ function DonateForm() {
 
    const handleSubmit = async (event) => {
     try {
-       window.alert("sdg");
       event.preventDefault();
       const stateId = stateObject.current.value;
       const userId = currentUser._id;
@@ -56,6 +57,7 @@ function DonateForm() {
       let response = await axios.post(apiEndPoint.ADD_BOOK, formData);
      if(response.data.status==true)
       toast.success("Book Added SuccesFully");
+      navigate('/donateform')
     }
     catch (err) {
       toast.error("Something Went Wrong");
@@ -164,7 +166,7 @@ function DonateForm() {
                   </div>
                   <div className="row form-group">
                     <div>
-                      <textarea onChange={(event) => setDescription(event.target.value)} cols='64' rows='4' placeholder="Enter Description" />
+                      <textarea onChange={(event) => setDescription(event.target.value)} cols='70' rows='4' placeholder="Enter Description" />
                     </div>
                   </div>
                   <div>

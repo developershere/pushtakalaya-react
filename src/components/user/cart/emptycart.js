@@ -1,10 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./cart.css";
 function EmptyCart(){
-    const navigate = useNavigate();
-    const changeHome = () => {
-        navigate("/book")
-      }
+    
     return<>
     
  <div className="container emptycartcontainer mt-5 mb-5">
@@ -22,9 +19,9 @@ function EmptyCart(){
         Explore Top Products
       </h6>
       <a href="/">
-        <button type="button" onClick={changeHome} className="cartbutton">
+       <Link to='/'> <button type="button"  className="cartbutton">
           GO SHOOPING
-        </button>
+        </button></Link>
       </a>
     </div> 
   </div> 

@@ -5,7 +5,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { addItemInToCart, removeFromCart, setCartItems, setRemoveUpdate } from "../../../router-config/CartSlice";
+import { addItemInToCart, removeFromCart, setCartItems } from "../../../router-config/CartSlice";
 import { apiEndPoint } from "../../../webApi/webapi";
 import { toast, ToastContainer } from "react-toastify";
 import EmptyCart from "./emptycart";
@@ -33,7 +33,7 @@ function Cart() {
   const navigate = useNavigate();
   const loadProducts = async () => {
     try {
-        
+
       let response = await axios.post(apiEndPoint.FETCH_CART, { userId: currentUser._id });
       dispatch(setCartItems(response.data.cart));
     }
@@ -41,17 +41,24 @@ function Cart() {
       setError("Oops! something went wrong..");
     }
   }
-
-  const checkPaymentMode = ()=>{
-    if(paymentMode)
-      status = true;
-    else
-      status = false;
-  }
   const loadOrder = async (event) => {
     try {
+      window.alert(paymentMode);
       event.preventDefault();
-        
+      const date = new Date().toString().substring(4, 15).replaceAll(' ', '-')
+      // window.alert(cartItems[0]._id);
+      // window.alert(cartItems[0].bookId);
+      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, sellerId: currentUser._id, cartId: cartItems[0]._id, orderItem: cartItems[0].bookId, date })
+      console.log(response.data);
+
+      if (paymentMode) {
+        status = true;
+        window.alert("Please pay First");
+      }
+      else if (paymentMode) {
+        window.alert("COD called...");
+        status = false;
+      }
       // let response =await axios.post(apiEndPoint.ORDER_SAVE,{userId:currentUser._id,billamount:total,contactPerson,contactNumber,delieveryAddress,paymentMode,sellerId:currentUser._id,cartId:cartItems[0]._id,orderItem:cartItems[0].bookId})
 
 
@@ -62,10 +69,10 @@ function Cart() {
 
 
   const removeCart = async (id) => {
-   
+
     try {
-      if(window.confirm("Do You Want To Remove")){
-      dispatch(removeFromCart({userId:currentUser._id,_id:id}));
+      if (window.confirm("Do You Want To Remove")) {
+        dispatch(removeFromCart({ userId: currentUser._id, _id: id }));
       }
     } catch (err) {
       toast.error("Something Went Wrong");
@@ -76,9 +83,7 @@ function Cart() {
     loadProducts();
   }, []);
 
-  const changeHome = () => {
-    navigate("/")
-  }
+
   return <>
     <Header />
     <div className="breadcrumbs-area ">
@@ -87,7 +92,7 @@ function Cart() {
           <div className="col-lg-12">
             <div className="breadcrumbs-menu">
               <ul>
-                <li><a onClick={changeHome}>Home</a></li>
+                <li><Link to='/'>Home</Link></li>
                 <li><a href="#" className="active">cart</a></li>
               </ul>
             </div>
@@ -97,7 +102,9 @@ function Cart() {
     </div>
 
 
-    <div className="modal fade" id="checkoutModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  style={{border:"2px solid black"}}>
+    <div className="modal fade" id="checkoutModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{
+      border: "2px solid black"
+    }}>
       <div className="modal-dialog" role="document">
         <form onSubmit={loadOrder}>
           <div className="modal-content">
@@ -110,7 +117,7 @@ function Cart() {
             <div className="modal-body p-0">
               <div className="innermodel mt-2">
                 <div className="form-group ">
-                  <input type="text" placeholder="Enter Contact Person Name" onChange={(event) => setContactPerson(event.target.value)} className="form-control "/>
+                  <input type="text" placeholder="Enter Contact Person Name" onChange={(event) => setContactPerson(event.target.value)} className="form-control " />
                 </div>
                 <div className="form-group">
                   <input type="text" placeholder="Enter Contact Number" onChange={(event) => setContactNumber(event.target.value)} className="form-control" />
@@ -119,9 +126,7 @@ function Cart() {
                   <textarea type='text' cols='64' rows='4' placeholder="Enter Delievery Address" onChange={(event) => setDeliveryAddress(event.target.value)} className="form-control" />
                 </div>
                 </div>
-                {console.log("Payment : "+status)}
-                {status? <span>ggdghdf</span>
-                 : <Payment
+                {paymentMode*1&&<Payment
                     money = {total}/>
               }
             </div>
@@ -132,13 +137,13 @@ function Cart() {
         </form>
       </div>
     </div>
-   
-    {!cartItems?.length==0?<div className="container-fluid addtocartcontainer mb-70">
+
+    {!cartItems?.length == 0 ? <div className="container-fluid addtocartcontainer mb-70">
 
       <div className=" row">
         <div className="  ml-4 mt-5 col-sm-8 col-md-8 col-xm-8 ">
           <div className=" headingcart row col-md-12 mt-2">
-            <h5 className=" cartmainheading">My Cart()</h5>
+            <h5 className="cartscontainheading text-white mt-1">My Cart({cartItems?.length + "Books"})</h5>
           </div>
 
 
@@ -173,16 +178,16 @@ function Cart() {
             <h6 className="contentcart">Bill Amount<span className="ml-5 pl-3"> :  ₹ {amount}</span></h6>
             <h6 className="contentcart">Total Amount<span className="ml-5 pl-3">: ₹ {total = amount + (!flag && cartItems?.length * 20)}</span></h6><hr />
             <div onChange={(event) => setPaymentMode(event.target.value)}>
-              <input type="radio" value={false} name='payment' /><span className="contentcart" style={{cursor:"pointer"}}>  Cash On Delievery</span><br />
-              <input type="radio" value={true} name='payment' /><span className="contentcart"  style={{cursor:"pointer"}}> Online Payment</span></div>
+              <input type="radio" value={0} name='payment' /><span className="contentcart" style={{cursor:"pointer"}}>  Cash On Delievery</span><br />
+              <input type="radio" value={1} name='payment' /><span className="contentcart"  style={{cursor:"pointer"}}> Online Payment</span></div>
           </div>
-          <a className="btn-block cartcheckoutbutton text-center mt-3 " onClick={checkPaymentMode} data-toggle="modal" data-target="#checkoutModel">Procced To checkout</a>
+          <a className="btn-block cartcheckoutbutton text-center mt-3 " data-toggle="modal" data-target="#checkoutModel">Procced To checkout</a>
         </div>
       </div>
-    </div>:<EmptyCart/>} 
+    </div> : <EmptyCart />}
     <Footer />
-    
+
   </>
 }
 
-export default Cart;
+export default Cart;

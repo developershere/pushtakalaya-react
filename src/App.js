@@ -13,17 +13,19 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchCategory } from './router-config/categorySlice';
 import { fetchTopProduct } from './router-config/topProductSlice';
-import Shop from './components/FreeBooks/freeBooks';
 import FreeBooks from './components/FreeBooks/freeBooks';
 import Update from './components/user/myaccount/update';
 import ProtectedRoute from './components/protectedRoute/protectedRoute';
-import ViewDescription from './components/viewDescription/viewDescription/viewDescription';
+
 import Books from './components/books/books/books';
 import SellboooksForm from './components/sellbooks/sellbook';
 import { fetchState } from './router-config/stateSlice';
 import About from './components/About/about';
 import UserBooks from './components/user/myaccount/userbook';
 import UpdateBooks from './components/user/myaccount/updateBook';
+import OrderDetails from './components/user/myaccount/order/orderDetails';
+import ViewDescription from './components/viewDescription/viewDescription';
+
 function App() {
   const dispatch = useDispatch();
   useEffect(()=>{
@@ -50,13 +52,13 @@ function App() {
    <Route path= "/viewDescription" element={<ViewDescription/>}/>
    <Route path="/book" element={<Books/>}/>
    <Route path='/userBook' element={<UserBooks/>} />
-      <Route path='/updateBooks' element={<UpdateBooks/>}/>
+  <Route path='/updateBooks' element={<UpdateBooks/>}/>
+  <Route path='/orderDetails' element={<OrderDetails/>}/>
    
 
   </Routes>
  
   </>
-  // " Admin completed"
 }
 
 export default App;
