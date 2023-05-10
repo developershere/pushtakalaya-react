@@ -21,41 +21,37 @@ export default function About() {
                                 Why<span>We are?</span>
                             </h3>
                             <p>
-                                Mellentesque faucibus dapibus dapibus. Morbi aliquam aliquet neque.
-                                Donec placerat dapibus sollicitudin. Morbi arcu nisi, mattis ut
-                                ullamcorper in, dapibus ac nunc. Cras bibendum mauris et sapien
-                                feugiat. scelerisque accumsan nibh gravida. Quisque aliquet justo
-                                elementum lectus ultrices bibendum.
+                            Welcome to Pushtakalaya, a unique online platform that combines the joy of reading with the satisfaction of giving back. We are a team of book lovers who believe that every book deserves a new home, and that reading is one of the most important tools for personal growth and lifelong learning.
                             </p>
                             <ul>
                                 <li>
                                     <a href="#">
                                         <i className="fa fa-check" />
-                                        Amazing wordpress theme
+                                        A brief introduction to your website and what you offer
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <i className="fa fa-check" />
-                                        HTML &amp; CSS3 build with bootstrap
+                                        Your team's passion for books and reading
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <i className="fa fa-check" />
-                                        Powerfull admin panel
+                                        Your team's passion for books and reading
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <i className="fa fa-check" />
-                                        Icon well organized &amp; SEO optimized friendy
+                                        We are passionate about books and reading.
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <i className="fa fa-check" />
-                                        Iconncredible design
+                                        We offer a 100% satisfaction guarantee to our customers.
                                     </a>
                                 </li>
                             </ul>
@@ -107,38 +103,7 @@ export default function About() {
                 </div>
             </div>
         </div>
-        {/* Counter Start................. */}
-        <div className="counter-area pt-70 pb-40">
-            <div className="container">
-                <div className="row">
-                    <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div className="single-counter mb-30 text-center">
-                            <h2 className="counter">99</h2>
-                            <span>projects completed</span>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div className="single-counter mb-30 text-center">
-                            <h2 className="counter">180</h2>
-                            <span>Happy Clients</span>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div className="single-counter mb-30 text-center">
-                            <h2 className="counter">500</h2>
-                            <span>Cups of Coffe</span>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div className="single-counter mb-30 text-center">
-                            <h2 className="counter">320</h2>
-                            <span>Awards Winner</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {/* Counter ends.............. */}
+      
 
         {/* Team starts.......... */}
         <div className="team-area pt-70 pb-40">
@@ -147,14 +112,14 @@ export default function About() {
                     <div className="col-lg-12">
                         <div className="team-title text-center mb-50">
                             <h2>Our Crazy Team</h2>
-                        </div>
+                        </div> 
                     </div>
                     <div className="col-lg-3 col-md-6 col-sm-6 col-12">
                         <div className="single-team mb-30">
                             <div className="team-img-area">
                                 <div className="team-img">
                                     <a href="#">
-                                        <img src="img/team/1.jpg" alt="man" />
+                                        <img src="https://you.com/proxy?url=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.OqTuCNBvX5xdvNMInfI0oAHaEP%26pid%3DApi" alt="man"  />
                                     </a>
                                 </div>
                                 <div className="team-link">

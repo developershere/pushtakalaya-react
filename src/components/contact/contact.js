@@ -27,7 +27,7 @@ function Contact(){
             <div className="row">
                 <div className="col-lg-12">
                     <div id="googleMap">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.0810468603486!2d75.86722411215305!3d22.725228788819347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd6e64d65a21%3A0x9d1e020df91d27e9!2sInfoBeans%20Foundation!5e0!3m2!1sen!2suk!4v1683635713909!5m2!1sen!2suk" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.0810468603486!2d75.86722411215305!3d22.725228788819347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd6e64d65a21%3A0x9d1e020df91d27e9!2sInfoBeans%20Foundation!5e0!3m2!1sen!2suk!4v1683635713909!5m2!1sen!2suk" width="100%" height="100%" style={{border:"0"}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
