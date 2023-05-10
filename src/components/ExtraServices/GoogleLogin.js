@@ -17,9 +17,11 @@ function WithGoogle(){
                 <GoogleLogin className='googlebutton'
                     onSuccess={credentialResponse =>{
                         const details =jwt_decode(credentialResponse.credential);
-                        const userData = {name : details.family_name+details.given_name,email : details.email,photo : details.picture,status:true};
+                        const userData = {name : details.given_name+" "+details.family_name,email : details.email,photo : details.picture,status:true};
                         dispatch(setCurrentUser(userData));
                         console.log(details);
+                        console.log(credentialResponse);
+                        navigate("/");
                         console.log(credentialResponse);
                         navigate("/");
                     }}

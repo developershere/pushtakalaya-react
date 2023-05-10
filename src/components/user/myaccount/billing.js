@@ -25,8 +25,7 @@ function BillingAdress() {
                 <address>
                     <p><strong>{currentUser && currentUser.name}</strong></p>
                     <p>{orderList[orderList.length - 1]?.delieveryAddress}</p>
-                    <p></p>
-                    <p>Mobile: {currentUser.contact}</p>
+                    <p>Mobile: {currentUser?.contact}</p>
                 </address>
 
             </div>
