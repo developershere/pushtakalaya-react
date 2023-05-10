@@ -6,7 +6,7 @@ import {toast,ToastContainer} from "react-toastify";
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../../router-config/userSlice';
 import 'react-toastify/dist/ReactToastify.css'
-import { Link, useNavigate } from 'react-router-dom';
+import {Link, useNavigate } from "react-router-dom";
 import TopBar from '../../Topbar/topbar';
 import Header from '../../header/header';
 import { fetchCart} from '../../../router-config/CartSlice';
@@ -18,7 +18,7 @@ function SignIn(){
   const [email, SetEmail] = useState(" ");
   const [password, setPassword] = useState(" ");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate =useNavigate();
 
 
   const throttleFunction = (func,delayTime)=>{
@@ -120,7 +120,8 @@ function SignIn(){
                     <a className="small" href="#">Forgot password?</a>
                   </div>
                   <div className="text-center">
-                   <Link to='/signup'>I Don't Have an Account</Link>
+                   <Link
+                    to='/signup'>I Don't Have an Account</Link>
                   </div>
                 </div>
               </form>
