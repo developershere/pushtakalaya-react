@@ -115,7 +115,7 @@ function Books() {
                     </div>
                     <div className="CategoryList"><ul>
                             <li className="listhover" onClick={featchAllBooks}>All</li>
-                            {!error && categoryList.map((category, index) =>
+                            {!error && categoryList.map((category, index)=>
                                 <li className="listhover"  onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
                         </ul>
                     </div>
@@ -129,7 +129,7 @@ function Books() {
                             <li  className="listhover" onClick={() => handlePriceSelect("100-200")}>100 - 200</li>
                             <li  className="listhover" onClick={() => handlePriceSelect("200-400")}>200 - 400</li>
                             <li  className="listhover" onClick={() => handlePriceSelect("400-600")}>400 - 600</li>
-                            <li  className="listhover" onClick={() => handlePriceSelect("600-800")}>60o - 800</li>
+                            <li  className="listhover" onClick={() => handlePriceSelect("600-800")}>600 - 800</li>
                             <li  className="listhover" onClick={() => handlePriceSelect("800-1000")}>800 - 1000</li>
                             <li  className="listhover" onClick={() => handlePriceSelect("1000-2000")}>Over 2000</li>
                          </ul> 
@@ -179,7 +179,7 @@ function Books() {
                     </div>
                     {/* cart */}
                     <div className="row m-auto">
-                        {bookData.filter((book) => book.permission && book.status == true).map((book, index) =>
+                        {bookData.filter((book) => book.permission && book.status == true).sort((o1,o2)=>{return o1.price - o2.price}).map((book, index) =>
                             <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
                                 <div className="card">
                                     <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />

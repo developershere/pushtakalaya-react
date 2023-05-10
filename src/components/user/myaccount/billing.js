@@ -12,7 +12,7 @@ function BillingAdress() {
         console.log(response);
         SetOrderList(response.data.orderlist);
     }
-    console.log(orderList[orderList.length - 1].delieveryAddress)
+    // console.log(orderList[orderList.length - 1].delieveryAddress)
 
     useEffect(() => {
         featchOrderByUserId();
@@ -24,7 +24,7 @@ function BillingAdress() {
                 <h5>Billing Address</h5>
                 <address>
                     <p><strong>{currentUser && currentUser.name}</strong></p>
-                    <p>{orderList[orderList.length - 1].delieveryAddress}</p>
+                    {/* <p>{orderList[orderList.length - 1].delieveryAddress}</p> */}
                     <p>Mobile: {currentUser.contact}</p>
                 </address>
 
