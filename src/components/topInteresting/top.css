@@ -102,4 +102,5 @@
     padding-top: 30px;
     padding: 30px;
     cursor: pointer;
+    transform: 0.4s;
 }
