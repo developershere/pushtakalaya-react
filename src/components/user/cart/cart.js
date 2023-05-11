@@ -41,29 +41,19 @@ function Cart() {
       setError("Oops! something went wrong..");
     }
   }
-
-  const checkPaymentMode = ()=>{
-    if(paymentMode)
-      status = true;
-    else
-      status = false;
-  }
   const loadOrder = async (event) => {
     try {
       window.alert(paymentMode);
       event.preventDefault();
-      const date = new Date().toString().substring(4, 15).replaceAll(' ', '-')
-      window.alert(cartItems[0]._id);
-      window.alert(cartItems[0].bookId);
-    console.log(cartItems)
-      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, sellerId: currentUser._id, cartId: cartItems[0]._id, orderItem: cartItems, date:date })
+      const date = new Date().toString().substring(4, 15).replaceAll(' ', '-');
+      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, sellerId: currentUser._id, cartId: cartItems[0]._id, orderItem: cartItems[0].bookId, date:date })
       console.log(response.data);
 
-      if (paymentMode == "Online") {
+      if (paymentMode) {
         status = true;
         window.alert("Please pay First");
       }
-      else if (paymentMode == "COD") {
+      else if (paymentMode) {
         window.alert("COD called...");
         status = false;
       }
@@ -135,9 +125,7 @@ function Cart() {
                   <textarea type='text' cols='64' rows='4' placeholder="Enter Delievery Address" onChange={(event) => setDeliveryAddress(event.target.value)} className="form-control" />
                 </div>
                 </div>
-                {console.log("Payment : "+status)}
-                {status? <span>ggdghdf</span>
-                 : <Payment
+                {paymentMode*1&&<Payment
                     money = {total}/>
               }
             </div>
@@ -189,10 +177,10 @@ function Cart() {
             <h6 className="contentcart">Bill Amount<span className="ml-5 pl-3"> :  ₹ {amount}</span></h6>
             <h6 className="contentcart">Total Amount<span className="ml-5 pl-3">: ₹ {total = amount + (!flag && cartItems?.length * 20)}</span></h6><hr />
             <div onChange={(event) => setPaymentMode(event.target.value)}>
-              <input type="radio" value={false} name='payment' /><span className="contentcart" style={{cursor:"pointer"}}>  Cash On Delievery</span><br />
-              <input type="radio" value={true} name='payment' /><span className="contentcart"  style={{cursor:"pointer"}}> Online Payment</span></div>
+              <input type="radio" value={0} name='payment' /><span className="contentcart" style={{cursor:"pointer"}}>  Cash On Delievery</span><br />
+              <input type="radio" value={1} name='payment' /><span className="contentcart"  style={{cursor:"pointer"}}> Online Payment</span></div>
           </div>
-          <a className="btn-block cartcheckoutbutton text-center mt-3 " onClick={checkPaymentMode} data-toggle="modal" data-target="#checkoutModel">Procced To checkout</a>
+          <a className="btn-block cartcheckoutbutton text-center mt-3 " data-toggle="modal" data-target="#checkoutModel">Procced To checkout</a>
         </div>
       </div>
     </div> : <EmptyCart />}

@@ -48,7 +48,7 @@ function TopBar() {
                         <div className="my-cart">
                             <ul>
                                 <li> <Link className="view-cart" to="/cart" ><i className="fa fa-shopping-cart"></i>My Cart</Link>
-                                    
+                                    {currentUser?.status?<span>{cartItems?.length}</span > : <span>0</span >}
                                     <div className="mini-cart-sub">
                                         <div className="cart-product">
                                         {!error && recentProductList.map((product, index)=>
