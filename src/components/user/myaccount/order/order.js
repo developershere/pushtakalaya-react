@@ -35,7 +35,7 @@ function Order() {
           <table className="table align-middle mb-0 bg-white">
             <thead >
               <tr className="text-white">
-                <th >S.No</th>
+                <th>S.No</th>
                 <th>OrderId</th>
                 <th>Date</th>
                 <th>Status</th>

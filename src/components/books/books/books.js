@@ -9,8 +9,7 @@ import { apiEndPoint } from "../../../webApi/webapi";
 import Header from "../../header/header";
 import Footer from "../../footer/footer";
 import { toast } from "react-toastify";
-
-
+import InfiniteScroll from "react-infinite-scroll-component";
 function Books() {
     const { currentUser } = useSelector((state) => state.user);
     const location = useLocation();
@@ -18,24 +17,27 @@ function Books() {
     const flag = location.state?.status;
     const { categoryList, error, isLoading } = useSelector((state) => state.category)
     const [bookData, setData] = useState([]);
-    const[authors,SetAuthors]=useState([]);
+    const [authors,SetAuthors]=useState([]);
+    const [bookError,setBookError] = useState("");
+    const [page,setPage] = useState("");
+    const [loading,setLoading] = useState("");
     const navigate = useNavigate()
-    
+    const loadBooks = async()=>{
+        try{
+            let response = await axios.get(apiEndPoint.TOTAL_BOOKS+`?page=${page}`);
+        if(response.data.status){
+            setData([...bookData,...response.data.bookList]);
+            setPage(page+1);
+            setLoading(false);
+        }
+        }
+        catch(err){
+            setBookError("Something went wrong....")
+        }
+    }
+
     const featchAllBooks = async () => {
-        try {
-            if (!flag) {
-                let response = await axios.get(apiEndPoint.TOTAL_BOOKS);
-                console.log(response);
-                if (response.data.status) {
-                    console.log(response.data.bookList);
-                    setData(response.data.bookList);
-                    SetAuthors(response.data.bookList)
-                }
-            }
-        }
-        catch (err) {
-            console.log(err);
-        }
+        
     }
     const viewDescription = (book) => {
         navigate("/viewDescription", { state: { bookDetails: book } })
@@ -61,6 +63,7 @@ function Books() {
         }
         catch (err) {
             console.log(err);
+            
         }
     }
 
@@ -177,8 +180,13 @@ function Books() {
                         </div>
 
                     </div>
-                    {/* cart */}
-                    <div className="row m-auto">
+                    {/* cart */}                      
+                    <InfiniteScroll
+                        dataLength={bookData.length}
+                        next={loadBooks}
+                        hasMore={bookData.length<100}
+                        endMessage={<p>Books are Finished</p>}>
+                        <div className="row m-auto">
                         {bookData.filter((book) => book.permission && book.status == true).sort((o1,o2)=>{return o1.price - o2.price}).map((book, index) =>
                             <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
                                 <div className="card">
@@ -194,7 +202,7 @@ function Books() {
                                 </div>
                             </div>)}
                     </div>
-
+                    </InfiniteScroll>
                     {/* cart */}
                     {/* cart */}
                     <div className="row m-auto">

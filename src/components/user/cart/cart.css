@@ -44,6 +44,7 @@
 .cartscontainheading {
     font-size: 18px;
     font-weight: 900;
+    font-family: 'Rufina', serif;
 }
 
 .cartbutton {
@@ -168,8 +169,6 @@ font-family: 'Rufina', serif;
 font-weight: 400;
 border: none;
 letter-spacing: 0.3;
-
-
 }
 .cartcheckoutbutton:hover{
 background-color: #212529;
