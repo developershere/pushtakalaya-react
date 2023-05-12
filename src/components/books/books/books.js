@@ -63,6 +63,7 @@ function Books() {
         }
         catch (err) {
             console.log(err);
+            
         }
     }
 
@@ -117,7 +118,7 @@ function Books() {
                     </div>
                     <div className="CategoryList"><ul>
                             <li className="listhover" onClick={featchAllBooks}>All</li>
-                            {!error && categoryList.map((category, index) =>
+                            {!error && categoryList.map((category, index)=>
                                 <li className="listhover"  onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
                         </ul>
                     </div>
@@ -131,7 +132,7 @@ function Books() {
                             <li  className="listhover" onClick={() => handlePriceSelect("100-200")}>100 - 200</li>
                             <li  className="listhover" onClick={() => handlePriceSelect("200-400")}>200 - 400</li>
                             <li  className="listhover" onClick={() => handlePriceSelect("400-600")}>400 - 600</li>
-                            <li  className="listhover" onClick={() => handlePriceSelect("600-800")}>60o - 800</li>
+                            <li  className="listhover" onClick={() => handlePriceSelect("600-800")}>600 - 800</li>
                             <li  className="listhover" onClick={() => handlePriceSelect("800-1000")}>800 - 1000</li>
                             <li  className="listhover" onClick={() => handlePriceSelect("1000-2000")}>Over 2000</li>
                          </ul> 

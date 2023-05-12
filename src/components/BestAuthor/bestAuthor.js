@@ -1,5 +1,9 @@
+import { useSelector } from 'react-redux';
+import recentProductSlice from '../../router-config/recentProductSlice';
 import './author.css'
 function BestAuthor() {
+  const { recentProductList } = useSelector((state) => state.recentProduct);
+
   return <>
     <div className="banner-area-5 mtb-95 ">
 
@@ -101,8 +105,7 @@ function BestAuthor() {
 
           </div>
           {/* ----------------------second--------------------- */}
-
-        </div>
+         </div>
       </div>
     </div>
 

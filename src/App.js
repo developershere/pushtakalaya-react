@@ -22,9 +22,10 @@ import SellboooksForm from './components/sellbooks/sellbook';
 import { fetchState } from './router-config/stateSlice';
 import About from './components/About/about';
 import UserBooks from './components/user/myaccount/userbook';
-import UpdateBooks from './components/user/myaccount/updateBook';
+
 import OrderDetails from './components/user/myaccount/order/orderDetails';
 import ViewDescription from './components/viewDescription/viewDescription';
+import UpdateBooks from './components/user/myaccount/updateBook/updateBook';
 
 function App() {
   const dispatch = useDispatch();
