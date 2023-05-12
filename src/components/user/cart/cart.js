@@ -28,7 +28,7 @@ function Cart() {
   var total = 0;
   var status = false;
   cartItems?.map((carts,index)=>{
-    total+= carts.bookId.price * 1;
+    total+= carts.bookId.price*1+20;
   })
   const navigate = useNavigate();
   const loadProducts = async () => {
@@ -47,8 +47,6 @@ function Cart() {
       event.preventDefault();
       const date = new Date().toString().substring(4, 15).replaceAll(' ', '-');
       let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, sellerId: currentUser._id, cartId: cartItems[0]._id, orderItem: cartItems[0].bookId, date:date })
-      console.log(response.data);
-
       if (paymentMode) {
         status = true;
         window.alert("Please pay First");

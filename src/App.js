@@ -36,9 +36,7 @@ function App() {
   return <> 
   <Routes>
    <Route path='/' element={ <Home/>}/>
-   
    <Route path='/signup' element={<SignUp/>}/>
-   
    <Route path='/signin' element={<SignIn/>}/>
    <Route path='/aboutUs' element={<About/>}/>
    <Route path='/cart' element={<ProtectedRoute><Cart/></ProtectedRoute>}/>
@@ -54,11 +52,7 @@ function App() {
    <Route path='/userBook' element={<UserBooks/>} />
   <Route path='/updateBooks' element={<UpdateBooks/>}/>
   <Route path='/orderDetails' element={<OrderDetails/>}/>
-   
-
   </Routes>
- 
   </>
 }
-
 export default App;
