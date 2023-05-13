@@ -5,6 +5,9 @@ import { useSelector } from "react-redux";
 import "./order.css"
 import { apiEndPoint } from "../../../../webApi/webapi";
 import { useNavigate } from "react-router-dom";
+import NoOrders from "../notUpload/NoOrder";
+
+
 
 function Order() {
 
@@ -28,11 +31,12 @@ function Order() {
     featchOrderByUserId();
   }, []);
   return <>
+  
     <div className="tab-pane fade" id="orders" role="tabpanel">
       <div className="myaccount-content">
         <h5>Orders</h5>
         <div className="myaccount-table table-responsive text-center">
-          <table className="table align-middle mb-0 bg-white">
+          {!orderList.length==0? <table className="table align-middle mb-0 bg-white tableorder" >
             <thead >
               <tr className="text-white">
                 <th>S.No</th>
@@ -67,7 +71,8 @@ function Order() {
 
             </tbody>
           </table>
-
+:<NoOrders/>}
+         
         </div>
       </div>
     </div>

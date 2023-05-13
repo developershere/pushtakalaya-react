@@ -46,7 +46,7 @@ function Cart() {
       window.alert(paymentMode);
       event.preventDefault();
       const date = new Date().toString().substring(4, 15).replaceAll(' ', '-');
-      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, sellerId: currentUser._id, cartId: cartItems[0]._id, orderItem: cartItems[0].bookId, date:date })
+      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, cartId: cartItems[0]._id, orderItem: cartItems, date:date })
       console.log(response.data);
 
       if (paymentMode) {
