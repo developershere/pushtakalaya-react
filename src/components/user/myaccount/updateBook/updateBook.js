@@ -71,9 +71,7 @@ function UpdateBooks() {
     const getImage = (event) => {
         setPhotos(event.target.files[0]);
     }
-
-    
-    useEffect(() => {
+  useEffect(() => {
         dispatch(fetchState());
         featchCityByStateId(stateId)
     }, [])
@@ -105,8 +103,6 @@ function UpdateBooks() {
                                     Update  Detail's
                                 </h3>
                                 <form onSubmit={updateBook} className="px-md-2">
-
-
                                     <div className="row ">
                                         <div className="col-md-8 ">
                                             <div className="row form-group" >
@@ -119,15 +115,13 @@ function UpdateBooks() {
                                                     <input onChange={(event) => setEdition(event.target.value)} defaultValue={book.edition} type="text" className="form-control" />
                                                 </div>
                                             </div>
-
-                                            <div className="row">
+                                       <div className="row">
                                                 <div className="col-md-12  mb-3">
                                                     <select defaultValue={book.language} onChange={(event) => setLanguage(event.target.value)} className="form-control">language
                                                         <option>Select Language</option>
                                                         <option>Hindi</option>
                                                         <option>English</option>
-
-                                                    </select>
+                                                         </select>
                                                 </div>
                                             </div>
                                         </div>
