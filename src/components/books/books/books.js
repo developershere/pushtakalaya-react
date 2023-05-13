@@ -19,8 +19,8 @@ function Books() {
     const [bookData, setData] = useState([]);
     const [authors,SetAuthors]=useState([]);
     const [bookError,setBookError] = useState("");
-    const [page,setPage] = useState("");
-    const [loading,setLoading] = useState("");
+    const [page,setPage] = useState(1);
+    const [loading,setLoading] = useState(true);
     const navigate = useNavigate()
     const loadBooks = async()=>{
         try{
@@ -63,6 +63,7 @@ function Books() {
         }
         catch (err) {
             console.log(err);
+            
         }
     }
 
@@ -81,24 +82,25 @@ function Books() {
         const list = data
         navigate("/bookList", { state: { dataList: list } });
     };
-
-
-    const addToCart = async (id) => {
-        try {
-            if (currentUser) {
-                let response = await axios.post(apiEndPoint.ADD_TO_CART, { bookId: id, userId: currentUser._id });
-                toast.success("Book is added to you'r cart");
-            }
-            else
-                toast.warning("You have to Login first");
+    const addToCart = async (id)=>{
+        try{
+          if(currentUser)
+          {
+            let response = await axios.post(apiEndPoint.ADD_TO_CART,{bookId:id,userId : currentUser._id});
+            toast.success("Book is added to you'r cart");
+          }
+          else{
+            toast.warning("You have to Login first");
+          }
+      }
+        catch(err)
+        {
+        if(err.response.status==400)
+            toast.warning("Book is already exists in cart");
+        if(err.response.status==500)
+          toast.error("Oops Something went wrong");
         }
-        catch (err) {
-            if (err.response.status == 400)
-                toast.warning("Book is already exists in cart");
-            if (err.response.status == 500)
-                toast.error("Oops Something went wrong");
-        }
-    }
+      }
 
     useEffect(() => {
         featchAllBooks();
@@ -117,7 +119,7 @@ function Books() {
                     </div>
                     <div className="CategoryList"><ul>
                             <li className="listhover" onClick={featchAllBooks}>All</li>
-                            {!error && categoryList.map((category, index) =>
+                            {!error && categoryList.map((category, index)=>
                                 <li className="listhover"  onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
                         </ul>
                     </div>
@@ -131,7 +133,7 @@ function Books() {
                             <li  className="listhover" onClick={() => handlePriceSelect("100-200")}>100 - 200</li>
                             <li  className="listhover" onClick={() => handlePriceSelect("200-400")}>200 - 400</li>
                             <li  className="listhover" onClick={() => handlePriceSelect("400-600")}>400 - 600</li>
-                            <li  className="listhover" onClick={() => handlePriceSelect("600-800")}>60o - 800</li>
+                            <li  className="listhover" onClick={() => handlePriceSelect("600-800")}>600 - 800</li>
                             <li  className="listhover" onClick={() => handlePriceSelect("800-1000")}>800 - 1000</li>
                             <li  className="listhover" onClick={() => handlePriceSelect("1000-2000")}>Over 2000</li>
                          </ul> 
@@ -180,17 +182,17 @@ function Books() {
 
                     </div>
                     {/* cart */}
-                    <InfiniteScroll
+                        <div className="row m-auto">
+                        <InfiniteScroll
                         dataLength={bookData.length}
                         next={loadBooks}
                         hasMore={bookData.length<100}
                         endMessage={<p>Books are Finished</p>}>
-                        <div className="row m-auto">
                         {bookData.filter((book) => book.permission && book.status == true).map((book, index) =>
                             <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
                                 <div className="card">
                                     <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
-                                    <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3" style={{ cursor: "pointer" }} onClick={() => addToCart(book._id)}></i></a>
+                                    <a className="cardcircle"><i className="fa fa-shopping-cart carticon mt-3" style={{cursor:"pointer"}} onClick={()=>addToCart(book._id)}></i></a>
                                     <div className="card-body">
                                         <p className="card-text cardtitle">{book.name.substring(0, 15)}</p>
                                         <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 10)}</p>
@@ -200,8 +202,8 @@ function Books() {
                                     </div>
                                 </div>
                             </div>)}
-                    </div>
                     </InfiniteScroll>
+                    </div>
                     {/* cart */}
                     {/* cart */}
                     <div className="row m-auto">
