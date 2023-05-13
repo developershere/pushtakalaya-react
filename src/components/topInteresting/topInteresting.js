@@ -6,6 +6,7 @@ import axios from "axios";
 import { apiEndPoint } from "../../webApi/webapi";
 import {toast,ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import booksCard from "../card/booksCard";
 function TopInteresting() {
   const {currentUser} = useSelector((state)=>state.user);
   const navigate = useNavigate();
@@ -96,8 +97,7 @@ function TopInteresting() {
           >
             <div className="row m-auto">
 
-              {TopProductList?.filter((book)=>book.permission&&book.status==true).map((book,index) =>
-              
+              {TopProductList?.map((book,index) =>              
                <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
                  <div className="card">
                   
@@ -108,7 +108,7 @@ function TopInteresting() {
                      <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0,15)}</p>
                      <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book?.price==0?"Free":book.price}</b>
                      <br/>
-                     <button className="btn mt-2 w-100 buttonhover"  onClick={() => viewDescription(book)} >View More</button>
+                     <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)} >View More</button>
                    </div>
                  </div>
                </div>)}

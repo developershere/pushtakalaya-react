@@ -16,7 +16,7 @@ function EmptyCart(){
       <h5 className="text-center cartscontainheading">Your Cart is Empty</h5>
       <h6 className="cartscontainheading">
         Looks Like You Have Not Added anything to You Cart.Go Ahead &amp;
-        Explore Top Products
+        Explore Top BOOKS
       </h6>
       <a href="/">
        <Link to='/'> <button type="button"  className="cartbutton">

@@ -1,15 +1,18 @@
+
 import { useDispatch, useSelector } from "react-redux";
 
 import { useEffect, useState } from "react";
 
+import "./updateBook.css"
 
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import Header from "../../header/header";
-import Footer from "../../footer/footer";
-import { apiEndPoint } from "../../../webApi/webapi";
-import { fetchState } from "../../../router-config/stateSlice";
+import Header from "../../../header/header";
+import Footer from "../../../footer/footer";
+import { apiEndPoint } from "../../../../webApi/webapi";
+import { fetchState } from "../../../../router-config/stateSlice";
+
 
 function UpdateBooks() {
     const location = useLocation();
@@ -18,7 +21,7 @@ function UpdateBooks() {
     const [citys, setCitys] = useState([]);
     const { categoryList, error } = useSelector((state) => state.category);
     const { stateList } = useSelector((item) => item.state);
-
+    console.log(book);
 
     const dispatch = useDispatch();
 
@@ -32,27 +35,44 @@ function UpdateBooks() {
     const [categoryId, setCategory] = useState(" ");
     const [price, setPrice] = useState("");
     const [cityId, setCity] = useState(" ");
-    
+    const [photos , setPhotos] = useState(" ");
+    const id = book._id
 
 
     const updateBook = async (event) => {
         try {
+            const formData = new FormData();
+             formData.append("profile" , photos);
+             formData.set("name" , name);
+             formData.set("author" , author);
+             formData.set("edition" , edition);
+             formData.set("language" , language);
+             formData.set("publicationDate" , publicationDate);
+             formData.set("pincode" , pincode);
+             formData.set("categoryId" , categoryId);
+             formData.set("price" , price);
+             formData.set("description", description);
+             formData.set("id" , book._id);
+             formData.set("cityId",cityId);
             event.preventDefault();
-               let response = await axios.post(apiEndPoint.UPDATE_BOOK, {
-                id: book._id, name, description,
-                author, language, edition, publicationDate: publicationDate, pincode, cityId,
-                categoryId , price
-            });
+            let response = await axios.post(apiEndPoint.UPDATE_BOOK, formData
+               
+            );
             console.log(response.data)
-            if(response.data.status){
-               toast.success("Book Update SucesFully");
+            if (response.data.status) {
+                toast.success("Book Update SucesFully");
             }
-           
-        }
+           }
         catch (err) {
             toast.error("something went wrong");
         }
     }
+
+    const getImage = (event) => {
+        setPhotos(event.target.files[0]);
+    }
+
+    
     useEffect(() => {
         dispatch(fetchState());
         featchCityByStateId(stateId)
@@ -70,30 +90,51 @@ function UpdateBooks() {
 
     return <>
         <section>
-            <Header/>
-            <ToastContainer/>
-            <div className="container-fluid py-5 h-100 donateformContainer">
+            <Header />
+            <ToastContainer />
+            <div className="container-fluid py-5 h-100 ">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-2 donateformimage">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg-Wr6o21HXj9RD_3CpYpftxRgNA6He3DxJRHiEJW0a846Cj0sQncXEXZGPbQS3sevfN0&usqp=CAU" style={{ height: '400px', width: '400px' }} />
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg-Wr6o21HXj9RD_3CpYpftxRgNA6He3DxJRHiEJW0a846Cj0sQncXEXZGPbQS3sevfN0&usqp=CAU" className="col-md-12" />
                     </div>
                     <div className="col-lg-10 col-xl-6" >
-                        <div className="card rounded-3">
+                        <div className="border rounded-3  " style={{ boxShadow: "0px 0px 3px #f07c29" }}>
 
-                            <div className="card-body donateformcontain p-4 p-md-5">
+                            <div className="card-body  p-4 p-md-5">
                                 <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2 sty">
-                                  Update  Detail's
+                                    Update  Detail's
                                 </h3>
                                 <form onSubmit={updateBook} className="px-md-2">
 
-                                    <div className="row form-group" >
-                                        <div className="">
-                                            <input onChange={(event) => setBookName(event.target.value)} defaultValue={book.name} type="text" className="form-control" />
+
+                                    <div className="row ">
+                                        <div className="col-md-8 ">
+                                            <div className="row form-group" >
+                                                <div className="col-md-12">
+                                                    <input onChange={(event) => setBookName(event.target.value)} defaultValue={book.name} type="text" className="form-control" />
+                                                </div>
+                                            </div>
+                                            <div className="row form-group"  >
+                                                <div className="col-md-12">
+                                                    <input onChange={(event) => setEdition(event.target.value)} defaultValue={book.edition} type="text" className="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div className="row">
+                                                <div className="col-md-12  mb-3">
+                                                    <select defaultValue={book.language} onChange={(event) => setLanguage(event.target.value)} className="form-control">language
+                                                        <option>Select Language</option>
+                                                        <option>Hindi</option>
+                                                        <option>English</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="row form-group"  >
-                                        <div className="">
-                                            <input onChange={(event) => setEdition(event.target.value)} defaultValue={book.edition} type="text" className="form-control" />
+                                        <div className="col-md-3 ms-4  updatecardimage" >
+                                            {book.photos.split("@")[1] ? <img src={apiEndPoint.DISK_STORAGE + book.photos.split("@")[1]} c /> : <img src={"https://drive.google.com/uc?export=view&id= " + book.photos.substring(32, book.photos.lastIndexOf("/"))} id="img" />}
+
+                                        <input  onChange={getImage} type="file" className="file" />
                                         </div>
                                     </div>
 
@@ -110,7 +151,7 @@ function UpdateBooks() {
 
                                             <select onChange={(event) => setCategory(event.target.value)} className="form-control">Category
                                                 <option>Select Book Category</option>
-                                                {!error && categoryList.map((category, index) =>  {
+                                                {!error && categoryList.map((category, index) => {
                                                     if (category._id == book.categoryId)
                                                         return <option value={category._id} key={index} selected>{category.categoryName} </option>
                                                     else
@@ -120,16 +161,7 @@ function UpdateBooks() {
                                         </div>
                                     </div>
 
-                                    <div className="row">
-                                        <div>
-                                            <select defaultValue={book.language} onChange={(event) => setLanguage(event.target.value)} className="form-control">language
-                                                <option>Select Language</option>
-                                                <option>Hindi</option>
-                                                <option>English</option>
 
-                                            </select></div>
-
-                                    </div>
                                     <div className="row form-group mt-2"  >
                                         <div className=" col-md-6">
                                             <select onChange={(event) => featchCityByStateId(event.target.value)} className="form-control">State
@@ -170,11 +202,11 @@ function UpdateBooks() {
 
                                     </div>
 
-                                   
+
 
                                     <div className="row form-group">
                                         <div>
-                                            <textarea onChange={(event) => setDescription(event.target.value)} cols='65' rows='4' defaultValue={book.description} />
+                                            <textarea onChange={(event) => setDescription(event.target.value)} cols='71' rows='4' defaultValue={book.description} />
                                         </div>
                                     </div>
                                     <div className="row form-group">
@@ -189,7 +221,7 @@ function UpdateBooks() {
                 </div>
             </div>
         </section>
-       <Footer/>
+        <Footer />
 
     </>
 }

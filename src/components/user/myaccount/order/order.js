@@ -41,7 +41,7 @@ function Order() {
               <tr className="text-white">
                 <th>S.No</th>
                 <th>OrderId</th>
-                <th>Date</th>
+                <th></th>
                 <th>Status</th>
                 <th>PaymentMode</th>
                 <th>Bill Amount</th>
@@ -52,11 +52,11 @@ function Order() {
                 <td>
                   {index + 1}
                 </td>
-                <td className="text-primary" onClick={() => changeOrderDetails(order)}>
+                <td className="text-primary" style={{cursor:"pointer"}} onClick={() => changeOrderDetails(order)}>
                   {order._id}
                 </td>
                 <td>
-                  {order.date}
+                  
                 </td>
                 <td>
                   {!order.status == 'pending' ? <span className="badge badge-success rounded-pill d-inline">

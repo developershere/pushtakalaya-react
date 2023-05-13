@@ -70,7 +70,6 @@ function SignUp() {
                 const response = await axios.post(apiEndPoint.USER_SIGNUP,formData)
                 modalDismiss = true;
                 toast("Registration Success....")
-                console.log("Success....");
             }
             else
                 toast.error("Invalid OTP...");
