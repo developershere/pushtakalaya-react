@@ -117,7 +117,7 @@ function SignIn(){
                   <button id='submitbtn' disabled className="btn btn-lg btn-login text-uppercase fw-bold mb-2  btn btn-dark" type="submit">Sign in</button>
                   <GoogleLogin/>
                   <div className="text-center">
-                    <a className="small" href="#">Forgot password?</a>
+                   <Link to='/forgetPassword'>Forgot password?</Link>
                   </div>
                   <div className="text-center">
                    <Link
