@@ -46,18 +46,11 @@ function Cart() {
       window.alert(paymentMode);
       event.preventDefault();
       const date = new Date().toString().substring(4, 15).replaceAll(' ', '-');
-      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, sellerId: currentUser._id, cartId: cartItems[0]._id, orderItem: cartItems[0].bookId, date:date })
-      if (paymentMode) {
-        status = true;
-        window.alert("Please pay First");
-      }
-      else if (paymentMode) {
-        window.alert("COD called...");
-        status = false;
-      }
-      // let response =await axios.post(apiEndPoint.ORDER_SAVE,{userId:currentUser._id,billamount:total,contactPerson,contactNumber,delieveryAddress,paymentMode,sellerId:currentUser._id,cartId:cartItems[0]._id,orderItem:cartItems[0].bookId})
-
-
+      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, sellerId: currentUser._id, cartId: cartItems[0]._id, orderItem: cartItems[0].bookId, date:date });
+      if(response.data.status)
+          toast.success("Order placed success");
+      else
+          toast.warning("Oops something went wrong");
     } catch (err) {
       console.log(err);
       console.log("Oops Something Went Wrong");
