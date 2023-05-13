@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiEndPoint } from "../../../webApi/webapi";
+import NotUpload from "./notUpload/notUpload";
 function UserBooks() {
     const { currentUser, isError } = useSelector((state) => state.user);
     const [booklist, setBooks] = useState([]);
@@ -56,9 +57,7 @@ function UserBooks() {
                     </table>
                 </div>
             </div>: 
-            <div className="" style={{marginTop:"22%"}}>
-              <h1> You not uploaded any book yet</h1>
-            </div>
+            <NotUpload/>
         }
         </div>
     </>

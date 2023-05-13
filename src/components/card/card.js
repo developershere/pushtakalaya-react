@@ -7,7 +7,7 @@ function Card(){
     <div className="cont">
         <div className="card">
             <div className="imgBx">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPhhb2Vt_pFq80QYr_tgpAujVS3kQ0qdYhwg&usqp=CAU" alt="nike-air-shoe"/>
+            <img src="https://enncrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPhhb2Vt_pFq80QYr_tgpAujVS3kQ0qdYhwg&usqp=CAU" alt="nike-air-shoe"/>
             </div>
 
             <div className="contentBx">

@@ -17,7 +17,6 @@ function Home(){
     <TopInteresting/>
     <BestAuthor/>
     <Banner/>
-   
     <Footer/>
   
    </>
