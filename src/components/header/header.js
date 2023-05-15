@@ -29,7 +29,7 @@ function Header() {
 
                                         </li>
                                         <li><Link to='/book'>Book</Link></li>
-                                        <li><a className="text-white">Categories<i className="fa fa-angle-down"></i></a>
+                                        <li><a className="text-white" style={{cursor:"pointer"}}>Categories<i className="fa fa-angle-down"></i></a>
 
                                             <div className="mega-menu">
                                                 {!error && categoryList.map((category, index) =>

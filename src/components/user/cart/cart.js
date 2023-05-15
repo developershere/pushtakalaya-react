@@ -22,13 +22,12 @@ function Cart() {
   const [contactNumber, setContactNumber] = useState("");
   const [delieveryAddress, setDeliveryAddress] = useState("");
 
-
   const dispatch = useDispatch();
   var amount = 0;
   var total = 0;
   var status = false;
   cartItems?.map((carts,index)=>{
-    total+= carts.bookId.price * 1;
+    total+= carts.bookId.price*1+20;
   })
   const navigate = useNavigate();
   const loadProducts = async () => {
@@ -43,23 +42,13 @@ function Cart() {
   }
   const loadOrder = async (event) => {
     try {
-      window.alert(paymentMode);
       event.preventDefault();
       const date = new Date().toString().substring(4, 15).replaceAll(' ', '-');
-      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, sellerId: currentUser._id, cartId: cartItems[0]._id, orderItem: cartItems[0].bookId, date:date })
-      console.log(response.data);
-
-      if (paymentMode) {
-        status = true;
-        window.alert("Please pay First");
-      }
-      else if (paymentMode) {
-        window.alert("COD called...");
-        status = false;
-      }
-      // let response =await axios.post(apiEndPoint.ORDER_SAVE,{userId:currentUser._id,billamount:total,contactPerson,contactNumber,delieveryAddress,paymentMode,sellerId:currentUser._id,cartId:cartItems[0]._id,orderItem:cartItems[0].bookId})
-
-
+      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, cartId: cartItems[0]._id, orderItem: cartItems, date:date });
+      if(response.data.status)
+            toast.success("Order placed success");
+      else
+          toast.warning("Oops something went wrong");
     } catch (err) {
       console.log(err);
       console.log("Oops Something Went Wrong");
@@ -85,6 +74,7 @@ function Cart() {
 
   return <>
     <Header />
+    <ToastContainer/>
     <div className="breadcrumbs-area ">
       <div className="container">
         <div className="row">
@@ -173,9 +163,9 @@ function Cart() {
           </div><hr />
           <div className="cartscontainheading  mt-4">
             {!flag && cartItems?.map((product, index) => { amount = amount + product.bookId.price * 1 })}
-            <h6 className="contentcart">Pay Only for Shipping  <span className="ml-1"> :₹{!flag && cartItems?.length * 20} ({!flag && cartItems?.length} Books)</span></h6>
+            <h6 className="contentcart">Pay Only for Shipping  <span className="ml-1"> :₹{!flag && cartItems?.length * 30} ({!flag && cartItems?.length} Books)</span></h6>
             <h6 className="contentcart">Bill Amount<span className="ml-5 pl-3"> :  ₹ {amount}</span></h6>
-            <h6 className="contentcart">Total Amount<span className="ml-5 pl-3">: ₹ {total = amount + (!flag && cartItems?.length * 20)}</span></h6><hr />
+            <h6 className="contentcart">Total Amount<span className="ml-5 pl-3">: ₹ {total = amount + (!flag && cartItems?.length * 30)}</span></h6><hr />
             <div onChange={(event) => setPaymentMode(event.target.value)}>
               <input type="radio" value={0} name='payment' /><span className="contentcart" style={{cursor:"pointer"}}>  Cash On Delievery</span><br />
               <input type="radio" value={1} name='payment' /><span className="contentcart"  style={{cursor:"pointer"}}> Online Payment</span></div>

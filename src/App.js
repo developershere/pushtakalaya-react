@@ -22,12 +22,14 @@ import SellboooksForm from './components/sellbooks/sellbook';
 import { fetchState } from './router-config/stateSlice';
 import About from './components/About/about';
 import UserBooks from './components/user/myaccount/userbook';
-import UpdateBooks from './components/user/myaccount/updateBook';
+
 import OrderDetails from './components/user/myaccount/order/orderDetails';
 import ViewDescription from './components/viewDescription/viewDescription';
+
 import Contact from "./components/contact/contact";
-import Mail from './components/mail/mail';
-// import Mail from "./components/mail/mail";
+import UpdateBooks from './components/user/myaccount/updateBook/updateBook';
+import Donetors from './components/Donaters/donater';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -40,28 +42,30 @@ function App() {
   return <> 
   <Routes>
    <Route path='/' element={ <Home/>}/>
-   
    <Route path='/signup' element={<SignUp/>}/>
-   
    <Route path='/signin' element={<SignIn/>}/>
    <Route path='/aboutUs' element={<About/>}/>
    <Route path='/cart' element={<ProtectedRoute><Cart/></ProtectedRoute>}/>
    <Route path='/freebooks' element={<FreeBooks/>}/>
-   <Route path='/checkout' element={<Checkout/>}/>
+   <Route path='/checkout' element={<ProtectedRoute><Checkout/></ProtectedRoute>}/>
    <Route path='/myaccount' element={<ProtectedRoute><MyAccount/></ProtectedRoute>}/>
    <Route path='/donate' element={<Donate/>}/>
    <Route path='/donateform' element={<ProtectedRoute><DonateForm/></ProtectedRoute>}/>
    <Route path='/sellbooks' element={<ProtectedRoute><SellboooksForm/></ProtectedRoute>}/>
-   <Route path='/update' element={<Update/>}/>
+   <Route path='/update' element={<ProtectedRoute><Update/></ProtectedRoute>}/>
    <Route path= "/viewDescription" element={<ViewDescription/>}/>
    <Route path="/book" element={<Books/>}/>
+
    <Route path='/userBook' element={<UserBooks/>} />
   <Route path='/updateBooks' element={<UpdateBooks/>}/>
   <Route path='/orderDetails' element={<OrderDetails/>}/>
   <Route path='/contact' element={<Contact/>}/>
-  <Route path='/mail' elements={<Mail/>}/>
+
+   <Route path='/userBook' element={<ProtectedRoute><UserBooks/></ProtectedRoute>} />
+  <Route path='/updateBooks' element={<ProtectedRoute><UpdateBooks/></ProtectedRoute>}/>
+  <Route path='/orderDetails' element={<ProtectedRoute><OrderDetails/></ProtectedRoute>}/>
+  <Route path='/donetors' element={<Donetors />} />
   </Routes>
   </>
 }
-
 export default App;
