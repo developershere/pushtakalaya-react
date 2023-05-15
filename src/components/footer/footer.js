@@ -46,7 +46,7 @@ function Footer() {
                                         </div>
                                         <div className="footer-mid-menu ">
                                             <ul>
-                                                <li><a href="">Contact us</a></li>
+                                                {/* <li><Link  to="/donetors">Donetors</Link></li> */}
                                                 <li><Link to="/signin"> Login</Link></li>
                                                 <li> <Link to="/myaccount">My Account</Link></li>
                                             </ul>
@@ -63,6 +63,7 @@ function Footer() {
                                                 <li><Link to={"/myaccount"}>Addresses</Link></li>
                                                 <li><Link to={"/myaccount"}> Orders</Link></li>
                                                 <li><Link to={"/myaccount"}>Personal info</Link></li>
+                                                <li><Link to={"/donetors"}>Donetors</Link></li>
                                             </ul>
                                         </div>
                                     </div>

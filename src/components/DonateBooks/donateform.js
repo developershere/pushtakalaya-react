@@ -97,22 +97,22 @@ function DonateForm() {
                 <form onSubmit={handleSubmit} className="px-md-2">
                   <div className="row form-group"  >
                     <div className="">
-                      <input onChange={(event) => setBookName(event.target.value)} placeholder="Enter Book Name" type="text" className="form-control" />
+                      <input onChange={(event) => setBookName(event.target.value)} placeholder="Enter Book Name" type="text" className="form-control" name="book" />
                     </div>
                   </div>
                   <div className="row form-group"  >
                     <div className="">
-                      <input onChange={(event) => setEdition(event.target.value)} placeholder="Enter Edition" type="text" className="form-control" />
+                      <input onChange={(event) => setEdition(event.target.value)} placeholder="Enter Edition" type="text" className="form-control"  name="edition" />
                     </div>
                   </div>
                   <div className="row form-group"  >
                     <div className="">
-                      <input onChange={(event) => setPublicationDate(event.target.value)} placeholder="Enter Publication Date" type="text" className="form-control" />
+                      <input onChange={(event) => setPublicationDate(event.target.value)} placeholder="Enter Publication Date" type="text" className="form-control"  name="publicationDate"/>
                     </div>
                   </div>
                   <div className="row form-group">
                     <div className=" col-md-12">
-                      <input onChange={(event) => setAuthorName(event.target.value)} placeholder="Enter Author Name" type="text" className="form-control"/>
+                      <input onChange={(event) => setAuthorName(event.target.value)} placeholder="Enter Author Name" type="text" className="form-control" name="author"/>
                     </div>
 
                   </div>
