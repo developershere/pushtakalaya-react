@@ -32,8 +32,8 @@ function TopBar() {
 
                     <div className="col-lg-4 col-md-4 col-12  " style={{marginTop:"-30px"}}>
                         <div className="logo-area text-left   logo-xs-mrg ">
-                            <img src="img/logo/logo.png" alt="logo" className=' logoimg mb-3 pb-3 ' />
-                            <span className='topbarlogoheading ' >Pustakalaya</span>
+                            <Link to={"/"}><img src="img/logo/logo.png" alt="logo" className=' logoimg mb-3 pb-3 '/></Link>
+                            <Link to={"/"} className='topbarlogoheading ' >Pustakalaya</Link>
                         </div>
                     </div>
                     <div className="col-lg-4 col-md-4 col-12 " >

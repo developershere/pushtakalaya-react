@@ -1,5 +1,10 @@
+import { useSelector } from 'react-redux';
+import recentProductSlice from '../../router-config/recentProductSlice';
 import './author.css'
+import { Externals } from '../../Externals/BestAuthore';
 function BestAuthor() {
+  const { recentProductList } = useSelector((state) => state.recentProduct);
+
   return <>
     <div className="banner-area-5 mtb-95 ">
 
@@ -13,14 +18,11 @@ function BestAuthor() {
             <div className="bestseller-content ">
               <h1>Author best selling</h1>
               <h2>
-                J. K. <br />
-                Rowling
+                {Externals.NAME} <br />
+                {Externals.LAST_NAME}
               </h2>
               <p>
-                Vestibulum porttitor iaculis gravida. Praesent vestibulum varius
-                placerat. Cras tempor congue neque, id aliquam orci finibus sit
-                amet. Fusce at facilisis arcu. Donec aliquet nulla id turpis
-                semper, a bibendum metus vulputate. Suspendisse potenti.{" "}
+                {Externals.BEST_AUTHORE}
               </p>
               <div className="social-author ">
                 <ul>
@@ -101,8 +103,7 @@ function BestAuthor() {
 
           </div>
           {/* ----------------------second--------------------- */}
-
-        </div>
+         </div>
       </div>
     </div>
 
