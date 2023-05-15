@@ -14,7 +14,7 @@ import TopInteresting from "../topInteresting/topInteresting";
 
 function Home(){
    return<>
-    <Loader/>
+    {/* <Loader/> */}
     <Header/>
     <Service/>
     <Carousal />
