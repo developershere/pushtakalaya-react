@@ -26,7 +26,6 @@ import UserBooks from './components/user/myaccount/userbook';
 import OrderDetails from './components/user/myaccount/order/orderDetails';
 import ViewDescription from './components/viewDescription/viewDescription';
 import UpdateBooks from './components/user/myaccount/updateBook/updateBook';
-import Donetors from './components/donetors';
 
 function App() {
   const dispatch = useDispatch();
@@ -54,7 +53,6 @@ function App() {
    <Route path='/userBook' element={<ProtectedRoute><UserBooks/></ProtectedRoute>} />
   <Route path='/updateBooks' element={<ProtectedRoute><UpdateBooks/></ProtectedRoute>}/>
   <Route path='/orderDetails' element={<ProtectedRoute><OrderDetails/></ProtectedRoute>}/>
-    <Route path='/donetors' element={<Donetors/>}/>
   </Routes>
   </>
 }
