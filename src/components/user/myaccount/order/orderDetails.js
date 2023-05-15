@@ -60,27 +60,21 @@ function OrderDetails(){
                 {orderList?.orderItem?.map((book)=>
                 <div className='row p-0 '>
                   <div className='col-md-2 mb-1'>
-                  {book.bookId.photos.split("@")[1] ? <img src={apiEndPoint.DISK_STORAGE+ book.bookId.photos.split("@")[1]} className="img-fluid" width='90px' height='60px' /> : <img src={"https://drive.google.com/uc?export=view&id=" + book.bookId.photos.substring(32, book.bookId.photos.lastIndexOf("/"))} className="img-fluid" width='90px' height='60px' />}
+                  {book?.bookId?.photos.split("@")[1] ? <img src={apiEndPoint.DISK_STORAGE+ book?.bookId?.photos.split("@")[1]} className="img-fluid" width='90px' height='60px' /> : <img src={"https://drive.google.com/uc?export=view&id=" + book?.bookId?.photos.substring(32, book?.bookId?.photos.lastIndexOf("/"))} className="img-fluid" width='90px' height='60px' />}
                   </div>
-                
                  <div className='col-md-4 mt-3'>
-                    
-                  <h6 className="mt-2 contentcart">{book.bookId.name}</h6>
-                    <h6 className="contentcart"><span className="carttitle">Author :</span>{book.bookId.author}</h6>
-                    <h6 className="contentcart"><span className="carttitle">Price : </span>₹ {book.bookId.price}</h6> 
-                 
+                    <h6 className="contentcart"><span className="carttitle">Title  : </span>{book?.bookId?.author}</h6>
+                    <h6 className="contentcart"><span className="carttitle">Author : </span>{book?.bookId?.author}</h6>
+                    <h6 className="contentcart"><span className="carttitle">Price  : </span>₹ {book?.bookId?.price}</h6> 
                  </div>
                   <div className='col-md-3 mt-3'>
-                  <h6 className="contentcart"><span className="carttitle">Status :</span>{order.status}</h6>
+                  <h6 className="contentcart"><span className="carttitle">Status : </span>{order?.status.toUpperCase()}</h6>
                   </div>
                   <div className='col-md-3 mt-3'>
-                  <h6 className="contentcart"><span className="carttitle">Total Bill  :</span> ₹ {order.billamount}</h6>
                   </div>
                   <hr/>
                 </div>)}
                 </div>
-            
-          
         </div>
         </div>
 

@@ -59,7 +59,7 @@ function SignIn(){
     var pass = document.getElementById('floatingPassword').value;
 
 
-    if(email.length && pass.length>=8 ){
+    if(email.length && pass.length>=6 ){
 
        document.getElementById('submitbtn').removeAttribute('disabled');
     }
@@ -71,8 +71,8 @@ function SignIn(){
     navigate("/")
   }
     return <>
-    <ToastContainer/>
     <Header/>
+    <ToastContainer/>
     <div className='container-fluid'>
      <div className="breadcrumbs-area ">
         <div className="container">
@@ -117,7 +117,7 @@ function SignIn(){
                   <button id='submitbtn' disabled className="btn btn-lg btn-login text-uppercase fw-bold mb-2  btn btn-dark" type="submit">Sign in</button>
                   <GoogleLogin/>
                   <div className="text-center">
-                    <a className="small" href="#">Forgot password?</a>
+                   <Link to='/forgetPassword'>Forgot password?</Link>
                   </div>
                   <div className="text-center">
                    <Link

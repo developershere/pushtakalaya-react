@@ -108,7 +108,7 @@ function TopInteresting() {
                      <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0,15)}</p>
                      <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book?.price==0?"Free":book.price}</b>
                      <br/>
-                     <button className="btn mt-2 w-100 buttonhover"  onClick={() => viewDescription(book)} >View More</button>
+                     <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)} >View More</button>
                    </div>
                  </div>
                </div>)}

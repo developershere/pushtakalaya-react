@@ -11,7 +11,7 @@ function Footer() {
                             <div className="footer-top-menu bb-2 ">
                                 <nav>
                                     <ul>
-                                        <li><Link to='/home'>HOME</Link></li>
+                                        <li><Link to='/'>HOME</Link></li>
                                         <li><a href="# ">contact us</a></li>
                                     </ul>
                                 </nav>
@@ -46,9 +46,9 @@ function Footer() {
                                         </div>
                                         <div className="footer-mid-menu ">
                                             <ul>
-                                                <li><a href="contact.html ">Contact us</a></li>
-                                                <li><Link to="signin"> Login</Link></li>
-                                                <li> <Link to="myaccount">My Account</Link></li>
+                                                <li><a href="">Contact us</a></li>
+                                                <li><Link to="/signin"> Login</Link></li>
+                                                <li> <Link to="/myaccount">My Account</Link></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -60,9 +60,9 @@ function Footer() {
                                         </div>
                                         <div className="footer-mid-menu ">
                                             <ul>
-                                                <li><a href="contact.html ">Addresses</a></li>
-                                                <li><a href="# "> Orders</a></li>
-                                                <li><a href="# ">Personal info</a></li>
+                                                <li><Link to={"/myaccount"}>Addresses</Link></li>
+                                                <li><Link to={"/myaccount"}> Orders</Link></li>
+                                                <li><Link to={"/myaccount"}>Personal info</Link></li>
                                             </ul>
                                         </div>
                                     </div>

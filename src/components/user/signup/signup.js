@@ -70,7 +70,6 @@ function SignUp() {
                 const response = await axios.post(apiEndPoint.USER_SIGNUP,formData)
                 modalDismiss = true;
                 toast("Registration Success....")
-                console.log("Success....");
             }
             else
                 toast.error("Invalid OTP...");
@@ -114,10 +113,11 @@ function SignUp() {
                     <div className="col-lg-12 col-xl-11">
 
                         <div className="row justify-content-center">
-                            <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-2 order-lg-1 mb-3 signupimg" >
+                            <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-2 order-lg-1 mb-3 " >
                                 <img
-                                    src="https://images.unsplash.com/photo-1591951425328-48c1fe7179cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fGJvb2tzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60"
-                                    className="img-fluid img responsive" style={{ borderRadius: "0px 10% 0% 10%", boxShadow: "0px 0px 15px gray", height: "500px", width: " 90%", backgroundSize: "contain" }}
+                                    src="https://images.unsplash.com/photo-1608099269227-82de5da1e4a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGJvb2tzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60"
+                                 
+                                    className="img-fluid img responsive signupimg" style={{ borderRadius: "0px 10% 0% 10%", boxShadow: "0px 0px 15px gray", height: "400px", width: " 90%", backgroundSize: "contain" }}
                                     alt="Sample image"
                                 />
                             </div>
