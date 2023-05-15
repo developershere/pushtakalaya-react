@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+/*import { useSelector } from "react-redux";
 
 function Cards(props){
     const {currentUser} = useSelector(state=>{state.user});
@@ -22,4 +22,4 @@ function Cards(props){
           </div>
     </>
 }
-export default Cards;
+export default Cards;*/

@@ -36,7 +36,7 @@
 }
 
 .buttonhover:hover {
-    background-color: #F07C29;
+    background-color: #F07c29;
     cursor: pointer;
     color: white;
     font-family: bold;
@@ -55,7 +55,7 @@
 }
 
 .cardprice {
-    color: #F07C29;
+    color: #F07c29;
     font-family: "Rufina", serif;
     font-size: 16px;
     font-weight: 700;
@@ -86,7 +86,7 @@
 }
 
 .cardcircle:hover {
-    background-color: #F07C29;
+    background-color: #F07c29;
     color: white;
 }
 
