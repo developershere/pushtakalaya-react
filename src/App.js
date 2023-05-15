@@ -25,8 +25,11 @@ import UserBooks from './components/user/myaccount/userbook';
 
 import OrderDetails from './components/user/myaccount/order/orderDetails';
 import ViewDescription from './components/viewDescription/viewDescription';
+
+import Contact from "./components/contact/contact";
 import UpdateBooks from './components/user/myaccount/updateBook/updateBook';
 import ForgetPassword from './components/user/ForgetPassword/forgetpassword';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +37,8 @@ function App() {
     dispatch(fetchCategory());
     dispatch(fetchTopProduct());
     dispatch(fetchState());
-  },[])
+  },[]);
+
   return <> 
   <Routes>
    <Route path='/' element={ <Home/>}/>
@@ -51,10 +55,17 @@ function App() {
    <Route path='/update' element={<ProtectedRoute><Update/></ProtectedRoute>}/>
    <Route path= "/viewDescription" element={<ViewDescription/>}/>
    <Route path="/book" element={<Books/>}/>
+
+   <Route path='/userBook' element={<UserBooks/>} />
+  <Route path='/updateBooks' element={<UpdateBooks/>}/>
+  <Route path='/orderDetails' element={<OrderDetails/>}/>
+  <Route path='/contact' element={<Contact/>}/>
+
    <Route path='/userBook' element={<ProtectedRoute><UserBooks/></ProtectedRoute>} />
   <Route path='/updateBooks' element={<ProtectedRoute><UpdateBooks/></ProtectedRoute>}/>
   <Route path='/orderDetails' element={<ProtectedRoute><OrderDetails/></ProtectedRoute>}/>
   <Route path='/forgetPassword'element={<ForgetPassword/>}/>
+
   </Routes>
   </>
 }

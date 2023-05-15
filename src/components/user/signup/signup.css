@@ -40,3 +40,9 @@ form .input-field {
     background-color: #212529 !important;
     color: #f07c29 !important;
 }
+
+.signupimg {
+    overflow: hidden;
+    background-position: bottom;
+    margin-top: 30px;
+}
