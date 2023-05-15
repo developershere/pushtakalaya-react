@@ -12,7 +12,7 @@ function Header() {
         dispatch(signout())
         toast.info("Sign Out SuccesFully");
     }
-    function searchCategory(){
+    function searchCategory() {
         navigate("/book")
     }
     return <>
@@ -34,21 +34,42 @@ function Header() {
                                             <div className="mega-menu">
                                                 {!error && categoryList.map((category, index) =>
                                                     <span key={index}>
-                                                        <a style={{cursor:"pointer"}} onClick={searchCategory}>{category.categoryName}</a>
+                                                        <a style={{ cursor: "pointer" }} onClick={searchCategory}>{category.categoryName}</a>
                                                     </span>
                                                 )}
 
 
                                             </div>
                                         </li>
-                                        <li><Link to='/donate'>Donate Books</Link></li>
+
+                                        <li><Link >Uplode Books<i className="fa fa-angle-down"></i></Link>
+                                        
+                                        <div className="sub-menu sub-menu-2">
+                                            <ul> 
+                                                 <li><Link to='/donate'>Donate Books</Link></li>
+                                                    <li><Link to='/sellbooks'>Sell Books</Link></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+
+                                      
                                         <li><Link to='/freebooks'>Free Books</Link> </li>
-                                        <li> <Link to='/sellbooks'>Sell Books</Link></li>
+
+                                        <li><Link >Pages<i className="fa fa-angle-down"></i></Link>
+                                        
+                                            <div className="sub-menu sub-menu-2">
+                                                <ul>
+                                                      <li><Link to='/aboutUs'>About Us</Link></li>
+                                                    <li><Link to='/contact'>Contact Us</Link></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
                                         {currentUser ? <li><Link onClick={signOut}>SignOut</Link></li> : <li><a href="#">MyAccount<i className="fa fa-angle-down"></i></a>
                                             <div className="sub-menu sub-menu-2">
                                                 <ul>
                                                     <li><Link to='/signup'>SignUp</Link></li>
-                                                    
+
                                                     <li><Link to='/signin'>SignIn</Link></li>
                                                 </ul>
                                             </div>
@@ -62,53 +83,53 @@ function Header() {
             </div>
 
 
-        <div className="mobile-menu-area d-lg-none d-block fix">
-            <div className="container">
-                <div className="row">
-                    <div className="col-lg-12">
-                        <div className="mobile-menu">
-                            <nav id="mobile-menu-active">
-                                <ul id="nav">
-                                    <li>
-                                        <Link to="/"> Home</Link>
-                                    </li>
-                                    <li><Link to="/book">Book</Link> 
-                                       
-                                    </li>
-                                    <li><a href="product-details.html">Categories</a>
-                                        <ul>
-                                            {!error && categoryList.map((category, index) =>
+            <div className="mobile-menu-area d-lg-none d-block fix">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <div className="mobile-menu">
+                                <nav id="mobile-menu-active">
+                                    <ul id="nav">
+                                        <li>
+                                            <Link to="/"> Home</Link>
+                                        </li>
+                                        <li><Link to="/book">Book</Link>
+
+                                        </li>
+                                        <li><a href="product-details.html">Categories</a>
+                                            <ul>
+                                                {!error && categoryList.map((category, index) =>
                                                     <li key={index} >
                                                         <span onClick={searchCategory} >{category.categoryName} </span>
                                                     </li>
                                                 )}
-                                        </ul>
-                                    </li>
-                                    <li><Link to="/donate"> 
-                                        Donate Books
+                                            </ul>
+                                        </li>
+                                        <li><Link to="/donate">
+                                            Donate Books
                                         </Link>
-                                    </li>
-                                    <li><Link to='/freebooks'>Free Books</Link>
-                                    </li>
-                                     <li><Link to='/sellbooks'>Sell Books</Link></li>
-                                    <li><a href="product-details.html">Page</a>
-                                        <ul>
-                                            <li><Link to='/signup'>SignUp</Link></li>
-                                            <li><Link to='/signin'>SignIn</Link></li>
-                                        </ul>
-                                    </li>
-                                   
-                            
-                                </ul>
+                                        </li>
+                                        <li><Link to='/freebooks'>Free Books</Link>
+                                        </li>
+                                        <li><Link to='/sellbooks'>Sell Books</Link></li>
+                                        <li>Page
+                                            <ul>
+                                                <li><Link to='/signup'>SignUp</Link></li>
+                                                <li><Link to='/signin'>SignIn</Link></li>
+                                            </ul>
+                                        </li>
 
-                            </nav>
+
+                                    </ul>
+
+                                </nav>
+                            </div>
+
                         </div>
-                        
                     </div>
                 </div>
             </div>
-        </div>
-       
+
         </header>
     </>
 }

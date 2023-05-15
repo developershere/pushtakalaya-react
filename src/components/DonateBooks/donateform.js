@@ -85,7 +85,7 @@ function DonateForm() {
       <div className="container-fluid py-5 h-100 donateformContainer">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-2 donateformimage">
-          <img src="\img\donates\donateimg.jpg" style={{ height: '500px', width: '500px' }} />
+          <img src="\img\donates\donateimg.jpg" style={{ height: '500px', width: '500px' }}/>
           </div>
           <div className="col-lg-10 col-xl-6" >
             <div className="card rounded-3">
@@ -97,22 +97,22 @@ function DonateForm() {
                 <form onSubmit={handleSubmit} className="px-md-2">
                   <div className="row form-group"  >
                     <div className="">
-                      <input onChange={(event) => setBookName(event.target.value)} placeholder="Enter Book Name" type="text" className="form-control" name="book" />
+                      <input onChange={(event) => setBookName(event.target.value)} placeholder="Enter Book Name" type="text" className="form-control" required />
                     </div>
                   </div>
                   <div className="row form-group"  >
                     <div className="">
-                      <input onChange={(event) => setEdition(event.target.value)} placeholder="Enter Edition" type="text" className="form-control"  name="edition" />
+                      <input onChange={(event) => setEdition(event.target.value)} placeholder="Enter Edition" type="text" className="form-control" required />
                     </div>
                   </div>
                   <div className="row form-group"  >
                     <div className="">
-                      <input onChange={(event) => setPublicationDate(event.target.value)} placeholder="Enter Publication Date" type="text" className="form-control"  name="publicationDate"/>
+                      <input onChange={(event) => setPublicationDate(event.target.value)} placeholder="Enter Publication Date" type="date" className="form-control" required/>
                     </div>
                   </div>
                   <div className="row form-group">
                     <div className=" col-md-12">
-                      <input onChange={(event) => setAuthorName(event.target.value)} placeholder="Enter Author Name" type="text" className="form-control" name="author"/>
+                      <input onChange={(event) => setAuthorName(event.target.value)} placeholder="Enter Author Name" type="text" className="form-control" required/>
                     </div>
 
                   </div>
@@ -155,13 +155,13 @@ function DonateForm() {
                   </div>
                   <div className="row form-group"  >
                    <div className=" col-md-6">
-                      <input onChange={(event) =>setPinCode(event.target.value)} type="number" placeholder=" Enter Pincode" className="form-control" />
+                      <input onChange={(event) =>setPinCode(event.target.value)} type="number" placeholder=" Enter Pincode" className="form-control" required/>
                     </div>
                   </div>
 
                   <div className="row form-group">
                     <div>
-                      <input onChange={onFileChange} type="file" multiple placeholder="Images" className="form-control" />
+                      <input onChange={onFileChange} type="file" multiple placeholder="Images" className="form-control" required/>
                     </div>
                   </div>
                   <div className="row form-group">

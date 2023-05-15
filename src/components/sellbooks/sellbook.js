@@ -101,35 +101,36 @@ function SellboooksForm() {
                                 <form onSubmit={handleSubmit}  className="px-md-2">
                                     <div className="row form-group"  >
                                         <div className="">
-                                            <input onChange={(event) => setBookName(event.target.value)} placeholder="Enter Book Name" type="text" className="form-control" />
+                                            <input onChange={(event) => setBookName(event.target.value)} placeholder="Enter Book Name" type="text" className="form-control" required/>
                                         </div>
                                     </div>
                                     <div className="row form-group"  >
                                         <div className="">
-                                            <input onChange={(event) => setEdition(event.target.value)} placeholder="Enter Edition" type="text" className="form-control" />
+                                            <input onChange={(event) => setEdition(event.target.value)} placeholder="Enter Edition" type="text" className="form-control"  required />
                                         </div>
                                     </div>
 
                                     <div className="row form-group"  >
                                         <div className=" col-md-6 mb-3">
-                                            <input onChange={(event) => setAuthorName(event.target.value)} placeholder="Enter Author Name" type="text" className="form-control" />
+                                            <input onChange={(event) => setAuthorName(event.target.value)} placeholder="Enter Author Name" type="text" className="form-control" required/>
                                         </div>
                                         <div className=" col-md-6">
-                                            <input onChange={(event) => setPrice(event.target.value)} placeholder="Enter Price" type="number" className="form-control" />
+                                            <input onChange={(event) => setPrice(event.target.value)} placeholder="Enter Price" type="number" className="form-control" required />
                                         </div>
                                     </div>
                                     <div className="row form-group">
                                         <div>
                                             <select onChange={(event) => setCategory(event.target.value)} className="form-control">Category
                                                 <option>Select Book Category</option>
-                                                {!error && categoryList.map((category, index) => <option   value={category._id}   key={index}>{category.categoryName}</option>)}
+                                                {!error && categoryList.map((category, index) => <option   value={category._id}   key={index} required>{category.categoryName}</option>)}
+                                                <option value="Other" defaultChecked>Other</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div className="row">
                                         <div>
-                                            <select onChange={(event) => setLanguage(event.target.value)} className="form-control">language
+                                            <select onChange={(event) => setLanguage(event.target.value)} className="form-control" required>language
                                                 <option>Select Language</option>
                                                 <option>Hindi</option>
                                                 <option>English</option>
@@ -139,7 +140,7 @@ function SellboooksForm() {
                                     </div>
                                     <div className="row form-group mt-2"  >
                                         <div className=" col-md-6 mb-3">
-                                            <select ref={stateObject} onChange={(event) => featchCityById(event.target.value)} className="form-control">State
+                                            <select ref={stateObject} onChange={(event) => featchCityById(event.target.value)} className="form-control" required>State
                                                 <option >Select State</option>
                                                 {stateList.map((state, index) =>
                                                     <option value={state._id}>{state.stateName}</option>
@@ -160,23 +161,23 @@ function SellboooksForm() {
                                     <div className="row form-group"  >
 
                                         <div className=" col-md-6 mb-3">
-                                            <input onChange={(event) => setPinCode(event.target.value)} type="number" placeholder=" Enter Pincode" className="form-control" />
+                                            <input onChange={(event) => setPinCode(event.target.value)} type="number" placeholder=" Enter Pincode" className="form-control" maxLength="6" minLength="6"   required />
                                         </div>
 
                                         <div className="col-md-6">
-                                            <input onChange={(event) => setPublicationDate(event.target.value)} placeholder="Enter Publication Date" type="text" className="form-control" />
+                                            <input onChange={(event) => setPublicationDate(event.target.value)} placeholder="Enter Publication Date" type="date" className="form-control" required/>
                                         </div>
                                           
                                        </div>
 
                                     <div className="row form-group"  >
                                         <div className="col-md-12">
-                                            <input onChange={onFileChange}  type="file" placeholder="Images" className="form-control" />
+                                            <input onChange={onFileChange}  type="file" placeholder="Images" className="form-control" required />
                                         </div>
                                     </div>
                                     <div className="row form-group">
                                         <div>
-                                            <textarea onChange={(event) => setDescription(event.target.value)} cols='60' rows='4' placeholder="Enter Book's Description..." />
+                                            <textarea onChange={(event) => setDescription(event.target.value)} cols='60' rows='4' placeholder="Enter Book's Description..."  required/>
                                         </div>
                                     </div>
                                     <div className="row form-group">
