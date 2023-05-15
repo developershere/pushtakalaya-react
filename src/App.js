@@ -28,6 +28,7 @@ import ViewDescription from './components/viewDescription/viewDescription';
 
 import Contact from "./components/contact/contact";
 import UpdateBooks from './components/user/myaccount/updateBook/updateBook';
+import Donetors from './components/Donaters/donater';
 
 
 function App() {
@@ -63,7 +64,7 @@ function App() {
    <Route path='/userBook' element={<ProtectedRoute><UserBooks/></ProtectedRoute>} />
   <Route path='/updateBooks' element={<ProtectedRoute><UpdateBooks/></ProtectedRoute>}/>
   <Route path='/orderDetails' element={<ProtectedRoute><OrderDetails/></ProtectedRoute>}/>
-
+  <Route path='/donetors' element={<Donetors />} />
   </Routes>
   </>
 }
