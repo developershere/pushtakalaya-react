@@ -6,7 +6,7 @@ function Spinner() {
                 <div />
             </div>
         </div>
-        <h2>Loading...</h2>
+        <h2 style={{color}}>Loading...</h2>
         </div>
         <style
             type="text/css"
