@@ -8,8 +8,6 @@ export const fetchCategory = createAsyncThunk('fetchCategory',async ()=>{
   return response.data.category
   }
 })
-
-
 const slice = createSlice({
     name:'category',
     initialState:{
