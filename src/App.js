@@ -27,6 +27,8 @@ import OrderDetails from './components/user/myaccount/order/orderDetails';
 import ViewDescription from './components/viewDescription/viewDescription';
 import UpdateBooks from './components/user/myaccount/updateBook/updateBook';
 import ForgetPassword from './components/user/ForgetPassword/forgetpassword';
+import ChangePassword from './components/user/changepassword.js/changepassword';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +57,7 @@ function App() {
   <Route path='/updateBooks' element={<ProtectedRoute><UpdateBooks/></ProtectedRoute>}/>
   <Route path='/orderDetails' element={<ProtectedRoute><OrderDetails/></ProtectedRoute>}/>
   <Route path='/forgetPassword'element={<ForgetPassword/>}/>
+  <Route path='/changePassword' element={<ChangePassword/>}/>
   </Routes>
   </>
 }
