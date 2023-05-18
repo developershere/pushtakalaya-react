@@ -4,7 +4,7 @@ import "./cart.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { addItemInToCart, removeFromCart, setCartItems } from "../../../router-config/CartSlice";
 import { apiEndPoint } from "../../../webApi/webapi";
 import { toast, ToastContainer } from "react-toastify";
@@ -22,24 +22,35 @@ function Cart() {
   const [contactNumber, setContactNumber] = useState("");
   const [delieveryAddress, setDeliveryAddress] = useState("");
 
+  const location = useLocation();
   const dispatch = useDispatch();
   var amount = 0;
   var total = 0;
   var status = false;
+  const book = location?.state?.Buybook;
+  const bookId=[book.Buybook];
+  console.log(bookId)
   cartItems?.map((carts,index)=>{
-    total+= carts.bookId.price*1+20;
+      total+= carts.bookId.price*1+30;
+
   })
-  const navigate = useNavigate();
+  
   const loadProducts = async () => {
     try {
 
       let response = await axios.post(apiEndPoint.FETCH_CART, { userId: currentUser._id });
-      dispatch(setCartItems(response.data.cart));
+      
+      if(!book.Buyflag)
+          dispatch(setCartItems(response.data.cart));
+      else
+          dispatch(setCartItems(bookId));
     }
     catch (err) {
       setError("Oops! something went wrong..");
     }
   }
+
+
   const loadOrder = async (event) => {
     try {
       event.preventDefault();
@@ -127,12 +138,15 @@ function Cart() {
       </div>
     </div>
 
+    {}
+
     {!cartItems?.length == 0 ? <div className="container-fluid addtocartcontainer mb-70">
 
+     {}
       <div className=" row">
         <div className="  ml-4 mt-5 col-sm-8 col-md-8 col-xm-8 ps-2 ">
           <div className=" headingcart row col-md-12 mt-2">
-            <h5 className="cartscontainheading text-white mt-1">My Cart({cartItems?.length + "Books"})</h5>
+            {bookId?.Buyflag ? <h5 className="cartscontainheading text-white mt-1">Your Book(1)</h5>:<h5 className="cartscontainheading text-white mt-1">My Cart({cartItems?.length + "Books"})</h5>}
           </div>
 
 

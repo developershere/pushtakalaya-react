@@ -49,6 +49,28 @@ function TopInteresting() {
       toast.error("Oops Something went wrong");
     }
   }
+
+  const BuyNow=async(book,flag)=>{
+    const buy={
+      Buybook:book,
+      Buyflag:flag
+    }
+     try{
+       if(currentUser){
+        navigate("/cart",{state:{Buybook:buy}})
+          
+
+       }else{
+         toast.warning("You Have To Login First ")
+       }
+
+     }catch(err){
+      if(err.response.status==500)
+      toast.error("Oops Something Went Wrong");
+     }
+  }
+
+  
   return <>
   <ToastContainer/>
     <section className="our-project" id="projectid">
@@ -67,7 +89,7 @@ function TopInteresting() {
             >
 
               <button  className=" nav-link active col-2" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="true"  >  All</button>
-              {!error && categoryList?.filter((category) => category.categoryName == "Mysteries").map((category, index) =>
+              {!error && categoryList?.filter((category) => category.categoryName == "Classics").map((category, index) =>
                 <button key={index} onClick={() => loadProductByCategory(category._id)} className=" nav-link col-2" id="nav-Remodeling-tab" data-bs-toggle="tab" data-bs-target="#nav-Remodeling" type="button" role="tab" aria-controls="nav-Remodeling" aria-selected="false" >{category.categoryName}</button>)}
 
               {!error && categoryList?.filter((category) => category.categoryName == "Horror").map((category, index) =>
@@ -102,13 +124,15 @@ function TopInteresting() {
                  <div className="card">
                   
                  {book.photos.split("@")[1] ? <img src={apiEndPoint.DISK_STORAGE+ book.photos.split("@")[1]} className="img-fluid cardimg" /> : <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />}
+                
                  <a className="cardcircle"><i className="fa fa-shopping-cart carticon mt-3" style={{cursor:"pointer"}} onClick={()=>addToCart(book?._id)}></i></a>
                    <div className="card-body">
                      <p className="card-text cardtitle">{book?.name.substring(0,20)}</p>
                      <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0,15)}</p>
+                     
                      <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book?.price==0?"Free":book.price}</b>
                      <br/>
-                     <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)} >View More</button>
+                     <button className="btn mt-2  buttonhover" onClick={()=>BuyNow(book,true)} >Get Now</button><span className="viewcircle ml-2 "  onClick={() => viewDescription(book,1)}><small className="viewicon p-2 " ><i className="fa fa-eye" /></small></span>
                    </div>
                  </div>
                </div>)}
@@ -127,7 +151,7 @@ function TopInteresting() {
                     <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 15)}</p>
                     <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price}</b>
                     <br />
-                    <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)} >View More</button>
+                    <button className="btn mt-2 buttonhover" >Get Now</button><span className="viewcircle ml-2 "  onClick={() => viewDescription(book)}><small className="viewicon p-2 " ><i className="fa fa-eye" /></small></span>
                   </div>
                 </div>
               </div>)}

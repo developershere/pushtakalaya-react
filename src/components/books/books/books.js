@@ -1,9 +1,7 @@
 import { useSelector } from "react-redux";
 import "./books.css"
-
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 import { useLocation, useNavigate } from "react-router-dom";
 import { apiEndPoint } from "../../../webApi/webapi";
 import Header from "../../header/header";
@@ -193,7 +191,7 @@ function Books() {
                                             <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 10)}</p>
                                             <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price}</b>
                                             <br />
-                                            <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)}>View More</button>
+                                            <button className="btn mt-2  bookbuynowbutton" >Get Now</button><span className="viewcircle ml-2 "  onClick={() => viewDescription(book)}><small className="viewicon p-2 " ><i className="fa fa-eye" /></small></span>
                                         </div>
                                     </div>
                                 </div>)}
@@ -212,7 +210,7 @@ function Books() {
                                         <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 10)}</p>
                                         <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price}</b>
                                         <br />
-                                        <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)}>View More</button>
+                                        <button className="btn mt-2  bookbuynowbutton" >Get Now</button><span className="viewcircle ml-2 "  onClick={() => viewDescription(book)}><small className="viewicon p-2 " ><i className="fa fa-eye" /></small></span>
                                     </div>
                                 </div>
                             </div>)}
@@ -221,8 +219,7 @@ function Books() {
                     {/* cart */}
                 </div>
                 <div>
-
-                </div>
+               </div>
             </div>
 
         </div>

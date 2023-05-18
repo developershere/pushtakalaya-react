@@ -6,6 +6,7 @@ import Footer from "../footer/footer";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import'./freebooks.css'
 
 function FreeBooks() {
 
@@ -71,7 +72,7 @@ function FreeBooks() {
                   <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 15)}</p>
                   <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹ Free</b>
                   <br />
-                  <button className="btn mt-2 w-100 buttonhover" onClick={() => viewDescription(book)} >View More</button>
+                  <button className="btn mt-2 buynowbutton" >Get Now</button><span className="viewcircle ml-2 "  onClick={() => viewDescription(book)}><small className="viewicon p-2 " ><i className="fa fa-eye" /></small></span>
                 </div>
               </div>
             </div>)}
