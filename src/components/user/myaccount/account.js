@@ -14,6 +14,7 @@ function Account() {
                 <div className="account-details-form ">
                     <form action="#">
                         <div className="single-input-item row " >
+                            {currentUser&&currentUser.photos}
                             <img src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png' style={{ height: '150px', width: '180px', borderRadius: "50%" , margin: "auto"}} type="image/png"
                                   label="Upload Profile Picture" alt='Profile Image' />
                         </div>
@@ -30,7 +31,7 @@ function Account() {
                         </div>
                         <div className="single-input-item">
                             <i className="fa fa-phone " aria-hidden="true" />
-                            <label for="text" className="required ml-3" style={{ fontFamily: "Rufina, serif"}}>contact <span className="ml-2 heading"> {currentUser && currentUser.contact}</span>  </label>
+                            <label for="text" className="required ml-3"   style={{ fontFamily: "Rufina, serif"}}>contact <span className="ml-2 heading"> {currentUser && currentUser.contact}</span>  </label>
 
                         </div>
                         <Link to='/update' className="btn btn-sqr mt-3"><i className="fa fa-edit"></i>  Edit profile</Link>
