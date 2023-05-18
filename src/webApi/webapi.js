@@ -9,6 +9,8 @@ export const apiEndPoint = {
     USER_SIGNIN:"/user/signIn",
     USER_SIGNUP:"/user/signup",
     USER_VERIFY : "/user/verifyEmail",
+    FORGOTT_PASSWORD : '/user/forgettpassword',
+    USER_CHECK : "/user/checkuser",
     USER_UPDATEPROFILE:"/user/updateProfile",
     Search_By_Categoryname: "/book/searchByCategoryId",
     SEARCH_BY_AUTHER: "/book/searchbyAuthor",
