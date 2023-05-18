@@ -19,6 +19,7 @@ function Books() {
     const [bookError, setBookError] = useState("");
     const [page, setPage] = useState("");
     const [loading, setLoading] = useState("");
+    
     const navigate = useNavigate()
     const loadBooks = async () => {
         try {
@@ -34,8 +35,14 @@ function Books() {
         }
     }
 
-    const featchAllBooks = async () => {
-
+    const featchAllBooks =  async () => {
+        try{
+            let response = await axios.get(apiEndPoint.TOTALBOOK)
+            SetAuthors(response.data.bookList);
+        }
+        catch(err){
+ 
+        }
     }
     const viewDescription = (book) => {
         navigate("/viewDescription", { state: { bookDetails: book } })
@@ -69,17 +76,14 @@ function Books() {
         try {
             let response = await axios.post(apiEndPoint.SEARCH_BY_AUTHER, { author: author });
             console.log(response.data);
-            SetAuthors(response.data.result)
+            // SetAuthors(response.data.result)
         }
         catch (err) {
             console.log(err);
         }
     }
 
-    const viewListInbooks = (data) => {
-        const list = data
-        navigate("/bookList", { state: { dataList: list } });
-    };
+ 
 
 
     const addToCart = async (id) => {
@@ -103,8 +107,10 @@ function Books() {
 
     useEffect(() => {
         featchAllBooks();
+        featchAllBooks();
         viewBookByCategory();
         searchByAuther();
+        
     }, []);
 
     return <>
@@ -145,9 +151,9 @@ function Books() {
                             Author
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton dropdownofOther">
-                            {console.log(authors)}
+                    
                             {authors.map((book, index) =>
-                                <a class="dropdown-item " onClick={() => { searchByAuther(book.author) }}>{book.author}</a>
+                                <a class="dropdown-item " onClick={() =>{ searchByAuther(book.author)}}>{book.author}</a>
                             )}
                         </div>
                     </div>

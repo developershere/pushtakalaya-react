@@ -2,7 +2,8 @@ import "../donetors.css"
 import Footer from "../footer/footer";
 import Header from "../header/header";
 function Donetors() {
-
+  
+    
     return <div className="team-boxed">
         <Header />
         <div
