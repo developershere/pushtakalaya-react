@@ -28,7 +28,7 @@ function ViewDescription() {
                                             <img
                                                 src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))}
                                                 alt=""
-                                                id="mainImage"
+                                                id="mainDescriptionImage"
                                             />
                                         </div>
                                         {/* image array */}
@@ -72,3 +72,5 @@ function ViewDescription() {
 }
 
 export default ViewDescription;
+
+

@@ -165,7 +165,7 @@ function SellboooksForm() {
                                         </div>
 
                                         <div className="col-md-6">
-                                            <input onChange={(event) => setPublicationDate(event.target.value)} placeholder="Enter Publication Date" type="date" className="form-control" required/>
+                                            <input onChange={(event) => setPublicationDate(event.target.value)} placeholder="Enter Publication Date" type="text" className="form-control" required/>
                                         </div>
                                           
                                        </div>
