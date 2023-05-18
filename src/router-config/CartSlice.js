@@ -31,6 +31,7 @@ const slice = createSlice({
     },
     reducers:{
         setCartItems : (state,action)=>{
+            console.log(action.payload);
             state.cartItems = action.payload;
         },
         setflag : (state,action)=>{

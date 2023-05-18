@@ -29,6 +29,8 @@ import ViewDescription from './components/viewDescription/viewDescription';
 import Contact from "./components/contact/contact";
 import UpdateBooks from './components/user/myaccount/updateBook/updateBook';
 import Donetors from './components/Donaters/donater';
+import ForgetPassword from './components/user/ForgetPassword/forgetpassword';
+import ChangePassword from './components/user/changepassword.js/changepassword';
 
 
 function App() {
@@ -65,6 +67,8 @@ function App() {
   <Route path='/updateBooks' element={<ProtectedRoute><UpdateBooks/></ProtectedRoute>}/>
   <Route path='/orderDetails' element={<ProtectedRoute><OrderDetails/></ProtectedRoute>}/>
   <Route path='/donetors' element={<Donetors />} />
+  <Route path='/forgetPassword'element={<ForgetPassword/>}/>
+  <Route path='/changePassword' element={<ChangePassword/>}/>
   </Routes>
   </>
 }
