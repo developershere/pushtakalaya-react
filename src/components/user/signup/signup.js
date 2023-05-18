@@ -9,6 +9,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import 'react-toastify/dist/ReactToastify.css'
 import Footer from "../../footer/footer";
 import GoogleLogin from "../GoogleLogin";
+import Loader from "../../Spinner/Loader";
 function SignUp() {
     const [Otp, setOtp] = useState("");
     let name = useRef("");
@@ -22,6 +23,7 @@ function SignUp() {
     var mtime;
     var modalDismiss;
     const [modal,setModal] = useState(false);
+    const [loader,setLoader] = useState(false);
     const navigate = useNavigate();
 
     const changeHome = () => {
@@ -33,8 +35,6 @@ function SignUp() {
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
-            window.alert("fdd");
-            console.log("sfdfdg");
             let response = await axios.post(apiEndPoint.USER_VERIFY, { name: name.current.value, email: email.current.value });
             mausam = response.data.result.OTP;
             // setModal(response.data.status);
@@ -67,9 +67,12 @@ function SignUp() {
         modalDismiss = false;
         if (new Date().getMinutes() <= mtime) {
             if (mausam == otp.current.value) {
+                <Loader/>
                 const response = await axios.post(apiEndPoint.USER_SIGNUP,formData)
                 modalDismiss = true;
+                setLoader(true);
                 toast("Registration Success....")
+                window.location.reload();
             }
             else
                 toast.error("Invalid OTP...");

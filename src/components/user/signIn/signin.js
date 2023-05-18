@@ -101,13 +101,10 @@ function SignIn(){
           <div className="row">
             <div className="col-md-9 col-lg-8 mx-auto">
               <h3 className="login-heading mb-4 welcome">Welcome Back!</h3>
-
-             
               <form id='SigninForm' onSubmit={handleSubmit}>
                 <div className="form-floating mb-3">
                   <input  onChange={(event)=>SetEmail(event.target.value)} type="email" className="form-control" id="floatingInput" placeholder="name@example.com" required/>
                   <label for="floatingInput">Email address</label>
-                  
                 </div>
                 <div className="form-floating mb-3">
                   <input  onChange={(event)=>setPassword(event.target.value)}type="password" className="form-control" onKeyUp={sub} id="floatingPassword" placeholder="Password" required/>
