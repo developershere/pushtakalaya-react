@@ -335,3 +335,14 @@
     color: #f07c29 !important;
     background-color: #f5f3f3 !important;
 }
+.bookbuynowbutton{
+    background-color: #212529;
+    color: white;
+    width: 130px;
+}
+.bookbuynowbutton:hover{
+    background-color: #F07c29;
+    cursor: pointer;
+    color: white;
+    font-family: bold;
+}

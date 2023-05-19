@@ -1,3 +1,4 @@
+import { Team } from "../../Externals/Team";
 import TopBar from "../Topbar/topbar";
 import Footer from "../footer/footer";
 import Header from "../header/header";
@@ -67,7 +68,7 @@ export default function About() {
                     <div className="col-lg-4 col-md-4 col-12">
                         <div className="single-misson">
                             <h3>
-                                Why<span>We do?</span>
+                                What<span>We do?</span>
                             </h3>
                             <p>
                                 Huis nostrud exerci tation ullamcorper suscipites lobortis nisl ut
@@ -114,12 +115,13 @@ export default function About() {
                             <h2>Our Crazy Team</h2>
                         </div> 
                     </div>
-                    <div className="col-lg-3 col-md-6 col-sm-6 col-12">
+                    {Team.map((team,index)=>
+                    <div className="col-lg-3 col-md-6 col-sm-6 col-12" key={index}>
                         <div className="single-team mb-30">
                             <div className="team-img-area">
                                 <div className="team-img">
                                     <a href="#">
-                                        <img src="https://you.com/proxy?url=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.OqTuCNBvX5xdvNMInfI0oAHaEP%26pid%3DApi" alt="man"  />
+                                        <img src={team.image} alt="man"  />
                                     </a>
                                 </div>
                                 <div className="team-link">
@@ -143,113 +145,11 @@ export default function About() {
                                 </div>
                             </div>
                             <div className="team-content text-center">
-                                <h3>Marcos Alonso</h3>
-                                <span>Class Master</span>
+                                <h3>{team.name}</h3>
+                                <span>{team.desingnation}</span>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div className="single-team mb-30">
-                            <div className="team-img-area">
-                                <div className="team-img">
-                                    <a href="#">
-                                        <img src="img/team/2.jpg" alt="man" />
-                                    </a>
-                                </div>
-                                <div className="team-link">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <i className="fa fa-facebook" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i className="fa fa-twitter" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i className="fa fa-google-plus" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="team-content text-center">
-                                <h3>Luis Aragones</h3>
-                                <span>Marketer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div className="single-team mb-30">
-                            <div className="team-img-area">
-                                <div className="team-img">
-                                    <a href="#">
-                                        <img src="img/team/3.jpg" alt="man" />
-                                    </a>
-                                </div>
-                                <div className="team-link">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <i className="fa fa-facebook" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i className="fa fa-twitter" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i className="fa fa-google-plus" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="team-content text-center">
-                                <h3>Maria Alessis</h3>
-                                <span>Class Master</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div className="single-team mb-30">
-                            <div className="team-img-area">
-                                <div className="team-img">
-                                    <a href="#">
-                                        <img src="img/team/4.jpg" alt="man" />
-                                    </a>
-                                </div>
-                                <div className="team-link">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <i className="fa fa-facebook" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i className="fa fa-twitter" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i className="fa fa-google-plus" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="team-content text-center">
-                                <h3>John Doe</h3>
-                                <span>PHP Devloper</span>
-                            </div>
-                        </div>
-                    </div>
+                    </div>)}
                 </div>
             </div>
         </div>
@@ -261,7 +161,7 @@ export default function About() {
                     <div className="col-lg-6 col-md-6 col-12">
                         <div className="skill-content">
                             <h3>
-                                Why Choose<span>Koparion</span>HTML Template
+                                Why Choose<span>Pustakalaya</span>Application
                             </h3>
                             <p>
                                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
@@ -297,7 +197,7 @@ export default function About() {
                                 ></div>
                             </div>
                             <div className="progress">
-                                <div className="skill-title">Wordpress Theme 65%</div>
+                                <div className="skill-title">Less Price 65%</div>
                                 <div
                                     className="progress-bar wow fadeInLeft"
                                     data-wow-delay="0.4s"
@@ -306,7 +206,7 @@ export default function About() {
                                 ></div>
                             </div>
                             <div className="progress mrg-none-xs">
-                                <div className="skill-title">UI/UX Design 92%</div>
+                                <div className="skill-title">User-Friendly 92%</div>
                                 <div
                                     className="progress-bar wow fadeInLeft"
                                     data-wow-delay="0.3s"
