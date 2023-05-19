@@ -2,8 +2,8 @@ import "../donetors.css"
 import Footer from "../footer/footer";
 import Header from "../header/header";
 function Donetors() {
-  
-    
+
+
     return <div className="team-boxed">
         <Header />
         <div
@@ -20,7 +20,7 @@ function Donetors() {
                 <section className="mx-auto my-5" style={{ maxWidth: "20rem" }}>
                     <div className="card testimonial-card mt-2 mb-3">
                         <div className="card-up aqua-gradient" />
-                        <div className="avatar mx-auto white">
+                        <div className="avatar mx-auto white circle">
                             <img
                                 src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2831%29.jpg"
                                 className="rounded-circle img-fluid"
@@ -40,9 +40,9 @@ function Donetors() {
                 <section className="mx-auto my-5" style={{ maxWidth: "20rem" }}>
                     <di className="card testimonial-card mt-2 mb-3">
                         <div className="card-up aqua-gradient" />
-                        <div className="avatar mx-auto white">
+                        <div className="avatar mx-auto white circle">
                             <img
-                                src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2831%29.jpg"
+                                src="https://www.shutterstock.com/image-photo/smiling-african-american-office-employee-260nw-1032686038.jpg"
                                 className="rounded-circle img-fluid"
                                 alt="woman avatar"
                             />
@@ -60,7 +60,7 @@ function Donetors() {
                 <section className="mx-auto my-5" style={{ maxWidth: "20rem" }}>
                     <di className="card testimonial-card mt-2 mb-3">
                         <div className="card-up aqua-gradient" />
-                        <div className="avatar mx-auto white">
+                        <div className="avatar mx-auto white circle">
                             <img
                                 src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2831%29.jpg"
                                 className="rounded-circle img-fluid"

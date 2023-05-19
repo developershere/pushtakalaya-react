@@ -7740,3 +7740,14 @@ Link {
 .submitbtn:active {
     outline: none !important;
 }
+
+.circle{
+    width: 90%;
+    height: 250px !important;
+    /* background-color: blueviolet ; */
+}
+.circle img{
+    width: 100%;
+    height: 100%;
+
+}
