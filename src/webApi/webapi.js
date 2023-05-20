@@ -34,6 +34,7 @@ export const apiEndPoint = {
     FETCH_ORDER:"/order/vieworderByuserId",
     FETCH_ORDER_BY_ORDERID:"/order/vieworderByorderId",
     PRICE: "/book/price",
-    TOTALBOOK: "/book/totalbook"
+    TOTALBOOK: "/book/totalbook",
+    DONETORS: "/book/donetors"
 
 }
