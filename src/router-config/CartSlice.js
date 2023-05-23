@@ -27,12 +27,13 @@ const slice = createSlice({
     initialState: {
         cartItems: [],
         cartError: null,
-        flag: false
+        flag: false,
+        isLoading : false
     },
     reducers:{
         setCartItems : (state,action)=>{
-            console.log(action.payload);
             state.cartItems = action.payload;
+            state.isLoading = true;
         },
         setflag : (state,action)=>{
             state.flag = true;
@@ -42,6 +43,7 @@ const slice = createSlice({
         builder.addCase(removeFromCart.fulfilled,(state,action)=>{
             console.log(action)
             state.cartItems = action.payload;
+            state.isLoading = false;
         })
     }
 });

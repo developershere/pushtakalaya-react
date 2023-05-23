@@ -36,7 +36,7 @@ function Account() {
                         </div>
                         <div className="single-input-item">
                             <i className="fa fa-phone " aria-hidden="true" />
-                            <label for="text" className="required ml-3" style={{ fontFamily: "Rufina, serif"}}>contact <span className="ml-2 heading"> {currentUser && currentUser.contact}</span>  </label>
+                            <label for="text" className="required ml-3"   style={{ fontFamily: "Rufina, serif"}}>contact <span className="ml-2 heading"> {currentUser && currentUser.contact}</span>  </label>
 
                         </div>
                         <Link to='/update' className="btn btn-sqr mt-3"><i className="fa fa-edit"></i>  Edit profile</Link>

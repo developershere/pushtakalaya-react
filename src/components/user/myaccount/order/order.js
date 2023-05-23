@@ -17,7 +17,7 @@ function Order() {
   console.log(orderList)
   const featchOrderByUserId = async () => {
     let response = await axios.post(apiEndPoint.FETCH_ORDER, { userId: currentUser._id });
-
+    // console.log(response.data.orderList);
     SetOrderList(response.data.orderlist);
   }
 
@@ -64,8 +64,8 @@ function Order() {
                   </span> : <span class="badge badge-primary rounded-pill d-inline">{order.status}</span>}
 
                 </td>
-                <td>{order.paymentMode}</td>
-                <td>{order.billamount}Rs.</td>
+                {order.paymentMod*1?<td>Online Payment</td>:<td>COD</td>}
+                <td>Rs. {order.billamount}</td>
               </tr>)}
 
 

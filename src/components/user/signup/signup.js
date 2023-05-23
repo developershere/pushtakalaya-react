@@ -22,6 +22,7 @@ function SignUp() {
     var profileImage=[];
     var mtime;
     var modalDismiss;
+    const [isLoading,setIsLoading] = useState(true);
     const [modal,setModal] = useState(false);
     const [loader,setLoader] = useState(false);
     const navigate = useNavigate();
@@ -67,10 +68,10 @@ function SignUp() {
         modalDismiss = false;
         if (new Date().getMinutes() <= mtime) {
             if (mausam == otp.current.value) {
-                <Loader/>
+                setLoader(true);
                 const response = await axios.post(apiEndPoint.USER_SIGNUP,formData)
                 modalDismiss = true;
-                setLoader(true);
+                setIsLoading(false);
                 toast("Registration Success....")
                 window.location.reload();
             }
@@ -96,6 +97,7 @@ function SignUp() {
     return <>
         <Header />
         <ToastContainer />
+        {loader&& isLoading&&<Loader/>}
         <div className="breadcrumbs-area ">
             <div className="container">
                 <div className="row">

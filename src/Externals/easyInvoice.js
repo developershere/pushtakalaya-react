@@ -1,7 +1,11 @@
 import easyinvoice from 'easyinvoice';
-import fs from 'fs'
-function Invoice() {
-    const createFile = async () => {
+// import fs from 'fs'
+import { useSelector } from 'react-redux';
+
+function Invoice({books,data}) {
+    window.alert('Invoice called....');
+    const {currentUser} = useSelector(state=>state.user.currentUser);
+        var userData = {name:'mausam'};
         var data = {
             "documentTitle": "Order Invoice",
             "currency": "INR",
@@ -19,36 +23,30 @@ function Invoice() {
                 "country": "India"
             },
             "client": {
-                "company": "Sanju Patel",
-                "address": "Annapurna Temple Indore",
-                "zip": "470005",
-                "city": "Indore",
-                "country": "India"
+                "company": data.name,
+                "address": data.address,
+                "zip": "",
+                "city": "",
+                "country": ""
             },
-            "invoiceNumber": "2020.0001",
-            "invoiceDate": "05-01-2020",
+            "Order Id": data.orderId,
+            "invoiceDate": data.orderId,
             "Books": [
-                {
-                    "quantity": "1",
-                    "description": "IT Book (Second Hand)",
-                    "tax": 6,
-                    "price": 120
-                },
-                {
-                    "quantity": "01",
-                    "description": "The girl in room 105",
-                    "tax": 21,
-                    "price": 90
-                }
-            ],
+                        {
+                        "quantity" : "1",
+                        "description" : 'book.bookId.title',
+                        "tax" :30,
+                        "price" : 'book.bookId.price*1'
+                        }
+                    ],
             "bottomNotice": "Please Visit again !!!"
         };
-        const result = await easyinvoice.createInvoice(data);
-        await fs.writeFileSync("invoice.pdf", result.pdf, 'base64');
-    }
-
+        const result =  easyinvoice.createInvoice(data);
+        window.alert('Invoice called....222');
+        result.writeFileSync("invoice.pdf", result.pdf, 'base64');
+        window.alert('Invoice called....3333');
     return <>
-    <div><button onClick={createFile}>Create Invoice</button></div>
+    <div><button >Create Invoice</button></div>
     </>
 }
 export default Invoice;

@@ -17,7 +17,7 @@ function Loader() {
     return <>
         <div className="App">
             {post ? post : <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 50 }}
                 open
             >
                 <Spinner color="inherit" />
