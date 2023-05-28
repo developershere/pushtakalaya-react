@@ -6,7 +6,7 @@ function Spinner() {
                 <div />
             </div>
         </div>
-        <h2 style={{color:'white'}}>Loading...</h2>
+        <h3 style={{color:'white'}}>Please Wait ....</h3>
         </div>
         <style
             type="text/css"

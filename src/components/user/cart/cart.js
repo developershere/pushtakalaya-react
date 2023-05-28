@@ -10,6 +10,7 @@ import { apiEndPoint } from "../../../webApi/webapi";
 import { toast, ToastContainer } from "react-toastify";
 import EmptyCart from "./emptycart";
 import Payment from "../../ExtraServices/razorpay";
+import Invoice from "../../../Externals/easyInvoice";
 
 function Cart() {
   const [productList, setProductList] = useState([]);
@@ -55,11 +56,19 @@ function Cart() {
 
   const loadOrder = async (event) => {
     try {
+      window.alert('Yaha pe aa gya 1');
       event.preventDefault();
       const date = new Date().toString().substring(4, 15).replaceAll(' ', '-');
-      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, cartId: cartItems[0]._id, orderItem: cartItems, date:date });
+      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, cartId: cartItems[0]._id, orderItem: cartItems, date:date});
+      const orederPerson = {name : currentUser.name,address : delieveryAddress+'-'+contactPerson+' '+contactNumber,date,orderId : response.data.orderId};
       if(response.data.status)
-            toast.success("Order placed success");
+        {
+          <Invoice data = {orederPerson} books = {cartItems}/>
+          toast.success("Order placed success");
+          setTimeout(()=>{
+            window.location.reload();
+          },3000);
+        }
       else
           toast.warning("Oops something went wrong");
     } catch (err) {
@@ -128,8 +137,8 @@ function Cart() {
                   <textarea type='text' cols='64' rows='4' placeholder="Enter Delievery Address" onChange={(event) => setDeliveryAddress(event.target.value)} className="form-control" />
                 </div>
                 </div>
-                {paymentMode*1&&<Payment
-                    money = {total}/>
+                {paymentMode*1?<Payment
+                    money = {total}/>:<></>
               }
             </div>
             <div className="modal-footer ">
@@ -139,9 +148,6 @@ function Cart() {
         </form>
       </div>
     </div>
-
-    {}
-
     {!cartItems?.length == 0 ? <div className="container-fluid addtocartcontainer mb-70">
       <div className=" row">
         <div className="  ml-4 mt-5 col-sm-8 col-md-8 col-xm-8 ps-2 ">

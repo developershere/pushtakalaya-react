@@ -17,7 +17,7 @@ function Books() {
     const [bookData, setData] = useState([]);
     const [authors, SetAuthors] = useState([]);
     const [bookError, setBookError] = useState("");
-    const [page, setPage] = useState("");
+    const [page, setPage] = useState(null);
     const [loading, setLoading] = useState("");
     const navigate = useNavigate()
     const loadBooks = async () => {
@@ -33,6 +33,25 @@ function Books() {
             setBookError("Something went wrong....")
         }
     }
+    const BuyNow=async(book,flag)=>{
+        const buy={
+          Buybook:[{bookId:book}],
+          Buyflag:true
+        }
+         try{
+           if(currentUser){
+            navigate("/cart",{state:{Buybook:buy}})
+              
+    
+           }else{
+             toast.warning("You Have To Login First ")
+           }
+    
+         }catch(err){
+          if(err.response.status==500)
+          toast.error("Oops Something Went Wrong");
+         }
+      }
 
     const featchAllBooks = async () => {
 
@@ -110,9 +129,10 @@ function Books() {
     return <>
         <Header />
         <ToastContainer />
+        <section className="blog" id="blogid">
         <div className="container-fluid">
             <div className="FilterMainDiv">
-                <div className="RightPart" >
+                <div className="RightPart"  >
                     <button className="SeacrchButton">Search</button>
                     <div className="rightpartHeading">
                         <p className="Heading">Categories</p>
@@ -153,7 +173,7 @@ function Books() {
                     </div>
 
                 </div>
-                <div className="LeftPart">
+                <div className="LeftPart" >
                     <div className="mainImage">
                         <img
                             src="../../img/banner/9.jpg"
@@ -175,27 +195,29 @@ function Books() {
 
                     </div>
                     {/* cart */}
+                    
                     <InfiniteScroll
                         dataLength={bookData.length}
                         next={loadBooks}
                         hasMore={bookData.length < 100}
-                        endMessage={<p>Books are Finished</p>}>
-                        <div className="row m-auto">
+                        endMessage={<h2>Books are Finished</h2>}>
+                            <div className="row m-auto">
                             {bookData.filter((book) => book.permission && book.status == true).map((book, index) =>
                                 <div key={index} className="col-md-3 col-sm-6 mt-5" data-aos="fade-up" data-aos-duration="500">
                                     <div className="card">
                                         <img src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))} className="img-fluid cardimg" />
-                                        <a href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3" style={{ cursor: "pointer" }} onClick={() => addToCart(book._id)}></i></a>
+                                        <button href="" className="card-action"><i className="fa fa-shopping-cart carticon mt-3" style={{ cursor: "pointer" }} onClick={() => addToCart(book._id)}></i></button>
                                         <div className="card-body">
                                             <p className="card-text cardtitle">{book.name.substring(0, 15)}</p>
                                             <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 10)}</p>
                                             <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price}</b>
                                             <br />
-                                            <button className="btn mt-2  bookbuynowbutton" >Get Now</button><span className="viewcircle ml-2 "  onClick={() => viewDescription(book)}><small className="viewicon p-2 " ><i className="fa fa-eye" /></small></span>
+                                            <button className="btn mt-2  bookbuynowbutton" onClick={()=>BuyNow(book,true)} >Get Now</button><span className="viewcircle ml-2 "  onClick={() => viewDescription(book)}><small className="viewicon p-2 " ><i className="fa fa-eye" /></small></span>
                                         </div>
                                     </div>
                                 </div>)}
                         </div>
+
                     </InfiniteScroll>
                     {/* cart */}
                     {/* cart */}
@@ -223,7 +245,8 @@ function Books() {
             </div>
 
         </div>
-
+        </section>
+        {/* <Footer/> */}
 
     </>
 
