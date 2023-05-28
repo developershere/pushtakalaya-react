@@ -16,11 +16,13 @@ function ForgetPassword() {
         window.alert('yaha per aa gya.1');
         event.preventDefault();
         const response = await axios.post(apiEndPoint.USER_CHECK, { email: email.current.value });
+        console.log(response.data);
         window.alert('yaha per aa gya.2');
         if (response.data.status) {
             window.alert('yaha per aa gya.3');
             setOtpStatus(response.data.status);
             setOtp(response.data.otp);
+            window.alert(otpStatus);
         }
         else
             toast.error("This user is unauthorized...");
@@ -86,8 +88,7 @@ function ForgetPassword() {
                                                     <input id="email" name="email" ref={OTP} placeholder="Enter Otp" className="form-control" type="number" />
                                                 </div>
                                                 <div className="form-group">
-                                                    <input onClick={updatePassword} name="recover-submit" className="btn btn-lg cartbutton btn-block" defaultValue="Reset Password" type="submit"
-                                                    />
+                                                    <button Click={updatePassword} className="btn btn-lg cartbutton btn-block"  type="submit">Reset Password</button>
                                                 </div></>:<></>}
                                             </div>
                                         </div>
