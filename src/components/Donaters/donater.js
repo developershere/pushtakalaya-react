@@ -1,10 +1,28 @@
+import { useEffect, useState } from "react";
 import "../donetors.css"
-import Footer from "../footer/footer";
-import Header from "../header/header";
-function Donetors() {
+import axios from "axios";
 
+import Footer from "../footer/footer";
+import Headers from "../header/header";
+import { apiEndPoint } from "../../webApi/webapi";
+function Donetors() {
+    const [donetors, setDonetors] = useState([]);
+     const findDonetors = async () => {
+       try {
+        let response = await axios.get(apiEndPoint.DONETORS);
+            console.log(response.data);
+           setDonetors(response.data.donetors);
+        }
+         catch (err) {
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        findDonetors();
+    }, [])
     return <div className="team-boxed">
-        <Header />
+        <Headers/>
         <div
             className="container">
             <div className="intro">
@@ -16,18 +34,20 @@ function Donetors() {
                 </p>
             </div>
             <div className="row">
+                  {donetors.map((donetor)=>
                 <section className="mx-auto my-5" style={{ maxWidth: "20rem" }}>
                     <div className="card testimonial-card mt-2 mb-3">
                         <div className="card-up aqua-gradient" />
-                        <div className="avatar mx-auto white">
+                        <div className="avatar mx-auto white circle">
+                            
                             <img
-                                src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2831%29.jpg"
+                                      src=""
                                 className="rounded-circle img-fluid"
                                 alt="woman avatar"
                             />
                         </div>
                         <div className="card-body text-center">
-                            <h4 className="card-title font-weight-bold">Martha Smith</h4>
+                            <h4 className="card-title font-weight-bold">{donetor.user.name}</h4>
                             <hr />
                             <p>
                                 <i className="fas fa-quote-left" /> Lorem ipsum dolor sit amet,
@@ -36,50 +56,12 @@ function Donetors() {
                         </div>
                     </div>
                 </section>
-                <section className="mx-auto my-5" style={{ maxWidth: "20rem" }}>
-                    <di className="card testimonial-card mt-2 mb-3">
-                        <div className="card-up aqua-gradient" />
-                        <div className="avatar mx-auto white">
-                            <img
-                                src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2831%29.jpg"
-                                className="rounded-circle img-fluid"
-                                alt="woman avatar"
-                            />
-                        </div>
-                        <div className="card-body text-center">
-                            <h4 className="card-title font-weight-bold">Martha Smith</h4>
-                            <hr />
-                            <p>
-                                <i className="fas fa-quote-left" /> Lorem ipsum dolor sit amet,
-                                consectetur adipisicing elit. Eos, adipisci
-                            </p>
-                        </div>
-                    </di>
-                </section>
-                <section className="mx-auto my-5" style={{ maxWidth: "20rem" }}>
-                    <di className="card testimonial-card mt-2 mb-3">
-                        <div className="card-up aqua-gradient" />
-                        <div className="avatar mx-auto white">
-                            <img
-                                src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2831%29.jpg"
-                                className="rounded-circle img-fluid"
-                                alt="woman avatar"
-                            />
-                        </div>
-                        <div className="card-body text-center">
-                            <h4 className="card-title font-weight-bold">Martha Smith</h4>
-                            <hr />
-                            <p>
-                                <i className="fas fa-quote-left" /> Lorem ipsum dolor sit amet,
-                                consectetur adipisicing elit. Eos, adipisci
-                            </p>
-                        </div>
-                    </di>
-                </section>
-            </div>
-        </div>
-        <Footer />
-    </div>
+                )}
+              
+            </div >
+        </div >
+       <Footer/>
+    </div >
 }
 
 export default Donetors;

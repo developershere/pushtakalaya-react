@@ -10,10 +10,10 @@ function OrderDetails(){
     const{currentUser}=useSelector((state)=>state.user)
     const[orderList,SetOrderDetailsList]=useState([]);
     const location = useLocation();
-    const order =location.state.order
-    console.log('Order id : '+order._id);
+    const order =location?.state?.order
+    console.log('Order id : '+order?._id);
     const featchOrderByUserId=async(id)=>{
-      console.log(order._id);
+      console.log(order?._id);
         let response = await axios.post(apiEndPoint.FETCH_ORDER_BY_ORDERID,{id:order._id});
         console.log("Mausam : "+response.data);
         SetOrderDetailsList(response.data.order);

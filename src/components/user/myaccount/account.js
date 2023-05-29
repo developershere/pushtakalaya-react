@@ -5,6 +5,7 @@ import { apiEndPoint } from "../../../webApi/webapi";
 function Account() {
     var userImage;
     const { currentUser, isError } = useSelector((state) => state.user);
+    console.log(currentUser);
     if(currentUser.photo.split('@')[1])
         userImage = apiEndPoint.DISK_STORAGE+currentUser.photo.split('@')[1];
     else if(currentUser.photo.split('@'[0]))
