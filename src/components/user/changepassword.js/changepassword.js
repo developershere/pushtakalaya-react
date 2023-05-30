@@ -43,7 +43,7 @@ function ChangePassword() {
                                 <h2 className="text-center mt-2">Change Password?</h2>
 
                                 <div className="panel-body">
-                                    <form onSubmit={updatePassword}>
+                                    <form onSubmit={updatePassword} >
                                         <div className="form-group">
                                             <div className="input-group mt-3">
                                                 <span className="input-group-addon mt-2">
@@ -60,7 +60,7 @@ function ChangePassword() {
 
                                             </div>
                                             <div className="form-group">
-                                                <input name="recover-submit" className="btn btn-lg changepasswordbutton btn-block" defaultValue="Reset Password" type="submit"
+                                                <input className="btn btn-lg changepasswordbutton btn-block" defaultValue="Reset Password" type="submit"
                                                 />
                                             </div>
                                         </div>
