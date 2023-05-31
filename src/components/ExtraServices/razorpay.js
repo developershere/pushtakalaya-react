@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+// import {Cart,pay} from '../user/cart/cart';
 function Payment(props) {
   const [amount, setamount] = useState('');
   const handleSubmit = (e) => {
@@ -35,7 +36,7 @@ function Payment(props) {
   }
   return (
     <div className="App">
-      <button className='btn-dark mb-2 razorpaybutton' onClick={handleSubmit}>PAY</button>
+      <button className='btn-dark mb-2 razorpaybutton' id='paybtn' onClick={handleSubmit}>PAY</button>
     </div>
   );
 }

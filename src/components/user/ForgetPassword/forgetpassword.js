@@ -57,6 +57,7 @@ function ForgetPassword() {
                                 <p>You can reset your password here.</p>
                                 <div className="panel-body">
                                     <form>
+
                                         <div className="form-group">
                                             <div className="input-group mt-3">
                                                 <span className="input-group-addon mt-2">
@@ -72,6 +73,8 @@ function ForgetPassword() {
                                                 </span>
                                                 <button class="cartbutton " data-toggle="collapse" href="#collapseExample" role="button" onClick={handlesubmit} aria-expanded="false" aria-controls="collapseExample">Send OTP</button>
 
+
+
                                             </div>
                                             <div class="collapse" id="collapseExample">
                                                 {otpStatus?<>
@@ -83,8 +86,7 @@ function ForgetPassword() {
                                                     <input id="email" name="email" ref={OTP} placeholder="Enter Otp" className="form-control" type="number" />
                                                 </div>
                                                 <div className="form-group">
-                                                    <input onClick={updatePassword} className="btn btn-lg cartbutton btn-block" defaultValue="Reset Password" type="submit"
-                                                    />
+                                                    <button Click={updatePassword} className="btn btn-lg cartbutton btn-block"  type="submit">Reset Password</button>
                                                 </div></>:<></>}
                                             </div>
                                         </div>
@@ -97,6 +99,8 @@ function ForgetPassword() {
             </div>
         </div>
     </>
+
+
 }
 
 export default ForgetPassword;

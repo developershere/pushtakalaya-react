@@ -14,7 +14,7 @@ function WithGoogle(){
         <div className="main-container">
      
             <GoogleOAuthProvider clientId="253200048380-kj5s3efrn407rl6tfuvuuafg014qp8vg.apps.googleusercontent.com">
-                <GoogleLogin className='googlebutton'
+                <GoogleLogin className='googlebutton w-100 mb-3 mt-3'
                     onSuccess={credentialResponse =>{
                         const details =jwt_decode(credentialResponse.credential);
                         const userData = {name : details.given_name+" "+details.family_name,email : details.email,photo : details.picture,status:true};

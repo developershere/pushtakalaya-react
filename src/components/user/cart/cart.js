@@ -10,6 +10,7 @@ import { apiEndPoint } from "../../../webApi/webapi";
 import { toast, ToastContainer } from "react-toastify";
 import EmptyCart from "./emptycart";
 import Payment from "../../ExtraServices/razorpay";
+import Invoice from "../../../Externals/easyInvoice";
 
 function Cart() {
   const [productList, setProductList] = useState([]);
@@ -55,11 +56,19 @@ function Cart() {
 
   const loadOrder = async (event) => {
     try {
+      window.alert('Yaha pe aa gya 1');
       event.preventDefault();
       const date = new Date().toString().substring(4, 15).replaceAll(' ', '-');
-      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, cartId: cartItems[0]._id, orderItem: cartItems, date:date });
+      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, cartId: cartItems[0]._id, orderItem: cartItems, date:date});
+      const orederPerson = {name : currentUser.name,address : delieveryAddress+'-'+contactPerson+' '+contactNumber,date,orderId : response.data.orderId};
       if(response.data.status)
-            toast.success("Order placed success");
+        {
+          <Invoice data = {orederPerson} books = {cartItems}/>
+          toast.success("Order placed success");
+          setTimeout(()=>{
+            window.location.reload();
+          },3000);
+        }
       else
           toast.warning("Oops something went wrong");
     } catch (err) {
@@ -83,6 +92,18 @@ function Cart() {
   useEffect(() => {
     loadProducts();
   }, []);
+
+    const pay = async () => {
+    var name = await document.getElementById('name').value;
+    var contact = await document.getElementById('contact').value;
+    var password = await document.getElementById('address').value;
+    if ( password.length >= 8 && name.length && contact.length == 10) {
+        document.getElementById('paybtn').removeAttribute('disabled');
+    }
+    else {
+        document.getElementById('paybtn').setAttribute('disabled');
+    }
+}
 
 
   return <>
@@ -119,29 +140,26 @@ function Cart() {
             <div className="modal-body p-0">
               <div className="innermodel mt-2">
                 <div className="form-group ">
-                  <input type="text" placeholder="Enter Contact Person Name" onChange={(event) => setContactPerson(event.target.value)} className="form-control " />
+                  <input type="text" id="name" onBlur={pay} placeholder="Enter Contact Person Name" onChange={(event) => setContactPerson(event.target.value)}  className="form-control " />
                 </div>
                 <div className="form-group">
-                  <input type="text" placeholder="Enter Contact Number" onChange={(event) => setContactNumber(event.target.value)} className="form-control" />
+                  <input type="text" id="contact" onBlur={pay}  placeholder="Enter Contact Number" onChange={(event) => setContactNumber(event.target.value)} className="form-control" />
                 </div>
                 <div className="form-group">
-                  <textarea type='text' cols='64' rows='4' placeholder="Enter Delievery Address" onChange={(event) => setDeliveryAddress(event.target.value)} className="form-control" />
+                  <textarea type='text' id="address" onBlur={pay} cols='64' rows='4' placeholder="Enter Delievery Address" onChange={(event) => setDeliveryAddress(event.target.value)} className="form-control" />
                 </div>
                 </div>
-                {paymentMode*1&&<Payment
-                    money = {total}/>
+                {paymentMode*1?<Payment
+                    money = {total}/>:<></>
               }
             </div>
             <div className="modal-footer ">
-              <button type="submit" className="btn-block cartcheckoutbutton ">Placed Order</button>
+              <button type="submit" className="btn-block cartcheckoutbutton " id="paybtn" disabled > Placed Order</button>
             </div>
           </div>
         </form>
       </div>
-    </div>
-
-    {}
-
+    </div>  
     {!cartItems?.length == 0 ? <div className="container-fluid addtocartcontainer mb-70">
       <div className=" row">
         <div className="  ml-4 mt-5 col-sm-8 col-md-8 col-xm-8 ps-2 ">
@@ -179,8 +197,8 @@ function Cart() {
             <h6 className="contentcart">Bill Amount<span className="ml-5 pl-3"> :  ₹ {amount}</span></h6>
             <h6 className="contentcart">Total Amount<span className="ml-5 pl-3">: ₹ {total = amount + (!flag && cartItems?.length * 30)}</span></h6><hr />
             <div onChange={(event) => setPaymentMode(event.target.value)}>
-              <input type="radio" value={0} name='payment' /><span className="contentcart" style={{cursor:"pointer"}}>  Cash On Delievery</span><br />
-              <input type="radio" value={1} name='payment' /><span className="contentcart"  style={{cursor:"pointer"}}> Online Payment</span></div>
+              <input type="radio" value={0} name='payment'  htmlFor="check1" /><span className="contentcart" style={{cursor:"pointer"}} id="check1">  Cash On Delievery</span><br />
+              <input type="radio" value={1} name='payment' id="check" /><span className="contentcart"  style={{cursor:"pointer"}} htmlFor="check"> Online Payment</span></div>
           </div>
           <a className="btn-block cartcheckoutbutton text-center mt-3 " data-toggle="modal" data-target="#checkoutModel">Procced To checkout</a>
         </div>

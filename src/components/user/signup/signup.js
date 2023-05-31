@@ -22,6 +22,7 @@ function SignUp() {
     var profileImage=[];
     var mtime;
     var modalDismiss;
+    const [isLoading,setIsLoading] = useState(true);
     const [modal,setModal] = useState(false);
     const [loader,setLoader] = useState(false);
     const navigate = useNavigate();
@@ -58,6 +59,7 @@ function SignUp() {
         console.log("Mtime : "+mtime);
         console.log(profileImage);
         const formData = new FormData();
+        console.log(profileImage);
         formData.append("profile",profileImage);
         formData.set("name",name.current.value);
         formData.set("email",email.current.value);
@@ -67,10 +69,10 @@ function SignUp() {
         modalDismiss = false;
         if (new Date().getMinutes() <= mtime) {
             if (mausam == otp.current.value) {
-                <Loader/>
+                setLoader(true);
                 const response = await axios.post(apiEndPoint.USER_SIGNUP,formData)
                 modalDismiss = true;
-                setLoader(true);
+                setIsLoading(false);
                 toast("Registration Success....")
                 window.location.reload();
             }
@@ -96,6 +98,7 @@ function SignUp() {
     return <>
         <Header />
         <ToastContainer />
+        {loader&& isLoading&&<Loader/>}
         <div className="breadcrumbs-area ">
             <div className="container">
                 <div className="row">
@@ -155,9 +158,9 @@ function SignUp() {
                                     </div>
                                     <div className="form-group text-center">
                                             {modal ?
-                                                <button type="submit" className="btn submitbtn w-100">
+                                                <button type="submit" id="signupsubmibtn" className="btn submitbtn1 w-100" disabled>
                                             Sign Up
-                                        </button> : <button type="submit" className="btn submitbtn w-100" data-toggle="modal" data-target="#exampleModalCenter">
+                                        </button> : <button type="submit" id="signupsubmibtn" className="btn submitbtn1 w-100" data-toggle="modal" data-target="#exampleModalCenter" disabled>
                                             Sign Up
                                         </button>
                                             }
