@@ -63,7 +63,7 @@ function Order() {
                   </span> : <span class="badge badge-primary rounded-pill d-inline">{order.status}</span>}
 
                 </td>
-                {parseInt(order.paymentMod) * 1 ? <td>COD</td> : <td>Online Payment</td>}
+                {order.paymentMode * 1 ? <td>Online Payment</td> : <td>COD</td>}
                 <td>Rs. {order.billamount}</td>
               </tr>)}
 
