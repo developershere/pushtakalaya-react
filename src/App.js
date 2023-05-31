@@ -68,7 +68,8 @@ function App() {
   <Route path='/orderDetails' element={<ProtectedRoute><OrderDetails/></ProtectedRoute>}/>
   <Route path='/donetors' element={<Donetors />} />
   <Route path='/forgetPassword'element={<ForgetPassword/>}/>
-  <Route path='/changePassword' element={<ChangePassword/>}/>
+  {/* <Route path='/changePassword' element={<ChangePassword/>}/> */}
+ 
   </Routes>
   </>
 }

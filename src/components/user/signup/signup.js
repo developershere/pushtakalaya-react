@@ -59,6 +59,7 @@ function SignUp() {
         console.log("Mtime : "+mtime);
         console.log(profileImage);
         const formData = new FormData();
+        console.log(profileImage);
         formData.append("profile",profileImage);
         formData.set("name",name.current.value);
         formData.set("email",email.current.value);

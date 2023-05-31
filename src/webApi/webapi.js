@@ -33,6 +33,6 @@ export const apiEndPoint = {
     SEARCH_BOOK_BY_USERID: "/book/serachByuserId",
     FETCH_ORDER:"/order/vieworderByuserId",
     FETCH_ORDER_BY_ORDERID:"/order/vieworderByorderId",
-    PRICE: "/book/price"
-
+    PRICE: "/book/price",
+    DONETORS: "/book/donetors"
 }

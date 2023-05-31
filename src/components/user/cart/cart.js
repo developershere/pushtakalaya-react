@@ -65,6 +65,9 @@ function Cart() {
         {
           <Invoice data = {orederPerson} books = {cartItems}/>
           toast.success("Order placed success");
+          setTimeout(()=>{
+            window.location.reload();
+          },3000);
         }
       else
           toast.warning("Oops something went wrong");
@@ -134,8 +137,8 @@ function Cart() {
                   <textarea type='text' cols='64' rows='4' placeholder="Enter Delievery Address" onChange={(event) => setDeliveryAddress(event.target.value)} className="form-control" />
                 </div>
                 </div>
-                {paymentMode*1&&<Payment
-                    money = {total}/>
+                {paymentMode*1?<Payment
+                    money = {total}/>:<></>
               }
             </div>
             <div className="modal-footer ">
