@@ -28,6 +28,7 @@ function SignIn(){
     event.preventDefault();
     setLoader(true);
     let response = await axios.post(apiEndPoint.USER_SIGNIN,{email,password})
+    console.log(response);
     if(response.data.status){
       let carts = await axios.post(apiEndPoint.FETCH_CART,{userId:response.data.user._id})
       dispatch(setCurrentUser(response.data.user));

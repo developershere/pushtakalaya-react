@@ -12,6 +12,7 @@ import Footer from "../../footer/footer";
 import Header from "../../header/header";
 function Update() {
     const { currentUser } = useSelector((state) => state.user)
+    console.log(currentUser);
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const [name, SetName] = useState("");
@@ -21,6 +22,7 @@ function Update() {
     const updateProfile = async (event) => {
         event.preventDefault();
         try {
+            window.alert(currentUser._id)
             const formData = new FormData();
             console.log('mdfsd',photo);
             formData.append("profile",photo);
