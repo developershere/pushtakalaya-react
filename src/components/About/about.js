@@ -121,24 +121,24 @@ export default function About() {
                             <div className="team-img-area">
                                 <div className="team-img">
                                     <a href="#">
-                                        <img src={team.image} alt="man"  />
+                                        <img src={team.image} alt="No Image" style={{height:'300px',width:'300px'}} />
                                     </a>
                                 </div>
                                 <div className="team-link">
                                     <ul>
                                         <li>
-                                            <a href="#">
-                                                <i className="fa fa-facebook" />
+                                            <a href="https://github.com/ChetnaRathore22">
+                                            <i class="fa-brands fa-github"></i>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <i className="fa fa-twitter" />
+                                              <i class="fa-brands fa-instagram"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
-                                                <i className="fa fa-google-plus" />
+                                            <a href="https://www.linkedin.com/in/chetnarathore/">
+                                            <i class="fa-brands fa-linkedin"></i>
                                             </a>
                                         </li>
                                     </ul>

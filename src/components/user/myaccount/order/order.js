@@ -40,14 +40,14 @@ function Order() {
               <tr className="text-white">
                 <th>S.No</th>
                 <th>OrderId</th>
-                <th></th>
+                <th>Date</th>
                 <th>Status</th>
                 <th>PaymentMode</th>
                 <th>Bill Amount</th>
               </tr>
             </thead>
             <tbody>
-              {orderList.map((order, index) => <tr key={index}>
+              {orderList.sort((b,a)=>b.date<a.date?1:-1).map((order, index) => <tr key={index}>
                 <td>
                   {index + 1}
                 </td>
@@ -55,10 +55,10 @@ function Order() {
                   {order._id}
                 </td>
                 <td>
-
+                    {order.date}
                 </td>
                 <td>
-                  {!order.status == 'pending' ? <span className="badge badge-success rounded-pill d-inline">
+                  {order.status == 'shipped' ? <span className="badge badge-success rounded-pill d-inline">
                     {order.status}
                   </span> : <span class="badge badge-primary rounded-pill d-inline">{order.status}</span>}
 

@@ -54,7 +54,7 @@ function Cart() {
 
   const loadOrder = async (event) => {
     try {
-      window.alert('Yaha pe aa gya 1');
+
       event.preventDefault();
       const date = new Date().toString().substring(4, 15).replaceAll(' ', '-');
       let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, cartId: cartItems[0]._id, orderItem: cartItems, date:date});

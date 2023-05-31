@@ -12,7 +12,7 @@ thead th{
 }
 .orderId{
     height: 30px;
-    width: 28%;
+    width: auto;
     background-color: #F07c29;
     float: left;
 }
@@ -36,4 +36,9 @@ thead th{
 .noOrder{
     height: 300px;
     width: 300px;
+}
+
+.bookimg{
+    width:"80px"!important;
+   height:"80px" !important;
 }
