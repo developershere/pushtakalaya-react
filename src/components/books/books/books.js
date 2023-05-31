@@ -129,7 +129,6 @@ function Books() {
     return <>
         <Header />
         <ToastContainer />
-        <section className="blog" id="blogid">
         <div className="container-fluid">
             <div className="FilterMainDiv">
                 <div className="RightPart"  >
@@ -245,7 +244,6 @@ function Books() {
             </div>
 
         </div>
-        </section>
         {/* <Footer/> */}
 
     </>

@@ -34,8 +34,7 @@ function SignIn(){
       dispatch(fetchCart(response.data.user._id));
       setIsLoading(false);
       toast.success("Welcome to Pustakalaya");
-      navigate("/")
-
+      navigate("/");
         return response.data.user;
       }
     } catch (err) {

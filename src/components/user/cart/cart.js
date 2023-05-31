@@ -41,12 +41,10 @@ function Cart() {
     try {
 
       let response = await axios.post(apiEndPoint.FETCH_CART, { userId: currentUser._id });
-      
       if(status)
           dispatch(setCartItems(book.Buybook));
       else
          dispatch(setCartItems(response.data.cart));
-
     }
     catch (err) {
       setError("Oops! something went wrong..");
@@ -64,6 +62,7 @@ function Cart() {
       if(response.data.status)
         {
           <Invoice data = {orederPerson} books = {cartItems}/>
+          const response = axios.post(apiEndPoint.ORDER_INVOICE,{user:currentUser,books:cartItems});
           toast.success("Order placed success");
           setTimeout(()=>{
             window.location.reload();
