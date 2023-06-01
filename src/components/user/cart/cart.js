@@ -41,22 +41,18 @@ function Cart() {
     try {
 
       let response = await axios.post(apiEndPoint.FETCH_CART, { userId: currentUser._id });
-      
       if(status)
           dispatch(setCartItems(book.Buybook));
       else
          dispatch(setCartItems(response.data.cart));
-
     }
     catch (err) {
       setError("Oops! something went wrong..");
     }
   }
-
-
   const loadOrder = async (event) => {
     try {
-      window.alert('Yaha pe aa gya 1');
+
       event.preventDefault();
       const date = new Date().toString().substring(4, 15).replaceAll(' ', '-');
       let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, cartId: cartItems[0]._id, orderItem: cartItems, date:date});
@@ -64,6 +60,8 @@ function Cart() {
       if(response.data.status)
         {
           <Invoice data = {orederPerson} books = {cartItems}/>
+
+          const response = axios.post(apiEndPoint.ORDER_INVOICE,{user:{name : currentUser.name,address:delieveryAddress,date,orderId:response._id},books:cartItems});
           toast.success("Order placed success");
           setTimeout(()=>{
             window.location.reload();

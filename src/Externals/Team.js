@@ -1,5 +1,5 @@
 export const Team = [{
-    image: "",
+    image: "/team/chetna.jpg",
     name : "Chetna Rathore",
     desingnation : "Full Stack Developer",
     socilaLikns : ["dgdfds","gdfgh","sgsdgs"]
@@ -10,13 +10,13 @@ export const Team = [{
     socilaLikns : ["dgdfds","gdfgh","sgsdgs"]
 },
 {
-    image: "",
+    image: "/team/pooja.jpg",
     name : "Pooja Rajput",
     desingnation : "Full Stack Developer",
     socilaLikns : ["dgdfds","gdfgh","sgsdgs"]
 },
 {
-    image: "",
+    image: "/team/sanju.jpg",
     name : "Sanju Patel",
     desingnation : "Full Stack Developer",
     socilaLikns : ["dgdfds","gdfgh","sgsdgs"]
