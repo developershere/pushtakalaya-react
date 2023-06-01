@@ -50,8 +50,6 @@ function Cart() {
       setError("Oops! something went wrong..");
     }
   }
-
-
   const loadOrder = async (event) => {
     try {
 
@@ -62,7 +60,8 @@ function Cart() {
       if(response.data.status)
         {
           <Invoice data = {orederPerson} books = {cartItems}/>
-          const response = axios.post(apiEndPoint.ORDER_INVOICE,{user:currentUser,books:cartItems});
+
+          const response = axios.post(apiEndPoint.ORDER_INVOICE,{user:{name : currentUser.name,address:delieveryAddress,date,orderId:response._id},books:cartItems});
           toast.success("Order placed success");
           setTimeout(()=>{
             window.location.reload();
