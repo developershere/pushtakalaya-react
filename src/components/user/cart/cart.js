@@ -56,15 +56,18 @@ function Cart() {
       event.preventDefault();
       const date = new Date().toString().substring(4, 15).replaceAll(' ', '-');
       let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, cartId: cartItems[0]._id, orderItem: cartItems, date:date});
+      window.alert(response.data.status+"  Mausam ");
       const orederPerson = {name : currentUser.name,address : delieveryAddress+'-'+contactPerson+' '+contactNumber,date,orderId : response.data.orderId};
+      const userData = {name : currentUser.name,address:delieveryAddress,date,orderId:response._id};
       if(response.data.status)
         {
-          <Invoice data = {orederPerson} books = {cartItems}/>
-
-          const response = axios.post(apiEndPoint.ORDER_INVOICE,{user:{name : currentUser.name,address:delieveryAddress,date,orderId:response._id},books:cartItems});
+          // <Invoice data = {orederPerson} books = {cartItems}/>
+          window.alert(response.data.status+" Inside if...");
+          const response = await axios.post(apiEndPoint.USER_SIGNIN,{user:userData,books:cartItems});
+          console.log(response);
           toast.success("Order placed success");
+          window.alert("222222");
           setTimeout(()=>{
-            window.location.reload();
           },3000);
         }
       else
