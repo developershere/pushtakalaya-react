@@ -4,7 +4,9 @@ import { apiEndPoint } from "../webApi/webapi";
 
 export const fetchTopProduct = createAsyncThunk('fetchTopProduct',async()=>{
     let response =await axios.get(apiEndPoint.TOP_PRODUCT_API);
+    if(response.data.status){
     return response.data.topbookList
+    }
 })
 
 const slice = createSlice({

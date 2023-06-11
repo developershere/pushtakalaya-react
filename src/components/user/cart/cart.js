@@ -1,147 +1,201 @@
 import Footer from "../../footer/footer";
 import Header from "../../header/header";
+import "./cart.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { addItemInToCart, removeFromCart, setCartItems } from "../../../router-config/CartSlice";
+import { apiEndPoint } from "../../../webApi/webapi";
+import { toast, ToastContainer } from "react-toastify";
+import EmptyCart from "./emptycart";
+import Payment from "../../ExtraServices/razorpay";
+import Invoice from "../../../Externals/easyInvoice";
 
-function Cart(){
-    return<>
-    <Header/>
-   <div className="breadcrumbs-area mb-70">
-        <div className="container">
-            <div className="row">
-                <div className="col-lg-12">
-                    <div className="breadcrumbs-menu">
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#" className="active">cart</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div className="entry-header-area">
-        <div className="container">
-            <div className="row">
-                <div className="col-lg-12">
-                    <div className="entry-header-title">
-                        <h2>Cart</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+function Cart() {
+  const [productList, setProductList] = useState([]);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const { currentUser } = useSelector(state => state.user);
+  const { cartItems, flag } = useSelector(state => state.cart);
+  const [paymentMode, setPaymentMode] = useState(false);
+  const [contactPerson, setContactPerson] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
+  const [delieveryAddress, setDeliveryAddress] = useState("");
+
+  const location = useLocation();
+  const dispatch = useDispatch();
+  var amount = 0;
+  var total = 0;
+  var status = false;
+  const book = location?.state?.Buybook;
+  if(book?.Buyflag)
+    status = book.Buyflag;
+  console.log(book?.Buybook);
+  cartItems?.map((carts,index)=>{
+      total+= carts.bookId.price*1+30;
+
+  })
   
-    <div className="cart-main-area mb-70">
-        <div className="container">
-            <div className="row">
-                <div className="col-lg-12">
-                    <form action="#">
-                        <div className="table-content table-responsive mb-15 border-1">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th className="product-thumbnail">Image</th>
-                                        <th className="product-name">Product</th>
-                                        <th className="product-price">Price</th>
-                                        <th className="product-quantity">Quantity</th>
-                                        <th className="product-subtotal">Total</th>
-                                        <th className="product-remove">Remove</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="product-thumbnail">
-                                            <a href="#"><img src="img/cart/1.jpg" alt="man" /></a>
-                                        </td>
-                                        <td className="product-name"><a href="#">Vestibulum suscipit</a></td>
-                                        <td className="product-price"><span className="amount">£165.00</span></td>
-                                        <td className="product-quantity"><input type="number" value="1"/></td>
-                                        <td className="product-subtotal">£165.00</td>
-                                        <td className="product-remove"><a href="#"><i className="fa fa-times"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td className="product-thumbnail">
-                                            <a href="#"><img src="img/cart/2.jpg" alt="man" /></a>
-                                        </td>
-                                        <td className="product-name"><a href="#">Vestibulum dictum magna</a></td>
-                                        <td className="product-price"><span className="amount">£50.00</span></td>
-                                        <td className="product-quantity"><input type="number" value="1"/></td>
-                                        <td className="product-subtotal">£50.00</td>
-                                        <td className="product-remove"><a href="#"><i className="fa fa-times"></i></a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
-                </div>
+  const loadProducts = async () => {
+    try {
+
+      let response = await axios.post(apiEndPoint.FETCH_CART, { userId: currentUser._id });
+      if(status)
+          dispatch(setCartItems(book.Buybook));
+      else
+         dispatch(setCartItems(response.data.cart));
+    }
+    catch (err) {
+      setError("Oops! something went wrong..");
+    }
+  }
+  const loadOrder = async (event) => {
+    try {
+
+      event.preventDefault();
+      const date = new Date().toString().substring(4, 15).replaceAll(' ', '-');
+      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, cartId: cartItems[0]._id, orderItem: cartItems, date:date});
+      window.alert(response.data.status+"  Mausam ");
+      const orederPerson = {name : currentUser.name,address : delieveryAddress+'-'+contactPerson+' '+contactNumber,date,orderId : response.data.orderId};
+      const userData = {name : currentUser.name,address:delieveryAddress,date,orderId:response._id};
+      if(response.data.status)
+        {
+          // <Invoice data = {orederPerson} books = {cartItems}/>
+          window.alert(response.data.status+" Inside if...");
+          const response = await axios.post(apiEndPoint.USER_SIGNIN,{user:userData,books:cartItems});
+          console.log(response);
+          toast.success("Order placed success");
+          window.alert("222222");
+          setTimeout(()=>{
+          },3000);
+        }
+      else
+          toast.warning("Oops something went wrong");
+    } catch (err) {
+      console.log(err);
+      console.log("Oops Something Went Wrong");
+    }
+  }
+
+
+  const removeCart = async (id) => {
+
+    try {
+      if (window.confirm("Do You Want To Remove")) {
+        dispatch(removeFromCart({ userId: currentUser._id, _id: id }));
+      }
+    } catch (err) {
+      toast.error("Something Went Wrong");
+    }
+  }
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+
+  return <>
+    <Header />
+    <ToastContainer/>
+    <div className="breadcrumbs-area ">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="breadcrumbs-menu">
+              <ul>
+                <li><Link to='/'>Home</Link></li>
+                <li><a href="#" className="active">cart</a></li>
+              </ul>
             </div>
-            <div className="row">
-                <div className="col-lg-8 col-md-6 col-12">
-                    <div className="buttons-cart mb-30">
-                        <ul>
-                            <li><a href="#">Update Cart</a></li>
-                            <li><a href="#">Continue Shopping</a></li>
-                        </ul>
-                    </div>
-                    <div className="coupon">
-                        <h3>Coupon</h3>
-                        <p>Enter your coupon code if you have one.</p>
-                        <form action="#">
-                            <input type="text" placeholder="Coupon code"/>
-                            <a href="#">Apply Coupon</a>
-                        </form>
-                    </div>
-                </div>
-                <div className="col-lg-4 col-md-6 col-12">
-                    <div className="cart_totals">
-                        <h2>Cart Totals</h2>
-                        <table>
-                            <tbody>
-                                <tr className="cart-subtotal">
-                                    <th>Subtotal</th>
-                                    <td>
-                                        <span className="amount">£215.00</span>
-                                    </td>
-                                </tr>
-                                <tr className="shipping">
-                                    <th>Shipping</th>
-                                    <td>
-                                        <ul id="shipping_method">
-                                            <li>
-                                                <input type="radio"/>
-                                                <label>
-                                                        Flat Rate:
-                                                        <span className="amount">£7.00</span>
-                                                    </label>
-                                            </li>
-                                            <li>
-                                                <input type="radio"/>
-                                                <label> Free Shipping </label>
-                                            </li>
-                                        </ul>
-                                        <a href="#">Calculate Shipping</a>
-                                    </td>
-                                </tr>
-                                <tr className="order-total">
-                                    <th>Total</th>
-                                    <td>
-                                        <strong>
-                                                <span className="amount">£215.00</span>
-                                            </strong>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div className="wc-proceed-to-checkout">
-                            <a href="#">Proceed to Checkout</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-    <Footer/>
-    </>
+
+
+    <div className="modal fade" id="checkoutModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{
+      border: "2px solid black"
+    }}>
+      <div className="modal-dialog" role="document">
+        <form onSubmit={loadOrder}>
+          <div className="modal-content">
+            <div className="modal-header ">
+              <h5 className="modal-title orderSummary " id="exampleModalLabel">Shipping Address</h5>
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body p-0">
+              <div className="innermodel mt-2">
+                <div className="form-group ">
+                  <input type="text" placeholder="Enter Contact Person Name" onChange={(event) => setContactPerson(event.target.value)} className="form-control " />
+                </div>
+                <div className="form-group">
+                  <input type="text" placeholder="Enter Contact Number" onChange={(event) => setContactNumber(event.target.value)} className="form-control" />
+                </div>
+                <div className="form-group">
+                  <textarea type='text' cols='64' rows='4' placeholder="Enter Delievery Address" onChange={(event) => setDeliveryAddress(event.target.value)} className="form-control" />
+                </div>
+                </div>
+                {paymentMode*1?<Payment
+                    money = {total}/>:<></>
+              }
+            </div>
+            <div className="modal-footer ">
+              <button type="submit" className="btn-block cartcheckoutbutton ">Placed Order</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    {!cartItems?.length == 0 ? <div className="container-fluid addtocartcontainer mb-70">
+      <div className=" row">
+        <div className="  ml-4 mt-5 col-sm-8 col-md-8 col-xm-8 ps-2 ">
+          <div className=" headingcart row col-md-12 mt-2">
+            {book?.Buyflag ? <h5 className="cartscontainheading text-white mt-1">Your Book(1)</h5>:<h5 className="cartscontainheading text-white mt-1">My Cart({cartItems?.length + "Books"})</h5>}
+          </div>
+          {!flag && cartItems?.map((product, index) =>
+            <div className="addtocartdiv row mt-3 ">
+              <div className="col-md-2 col-sm-4 ">
+                <img src={"https://drive.google.com/uc?export=view&id=" + product.bookId.photos?.substring(32, product.bookId.photos.lastIndexOf("/"))} className="imgcart mt-2 img img-fluid img-responsive img-thumbnail" alt="" />
+              </div>
+              <div className="col-md-7 mt-2 ">
+                <h6 className="mt-2 cartscontainheading">{product.bookId.name}</h6>
+                <h6 className="contentcart"><span className="carttitle">Author : </span>{product.bookId.author}</h6>
+                <h6 className="contentcart"><span className="carttitle">Price : </span>{product.bookId.price} Rs</h6>
+                <h6 className="carttitle">Shipping & Handling charges   ₹30</h6>
+              </div>
+
+              <div className="col-md-3 text-center">
+                <button className="cartbutton" onClick={() => { removeCart(product._id) }}>Remove</button>
+              </div>
+
+            </div>)}
+
+
+        </div>
+
+        <div className="col-md-3 col-xm-3 col-sm-3  addtocartdivafter ml-5 mt-5 ">
+          <div className="mt-2 orderSummary">
+            Order Summary
+          </div><hr />
+          <div className="cartscontainheading  mt-4">
+            {!flag && cartItems?.map((product, index) => { amount = amount + product.bookId.price * 1 })}
+            <h6 className="contentcart">Pay Only for Shipping  <span className="ml-1"> :₹{!flag && cartItems?.length * 30} ({!flag && cartItems?.length} Books)</span></h6>
+            <h6 className="contentcart">Bill Amount<span className="ml-5 pl-3"> :  ₹ {amount}</span></h6>
+            <h6 className="contentcart">Total Amount<span className="ml-5 pl-3">: ₹ {total = amount + (!flag && cartItems?.length * 30)}</span></h6><hr />
+            <div onChange={(event) => setPaymentMode(event.target.value)}>
+              <input type="radio" value={0} name='payment' /><span className="contentcart" style={{cursor:"pointer"}}>  Cash On Delievery</span><br />
+              <input type="radio" value={1} name='payment' /><span className="contentcart"  style={{cursor:"pointer"}}> Online Payment</span></div>
+          </div>
+          <a className="btn-block cartcheckoutbutton text-center mt-3 " data-toggle="modal" data-target="#checkoutModel">Procced To checkout</a>
+        </div>
+      </div>
+    </div> : <EmptyCart />}
+    <Footer />
+
+  </>
 }
 
 export default Cart;

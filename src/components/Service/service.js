@@ -1,3 +1,6 @@
+import { Externals } from "../../Externals/BestAuthore";
+import { Offers } from "../../Externals/Offers";
+
 function Service(){
     return <>
      <div className="banner-area banner-res-large pt-30 pb-5">
@@ -9,8 +12,8 @@ function Service(){
                             <a href="#"><img src="img/banner/1.png" alt="banner" /></a>
                         </div>
                         <div className="banner-text">
-                            <h4>Free shipping item</h4>
-                            <p>For all orders over ₹500</p>
+                            <h4>5-10% OFF shipping item</h4>
+                            <p>{Offers.OFF}</p>
                         </div>
                     </div>
                 </div>
@@ -21,7 +24,7 @@ function Service(){
                         </div>
                         <div className="banner-text">
                             <h4>Money back guarantee</h4>
-                            <p>100% money back guarante</p>
+                            <p>{Offers.GUARENTEE}</p>
                         </div>
                     </div>
                 </div>
@@ -32,7 +35,7 @@ function Service(){
                         </div>
                         <div className="banner-text">
                             <h4>Cash on delivery</h4>
-                            <p>We are also provide COD facility</p>
+                            <p>{Offers.COD}</p>
                         </div>
                     </div>
                 </div>
@@ -43,7 +46,7 @@ function Service(){
                         </div>
                         <div className="banner-text">
                             <h4>Help & Support</h4>
-                            <p>Call us : +91 8989580060</p>
+                            <p>{Offers.SUPPORT}</p>
                         </div>
                     </div>
                 </div>

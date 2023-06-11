@@ -212,7 +212,7 @@
                         item,
                         slide;
 
-                    slider.controlNavScaffold = $('<ol class="' + namespace + 'control-nav ' + namespace + type + '"></ol>');
+                    slider.controlNavScaffold = $('<ol className="' + namespace + 'control-nav ' + namespace + type + '"></ol>');
 
                     if (slider.pagingCount > 1) {
                         for (var i = 0; i < slider.pagingCount; i++) {
@@ -222,7 +222,7 @@
                             item = (slider.vars.controlNav === "thumbnails") ? '<img src="' + slide.attr('data-thumb') + '"' + altText + '/>' : '<a href="#">' + j + '</a>';
                             if ('thumbnails' === slider.vars.controlNav && true === slider.vars.thumbCaptions) {
                                 var captn = slide.attr('data-thumbcaption');
-                                if ('' !== captn && undefined !== captn) { item += '<span class="' + namespace + 'caption">' + captn + '</span>'; }
+                                if ('' !== captn && undefined !== captn) { item += '<span className="' + namespace + 'caption">' + captn + '</span>'; }
                             }
                             slider.controlNavScaffold.append('<li>' + item + '</li>');
                             j++;
@@ -301,7 +301,7 @@
             },
             directionNav: {
                 setup: function() {
-                    var directionNavScaffold = $('<ul class="' + namespace + 'direction-nav"><li class="' + namespace + 'nav-prev"><a class="' + namespace + 'prev" href="#">' + slider.vars.prevText + '</a></li><li class="' + namespace + 'nav-next"><a class="' + namespace + 'next" href="#">' + slider.vars.nextText + '</a></li></ul>');
+                    var directionNavScaffold = $('<ul className="' + namespace + 'direction-nav"><li className="' + namespace + 'nav-prev"><a className="' + namespace + 'prev" href="#">' + slider.vars.prevText + '</a></li><li className="' + namespace + 'nav-next"><a className="' + namespace + 'next" href="#">' + slider.vars.nextText + '</a></li></ul>');
 
                     // CUSTOM DIRECTION NAV:
                     if (slider.customDirectionNav) {
@@ -352,7 +352,7 @@
             },
             pausePlay: {
                 setup: function() {
-                    var pausePlayScaffold = $('<div class="' + namespace + 'pauseplay"><a href="#"></a></div>');
+                    var pausePlayScaffold = $('<div className="' + namespace + 'pauseplay"><a href="#"></a></div>');
 
                     // CONTROLSCONTAINER:
                     if (slider.controlsContainer) {
@@ -909,7 +909,7 @@
                 var sliderOffset, arr;
 
                 if (type === "init") {
-                    slider.viewport = $('<div class="' + namespace + 'viewport"></div>').css({ "overflow": "hidden", "position": "relative" }).appendTo(slider).append(slider.container);
+                    slider.viewport = $('<div className="' + namespace + 'viewport"></div>').css({ "overflow": "hidden", "position": "relative" }).appendTo(slider).append(slider.container);
                     // INFINITE LOOP:
                     slider.cloneCount = 0;
                     slider.cloneOffset = 0;
