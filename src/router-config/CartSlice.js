@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../interceptor.js";
 import { apiEndPoint } from "../webApi/webapi";
 import { toast } from "react-toastify";
 export const fetchCart = createAsyncThunk("cart/fetchCart", async(userId) => {

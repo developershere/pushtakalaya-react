@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../donetors.css"
-import axios from "axios";
+import axios from "../../interceptor.js";
 
 import Footer from "../footer/footer";
 import Headers from "../header/header";

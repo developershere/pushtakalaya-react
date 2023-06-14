@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './signin.css'
-import axios from '../../Service/interceptor';
+import axios from '../../../interceptor.js';
 import { apiEndPoint } from '../../../webApi/webapi';
 import {toast,ToastContainer} from "react-toastify";
 import { useDispatch } from 'react-redux';

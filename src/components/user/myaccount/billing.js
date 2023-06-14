@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { apiEndPoint } from "../../../webApi/webapi";
-import axios from "axios";
+import axios from "../../../interceptor.js";
 import { useEffect, useState } from "react";
 
 function BillingAdress() {

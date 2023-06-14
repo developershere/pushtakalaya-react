@@ -5,7 +5,7 @@ import Header from '../../../header/header';
 import'./order.css'
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../../../interceptor.js';
 function OrderDetails(){
     const{currentUser}=useSelector((state)=>state.user)
     const[orderList,SetOrderDetailsList]=useState([]);

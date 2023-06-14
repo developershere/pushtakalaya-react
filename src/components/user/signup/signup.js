@@ -1,7 +1,7 @@
 import "./signup.css"
 import { useRef, useState } from 'react'
 import Header from "../../header/header";
-import axios from "axios";
+import axios from "../../../interceptor";
 import { toast, ToastContainer } from "react-toastify"
 import { apiEndPoint } from "../../../webApi/webapi";
 import { Link, useNavigate } from "react-router-dom";

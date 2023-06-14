@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../interceptor";
 import { apiEndPoint } from "../webApi/webapi";
 
 export const fetchCategory = createAsyncThunk('fetchCategory',async ()=>{

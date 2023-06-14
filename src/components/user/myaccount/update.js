@@ -1,7 +1,7 @@
 import SideBar from "./sidebar";
 import './myaccount.css'
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../../interceptor.js";
 import { apiEndPoint } from "../../../webApi/webapi";
 import { useDispatch, useSelector } from "react-redux";
 import { setUpdateProfile } from "../../../router-config/userSlice";
