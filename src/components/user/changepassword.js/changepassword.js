@@ -4,7 +4,7 @@ import './changepassword.css'
 import { useRef } from 'react';
 import { apiEndPoint } from '../../../webApi/webapi';
 import { ToastContainer, toast } from 'react-toastify';
-import axios from 'axios';
+import axios from '../../../interceptor.js';
 function ChangePassword() {
     const navigate = useNavigate();
     const location = useLocation();

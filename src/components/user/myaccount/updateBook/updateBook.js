@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import "./updateBook.css"
 
-import axios from "axios";
+import axios from "../../../../interceptor.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Header from "../../../header/header";

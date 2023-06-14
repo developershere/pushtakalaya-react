@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './topbar.css'
 import { useSelector } from 'react-redux';
 import recentProduct from '../../router-config/recentProductSlice';
-import axios from 'axios';
+import axios from '../../interceptor.js';
 import { apiEndPoint } from '../../webApi/webapi';
 import { useRef } from 'react';
 function TopBar() {

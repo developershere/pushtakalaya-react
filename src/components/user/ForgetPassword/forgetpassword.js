@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import './forgetpassword.css'
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../header/header';
-import axios from 'axios';
+import axios from '../../../interceptor.js';
 import { apiEndPoint } from '../../../webApi/webapi';
 import { ToastContainer, toast } from 'react-toastify';
 import ChangePassword from '../changepassword.js/changepassword';

@@ -3,7 +3,7 @@ import Footer from "../footer/footer";
 import Header from "../header/header";
 import { useEffect, useRef, useState } from "react";
 import { fetchState } from "../../router-config/stateSlice";
-import axios from "axios";
+import axios from "../../interceptor.js";
 import { apiEndPoint } from "../../webApi/webapi";
 import userSlice from "../../router-config/userSlice";
 import { toast,ToastContainer } from "react-toastify";

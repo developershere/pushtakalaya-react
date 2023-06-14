@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../interceptor.js";
 import { useEffect, useState } from "react";
 import { apiEndPoint } from "../../webApi/webapi";
 import Header from "../header/header";
