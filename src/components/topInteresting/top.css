@@ -33,7 +33,7 @@
 .buttonhover {
     background-color: #212529;
     color: white;
-    width: 170px;
+    width: 80%;
 }
 
 .buttonhover:hover {
@@ -75,11 +75,12 @@
     text-align: center;
     width: 47px;
     font-size: 8px;
-    margin-left: 192px;
+    right: 5%;
     position: absolute;
     margin-bottom: 132px;
     box-shadow: 0 1px 2px #0003, 0 1px 2px #00000030;
 }
+
 .viewcircle {
     /* border: 1px solid #F07; */
     background-color: #F07c29;
@@ -94,7 +95,8 @@
     margin-top: 9px;
     float: right;
 }
-.viewicon{
+
+.viewicon {
     font-size: 17px;
     color: white;
     text-align: center;

@@ -1,5 +1,3 @@
-
-
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import "./viewDescription.css"
@@ -23,9 +21,9 @@ function ViewDescription() {
                         <div className="container-fluid" id="main_wrapper">
                             <div className="container" id="container_wrapper">
                                 <div className="mid_wrapper">
-                                    <div id="div1">
-                                        <div id="main_image" className="image">
-                                            <img
+                                    <div id="div1 col-md-12 col-sm-12 col-xs-12 ">
+                                        <div id="main_image" className="image ">
+                                            <img className=" descimg"
                                                 src={"https://drive.google.com/uc?export=view&id=" + book.photos.substring(32, book.photos.lastIndexOf("/"))}
                                                 alt=""
                                                 id="mainDescriptionImage"
@@ -34,8 +32,8 @@ function ViewDescription() {
                                         {/* image array */}
 
                                     </div>
-                                    <div id="div2">
-                                        <div>
+                                    <div id="div2" className="col-md-6 col-sm-12 col-xs-12">
+                                        <div >
                                             <p className="dectitel">{book.name}</p>
 
                                             <p className="desprice">&#8377; {book.price==0?"Free": book.price}</p>

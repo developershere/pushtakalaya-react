@@ -38,7 +38,7 @@ function Carousal() {
 
       </div>
       <div className="carousel-item">
-        <img className="d-block w-100" style={{ height: "400px" }} src="https://www.mypustak.com/_next/image?url=https%3A%2F%2Fd239pyg5al708u.cloudfront.net%2Fuploads%2Fhomebanner%2FHOME_1_2_79.webp&w=3840&q=75" alt="First slide" />
+        <img className="d-block w-100 img img-responsive" style={{ height: "400px" , backgroundSize: "cover"}} src="https://www.mypustak.com/_next/image?url=https%3A%2F%2Fd239pyg5al708u.cloudfront.net%2Fuploads%2Fhomebanner%2FHOME_1_2_79.webp&w=3840&q=75" alt="First slide" />
       </div>
     </div>
     <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

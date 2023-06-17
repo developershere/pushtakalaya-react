@@ -132,7 +132,7 @@ function TopInteresting() {
                      
                      <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book?.price==0?"Free":book.price}</b>
                      <br/>
-                     <button className="btn mt-2  buttonhover" onClick={()=>BuyNow(book,true)} >Get Now</button><span className="viewcircle ml-2 "  onClick={() => viewDescription(book,1)}><small className="viewicon p-2 " ><i className="fa fa-eye" /></small></span>
+                     <button className="col-md -3 btn mt-2  buttonhover" onClick={()=>BuyNow(book,true)} >Get Now</button><span className="viewcircle ml-2 "  onClick={() => viewDescription(book,1)}><small className="viewicon p-2 " ><i className="fa fa-eye" /></small></span>
                    </div>
                  </div>
                </div>)}
@@ -151,8 +151,8 @@ function TopInteresting() {
                     <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 15)}</p>
                     <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹{book.price}</b>
                     <br />
-                    <button className="btn mt-2 buttonhover" >Get Now</button><span className="viewcircle ml-2 "  onClick={() => viewDescription(book)}><small className="viewicon p-2 " ><i className="fa fa-eye" /></small></span>
-                  </div>
+                    <button className="btn col-sm-12 mt-2 buttonhover" >Get Now</button><span className="viewcircle ml-2 "  onClick={() => viewDescription(book)}><small className="viewicon p-2 " ><i className="fa fa-eye mt-2" /></small></span>
+                  </div> 
                 </div>
               </div>)}
           </div>

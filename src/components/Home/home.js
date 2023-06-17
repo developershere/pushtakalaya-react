@@ -12,10 +12,10 @@ function Home(){
     {/* <Loader/> */}
     <Header/>
     <Service/>
-    <Carousal />
+    <Carousal /> 
     <TopInteresting/>
     <BestAuthor/>
-    <Banner/>
+    <Banner/> 
     <Footer/>
   
    </>
