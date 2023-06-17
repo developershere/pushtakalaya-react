@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import TopBar from "../Topbar/topbar";
 import { signout } from "../../router-config/userSlice";
 import { toast } from "react-toastify";
+import { useState } from "react";
 function Header() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { categoryList, error, isLoading } = useSelector((state) => state.category)
+    const [isLoading,setIsLoading] = useState(true);
+    const { categoryList, error} = useSelector((state) => state.category)
     const currentUser = useSelector((state) => state.user.currentUser);
     const signOut = () => {
         dispatch(signout())
@@ -42,7 +44,7 @@ function Header() {
                                             </div>
                                         </li>
 
-                                        <li><Link >Uplode Books<i className="fa fa-angle-down"></i></Link>
+                                        <li><Link >Upload Books<i className="fa fa-angle-down"></i></Link>
                                         
                                         <div className="sub-menu sub-menu-2">
                                             <ul> 

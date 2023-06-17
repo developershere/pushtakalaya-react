@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './signin.css'
-import axios from 'axios';
+import axios from '../../../interceptor.js';
 import { apiEndPoint } from '../../../webApi/webapi';
 import {toast,ToastContainer} from "react-toastify";
 import { useDispatch } from 'react-redux';
@@ -12,67 +12,51 @@ import Header from '../../header/header';
 import { fetchCart} from '../../../router-config/CartSlice';
 import Footer from '../../footer/footer';
 import GoogleLogin from '../../ExtraServices/GoogleLogin';
-
+import Loader from '../../Spinner/Loader';
+import mausam from 'lodash';
 function SignIn(){
 
   const [email, SetEmail] = useState(" ");
   const [password, setPassword] = useState(" ");
   const dispatch = useDispatch();
   const navigate =useNavigate();
-
-
-  const throttleFunction = (func,delayTime)=>{
-    window.alert("First");
-    let prev=0;
-    return (...args)=>{
-      window.alert("Second");
-      let time = new Date().getTime();
-      if(time-prev>3000)
-      {
-        prev = time;
-        window.alert("Throttling is enabled");
-        return func(...args);
-      }
-    }
-  }
+  const [isLoading,setIsLoading] = useState(true);
+  const [loader,setLoader] = useState(false);
 
   const handleSubmit=async(event)=>{
     try{
     event.preventDefault();
+    setLoader(true);
     let response = await axios.post(apiEndPoint.USER_SIGNIN,{email,password})
     if(response.data.status){
       let carts = await axios.post(apiEndPoint.FETCH_CART,{userId:response.data.user._id})
       dispatch(setCurrentUser(response.data.user));
       dispatch(fetchCart(response.data.user._id));
+      setIsLoading(false);
       toast.success("Welcome to Pustakalaya");
-      navigate("/")
-
+      navigate("/");
         return response.data.user;
       }
     } catch (err) {
       console.log(err)
       toast.error("Sign In Failed");
+      setLoader(false);
     }
   }
+  const throttleFunction = mausam.throttle(handleSubmit,5000);
  function sub () {
     var email = document.getElementById('floatingInput').value;
     var pass = document.getElementById('floatingPassword').value;
-
-
-    if(email.length && pass.length>=6 ){
-
+    if(email.length && pass.length>=6 )
        document.getElementById('submitbtn').removeAttribute('disabled');
-    }
-
 }
-
-
   const changeHome = () => {
     navigate("/")
   }
     return <>
     <Header/>
     <ToastContainer/>
+    {loader&&isLoading&&<Loader/>}
     <div className='container-fluid'>
      <div className="breadcrumbs-area ">
         <div className="container">
@@ -101,7 +85,7 @@ function SignIn(){
           <div className="row">
             <div className="col-md-9 col-lg-8 mx-auto">
               <h3 className="login-heading mb-4 welcome">Welcome Back!</h3>
-              <form id='SigninForm' onSubmit={handleSubmit}>
+              <form id='SigninForm' onSubmit={throttleFunction}>
                 <div className="form-floating mb-3">
                   <input  onChange={(event)=>SetEmail(event.target.value)} type="email" className="form-control" id="floatingInput" placeholder="name@example.com" required/>
                   <label for="floatingInput">Email address</label>

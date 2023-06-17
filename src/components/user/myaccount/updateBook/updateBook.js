@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 
 import "./updateBook.css"
 
-import axios from "axios";
-import { useLocation } from "react-router-dom";
+import axios from "../../../../interceptor.js";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Header from "../../../header/header";
 import Footer from "../../../footer/footer";
@@ -16,6 +16,7 @@ import { fetchState } from "../../../../router-config/stateSlice";
 
 function UpdateBooks() {
     const location = useLocation();
+    const navigate = useNavigate();
     const book = location.state.books;
     const stateId = location.state.stateId;
     const [citys, setCitys] = useState([]);
@@ -61,6 +62,9 @@ function UpdateBooks() {
             console.log(response.data)
             if (response.data.status) {
                 toast.success("Book Update SucesFully");
+                setTimeout(()=>{
+                    navigate('/myaccount');
+                },6000);
             }
            }
         catch (err) {

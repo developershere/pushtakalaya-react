@@ -1,7 +1,7 @@
 import SideBar from "./sidebar";
 import './myaccount.css'
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../../interceptor.js";
 import { apiEndPoint } from "../../../webApi/webapi";
 import { useDispatch, useSelector } from "react-redux";
 import { setUpdateProfile } from "../../../router-config/userSlice";
@@ -17,27 +17,33 @@ function Update() {
     const [name, SetName] = useState("");
     const [email, SetEmail] = useState("");
     const [contact, SetContact] = useState("");
-    const [photo, SetPhoto] = useState(" ");
+    let photo=null;
     const updateProfile = async (event) => {
         event.preventDefault();
         try {
             const formData = new FormData();
+            console.log('mdfsd',photo);
             formData.append("profile",photo);
             formData.set("name",name);
             formData.set("email",email);
             formData.set("contact",contact);
             formData.set("_id",currentUser?._id);
             let response = await axios.post(apiEndPoint.USER_UPDATEPROFILE,formData);
-            dispatch(setUpdateProfile(response.data.updatedUser))
+            dispatch(setUpdateProfile(response.data.updatedUser));
             toast.success("Profile Updated Succesfully");
+            setTimeout(()=>{
+                navigate('/myaccount')
+            },5000);
         } catch (err) {
             toast.error("Something Went Wrong");
         }
     }
 
     const getImage = (event)=>{
-        SetPhoto(event.target.files[0]);
+        photo = event.target.files[0];
+        console.log("Mausam",event.target.files[0]);
     }
+
 
     return <>
         <Header />

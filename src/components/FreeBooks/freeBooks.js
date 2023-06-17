@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from "../../interceptor.js";
 import { useEffect, useState } from "react";
 import { apiEndPoint } from "../../webApi/webapi";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import'./freebooks.css'
 
 function FreeBooks() {
@@ -30,26 +30,43 @@ function FreeBooks() {
   const viewDescription = (book) => {
     navigate("/viewDescription", { state: { bookDetails: book } })
   }
-
-
-  const addToCart = async (id)=>{
-    try{
-      if(currentUser)
-      {
-        let response = await axios.post(apiEndPoint.ADD_TO_CART,{bookId:id,userId : currentUser._id});
-        toast.success("Book is added to you'r cart");
-      }
-      else
-        toast.warning("You have to Login first");
-  }
-    catch(err)
-    {
-    if(err.response.status==400)
-        toast.warning("Book is already exists in cart");
-    if(err.response.status==500)
-      toast.error("Oops Something went wrong");
+  const BuyNow=async(book,flag)=>{
+    const buy={
+      Buybook:[{bookId:book}],
+      Buyflag:true
     }
+     try{
+       if(currentUser){
+        navigate("/cart",{state:{Buybook:buy}})
+          
+
+       }else{
+         toast.warning("You Have To Login First ")
+       }
+
+     }catch(err){
+      if(err.response.status==500)
+      toast.error("Oops Something Went Wrong");
+     }
   }
+
+  const addToCart = async (id) => {
+    try {
+        if (currentUser) {
+            let response = await axios.post(apiEndPoint.ADD_TO_CART, { bookId: id, userId: currentUser._id });
+            toast.success("Book is added to you'r cart");
+        }
+        else {
+            toast.warning("You have to Login first");
+        }
+    }
+    catch (err) {
+        if (err.response.status == 400)
+            toast.warning("Book is already exists in cart");
+        if (err.response.status == 500)
+            toast.error("Oops Something went wrong");
+    }
+}
 
 
   useEffect(() => {
@@ -58,6 +75,7 @@ function FreeBooks() {
 
   return <>
     <Header />
+    <ToastContainer/>
     <section className="blog" id="blogid">
       <div className="container heading-design">
         <div className=" row">
@@ -72,7 +90,7 @@ function FreeBooks() {
                   <p className="cardprice"><span className="cardtitle">Author: </span>{book.author.substring(0, 15)}</p>
                   <b className="card-text cardprice"><span className="cardtitle">Price: </span>₹ Free</b>
                   <br />
-                  <button className="btn mt-2 buynowbutton" >Get Now</button><span className="viewcircle ml-2 "  onClick={() => viewDescription(book)}><small className="viewicon p-2 " ><i className="fa fa-eye" /></small></span>
+                  <button className="btn mt-2 buynowbutton" onClick={()=>BuyNow(book,true)} >Get Now</button><span className="viewcircle ml-2 "  onClick={() => viewDescription(book)}><small className="viewicon p-2 " ><i className="fa fa-eye" /></small></span>
                 </div>
               </div>
             </div>)}

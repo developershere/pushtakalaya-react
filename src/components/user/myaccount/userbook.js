@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../../interceptor.js";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";

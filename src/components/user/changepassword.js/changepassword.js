@@ -4,20 +4,20 @@ import './changepassword.css'
 import { useRef } from 'react';
 import { apiEndPoint } from '../../../webApi/webapi';
 import { ToastContainer, toast } from 'react-toastify';
-import axios from 'axios';
+import axios from '../../../interceptor.js';
 function ChangePassword() {
     const navigate = useNavigate();
     const location = useLocation();
     const email = location?.state?.user;
     const password = useRef(null);
     const confirmPassword = useRef(null);
-    const updatePassword = async ()=>{
+    const updatePassword = async (event)=>{
+        event.preventDefault();
         window.alert('sfgdfgd');
         window.alert(password.current.value);
         window.alert(confirmPassword.current.value);
         if(password.current.value==confirmPassword.current.value)
         {
-            window.alert('Yaha pe aa gya 1');
             const response = await axios.post(apiEndPoint.FORGOTT_PASSWORD,{email:email,password:password.current.value});
             if(response.data.status)
                 {
@@ -29,7 +29,7 @@ function ChangePassword() {
             toast.error('Password does not metch...');
     }
     return <>
-        <Header />
+       
         <ToastContainer/>
         <div className="container">
             <div className="row m-auto">

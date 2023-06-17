@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { apiEndPoint } from "../../../webApi/webapi";
-import axios from "axios";
+import axios from "../../../interceptor.js";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 

@@ -1,7 +1,7 @@
 import Footer from "../../footer/footer";
 import Header from "../../header/header";
 import "./cart.css";
-import axios from "axios";
+import axios from "../../../interceptor.js";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import { apiEndPoint } from "../../../webApi/webapi";
 import { toast, ToastContainer } from "react-toastify";
 import EmptyCart from "./emptycart";
 import Payment from "../../ExtraServices/razorpay";
+import Invoice from "../../../Externals/easyInvoice";
 
 function Cart() {
   const [productList, setProductList] = useState([]);
@@ -40,26 +41,35 @@ function Cart() {
     try {
 
       let response = await axios.post(apiEndPoint.FETCH_CART, { userId: currentUser._id });
-      
       if(status)
           dispatch(setCartItems(book.Buybook));
       else
          dispatch(setCartItems(response.data.cart));
-
     }
     catch (err) {
       setError("Oops! something went wrong..");
     }
   }
-
-
   const loadOrder = async (event) => {
     try {
+
       event.preventDefault();
       const date = new Date().toString().substring(4, 15).replaceAll(' ', '-');
-      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, cartId: cartItems[0]._id, orderItem: cartItems, date:date });
+      let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, cartId: cartItems[0]._id, orderItem: cartItems, date:date});
+      window.alert(response.data.status+"  Mausam ");
+      const orederPerson = {name : currentUser.name,address : delieveryAddress+'-'+contactPerson+' '+contactNumber,date,orderId : response.data.orderId};
+      const userData = {name : currentUser.name,address:delieveryAddress,date,orderId:response._id};
       if(response.data.status)
-            toast.success("Order placed success");
+        {
+          // <Invoice data = {orederPerson} books = {cartItems}/>
+          window.alert(response.data.status+" Inside if...");
+          const response = await axios.post(apiEndPoint.USER_SIGNIN,{user:userData,books:cartItems});
+          console.log(response);
+          toast.success("Order placed success");
+          window.alert("222222");
+          setTimeout(()=>{
+          },3000);
+        }
       else
           toast.warning("Oops something went wrong");
     } catch (err) {
@@ -128,8 +138,8 @@ function Cart() {
                   <textarea type='text' cols='64' rows='4' placeholder="Enter Delievery Address" onChange={(event) => setDeliveryAddress(event.target.value)} className="form-control" />
                 </div>
                 </div>
-                {paymentMode*1&&<Payment
-                    money = {total}/>
+                {paymentMode*1?<Payment
+                    money = {total}/>:<></>
               }
             </div>
             <div className="modal-footer ">
@@ -139,9 +149,6 @@ function Cart() {
         </form>
       </div>
     </div>
-
-    {}
-
     {!cartItems?.length == 0 ? <div className="container-fluid addtocartcontainer mb-70">
       <div className=" row">
         <div className="  ml-4 mt-5 col-sm-8 col-md-8 col-xm-8 ps-2 ">
