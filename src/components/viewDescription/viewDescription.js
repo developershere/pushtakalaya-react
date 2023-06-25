@@ -6,8 +6,6 @@ function ViewDescription() {
 
     const location = useLocation();
     const book = location.state.bookDetails;
-    console.log(book)
-
     return <>
       
         <Header/>

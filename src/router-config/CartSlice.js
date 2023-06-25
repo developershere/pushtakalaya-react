@@ -9,7 +9,6 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async(userId) => {
 
 export const removeFromCart = createAsyncThunk("cart/remove", async({userId,_id}) => {
 let response = await axios.post(apiEndPoint.REMOVE_CART, {userId, _id });
-   console.log(response.data);
    if(response.data.status){
     toast.success("Book is Remove from the Cart");
     return response.data.cart.cartItems;
@@ -19,7 +18,6 @@ let response = await axios.post(apiEndPoint.REMOVE_CART, {userId, _id });
 
 export const addItemInToCart = createAsyncThunk("cart/addItemInToCart", async(obj) => {
     let response = await axios.post(apiEndPoint.USER_CART, { userId: obj.userId});
-    console.log(response.data.result);
     return response.data.result;
 });
 const slice = createSlice({
@@ -41,7 +39,6 @@ const slice = createSlice({
     },
     extraReducers:(builder)=>{
         builder.addCase(removeFromCart.fulfilled,(state,action)=>{
-            console.log(action)
             state.cartItems = action.payload;
             state.isLoading = false;
         })

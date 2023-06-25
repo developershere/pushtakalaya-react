@@ -13,9 +13,6 @@ function ChangePassword() {
     const confirmPassword = useRef(null);
     const updatePassword = async (event)=>{
         event.preventDefault();
-        window.alert('sfgdfgd');
-        window.alert(password.current.value);
-        window.alert(confirmPassword.current.value);
         if(password.current.value==confirmPassword.current.value)
         {
             const response = await axios.post(apiEndPoint.FORGOTT_PASSWORD,{email:email,password:password.current.value});

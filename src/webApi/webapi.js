@@ -25,7 +25,7 @@ export const apiEndPoint = {
     ADD_BOOK : "/book/add",
     SEARCH_BOOKS : "/book/searchByKeyword",
     FEATCH_CITY_BY_STATE:"/city/findCityByState",
-    DISK_STORAGE : "http://localhost:3006/images/",
+    DISK_STORAGE : "https://pustakalaya-beckbone.onrender.com/images/",
     REMOVE_CART:"/cart/remove",
     ORDER_SAVE:"/order/saveorder",
     UPDATE_BOOK:"/book/update-book",

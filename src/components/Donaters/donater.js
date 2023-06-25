@@ -13,7 +13,6 @@ function Donetors() {
             setDonetors(response.data.donetors);
         }
         catch (err) {
-            console.log(err);
         }
     }
 

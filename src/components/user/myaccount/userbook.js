@@ -11,16 +11,14 @@ function UserBooks() {
     const featchBookByUserId = async () => {
         try {
             let response = await axios.post(apiEndPoint.SEARCH_BOOK_BY_USERID, { userId: currentUser._id });
-            console.log(response.data);
             if (response.data.status)
                 setBooks(response.data.result);
         }
         catch (err) {
-            console.log(err);
         }
     }
     const updateBook = async (book) => {
-       console.log("sdhmnbv");
+       ("sdhmnbv");
        let response = await axios.post(apiEndPoint.SEARCH_CITY_BY_ID,{cityId:book.cityId});
         navigate("/updateBooks", { state: { books:  book, stateId : response.data.state} });
         

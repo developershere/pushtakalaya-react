@@ -5,7 +5,7 @@ function Payment(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!amount == '')
-      window.alert("please enter the amount");
+        console.log("");
     else
       var options = {
         key: "rzp_test_yl7fWesMTh5Yh5",
@@ -15,8 +15,6 @@ function Payment(props) {
         name: 'PUSTAKALAYA',
         description: 'Thanks for choosing Pustkalaya',
         handler: function (response) {
-          window.alert("Payment Success Id : "+response.razorpay_payment_id);
-          console.log(response);
         },
         prefill: {
           name: "Mausam lodhi",

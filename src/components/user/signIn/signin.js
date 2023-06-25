@@ -27,7 +27,10 @@ function SignIn(){
     try{
     event.preventDefault();
     setLoader(true);
-    let response = await axios.post(apiEndPoint.USER_SIGNIN,{email,password})
+    console.log('Email : '+email);
+    console.log('Password : '+password);
+    let response = await axios.post(apiEndPoint.USER_SIGNIN,{email,password});
+    console.log(response.data);
     if(response.data.status){
       let carts = await axios.post(apiEndPoint.FETCH_CART,{userId:response.data.user._id})
       dispatch(setCurrentUser(response.data.user));
@@ -38,7 +41,7 @@ function SignIn(){
         return response.data.user;
       }
     } catch (err) {
-      console.log(err)
+      console.log('Error : '+err);
       toast.error("Sign In Failed");
       setLoader(false);
     }

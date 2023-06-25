@@ -66,10 +66,8 @@ function Books() {
         try {
             let response = await axios.post(apiEndPoint.PRICE, { minPrice: minPrice, maxPrice: maxPrice });
             setData(response.data.result);
-            console.log(response.data);
         }
         catch (err) {
-            console.log(err);
         }
     }
     const viewBookByCategory = async (categoryId) => {
@@ -80,18 +78,15 @@ function Books() {
             }
         }
         catch (err) {
-            console.log(err);
         }
     }
 
     const searchByAuther = async (author) => {
         try {
             let response = await axios.post(apiEndPoint.SEARCH_BY_AUTHER, { author: author });
-            console.log(response.data);
             SetAuthors(response.data.result)
         }
         catch (err) {
-            console.log(err);
         }
     }
 
@@ -142,29 +137,9 @@ function Books() {
                             <li className="listhover" onClick={() => viewBookByCategory(category._id)}>{category.categoryName}</li>)}
                     </ul>
                     </div>
-                    <div style={{ display: "block" }}>
-                        <button className="priceButton">Price Range</button>
-                    </div>
-
-                    <div className="priceRange">
-                        <ul className=" ml-4">
-                            <li className="listhover" onClick={() => handlePriceSelect("1-100")}>Under 100</li>
-                            <li className="listhover" onClick={() => handlePriceSelect("100-200")}>100 - 200</li>
-                            <li className="listhover" onClick={() => handlePriceSelect("200-400")}>200 - 400</li>
-                            <li className="listhover" onClick={() => handlePriceSelect("400-600")}>400 - 600</li>
-                            <li className="listhover" onClick={() => handlePriceSelect("600-800")}>60o - 800</li>
-                            <li className="listhover" onClick={() => handlePriceSelect("800-1000")}>800 - 1000</li>
-                            <li className="listhover" onClick={() => handlePriceSelect("1000-2000")}>Over 2000</li>
-                        </ul>
-                    </div>
-
-
                     <div class="dropdown dropdownbtn">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Author
-                        </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton dropdownofOther">
-                            {console.log(authors)}
+                            {(authors)}
                             {authors.map((book, index) =>
                                 <a class="dropdown-item " onClick={() => { searchByAuther(book.author) }}>{book.author}</a>
                             )}

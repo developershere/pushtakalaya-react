@@ -18,7 +18,6 @@ function FreeBooks() {
     try {
       let response = await axios.get(apiEndPoint.FREE_BOOK_API);
       if (response.data.status) {
-        console.log(response.data)
         SetFreeProduct(response.data.bookList)
       }
     } catch (err) {

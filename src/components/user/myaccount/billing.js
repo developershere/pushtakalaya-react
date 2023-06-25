@@ -9,10 +9,10 @@ function BillingAdress() {
 
     const featchOrderByUserId = async () => {
         let response = await axios.post(apiEndPoint.FETCH_ORDER, { userId: currentUser._id });
-        console.log(response);
+        (response);
         SetOrderList(response.data.orderlist);
     }
-    console.log(orderList[orderList.length - 1]?.delieveryAddress)
+    (orderList[orderList.length - 1]?.delieveryAddress)
 
     useEffect(() => {
         featchOrderByUserId();

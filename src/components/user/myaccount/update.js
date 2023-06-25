@@ -22,7 +22,7 @@ function Update() {
         event.preventDefault();
         try {
             const formData = new FormData();
-            console.log('mdfsd',photo);
+            ('mdfsd',photo);
             formData.append("profile",photo);
             formData.set("name",name);
             formData.set("email",email);
@@ -41,7 +41,7 @@ function Update() {
 
     const getImage = (event)=>{
         photo = event.target.files[0];
-        console.log("Mausam",event.target.files[0]);
+        ("Mausam",event.target.files[0]);
     }
 
 

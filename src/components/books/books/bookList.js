@@ -5,7 +5,6 @@ function BookList() {
 
     const location = useLocation();
     const books = location.state.dataList;
-    window.alert(books);
     return <>
        {books.map((book)=>
         <div className="mainDivofList">

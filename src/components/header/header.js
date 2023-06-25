@@ -70,9 +70,9 @@ function Header() {
                                         {currentUser ? <li><Link onClick={signOut}>SignOut</Link></li> : <li><a href="#">MyAccount<i className="fa fa-angle-down"></i></a>
                                             <div className="sub-menu sub-menu-2">
                                                 <ul>
-                                                    <li><Link to='/signup'>SignUp</Link></li>
+                                                    <li><Link to='/signup'>Sign Up</Link></li>
 
-                                                    <li><Link to='/signin'>SignIn</Link></li>
+                                                    <li><Link to='/signin'>Sign In</Link></li>
                                                 </ul>
                                             </div>
                                         </li>}

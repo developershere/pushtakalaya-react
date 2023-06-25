@@ -17,12 +17,10 @@ function ForgetPassword() {
     const handlesubmit = async (event) => {
         event.preventDefault();
         const response = await axios.post(apiEndPoint.USER_CHECK, { email: email.current.value });
-        console.log(response.data);
         if (response.data.status) {
            
             setOtpStatus(response.data.status);
             setOtp(response.data.otp);
-            window.alert(otpStatus);
         }
         else
             toast.error("This user is unauthorized...");
@@ -30,15 +28,11 @@ function ForgetPassword() {
     }
     const updatePassword = async ()=>{
        
-        console.log(OTP.current.value);
-        console.log(otp);
         if(sendingTime+5<=new Date().getMinutes())
         {
             if(otp==OTP.current.value)
             {
                 setStatus(true);
-                console.log(status);
-                // window.alert("change");
                 // navigate('/changePassword',{state:{user:email.current.value}});
             }
             else

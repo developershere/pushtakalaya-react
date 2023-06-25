@@ -27,7 +27,6 @@ function Account() {
                         <div className="single-input-item">
                             <i className="fas fa-user fa-lg me-3 fa-fw" />
                             <label for="display-name" className="required" style={{ fontFamily: "Rufina, serif"}}> Name  <span className="ml-4 heading"> {currentUser && currentUser.name}</span>  </label>
-                            <label ></label>
                         </div>
                         <div className="single-input-item">
                             <i className="fas fa-envelope fa-lg me-3 fa-fw" />
@@ -35,8 +34,8 @@ function Account() {
 
                         </div>
                         <div className="single-input-item">
-                            <i className="fa fa-phone " aria-hidden="true" />
-                            <label for="text" className="required ml-3"   style={{ fontFamily: "Rufina, serif"}}>contact <span className="ml-2 heading"> {currentUser && currentUser.contact}</span>  </label>
+                            <i className="fa fa-phone fa-lg fa-fw" aria-hidden="true" />
+                            <label for="text" className="required ml-3"   style={{ fontFamily: "Rufina, serif"}}>Contact <span className="ml-2 heading"> {currentUser && currentUser.contact}</span>  </label>
 
                         </div>
                         <Link to='/update' className="btn btn-sqr mt-3"><i className="fa fa-edit"></i>  Edit profile</Link>

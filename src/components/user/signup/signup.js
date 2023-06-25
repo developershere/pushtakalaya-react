@@ -18,7 +18,6 @@ function SignUp() {
     let contact = useRef("");
     let otp = useRef("");
     let mausam;
-    var gender = "Male";
     var profileImage=[];
     var mtime;
     var modalDismiss;
@@ -39,10 +38,7 @@ function SignUp() {
             let response = await axios.post(apiEndPoint.USER_VERIFY, { name: name.current.value, email: email.current.value });
             mausam = response.data.result.OTP;
             // setModal(response.data.status);
-            window.alert("fgdg"+modal);
             mtime = response.data.result.currentTime;
-            console.log("OTP : " + mausam);
-            console.log("Time : " + mtime);
             
         }
         catch (err) {
@@ -55,22 +51,18 @@ function SignUp() {
     }
 
     const registration = async (event) => {
-        console.log(new Date().getMinutes());
-        console.log("Mtime : "+mtime);
-        console.log(profileImage);
         const formData = new FormData();
-        console.log(profileImage);
         formData.append("profile",profileImage);
         formData.set("name",name.current.value);
         formData.set("email",email.current.value);
         formData.set("contact",contact.current.value);
         formData.set("password",password.current.value);
-        formData.set("password",gender);
         modalDismiss = false;
         if (new Date().getMinutes() <= mtime) {
             if (mausam == otp.current.value) {
                 setLoader(true);
                 const response = await axios.post(apiEndPoint.USER_SIGNUP,formData)
+                console.log('sddgf'+response.data);
                 modalDismiss = true;
                 setIsLoading(false);
                 toast("Registration Success....")

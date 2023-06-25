@@ -31,7 +31,7 @@ function Cart() {
   const book = location?.state?.Buybook;
   if(book?.Buyflag)
     status = book.Buyflag;
-  console.log(book?.Buybook);
+  (book?.Buybook);
   cartItems?.map((carts,index)=>{
       total+= carts.bookId.price*1+30;
 
@@ -56,25 +56,22 @@ function Cart() {
       event.preventDefault();
       const date = new Date().toString().substring(4, 15).replaceAll(' ', '-');
       let response = await axios.post(apiEndPoint.ORDER_SAVE, { userId: currentUser._id, billamount: total, contactPerson, contactNumber, delieveryAddress, paymentMode, cartId: cartItems[0]._id, orderItem: cartItems, date:date});
-      window.alert(response.data.status+"  Mausam ");
       const orederPerson = {name : currentUser.name,address : delieveryAddress+'-'+contactPerson+' '+contactNumber,date,orderId : response.data.orderId};
       const userData = {name : currentUser.name,address:delieveryAddress,date,orderId:response._id};
       if(response.data.status)
         {
           // <Invoice data = {orederPerson} books = {cartItems}/>
-          window.alert(response.data.status+" Inside if...");
           const response = await axios.post(apiEndPoint.USER_SIGNIN,{user:userData,books:cartItems});
-          console.log(response);
+          (response);
           toast.success("Order placed success");
-          window.alert("222222");
           setTimeout(()=>{
           },3000);
         }
       else
           toast.warning("Oops something went wrong");
     } catch (err) {
-      console.log(err);
-      console.log("Oops Something Went Wrong");
+      (err);
+      ("Oops Something Went Wrong");
     }
   }
 

@@ -3,7 +3,7 @@
 export default function GoogleLogIn(){
     
     function handlecallbackResponse(response){
-        console.log("Encoded JWT ID Token : "+ response.credential);
+        ("Encoded JWT ID Token : "+ response.credential);
     }
     useEffect(()=>{
         google.accounts.id.initialize({

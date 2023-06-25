@@ -31,7 +31,6 @@ function DonateForm() {
 
   const onFileChange = event => {
     photos = (event.target.files[0]);
-    console.log(photos);
   }
 
    const handleSubmit = async (event) => {
@@ -42,7 +41,6 @@ function DonateForm() {
       const price = 0;
        let formData = new FormData();
       formData.append("photos", photos);      
-      console.log(formData);
       formData.set("name", name);
       formData.set("description", description);
       formData.set("author", author);
@@ -67,7 +65,6 @@ function DonateForm() {
    const featchCityById = async (stateId) => {
     try {
       let response = await axios.post(apiEndPoint.FEATCH_CITY_BY_STATE, { stateId: stateId });
-      console.log(response);
       setCitys(response.data.city);
     }
     catch (err) {

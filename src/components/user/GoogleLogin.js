@@ -5,12 +5,10 @@ export default function Login(){
     const [showLoginButton,setShowLoginButton] = useState(true);
     const [showLogOutButton,setShowLogOutButton] = useState(false);
     const onSuccess = (res)=>{
-        console.log("Login Success : "+res);
         setShowLoginButton(false);
         setShowLogOutButton(true);
     }
     const onLoginFailure = (res)=>{
-        console.log("Login Failed : "+res);
     }
     const onSignOutSuccess = ()=>{
         alert("Sign Out success....");

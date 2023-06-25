@@ -32,21 +32,16 @@ function SellboooksForm() {
 
     const onFileChange = event => {
         photos = (event.target.files[0]);
-        console.log(photos);
     }
 
     
     const handleSubmit = async (event) => {
         try {
-          event.preventDefault();
-          window.alert("bfvfb")
-          window.alert(currentUser._id);
-          
+          event.preventDefault();          
           const userId = currentUser._id;
           let formData = new FormData();
             formData.append("photos", photos);      
             formData.set("name", name);
-            console.log(formData);
             formData.set("description", description);
             formData.set("author", author);
             formData.set("language", language);
@@ -68,12 +63,10 @@ function SellboooksForm() {
     }
        const featchCityById = async (stateId) => {
         try {
-            window.alert("Fetch called...");
             let response = await axios.post(apiEndPoint.FEATCH_CITY_BY_STATE, { stateId: stateId });
             setCitys(response.data.city);
         }
        catch (err) {
-            console.log(err);
         }
     }
     useEffect(() => {

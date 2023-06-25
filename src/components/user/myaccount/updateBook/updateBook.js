@@ -22,7 +22,7 @@ function UpdateBooks() {
     const [citys, setCitys] = useState([]);
     const { categoryList, error } = useSelector((state) => state.category);
     const { stateList } = useSelector((item) => item.state);
-    console.log(book);
+    (book);
 
     const dispatch = useDispatch();
 
@@ -59,7 +59,7 @@ function UpdateBooks() {
             let response = await axios.post(apiEndPoint.UPDATE_BOOK, formData
                
             );
-            console.log(response.data)
+            (response.data)
             if (response.data.status) {
                 toast.success("Book Update SucesFully");
                 setTimeout(()=>{
@@ -86,7 +86,7 @@ function UpdateBooks() {
             setCitys(response.data.city);
         }
         catch (err) {
-            console.log(err);
+            (err);
         }
     }
 
