@@ -68,8 +68,6 @@ function Cart() {
       else
           toast.warning("Oops something went wrong");
     } catch (err) {
-      (err);
-      ("Oops Something Went Wrong");
     }
   }
 
