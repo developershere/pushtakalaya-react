@@ -31,7 +31,6 @@ function Cart() {
   const book = location?.state?.Buybook;
   if(book?.Buyflag)
     status = book.Buyflag;
-  (book?.Buybook);
   cartItems?.map((carts,index)=>{
       total+= carts.bookId.price*1+30;
 
@@ -62,7 +61,6 @@ function Cart() {
         {
           // <Invoice data = {orederPerson} books = {cartItems}/>
           const response = await axios.post(apiEndPoint.USER_SIGNIN,{user:userData,books:cartItems});
-          (response);
           toast.success("Order placed success");
           setTimeout(()=>{
           },3000);
