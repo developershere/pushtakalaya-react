@@ -15,10 +15,8 @@ function OrderDetails(){
     const featchOrderByUserId=async(id)=>{
 
         let response = await axios.post(apiEndPoint.FETCH_ORDER_BY_ORDERID,{id:order._id});
-        (response.data);
         SetOrderDetailsList(response.data.order);
     }
-  ('Order List : '+orderList);
     useEffect(() => {
         featchOrderByUserId();
     }, []);

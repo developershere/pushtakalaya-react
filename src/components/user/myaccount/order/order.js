@@ -14,7 +14,6 @@ function Order() {
   const { currentUser } = useSelector((state) => state.user)
   const [orderList, SetOrderList] = useState([]);
   const navigate = useNavigate();
-  (orderList)
   const featchOrderByUserId = async () => {
     let response = await axios.post(apiEndPoint.FETCH_ORDER, { userId: currentUser._id });
     // (response.data.orderList);
@@ -22,7 +21,6 @@ function Order() {
   }
 
   const changeOrderDetails = (order) => {
-    (order);
     navigate("/orderDetails", { state: { order: order } })
   }
 
