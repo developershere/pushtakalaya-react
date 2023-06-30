@@ -35,7 +35,7 @@
         nav: true,
         dots: true,
         loop: true,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i className="fa fa-angle-left"></i>', '<i className="fa fa-angle-right"></i>'],
         responsive: {
             0: {
                 items: 1
@@ -55,7 +55,7 @@
         loop: true,
         autoplay: false,
         autoplayTimeout: 5000,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i className="fa fa-angle-left"></i>', '<i className="fa fa-angle-right"></i>'],
         nav: true,
         item: 3,
         margin: 12,
@@ -85,7 +85,7 @@
         dots: false,
         loop: true,
         margin: 20,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i className="fa fa-angle-left"></i>', '<i className="fa fa-angle-right"></i>'],
         responsive: {
             0: {
                 items: 1
@@ -116,7 +116,7 @@
         nav: false,
         autoplay: true,
         loop: true,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i className="fa fa-angle-left"></i>', '<i className="fa fa-angle-right"></i>'],
         responsive: {
             0: {
                 items: 1
@@ -145,7 +145,7 @@
         autoplay: true,
         loop: true,
         margin: 20,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i className="fa fa-angle-left"></i>', '<i className="fa fa-angle-right"></i>'],
         responsive: {
             0: {
                 items: 1
@@ -176,7 +176,7 @@
         items: 3,
         margin: 30,
         loop: true,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i className="fa fa-angle-left"></i>', '<i className="fa fa-angle-right"></i>'],
         responsive: {
             0: {
                 items: 1
@@ -207,7 +207,7 @@
         dots: false,
         margin: 20,
         loop: true,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i className="fa fa-angle-left"></i>', '<i className="fa fa-angle-right"></i>'],
         responsive: {
             0: {
                 items: 1
@@ -234,7 +234,7 @@
             autoplay: false,
             dots: false,
             loop: true,
-            navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+            navText: ['<i className="fa fa-angle-left"></i>', '<i className="fa fa-angle-right"></i>'],
             responsive: {
                 0: {
                     items: 1
@@ -257,7 +257,7 @@
         autoplay: false,
         dots: false,
         loop: true,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i className="fa fa-angle-left"></i>', '<i className="fa fa-angle-right"></i>'],
         responsive: {
             0: {
                 items: 1
@@ -284,7 +284,7 @@
         autoplay: true,
         dots: true,
         loop: true,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i className="fa fa-angle-left"></i>', '<i className="fa fa-angle-right"></i>'],
         responsive: {
             0: {
                 items: 1
@@ -308,7 +308,7 @@
         autoplay: false,
         dots: false,
         loop: true,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i className="fa fa-angle-left"></i>', '<i className="fa fa-angle-right"></i>'],
         responsive: {
             0: {
                 items: 1
@@ -332,7 +332,7 @@
         autoplay: false,
         dots: false,
         loop: true,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i className="fa fa-angle-left"></i>', '<i className="fa fa-angle-right"></i>'],
         responsive: {
             0: {
                 items: 1
@@ -357,7 +357,7 @@
             dots: false,
             items: 3,
             loop: true,
-            navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+            navText: ['<i className="fa fa-angle-left"></i>', '<i className="fa fa-angle-right"></i>'],
             responsive: {
                 0: {
                     items: 1
@@ -380,7 +380,7 @@
         autoplay: true,
         dots: false,
         loop: true,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i className="fa fa-angle-left"></i>', '<i className="fa fa-angle-right"></i>'],
         responsive: {
             0: {
                 items: 1
@@ -455,7 +455,7 @@
         var $this = $(this),
             finalDate = $(this).data('countdown');
         $this.countdown(finalDate, function(event) {
-            $this.html(event.strftime('<div class="cdown days"><span class="counting counting-2">%-D</span>days</div><div class="cdown hours"><span class="counting counting-2">%-H</span>hrs</div><div class="cdown minutes"><span class="counting counting-2">%M</span>mins</div><div class="cdown seconds"><span class="counting">%S</span>secs</div>'));
+            $this.html(event.strftime('<div className="cdown days"><span className="counting counting-2">%-D</span>days</div><div className="cdown hours"><span className="counting counting-2">%-H</span>hrs</div><div className="cdown minutes"><span className="counting counting-2">%M</span>mins</div><div className="cdown seconds"><span className="counting">%S</span>secs</div>'));
         });
     });
 
@@ -488,14 +488,14 @@
             element.siblings('li').find('ul').slideUp();
         }
     });
-    $('#cate-toggle>ul>li.has-sub>a').append('<span class="holder"></span>');
+    $('#cate-toggle>ul>li.has-sub>a').append('<span className="holder"></span>');
 
 
     /*--------------------------
      ScrollUp
     ---------------------------- */
     $.scrollUp({
-        scrollText: '<i class="fa fa-angle-up"></i>',
+        scrollText: '<i className="fa fa-angle-up"></i>',
         easingType: 'linear',
         scrollSpeed: 900,
         animation: 'fade'
@@ -520,7 +520,6 @@
         }
         sidemenuDropdown();
     }
-
 
 
 })(jQuery);

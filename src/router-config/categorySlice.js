@@ -1,16 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../interceptor";
 import { apiEndPoint } from "../webApi/webapi";
 
 export const fetchCategory = createAsyncThunk('fetchCategory',async ()=>{
   let response = await axios.get(apiEndPoint.CATEGORY_API);
   if(response.data.status){
-    console.log(response.data)
   return response.data.category
   }
 })
-
-
 const slice = createSlice({
     name:'category',
     initialState:{
