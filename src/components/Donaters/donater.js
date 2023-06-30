@@ -32,7 +32,6 @@ function Donetors() {
                 </p>
             </div>
             <div className="row">
-                {console.log(donetors)}
                 {donetors?.map((donetor,index)=>
                 <section key={index} className="mx-auto my-5" style={{ maxWidth: "20rem" }}>
                 <div className="card testimonial-card mt-2 mb-3">

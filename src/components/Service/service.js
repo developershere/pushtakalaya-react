@@ -1,7 +1,9 @@
+import { ToastContainer } from "react-toastify";
 import { Externals } from "../../Externals/BestAuthore";
 import { Offers } from "../../Externals/Offers";
 
 function Service(){
+    <ToastContainer/>
     return <>
      <div className="banner-area banner-res-large pt-30 pb-5">
         <div className="container">

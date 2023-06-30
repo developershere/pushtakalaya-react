@@ -1,3 +1,4 @@
+import { ToastContainer } from "react-toastify";
 import BestAuthor from "../BestAuthor/bestAuthor";
 import Service from "../Service/service";
 import Loader from "../Spinner/Loader";
@@ -10,6 +11,10 @@ import TopInteresting from "../topInteresting/topInteresting";
 function Home(){
    return<>
     {/* <Loader/> */}
+    <ToastContainer/>
+    <div>
+
+    </div>
     <Header/>
     <Service/>
     <Carousal />

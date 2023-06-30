@@ -61,12 +61,10 @@ function SignUp() {
         if (new Date().getMinutes() <= mtime) {
             if (mausam == otp.current.value) {
                 setLoader(true);
-                const response = await axios.post(apiEndPoint.USER_SIGNUP,formData)
-                console.log('sddgf'+response.data);
-                modalDismiss = true;
-                setIsLoading(false);
+                const response = await axios.post(apiEndPoint.USER_SIGNUP,formData);
                 toast("Registration Success....")
-                window.location.reload();
+                window.location.reload('');
+
             }
             else
                 toast.error("Invalid OTP...");

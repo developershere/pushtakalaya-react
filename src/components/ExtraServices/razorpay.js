@@ -4,8 +4,9 @@ function Payment(props) {
   const [amount, setamount] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!amount == '')
-        console.log("");
+    if (!amount == ''){
+      let newData = 'fgdfgfd';
+    }
     else
       var options = {
         key: "rzp_test_yl7fWesMTh5Yh5",

@@ -27,21 +27,19 @@ function SignIn(){
     try{
     event.preventDefault();
     setLoader(true);
-    console.log('Email : '+email);
-    console.log('Password : '+password);
     let response = await axios.post(apiEndPoint.USER_SIGNIN,{email,password});
-    console.log(response.data);
     if(response.data.status){
       let carts = await axios.post(apiEndPoint.FETCH_CART,{userId:response.data.user._id})
       dispatch(setCurrentUser(response.data.user));
       dispatch(fetchCart(response.data.user._id));
       setIsLoading(false);
-      toast.success("Welcome to Pustakalaya");
-      navigate("/");
+      toast("Welcome to Pustakalaya");
+      setTimeout(()=>{
+        navigate("/");
         return response.data.user;
+      },2000);
       }
     } catch (err) {
-      console.log('Error : '+err);
       toast.error("Sign In Failed");
       setLoader(false);
     }
