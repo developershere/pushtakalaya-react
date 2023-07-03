@@ -58,7 +58,7 @@ function SignUp() {
         formData.set("contact",contact.current.value);
         formData.set("password",password.current.value);
         modalDismiss = false;
-        if (new Date().getMinutes() <= mtime) {
+        if (true) {
             if (mausam == otp.current.value) {
                 setLoader(true);
                 const response = await axios.post(apiEndPoint.USER_SIGNUP,formData);
